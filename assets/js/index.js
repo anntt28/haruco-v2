@@ -126,6 +126,15 @@ $(function () {
       })
     );
   });
+  new Swiper(
+    ".product-slider-sale",
+    $.extend({}, productSliderOptions, {
+      navigation: {
+        nextEl: ".product-slider-next-sale",
+        prevEl: ".product-slider-prev-sale",
+      },
+    })
+  );
   var swiper5 = new Swiper(".slider-product-by-category-small", {
     loop: false,
     slidesPerView: 2,
@@ -143,36 +152,6 @@ $(function () {
     navigation: {
       nextEl: ".swiper-button-next-small",
       prevEl: ".swiper-button-prev-small",
-    },
-  });
-  var swiper6 = new Swiper(".product-haruco-slider", {
-    cssMode: false,
-    loopedSlides: 4,
-    slideToClickedSlide: true,
-    paginationClickable: true,
-    slidesPerView: 2,
-    slidesPerGroup: 1,
-    spaceBetween: 10,
-    navigation: {
-      nextEl: ".swiper-button-next-cate",
-      prevEl: ".swiper-button-prev-cate",
-    },
-    pagination: {
-      el: ".swiper-pagination-3",
-      clickable: true,
-    },
-    breakpoints: {
-      567: {
-        slidesPerView: 2,
-      },
-      768: {
-        slidesPerView: 3,
-      },
-      1200: {
-        slidesPerView: 5,
-        spaceBetween: 25,
-        allowTouchMove: false,
-      },
     },
   });
   var swiper7 = new Swiper(".product-gallery-h .slider-thumb-child", {
