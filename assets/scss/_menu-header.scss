@@ -85,10 +85,56 @@
       opacity: 0.5;
     }
   }
+  .quick-links {
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin-top: 8px;
+    li {
+      a {
+        color: $main-01;
+        font-size: 13px;
+        &:hover {
+          color: $primary;
+        }
+      }
+      &:not(:last-child) a {
+        position: relative;
+        padding-right: 16px;
+        &::after {
+          content: "";
+          position: absolute;
+          right: -8px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 12px;
+          background: $grey-border;
+        }
+      }
+    }
+  }
 }
 .header-middle {
   padding: 34px 0;
   .contact {
+    .user-f {
+      margin-right: 24px;
+      li {
+        &:not(:last-child) {
+          margin-right: 20px;
+        }
+        a {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          color: $main-01;
+          font-size: 16px;
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+    }
     .list-icon {
       .item {
         margin-right: 12px;
@@ -229,30 +275,13 @@
   position: relative;
 }
 .header-bottom-mobile {
-  padding: 11px 0;
-  transition: all 0.5s ease-in-out;
+  padding: 11px 0 16px;
+  background: $light;
+  .header-bottom-mobile-top {
+    margin-bottom: 12px;
+  }
   .icon-menu-mobile {
     cursor: pointer;
-  }
-  .logo-mobile {
-    width: 113px;
-    height: 23px;
-    transform: scale(1);
-    transition: all 0.5s ease-in-out;
-  }
-  &.active-search {
-    .btn-search-m {
-      width: 200px;
-      input {
-        width: 100%;
-        visibility: visible;
-      }
-    }
-    .logo-mobile {
-      transform: scale(0.9);
-    }
-  }
-  .icon-menu-mobile {
     svg {
       rect {
         stroke: $primary;
@@ -262,34 +291,60 @@
       }
     }
   }
-  .btn-search-m {
-    display: flex;
-    align-items: center;
-    width: 39px;
-    text-align: right;
-    input {
-      border-radius: 20px;
-      border: 1px solid #e1e1e1;
-      height: 39px;
-      padding: 10px;
-      width: 0;
-      margin-right: 0;
-      transition: all 0.5s ease-in-out;
-      visibility: hidden;
-    }
-    button {
-      position: absolute;
-      right: 0;
-      background-color: $primary;
-      width: 39px;
-      height: 39px;
+  .logo-mobile {
+    width: 100px;
+  }
+  .header-icons-mobile {
+    gap: 14px;
+    a {
+      color: $main-01;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 100%;
+    }
+  }
+  .search-mobile {
+    .input-group {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid $color-EBC499;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    input {
+      flex: 1;
+      min-width: 0;
+      height: 42px;
       border: none;
-      top: 50%;
-      transform: translateY(-50%);
+      padding: 0 12px;
+      outline: none;
+      color: $main-01;
+      &::placeholder {
+        color: $main-01;
+        opacity: 1;
+      }
+    }
+    .btn-cart-m {
+      flex-shrink: 0;
+      width: 48px;
+      border: none;
+      background: linear-gradient(90deg, $color-FF6D3E 0%, $primary 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      .badge {
+        position: absolute;
+        top: 2px;
+        right: 4px;
+        background: $light;
+        color: $primary;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        font-size: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 }
