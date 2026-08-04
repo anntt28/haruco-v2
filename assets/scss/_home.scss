@@ -40,6 +40,25 @@
     position: absolute;
     left: 8%;
     bottom: 14%;
+    .btn-view-detail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: $light;
+      font-size: 14px;
+      font-weight: 600;
+      border: 2px solid $light;
+      border-radius: 50px;
+      padding: 6px 18px;
+      @include minWidth(768px) {
+        font-size: 20px;
+        padding: 8px 24px;
+      }
+      &:hover {
+        color: $light;
+        opacity: 0.85;
+      }
+    }
   }
   .swiper-pagination-banner {
     bottom: 12px;
@@ -121,87 +140,9 @@
     margin-bottom: 0px;
   }
 }
-.product-best-seller {
-  .container-fluid {
-    @include maxWidth(768px) {
-      padding: 0;
-    }
-  }
-}
-.list-product-best-seller {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 10px;
-  margin-bottom: 22px;
-  .image-cover-h {
-    padding-top: 95%;
-    @include minWidth(768px) {
-      padding-top: 96%;
-    }
-  }
-  @include minWidth(768px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 30px;
-  }
-  @include minWidth(1024px) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-bottom: 0;
-  }
-}
-.list-item-product-t {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 10px;
-  @include minWidth(480px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  @include minWidth(576px) {
-    column-gap: 20px;
-  }
-  @include minWidth(1400px) {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    column-gap: 30px;
-  }
-  .item-best-seller {
-    &:nth-child(n + 3) {
-      display: none;
-      @include minWidth(480px) {
-        display: block;
-      }
-    }
-    &:nth-child(n + 4) {
-      display: none;
-      @include minWidth(1400px) {
-        display: block;
-      }
-    }
-    h4 {
-      font-size: 14px;
-      @include minWidth(768px) {
-        font-size: 17px;
-      }
-    }
-    .info {
-      .price {
-        .sale {
-          line-height: 20px;
-        }
-        .cost {
-          line-height: 20px;
-        }
-      }
-    }
-    .img {
-      height: 131px;
-      display: block;
-      border-radius: 20px 20px 0px 0px;
-      overflow: hidden;
-      @include minWidth(768px) {
-        height: 230px;
-      }
-    }
-  }
-}
+// .item-best-seller vẫn dùng ở product-detail.html / product-category.html /
+// product-list.html / news-detail.html — giữ nguyên, không xoá dù Homepage
+// không còn dùng class này (đã thay bằng .product-card).
 .item-best-seller {
   margin-top: 10px;
   border-radius: 20px;
@@ -531,296 +472,9 @@
     }
   }
 }
-.product-best-seller {
-  .content {
-    border-radius: 0px;
-    overflow: hidden;
-    background-color: #fff2e4;
-    @include minmaxWidth(567px, 1023px) {
-      border-radius: 20px;
-    }
-  }
-  .banner {
-    .img-banner {
-      height: 214px;
-      object-fit: cover;
-      object-position: right;
-      @include minmaxWidth(567px, 1023px) {
-        height: 350px;
-      }
-      @include minWidth(1024px) {
-        height: 100%;
-      }
-    }
-    .box-text {
-      transform: translateY(-50%);
-      padding: 0 15px;
-      text-align: center;
-      @include minmaxWidth(567px, 1023px) {
-        position: absolute;
-        top: 43%;
-        left: 50%;
-        max-width: 557px;
-        padding: 0;
-        transform: translate(-50%, -50%);
-      }
-      @include minWidth(1024px) {
-        position: absolute;
-        top: 43%;
-        left: 20px;
-        max-width: 557px;
-        padding: 0;
-      }
-      h2 {
-        background-image: url("../images/bg-heading.png");
-        color: $light;
-        font-family: "Plus Jakarta Sans";
-        font-size: 20px;
-        text-transform: uppercase;
-        padding: 0px;
-        width: 300px;
-        margin: 0 auto 10px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        @include minWidth(768px) {
-          font-size: 32px;
-          width: 451px;
-          padding: 15px 0 8px;
-          margin: 0 auto 18px;
-        }
-      }
-    }
-  }
-  .box-slider {
-    background: linear-gradient(90deg, #e2313b 0%, #ff6d3e 100%);
-    padding: 15px 10px 20px;
-    position: relative;
-    margin-top: -56px;
-    .swiper-button-prev-small {
-      left: 15px;
-    }
-    .swiper-button-next-small {
-      right: 15px;
-    }
-    @include minWidth(768px) {
-      padding: 31px 37px;
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-    }
-  }
-}
-.review-customer {
-  background-image: url("../images/bg-about-customer_sp.png");
-  background-position: 0 100px;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  padding-top: 48px;
-  padding-bottom: 48px;
-  @include minWidth(768px) {
-    padding-bottom: 124px;
-    background-image: url("../images/bg-about-customer.png");
-    background-position: center;
-  }
-  .banner {
-    margin-bottom: 10px;
-    @include minWidth(768px) {
-      margin-top: -186px;
-    }
-  }
-}
-.content-review-customer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  @include minWidth(1024px) {
-    gap: 30px;
-    flex-direction: row;
-  }
-  .intro-review {
-    position: relative;
-    text-align: center;
-    .box-text {
-      position: absolute;
-      top: 14px;
-      left: 49%;
-      padding: 0 15px;
-      text-align: center;
-      transform: translateX(-50%);
-      width: 100%;
-      margin: 0 auto;
-      color: $light;
-      @include minWidth(768px) {
-        top: 82px;
-        max-width: 553px;
-        padding: 0;
-      }
-      h2 {
-        text-transform: uppercase;
-        margin-bottom: 12px;
-        font-weight: 500;
-        font-size: 20px;
-        margin-bottom: 0;
-        @include minWidth(768px) {
-          font-size: 32px;
-          margin-bottom: 28px;
-        }
-      }
-      p {
-        line-height: 2;
-        font-size: 12px;
-        @include minWidth(768px) {
-          font-size: 16px;
-        }
-      }
-    }
-  }
-}
-.list-customer-reviews {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  @include minWidth(1024px) {
-    width: 50%;
-  }
-  @include minWidth(768px) {
-    row-gap: 20px;
-  }
-}
-.item-customer-reviews {
-  display: grid;
-  align-items: center;
-  gap: 12px;
-  background: $light;
-  box-shadow: 0px 2px 8px 0px rgba(209, 114, 83, 0.2196078431);
-  border-radius: 20px;
-  padding: 7px 20px 7px 7px;
-  grid-template-columns: 95px 1fr;
-  @include minWidth(768px) {
-    display: grid;
-    grid-template-columns: 159px 1fr;
-    padding: 18px;
-    gap: 17px;
-    border-radius: 20px;
-  }
-  .box-text {
-    h6 {
-      font-size: 16px;
-      color: $main-01;
-      @include minWidth(768px) {
-        font-size: 20px;
-      }
-    }
-    .des {
-      font-style: italic;
-      color: $grey-2;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
-    }
-  }
-  .position-star {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    .position {
-      font-size: 14px;
-      text-transform: uppercase;
-      color: $color-A9A9A9;
-      font-weight: 400;
-      display: none;
-      @include minWidth(768px) {
-        display: inline-block;
-      }
-    }
-    .rates {
-      i {
-        font-size: 9px;
-        @include minWidth(768px) {
-          font-size: 12px;
-        }
-      }
-    }
-  }
-  .img {
-    border-radius: 15px;
-    overflow: hidden;
-    height: 95px;
-    margin-bottom: 0;
-    @include minWidth(768px) {
-      height: 158px;
-      border-radius: 30px;
-    }
-    img {
-      object-fit: cover;
-    }
-  }
-}
 .rates {
   i {
     color: $color-FA53E3E;
-  }
-}
-.item-review-customer {
-  border-radius: 20px;
-  background: #fff;
-  position: relative;
-  text-align: center;
-  padding: 37px;
-  h5 {
-    color: $primary;
-  }
-  .img {
-    width: 102px;
-    height: 102px;
-    margin: 0 auto 18px;
-  }
-  .icon {
-    width: 54px;
-    height: 40px;
-    margin: 0 auto 18px;
-  }
-  .address {
-    margin: 0 auto 18px;
-  }
-  .des {
-    font-family: "SVN-Gilroy", sans-serif;
-    color: #464646;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 27px;
-  }
-  &::after {
-    border: 1px dashed #8dc540;
-    content: "";
-    width: 96%;
-    height: 98%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 20px;
-  }
-}
-.item-blog-list {
-  .box-image {
-    border-radius: 20px 0px 0px 20px;
-    @include minWidth(1200px) {
-      border-radius: 20px 20px 0 0;
-    }
-  }
-  .box-text {
-    h3 {
-      text-overflow: ellipsis;
-      -webkit-line-clamp: 3;
-      max-height: 4.7em;
-      display: -webkit-box;
-      font-size: 17px;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
   }
 }
 .blog-news {
@@ -958,116 +612,543 @@
     }
   }
 }
-.mySwiper {
-  .swiper-slide-thumb-active {
-    background-color: red;
-  }
-}
-.item-blog-list {
-  display: flex;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
-  .box-image {
-    width: 164px;
-    padding-top: 10%;
-    border-radius: 20px 20px 0 0;
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .box-text {
-    width: 59%;
-    padding: 24px 24px 12px;
-    h3 {
-      color: #403f46;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 27px;
-    }
-    .post-meta {
-      color: #898989;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 25px;
-      text-transform: lowercase;
-    }
-  }
-}
-.list-featured-haruco {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+// ============================================================
+// New sections added for the full-page redesign (Figma "Home V1")
+// ============================================================
+
+// Banner: 2 secondary promo images below the hero slider
+.banner-secondary {
+  margin-top: 10px;
   @include minWidth(768px) {
-    gap: 30px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 20px;
   }
-  @include minmaxWidth(567px, 1199px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .banner-secondary-item {
+    border-radius: 10px;
+    overflow: hidden;
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      @include minWidth(768px) {
+        aspect-ratio: 690 / 225;
+      }
+    }
+  }
+  .col-6:first-child .banner-secondary-item {
+    margin-right: 5px;
+    @include minWidth(768px) {
+      margin-right: 10px;
+    }
+  }
+  .col-6:last-child .banner-secondary-item {
+    margin-left: 5px;
+    @include minWidth(768px) {
+      margin-left: 10px;
+    }
   }
 }
-.item-featured-haruco {
-  position: relative;
-  background-size: 100% 100%;
-  border-radius: 10px;
-  .bg-image {
-    width: 100%;
-    height: 100%;
-  }
-  .content {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 14px 8px;
-    align-items: center;
-    transform: translateY(-50%);
-    @include minWidth(567px) {
-      padding: 22px 20px;
-    }
-    @include minWidth(768px) {
-      display: grid;
-      grid-template-columns: 63px 1fr;
+
+// Trust badges row ("Điểm nổi bật")
+.trust-badges {
+  .trust-badges-list {
+    list-style: none;
+    margin: 0;
+    padding: 16px 0;
+    border-bottom: 1px solid $color-D9D9D9;
+    gap: 16px;
+    li {
+      display: flex;
+      align-items: center;
       gap: 10px;
-      height: 100%;
-      top: 0;
-      transform: translateY(0%);
+      font-size: 13px;
+      font-weight: 500;
+      color: $main-01;
+      @include minWidth(768px) {
+        font-size: 18px;
+      }
     }
     .icon {
-      img {
-        height: 55px;
-        object-fit: contain;
-        @include minWidth(768px) {
-          height: 62px;
-        }
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: $primary;
+      color: $light;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include minWidth(768px) {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
       }
     }
   }
-  h4 {
-    font-size: 16px;
-    margin-bottom: 5px;
+}
+
+// "Giới thiệu" photo collage + certification logos
+.img-collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  @include minWidth(768px) {
+    gap: 20px;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .img-collage-main img {
+    aspect-ratio: 371 / 530;
+  }
+  .img-collage-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     @include minWidth(768px) {
-      font-size: 20px;
-      margin-bottom: 8px;
+      gap: 20px;
+    }
+    img:first-child {
+      aspect-ratio: 288 / 201;
+    }
+    img:last-child {
+      aspect-ratio: 288 / 306;
     }
   }
-  .text {
+}
+.list-check {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #323232;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    @include minWidth(768px) {
+      font-size: 18px;
+    }
+    i {
+      flex-shrink: 0;
+      margin-top: 4px;
+      color: $color-FF6D3E;
+    }
+  }
+}
+.introduce-certs {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  @include minWidth(768px) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .introduce-cert-item {
+    background: $light;
+    border: 1px solid $color-D9D9D9;
+    border-radius: 10px;
+    padding: 10px;
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+    }
+  }
+}
+
+// "Xem tất cả" link (text + circle icon), used across product-slider headings
+.link-view-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: $light;
+  font-size: 14px;
+  @include minWidth(768px) {
+    font-size: 16px;
+  }
+  &:hover {
+    color: $light;
+    opacity: 0.85;
+  }
+  &.link-view-all-dark {
+    color: $color-FF6D3E;
+    &:hover {
+      color: $color-FF6D3E;
+    }
+    .btn-view-all {
+      background: $color-FF6D3E;
+      &::after {
+        background-image: url("../images/icon/ic_arrow-right-white.svg");
+      }
+    }
+  }
+}
+
+// Light variant of product-slider-section (Sale / Combo / Sản phẩm phù hợp):
+// white/cream background instead of the vivid orange-red gradient.
+.product-slider-section-light {
+  background: $main-05;
+  .product-slider-heading {
+    h2 {
+      color: $main-01;
+    }
+    .link-view-all {
+      color: $color-FF6D3E;
+      &:hover {
+        color: $color-FF6D3E;
+      }
+    }
+    .btn-view-all {
+      background: $color-FF6D3E;
+      &::after {
+        background-image: url("../images/icon/ic_arrow-right-white.svg");
+      }
+    }
+  }
+  .product-slider-heading-sale .sale-countdown {
+    color: $primary;
+    span {
+      background: rgba($primary, 0.1);
+    }
+  }
+}
+
+// Best seller heading: big watermark title + 3 feature badges
+.product-slider-heading-bestseller {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  position: relative;
+  .watermark-heading {
+    text-align: center;
+    text-transform: uppercase;
+    color: $light;
+    font-size: 28px;
+    font-weight: 600;
+    @include minWidth(768px) {
+      font-size: 48px;
+    }
+  }
+  .feature-badges {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
     text-align: center;
     @include minWidth(768px) {
-      text-align: left;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
     }
-    p {
-      font-size: 13px;
+    li {
+      background: $light;
+      color: $main-01;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 10px 16px;
+      font-size: 14px;
       @include minWidth(768px) {
-        font-size: 16px;
+        font-size: 18px;
       }
+    }
+  }
+  .link-view-all {
+    align-self: center;
+  }
+}
+
+// Two side-by-side rounded promo images ("Banner ngang")
+.banner-ngang {
+  .row {
+    margin-left: -5px;
+    margin-right: -5px;
+    @include minWidth(768px) {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
+  .col-6 {
+    padding-left: 5px;
+    padding-right: 5px;
+    @include minWidth(768px) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 690 / 225;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+// Gift solution ("Giải pháp quà tặng doanh nghiệp")
+.gift-solution {
+  background: linear-gradient(180deg, $color-FF6D3E 0%, $primary 100%);
+  padding: 30px 0;
+  @include minWidth(768px) {
+    padding: 50px 0;
+  }
+  .product-slider-heading h2 {
+    color: $light;
+  }
+  .gift-solution-wrap {
+    position: relative;
+  }
+  .gift-solution-item {
+    text-align: center;
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 445 / 283;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+    .caption {
+      color: $light;
+      font-size: 15px;
+      font-weight: 500;
+      @include minWidth(768px) {
+        font-size: 17px;
+      }
+    }
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    background: $light;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    &::after {
+      font-size: 12px;
+      color: $primary;
+    }
+  }
+}
+
+// Press logos ("Báo chí nói về chúng tôi")
+.press-logos {
+  text-align: center;
+  h2 {
+    color: $main-01;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    @include minWidth(768px) {
+      font-size: 35px;
+    }
+  }
+  .press-logos-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    @include minWidth(576px) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+  .press-logos-item {
+    border-radius: 10px;
+    overflow: hidden;
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 250 / 189;
+      object-fit: cover;
+    }
+  }
+}
+
+// "Sức khỏe & làm đẹp": tab pills + 3-card blog row (static, no slider)
+.blog-news-tabs {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  gap: 10px;
+  li {
+    border: 1px solid $color-D9D9D9;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: $color-797979;
+    cursor: pointer;
+    @include minWidth(768px) {
+      font-size: 15px;
+    }
+    &.active {
+      background: $light;
+      border-color: $color-D9D9D9;
+      color: $primary;
+    }
+  }
+}
+.blog-list-3col {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 20px;
+  @include minWidth(768px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+  }
+}
+
+// Feedback từ khách hàng
+.feedback-section {
+  background: $main-05;
+  padding: 30px 0;
+  @include minWidth(768px) {
+    padding: 50px 0;
+  }
+  .product-slider-heading {
+    justify-content: center;
+    h2 {
+      color: $main-01;
+    }
+  }
+  .feedback-wrap {
+    position: relative;
+  }
+}
+.feedback-card {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  align-items: center;
+  background: $light;
+  border-radius: 10px;
+  padding: 16px;
+  height: 100%;
+  @include minWidth(768px) {
+    grid-template-columns: 170px 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+  .feedback-card-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 170 / 230;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .rating img {
+    height: 16px;
+    margin-bottom: 10px;
+  }
+  .quote {
+    color: #323232;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    @include minWidth(768px) {
+      font-size: 15px;
+    }
+  }
+  .author {
+    display: flex;
+    flex-direction: column;
+    strong {
+      color: $main-01;
+    }
+    span {
+      color: $color-797979;
+      font-size: 13px;
+    }
+  }
+}
+
+// Video sản phẩm
+.video-section {
+  padding: 30px 0;
+  @include minWidth(768px) {
+    padding: 50px 0;
+  }
+  .product-slider-heading h2 {
+    color: $main-01;
+  }
+  .video-wrap {
+    position: relative;
+  }
+}
+.video-card {
+  .video-card-thumb {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 451 / 260;
+      object-fit: cover;
+    }
+    .btn-play-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba($dark, 0.45);
+      border: 1px solid rgba($light, 0.4);
+      color: $light;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .caption {
+    color: #323232;
+    text-align: center;
+    font-size: 14px;
+    @include minWidth(768px) {
+      font-size: 16px;
+    }
+  }
+}
+
+// Floating CTA buttons (fixed, bottom-left)
+.cta-float {
+  position: fixed;
+  left: 16px;
+  bottom: 90px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  .cta-float-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $light;
+    font-size: 20px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
+    &.cta-float-messenger {
+      background: #0084ff;
+    }
+    &.cta-float-zalo {
+      background: #0068ff;
+    }
+    &.cta-float-phone {
+      background: $primary;
     }
   }
 }

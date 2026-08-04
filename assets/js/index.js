@@ -59,46 +59,8 @@ $(function () {
       swiper: swiper2,
     },
   });
-  var swiper4 = new Swiper(".slider-review-customer", {
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 30,
-    navigation: {
-      nextEl: ".swiper-button-next-4",
-      prevEl: ".swiper-button-prev-4",
-    },
-    pagination: {
-      el: ".swiper-pagination-1",
-      clickable: true,
-    },
-    breakpoints: {
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      576: {
-        slidesPerView: 2,
-        spaceBetween: 30,
-      },
-    },
-  });
-  var swiper5 = new Swiper(".slider-blog-news", {
-    loop: true,
-    slidesPerView: 2,
-    spaceBetween: 10,
-    breakpoints: {
-      567: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 30,
-      },
-    },
-  });
   // Product Slider Section component: 1 config dùng chung cho mọi section reuse
-  // (Đai lưng chống gù / Đai lưng cột sống / Thiết bị chăm sóc sức khỏe / Gối Y tế / Trị liệu).
+  // (Đai lưng chống gù / Trị liệu / Tập luyện / Combo / Sản phẩm phù hợp / Sale / Best seller).
   // Mỗi instance chỉ khác nhau ở navigation (nextEl/prevEl phải riêng để không xung đột).
   var productSliderOptions = {
     loop: false,
@@ -115,7 +77,7 @@ $(function () {
       },
     },
   };
-  [1, 2, 3, 4, 5].forEach(function (i) {
+  [1, 2, 3, 4, 5, "sale", "bestseller"].forEach(function (i) {
     new Swiper(
       ".product-slider-" + i,
       $.extend({}, productSliderOptions, {
@@ -126,32 +88,61 @@ $(function () {
       })
     );
   });
-  new Swiper(
-    ".product-slider-sale",
-    $.extend({}, productSliderOptions, {
-      navigation: {
-        nextEl: ".product-slider-next-sale",
-        prevEl: ".product-slider-prev-sale",
-      },
-    })
-  );
-  var swiper5 = new Swiper(".slider-product-by-category-small", {
+  new Swiper(".gift-solution-slider", {
     loop: false,
-    slidesPerView: 2,
-    spaceBetween: 14,
+    slidesPerView: 1,
+    spaceBetween: 20,
     breakpoints: {
       567: {
-        slidesPerView: 3,
-        spaceBetween: 24,
-      },
-      1200: {
-        slidesPerView: 5,
+        slidesPerView: 2,
         spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
       },
     },
     navigation: {
-      nextEl: ".swiper-button-next-small",
-      prevEl: ".swiper-button-prev-small",
+      nextEl: ".gift-solution-next",
+      prevEl: ".gift-solution-prev",
+    },
+  });
+  new Swiper(".feedback-slider", {
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: {
+      el: ".feedback-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".feedback-next",
+      prevEl: ".feedback-prev",
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 30,
+      },
+    },
+  });
+  new Swiper(".video-slider", {
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: ".video-next",
+      prevEl: ".video-prev",
+    },
+    breakpoints: {
+      567: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
     },
   });
   var swiper7 = new Swiper(".product-gallery-h .slider-thumb-child", {
