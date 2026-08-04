@@ -51,19 +51,24 @@
 .search-product-category {
   position: relative;
   .input-group {
-    border: 1px solid $grey-border;
-    border-radius: 50px;
+    border: 1px solid $color-EBC499;
+    border-radius: 10px;
   }
   input {
     width: 325px;
     height: 40px;
-    border-left: 1px solid $grey-border;
+    border-left: 1px solid $color-EBC499;
     border-right: none;
     border-top: none;
     border-bottom: none;
     background: $light;
     padding: 12px 24px;
     outline: none;
+    color: $main-01;
+    &::placeholder {
+      color: $main-01;
+      opacity: 1;
+    }
   }
   .btn-search {
     width: 59px;
@@ -74,6 +79,8 @@
     transition: all 0.3s;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     &:hover {
       opacity: 0.5;
     }
@@ -119,7 +126,7 @@
   }
 }
 .header-bottom {
-  background-color: $primary;
+  background: linear-gradient(90deg, $color-FF6D3E 0%, $primary 100%);
   position: sticky;
   top: 0;
   z-index: 999;
@@ -179,6 +186,7 @@
         font-size: 18px;
         background: $orange-1;
         border: none;
+        border-radius: 10px 10px 0 0;
         .icon {
           display: flex;
           align-items: center;
@@ -200,7 +208,6 @@
           font-weight: 400;
           padding: 2px 0px 2px 20px;
           transition: all 0.3s;
-          text-transform: uppercase;
           @include minWidth(1400px) {
             font-size: 19px;
           }
@@ -210,7 +217,7 @@
         }
         &:not(:last-child) {
           a {
-            border-right: 1px solid $color-FF5959;
+            border-right: 1px solid rgba($light, 0.4);
             padding: 2px 16px;
           }
         }
@@ -292,7 +299,7 @@
   .btn-dropdown-search {
     border: none;
     background-color: transparent;
-    color: $color-6F6F6F;
+    color: $main-01;
     padding: 5px 73px 5px 23px;
     position: relative;
     &::after {
