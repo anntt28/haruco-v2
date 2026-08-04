@@ -395,6 +395,27 @@
     }
   }
 }
+// Product Slider Component (reused by Đai lưng chống gù / Đai lưng cột sống /
+// Thiết bị chăm sóc sức khỏe / Gối Y tế / Trị liệu) — scoped to .products-by-category
+// only, so it does not affect .item-best-seller used on other pages.
+.products-by-category {
+  .item-best-seller {
+    border-radius: 10px;
+    box-shadow: none;
+    border: 1px solid $grey-border;
+    .info {
+      h4 {
+        color: $main-01;
+      }
+      .price .sale {
+        color: $primary;
+      }
+      .img {
+        border-radius: 10px;
+      }
+    }
+  }
+}
 .product-best-seller {
   .content {
     border-radius: 0px;

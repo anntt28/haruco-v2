@@ -94,7 +94,9 @@ $(function () {
       },
     },
   });
-  var swiper5 = new Swiper(".slider-product-by-category", {
+  // Product Slider Component: 1 config dùng chung cho mọi section reuse
+  // (Đai lưng chống gù / Đai lưng cột sống / Thiết bị chăm sóc sức khỏe / Gối Y tế / Trị liệu).
+  var productSliderOptions = {
     loop: false,
     slidesPerView: 2,
     spaceBetween: 5,
@@ -108,7 +110,12 @@ $(function () {
         spaceBetween: 24,
       },
     },
-  });
+  };
+  var swiperProductSlider1 = new Swiper(".slider-product-by-category-1", productSliderOptions);
+  var swiperProductSlider2 = new Swiper(".slider-product-by-category-2", productSliderOptions);
+  var swiperProductSlider3 = new Swiper(".slider-product-by-category-3", productSliderOptions);
+  var swiperProductSlider4 = new Swiper(".slider-product-by-category-4", productSliderOptions);
+  var swiperProductSlider5 = new Swiper(".slider-product-by-category-5", productSliderOptions);
   var swiper5 = new Swiper(".slider-product-by-category-small", {
     loop: false,
     slidesPerView: 2,
