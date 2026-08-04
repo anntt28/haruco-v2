@@ -5,11 +5,6 @@
       margin-top: 50px;
     }
   }
-  .products-by-category{
-    @include maxWidth(768px){
-      margin-top: 21px;
-    }
-  }
   .blog-news{
     @include maxWidth(768px){
       margin-top: 25px;
@@ -21,16 +16,30 @@
   .banner-top-slider {
     position: relative;
   }
-  picture,
+  .swiper-slide {
+    position: relative;
+  }
   img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    aspect-ratio: 375 / 240;
+    object-position: left center;
     @include minWidth(768px) {
-      aspect-ratio: 1920 / 600;
+      object-position: center;
     }
+  }
+  .banner-top-slider,
+  .swiper-slide {
+    aspect-ratio: 4 / 3;
+    @include minWidth(768px) {
+      aspect-ratio: 14 / 5;
+    }
+  }
+  .banner-top-cta {
+    position: absolute;
+    left: 8%;
+    bottom: 14%;
   }
   .swiper-pagination-banner {
     bottom: 12px;
@@ -395,23 +404,203 @@
     }
   }
 }
-// Product Slider Component (reused by Đai lưng chống gù / Đai lưng cột sống /
-// Thiết bị chăm sóc sức khỏe / Gối Y tế / Trị liệu) — scoped to .products-by-category
-// only, so it does not affect .item-best-seller used on other pages.
-.products-by-category {
-  .item-best-seller {
-    border-radius: 10px;
-    box-shadow: none;
-    border: 1px solid $grey-border;
-    .info {
-      h4 {
-        color: $main-01;
+// Product Slider Section + Product Card — base component reused by
+// Đai lưng chống gù / Đai lưng cột sống / Thiết bị chăm sóc sức khỏe /
+// Gối Y tế / Trị liệu (only title + data differ) and by Best Seller
+// (card only, different wrapper/banner).
+.product-slider-section {
+  background: linear-gradient(180deg, $color-FF6D3E 0%, $primary 100%);
+  padding: 30px 0;
+  @include minWidth(768px) {
+    padding: 50px 0;
+  }
+  &.product-slider-section-last {
+    margin-bottom: 0;
+  }
+  .product-slider-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    @include minWidth(768px) {
+      margin-bottom: 24px;
+    }
+    h2 {
+      color: $light;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 0;
+      @include minWidth(768px) {
+        font-size: 28px;
       }
-      .price .sale {
+    }
+    .btn-view-all {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: $light;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 7px;
+        background-image: url("../images/icon/ic_arrow-right-orange.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+  .product-slider-card-wrap {
+    background: $light;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+    padding: 16px 10px;
+    position: relative;
+    @include minWidth(768px) {
+      padding: 30px;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      background: $light;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+      &::after {
+        font-size: 12px;
         color: $primary;
       }
-      .img {
+    }
+  }
+}
+.product-card {
+  height: 100%;
+  .product-card-image {
+    position: relative;
+    border: 1px solid $grey-border;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .badge-sale {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(239deg, $color-FF6D3E 5%, $primary 83%);
+      color: $light;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+      padding: 3px 10px;
+      border-radius: 0 0 10px 0;
+      @include minWidth(768px) {
+        font-size: 13px;
+      }
+    }
+  }
+  .product-card-body {
+    text-align: center;
+    padding: 14px 6px 4px;
+    background: $light;
+    border-radius: 0 0 10px 10px;
+    h4 {
+      color: $main-01;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      min-height: 42px;
+      @include minWidth(768px) {
+        font-size: 16px;
+        min-height: 48px;
+      }
+    }
+    .price {
+      margin-bottom: 6px;
+      .old {
+        color: #9d9d9d;
+        text-decoration: line-through;
+        font-size: 13px;
+        font-weight: 300;
+        margin-right: 6px;
+        @include minWidth(768px) {
+          font-size: 14px;
+        }
+      }
+      .new {
+        color: $primary;
+        font-size: 15px;
+        @include minWidth(768px) {
+          font-size: 16px;
+        }
+      }
+    }
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #9d9d9d;
+      font-size: 11px;
+      margin-bottom: 12px;
+      @include minWidth(768px) {
+        font-size: 12px;
+      }
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        img {
+          width: 44px;
+          @include minWidth(768px) {
+            width: 52px;
+          }
+        }
+      }
+    }
+    hr {
+      border: none;
+      border-top: 1px solid $grey-border;
+      margin: 0 0 12px;
+    }
+    .product-card-actions {
+      display: flex;
+      gap: 6px;
+      button {
+        flex: 1;
         border-radius: 10px;
+        padding: 6px 4px;
+        font-size: 13px;
+        font-family: inherit;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        @include minWidth(768px) {
+          font-size: 15px;
+          padding: 6px 8px;
+        }
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .btn-buy-now {
+        background: linear-gradient(90deg, $primary 0%, $color-FF6D3E 100%);
+        color: $light;
+        border: none;
+      }
+      .btn-add-cart {
+        background: $light;
+        border: 1px solid $primary;
+        color: $primary;
       }
     }
   }
@@ -493,23 +682,6 @@
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
     }
-  }
-}
-.products-by-category-last {
-  margin-bottom: 20px;
-  @include minWidth(768px) {
-    margin-bottom: 200px;
-  }
-}
-.slider-product-by-category {
-  .swiper-wrapper {
-    margin: 5px 0px;
-    .swiper-slide {
-      padding: 0 6px;
-    }
-  }
-  .item-best-seller {
-    margin-top: 0;
   }
 }
 .review-customer {
