@@ -26,7 +26,7 @@ html {
   src: url("../fonts/SVN-Peristiwa.otf");
 }
 body {
-  font-family: "Roboto Flex", sans-serif;
+  font-family: "Lexend", sans-serif;
   color: $grey-1;
 }
 .container-fluid {
@@ -37,7 +37,7 @@ body {
   @include minWidth(1440px) {
     padding: 0;
   }
-  max-width: 1300px;
+  max-width: 1400px;
   @include trans;
 }
 
