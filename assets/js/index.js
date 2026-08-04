@@ -4,8 +4,11 @@ $(function () {
     $(this).addClass("active");
   });
   var swiper1 = new Swiper(".banner-top-slider", {
-    loop: false,
+    loop: true,
     slidesPerView: 1,
+    autoplay: {
+      delay: 5000,
+    },
     pagination: {
       el: ".swiper-pagination-banner",
       clickable: true,
@@ -94,16 +97,17 @@ $(function () {
       },
     },
   });
-  // Product Slider Component: 1 config dùng chung cho mọi section reuse
+  // Product Slider Section component: 1 config dùng chung cho mọi section reuse
   // (Đai lưng chống gù / Đai lưng cột sống / Thiết bị chăm sóc sức khỏe / Gối Y tế / Trị liệu).
+  // Mỗi instance chỉ khác nhau ở navigation (nextEl/prevEl phải riêng để không xung đột).
   var productSliderOptions = {
     loop: false,
     slidesPerView: 2,
-    spaceBetween: 5,
+    spaceBetween: 14,
     breakpoints: {
       567: {
         slidesPerView: 3,
-        spaceBetween: 24,
+        spaceBetween: 20,
       },
       1200: {
         slidesPerView: 5,
@@ -111,11 +115,17 @@ $(function () {
       },
     },
   };
-  var swiperProductSlider1 = new Swiper(".slider-product-by-category-1", productSliderOptions);
-  var swiperProductSlider2 = new Swiper(".slider-product-by-category-2", productSliderOptions);
-  var swiperProductSlider3 = new Swiper(".slider-product-by-category-3", productSliderOptions);
-  var swiperProductSlider4 = new Swiper(".slider-product-by-category-4", productSliderOptions);
-  var swiperProductSlider5 = new Swiper(".slider-product-by-category-5", productSliderOptions);
+  [1, 2, 3, 4, 5].forEach(function (i) {
+    new Swiper(
+      ".product-slider-" + i,
+      $.extend({}, productSliderOptions, {
+        navigation: {
+          nextEl: ".product-slider-next-" + i,
+          prevEl: ".product-slider-prev-" + i,
+        },
+      })
+    );
+  });
   var swiper5 = new Swiper(".slider-product-by-category-small", {
     loop: false,
     slidesPerView: 2,
