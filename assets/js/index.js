@@ -3,6 +3,14 @@ $(function () {
     $(this).siblings(".video-slider").get(0).play();
     $(this).addClass("active");
   });
+  var swiper1 = new Swiper(".banner-top-slider", {
+    loop: false,
+    slidesPerView: 1,
+    pagination: {
+      el: ".swiper-pagination-banner",
+      clickable: true,
+    },
+  });
   var swiper2 = new Swiper(".product-category-h .slider-tab-p", {
     loop: true,
     loopedSlides: 1,

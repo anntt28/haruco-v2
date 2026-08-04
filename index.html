@@ -265,13 +265,16 @@
   <main class="homepage">
    
     <section class="banner-top">
-      <!-- banner pc -->
-      <div class="img d-md-block d-none ">
-        <img src="./assets/images/banner-top.jpg" alt="banner">
-      </div>
-      <!-- banner mobile -->
-      <div class="img img-mobile d-md-none">
-        <img src="./assets/images/banner-top.jpg" alt="banner">
+      <div class="banner-top-slider swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <picture>
+              <source media="(max-width: 767.98px)" srcset="./assets/images/banner-top_sp.jpg">
+              <img src="./assets/images/banner-top.jpg" alt="banner">
+            </picture>
+          </div>
+        </div>
+        <div class="swiper-pagination swiper-pagination-banner"></div>
       </div>
     </section>
     <section class="featured-haruco">
