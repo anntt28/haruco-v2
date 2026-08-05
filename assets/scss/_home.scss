@@ -1207,17 +1207,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $light;
-    font-size: 20px;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
-    &.cta-float-messenger {
-      background: #0084ff;
+    img {
+      display: block;
     }
-    &.cta-float-zalo {
-      background: #0068ff;
+    &.cta-float-messenger {
+      background: linear-gradient(180deg, $color-E76A6F 0%, $color-716BAE 100%);
+      img {
+        width: 30px;
+        height: 30px;
+      }
     }
     &.cta-float-phone {
-      background: $primary;
+      background: linear-gradient(180deg, $color-F4696B 0%, $color-CE263A 100%);
+      img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    &.cta-float-zalo {
+      background: linear-gradient(180deg, $color-72AFFF 0%, $color-2F83F0 100%);
+      img {
+        width: 27px;
+        height: 27px;
+      }
     }
   }
 }
@@ -1242,7 +1255,7 @@
   position: relative;
   z-index: 1;
   margin-top: -20px;
-  background: linear-gradient(90deg, $primary 0%, $color-FF6D3E 100%);
+  background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
   border-radius: 10px;
   padding: 20px;
   display: flex;
@@ -1263,11 +1276,12 @@
     align-items: center;
     gap: 14px;
     color: $light;
-    i {
+    img {
       flex-shrink: 0;
-      font-size: 24px;
+      width: 24px;
+      height: auto;
       @include minWidth(768px) {
-        font-size: 32px;
+        width: 32px;
       }
     }
     h3 {
@@ -1315,9 +1329,12 @@
       transform: translateY(-50%);
       background: transparent;
       border: none;
-      color: $color-FF6D3E;
-      font-size: 18px;
       padding: 0;
+      img {
+        display: block;
+        width: 18px;
+        height: auto;
+      }
     }
   }
 }
@@ -1336,7 +1353,7 @@
   }
   .footer-col {
     h4 {
-      color: $main-01;
+      color: $color-1E335C;
       font-size: 18px;
       letter-spacing: -0.3px;
       margin-bottom: 16px;
@@ -1352,7 +1369,7 @@
         display: flex;
         align-items: flex-start;
         gap: 8px;
-        color: $main-01;
+        color: $color-1E335C;
         font-size: 14px;
         line-height: 1.8;
         margin-bottom: 8px;
@@ -1363,10 +1380,10 @@
           flex-shrink: 0;
           margin-top: 6px;
           width: 14px;
-          color: $main-01;
+          color: $color-1E335C;
         }
         a {
-          color: $main-01;
+          color: $color-1E335C;
           &:hover {
             color: $primary;
           }
@@ -1382,7 +1399,7 @@
       }
     }
     p {
-      color: $main-01;
+      color: $color-1E335C;
       font-size: 14px;
       line-height: 1.75;
       text-align: justify;
@@ -1422,6 +1439,7 @@
 .footer-meta {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
   margin-top: 24px;
   padding: 20px 0;
@@ -1433,46 +1451,53 @@
     margin-top: 48px;
   }
   .footer-copyright {
-    color: $main-01;
+    color: $color-1E335C;
     font-size: 14px;
+    text-align: center;
     @include minWidth(768px) {
       font-size: 16px;
+      text-align: left;
     }
   }
   .footer-meta-right {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 16px;
   }
   .footer-hotline {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(90deg, $primary 0%, $color-FF6D3E 100%);
+    background: linear-gradient(90deg, $color-F13B3B 0%, $color-FF6D3E 100%);
     color: $light;
     border-radius: 10px;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 600;
     white-space: nowrap;
+    max-width: 406px;
+    width: 100%;
+    justify-content: center;
     &:hover {
       color: $light;
       opacity: 0.9;
     }
-    i {
-      font-size: 20px;
+    img {
+      flex-shrink: 0;
+      width: 28px;
+      height: auto;
     }
     @include minWidth(768px) {
-      font-size: 24px;
-      i {
-        font-size: 24px;
-      }
+      width: auto;
+      max-width: none;
     }
   }
   .footer-badges {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     img {
       display: block;
