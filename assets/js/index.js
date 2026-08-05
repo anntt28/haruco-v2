@@ -1,4 +1,26 @@
 $(function () {
+  $(".sale-countdown").each(function () {
+    var $countdown = $(this);
+    var days = parseInt($countdown.data("countdown-days"), 10) || 0;
+    var endTime = new Date().getTime() + days * 24 * 60 * 60 * 1000;
+    function pad(n) {
+      return n < 10 ? "0" + n : n;
+    }
+    function updateCountdown() {
+      var distance = endTime - new Date().getTime();
+      if (distance < 0) {
+        distance = 0;
+      }
+      var hours = Math.floor(distance / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      $countdown.find(".cd-hours").text(pad(hours));
+      $countdown.find(".cd-minutes").text(pad(minutes));
+      $countdown.find(".cd-seconds").text(pad(seconds));
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
   $(".play-video-slider").click(function () {
     $(this).siblings(".video-slider").get(0).play();
     $(this).addClass("active");
