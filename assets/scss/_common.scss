@@ -30,11 +30,8 @@ body {
   color: $grey-1;
 }
 .container-fluid {
-  padding: 0 9px;
-  @include minWidth(576px) {
-    padding: 0 40px;
-  }
-  @include minWidth(1440px) {
+  padding: 0 16px;
+  @include minWidth(1024px) {
     padding: 0;
   }
   max-width: 1400px;
