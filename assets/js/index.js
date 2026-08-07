@@ -336,10 +336,10 @@ $(function () {
     $(".grid-view-button").removeClass("active");
   });
   $(".menu-item-has-children")
-    .on("mouseover", function () {
+    .on("mouseenter", function () {
       $(this).children(".sub-menu").addClass("active");
     })
-    .on("mouseout", function () {
+    .on("mouseleave", function () {
       $(this).children(".sub-menu").removeClass("active");
     });
 
