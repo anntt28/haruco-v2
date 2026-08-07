@@ -129,6 +129,17 @@ $(function () {
       prevEl: ".gift-solution-prev",
     },
   });
+  new Swiper(".press-logos-list", {
+    loop: false,
+    slidesPerView: 2.3,
+    spaceBetween: 22,
+    breakpoints: {
+      576: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+    },
+  });
   new Swiper(".feedback-slider", {
     loop: false,
     slidesPerView: 1,
@@ -145,6 +156,10 @@ $(function () {
       1024: {
         slidesPerView: 2,
         spaceBetween: 30,
+        grid: {
+          rows: 2,
+          fill: "row",
+        },
       },
     },
   });
@@ -166,6 +181,28 @@ $(function () {
         spaceBetween: 30,
       },
     },
+  });
+  $(".video-wrap").on("click", ".btn-play-video", function () {
+    const thumb = $(this).closest(".video-card-thumb");
+    $(".video-card-thumb")
+      .not(thumb)
+      .each(function () {
+        const otherThumb = $(this);
+        const originalHtml = otherThumb.data("original-html");
+        if (originalHtml) {
+          otherThumb.html(originalHtml);
+        }
+      });
+    if (!thumb.data("original-html")) {
+      thumb.data("original-html", thumb.html());
+    }
+    const youtubeId = thumb.data("youtube-id");
+    const iframe = $(
+      '<iframe src="https://www.youtube.com/embed/' +
+        youtubeId +
+        '?autoplay=1&si=ZaA9g4tCLphjGlbE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+    );
+    thumb.empty().append(iframe);
   });
   var swiper7 = new Swiper(".product-gallery-h .slider-thumb-child", {
     loop: false,

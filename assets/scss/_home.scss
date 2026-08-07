@@ -580,6 +580,22 @@
     color: $color-FA53E3E;
   }
 }
+// Cụm sao đánh giá — dùng chung cho Product Card (.product-rating) và
+// Feedback Card (.feedback-card), tránh trùng lặp CSS. Kích thước mặc định
+// 9x9px; nơi nào cần khác (ví dụ Feedback Card: 15x15px) override riêng.
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  i {
+    display: block;
+    width: 9px;
+    height: 9px;
+    background-image: url("../images/icon/ic_star-rating.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
 // Rating (sao + số lượt đánh giá + "Đã bán xxxx") — dùng chung cho Product
 // Card ở nhiều product-slider (Sản phẩm bán chạy, Đai hỗ trợ, Trị liệu
 // giảm đau - thư giãn, Tập luyện - phục hồi chức năng...), thay cho
@@ -600,26 +616,13 @@
     color: #9d9d9d;
     font-size: 12px;
   }
-  .stars {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    i {
-      display: block;
-      width: 9px;
-      height: 9px;
-      background-image: url("../images/icon/ic_star-rating.svg");
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-  }
   .rating-count {
     color: #9d9d9d;
     font-size: 12px;
   }
   @include maxWidth(429px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
   }
 }
@@ -746,22 +749,71 @@
   }
 }
 .item-blog-new-simple {
+  height: 100%;
   box-shadow: none;
+  // Khung viền bao trọn cả ảnh + phần chữ thành 1 card liền mạch theo
+  // Figma — trước đây thiếu hẳn border/bo góc ở cấp ngoài cùng này.
+  border: 1px solid $color-EBEBEB;
+  border-radius: 20px;
+  overflow: hidden;
+  background: $light;
   .image-cover-h {
-    padding-top: 66%;
-    border-radius: 20px;
-    overflow: hidden;
+    padding-top: 55%;
   }
   .box-text {
-    padding: 24px 30px 30px 0;
+    padding: 24px 30px 30px;
+  }
+  .post-meta {
+    color: #676767;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 30px;
   }
   h3 {
     a {
-      color: $dark !important;
+      color: $color-1E335C !important;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 30px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+    }
+  }
+  .des {
+    color: #393939;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 27px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  // Mobile: chỉ item đầu tiên giữ layout ảnh trên/chữ dưới như desktop —
+  // các item còn lại chuyển sang layout ngang (ảnh trái/chữ phải, không
+  // hiện mô tả) theo đúng Figma cho danh sách "Sức khỏe & làm đẹp".
+  @include maxWidth(767px) {
+    &:not(:first-child) {
+      display: grid;
+      grid-template-columns: 156px 1fr;
+      border-color: #dbdbdb;
+      .image-cover-h {
+        padding-top: 0;
+        height: 100%;
+      }
+      .box-text {
+        padding: 8px 4px 8px 12px;
+      }
+      .des {
+        display: none;
+      }
+      h3 a {
+        font-size: 16px;
+        line-height: 1.4;
+        -webkit-line-clamp: 3;
+      }
     }
   }
 }
@@ -1068,17 +1120,24 @@
     }
   }
   // Xem tất cả riêng cho Sale, cho Đai hỗ trợ / Trị liệu giảm đau - thư
-  // giãn / Tập luyện - phục hồi chức năng, và cho Combo Sản Phẩm / Sản
-  // Phẩm Phù Hợp Với Bạn — đặt phía dưới .product-slider-card-wrap,
-  // chỉ mobile, cùng 1 pattern để đồng nhất UI.
+  // giãn / Tập luyện - phục hồi chức năng, Combo Sản Phẩm / Sản Phẩm Phù
+  // Hợp Với Bạn, và Sức khỏe & làm đẹp (đặt dưới .tab-content) — chỉ
+  // mobile, cùng 1 pattern để đồng nhất UI.
   &.link-view-all-sale-mobile,
   &.link-view-all-grey-mobile,
-  &.link-view-all-combo-mobile {
+  &.link-view-all-combo-mobile,
+  &.link-view-all-blog-mobile {
     display: none;
     @include maxWidth(767px) {
       display: flex;
       justify-content: center;
       margin-top: 16px;
+    }
+  }
+  // Riêng Blog News: khoảng cách lớn hơn với .tab-content phía trên.
+  &.link-view-all-blog-mobile {
+    @include maxWidth(767px) {
+      margin-top: 40px;
     }
   }
 }
@@ -1377,6 +1436,15 @@
     border-radius: 10px;
   }
 }
+// Riêng banner-ngang nằm ngay sau Blog News (home-banner-ngang-2) — gap
+// mobile riêng theo Figma, không ảnh hưởng 2 banner-ngang còn lại.
+.blog-news + .banner-ngang {
+  .banner-ngang-row {
+    @include maxWidth(767px) {
+      gap: 29px;
+    }
+  }
+}
 
 // Gift solution ("Giải pháp quà tặng doanh nghiệp")
 .gift-solution {
@@ -1416,6 +1484,14 @@
     // Đồng bộ icon + vị trí nav prev/next với .product-slider-card-wrap
     // (nền trắng, tròn, đổ bóng nhẹ, icon SVG arrow-circle-grey_ic.svg) —
     // chỉ đồng bộ giao diện/vị trí, không đổi logic hoạt động của slider.
+    .gift-solution-slider {
+      // Kéo mép phải slider tràn sát viewport trên mobile (bù trừ padding
+      // 16px của .container-fluid) — không đặt trên .gift-solution-wrap vì
+      // sẽ kéo lệch luôn vị trí 2 nút prev/next đang neo theo wrap này.
+      @include maxWidth(767px) {
+        margin-right: -16px;
+      }
+    }
     .swiper-button-prev,
     .swiper-button-next {
       background-color: $light;
@@ -1481,6 +1557,11 @@
 // Press logos ("Báo chí nói về chúng tôi")
 .press-logos {
   text-align: center;
+  margin-top: 0 !important;
+  padding: 51px 0;
+  @include minWidth(768px) {
+    padding: 70px 0;
+  }
   h2 {
     color: $main-01;
     font-size: 28px;
@@ -1490,18 +1571,21 @@
       font-size: 35px;
     }
   }
+  // .press-logos-list là 1 swiper-container (xem index.js): dưới 576px
+  // hiển thị 2.3 logo/màn hình, tràn sát viewport bên phải — bù trừ
+  // padding 16px của .container-fluid; từ 576px trở lên Swiper tự chuyển
+  // sang slidesPerView:5 (đúng layout 5 cột cũ), không ảnh hưởng desktop.
   .press-logos-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    @include minWidth(576px) {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 20px;
+    @include maxWidth(575px) {
+      margin-right: -16px;
     }
   }
   .press-logos-item {
     border-radius: 10px;
     overflow: hidden;
+    a {
+      display: block;
+    }
     img {
       display: block;
       width: 100%;
@@ -1512,25 +1596,53 @@
 }
 
 // "Sức khỏe & làm đẹp": tab pills + 3-card blog row (static, no slider)
+// Hàng chứa Tabs (trái) + "Xem tất cả" (phải), cùng hàng, space-between.
+// .blog-news-tabs bên trong cần min-width:0 để overflow-x:auto hoạt động
+// đúng trong flex row — thiếu dòng này là nguyên nhân khiến tab bị che
+// khuất/tràn ra ngoài thay vì cuộn ngang gọn trong phần của nó.
+.blog-news-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  .link-view-all {
+    flex-shrink: 0;
+    @include maxWidth(767px) {
+      display: none;
+    }
+  }
+}
 .blog-news-tabs {
-  margin: 0 0 20px;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
   border-bottom: 0;
   gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-top: 1px;
+  padding-bottom: 1px;
   .nav-link {
-    border: 1px solid $color-D9D9D9;
-    border-radius: 50px;
-    padding: 8px 16px;
-    font-size: 13px;
-    color: $color-797979;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid $color-D0D0D0;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 25px;
+    white-space: nowrap;
+    color: #9d9d9d;
     cursor: pointer;
-    background: transparent;
-    @include minWidth(768px) {
-      font-size: 15px;
-    }
+    background: $light;
     &.active {
-      background: $light;
-      border-color: $color-D9D9D9;
-      color: $primary;
+      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      border-color: $color-D0D0D0;
+      color: $light;
     }
   }
 }
@@ -1564,6 +1676,23 @@
   .feedback-wrap {
     position: relative;
   }
+  // Pagination dạng chấm tròn riêng theo Figma — khác với dạng pill dài
+  // mặc định (.swiper-pagination-bullet gốc ở _slick.scss), chỉ áp dụng
+  // trong section này.
+  .feedback-pagination {
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $light;
+      border: 1px solid $color-C4C4C4;
+      opacity: 1;
+      &.swiper-pagination-bullet-active {
+        background: $color-F38F2F;
+        border-color: $color-F38F2F;
+      }
+    }
+  }
 }
 .feedback-card {
   display: grid;
@@ -1586,9 +1715,25 @@
     object-fit: cover;
     border-radius: 10px;
   }
-  .rating img {
-    height: 16px;
-    margin-bottom: 10px;
+  // Sao đánh giá (trái) + icon Quote (phải), cùng hàng — reuse .stars dùng
+  // chung với Product Card, chỉ riêng kích thước sao ở đây là 15x15px.
+  .rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    .stars {
+      gap: 8px;
+      i {
+        width: 15px;
+        height: 15px;
+      }
+    }
+    .quote-icon {
+      display: block;
+      width: 23px;
+      height: auto;
+    }
   }
   .quote {
     color: #323232;
@@ -1618,28 +1763,81 @@
   @include minWidth(768px) {
     padding: 50px 0;
   }
-  .product-slider-heading h2 {
-    color: $main-01;
-    font-weight: 500;
-    @include maxWidth(767px) {
-      font-size: 28px;
+  // .video-section không có class .product-slider-section nên không tự có
+  // layout heading trái/phải — khai báo riêng, giống .gift-solution.
+  .product-slider-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    @include minWidth(768px) {
+      margin-bottom: 24px;
+    }
+    h2 {
+      color: $main-01;
+      font-weight: 500;
+      @include maxWidth(767px) {
+        font-size: 28px;
+      }
     }
   }
   .video-wrap {
     position: relative;
+    // Đồng bộ icon + vị trí nav prev/next với .product-slider-card-wrap
+    // (nền trắng, tròn, đổ bóng nhẹ, icon SVG arrow-circle-grey_ic.svg).
+    .swiper-button-prev,
+    .swiper-button-next {
+      background-color: $light;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+      background-image: url("../images/arrow-circle-grey_ic.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 30px 30px;
+      &::after {
+        content: none;
+      }
+      &.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: auto;
+        pointer-events: none;
+      }
+    }
+    .swiper-button-prev {
+      left: -14px;
+      @include minWidth(768px) {
+        left: -15px;
+      }
+    }
+    .swiper-button-next {
+      right: -14px;
+      transform: scaleX(-1);
+      @include minWidth(768px) {
+        right: -15px;
+      }
+    }
   }
 }
 .video-card {
+  // Wrapper giữ khung ảnh cố định (aspect-ratio đặt ở đây, không đặt ở img)
+  // để khi đổi sang iframe YouTube lúc click, khung không bị co lại.
   .video-card-thumb {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 12px;
-    img {
+    aspect-ratio: 451 / 260;
+    img,
+    iframe {
       display: block;
       width: 100%;
-      aspect-ratio: 451 / 260;
+      height: 100%;
       object-fit: cover;
+    }
+    iframe {
+      border: 0;
     }
     .btn-play-video {
       position: absolute;
@@ -1661,6 +1859,10 @@
     color: #323232;
     text-align: center;
     font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     @include minWidth(768px) {
       font-size: 16px;
     }
