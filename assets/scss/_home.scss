@@ -457,7 +457,7 @@
     background: $light;
     border-radius: 0 0 10px 10px;
     h4 {
-      color: $main-01;
+      color: $color-1E335C;
       font-size: 14px;
       font-weight: 400;
       line-height: 1.5;
@@ -605,6 +605,11 @@
   justify-content: space-between;
   gap: 8px;
   margin-bottom: 12px;
+  // Đường kẻ phân cách với phần nội dung sản phẩm phía trên — chỉ những
+  // Product Card có hiển thị .product-rating mới có đường kẻ này (Sale
+  // Sập Sàn vẫn dùng .sold nên không bị ảnh hưởng).
+  border-top: 1px solid $color-EBEBEB;
+  padding-top: 6px;
   &__info {
     display: flex;
     align-items: center;
@@ -1131,7 +1136,8 @@
   &.link-view-all-sale-mobile,
   &.link-view-all-grey-mobile,
   &.link-view-all-combo-mobile,
-  &.link-view-all-blog-mobile {
+  &.link-view-all-blog-mobile,
+  &.link-view-all-gift-mobile {
     display: none;
     @include maxWidth(767px) {
       display: flex;
@@ -1144,6 +1150,13 @@
     @include maxWidth(767px) {
       margin-top: 40px;
     }
+  }
+  // Riêng Giải pháp quà tặng doanh nghiệp: icon mũi tên riêng theo Figma
+  // (dạng chevron, không phải mũi tên dài mặc định của .btn-view-all).
+  // Đặt tên riêng "-gift" để không trùng ic_chevron-right-orange.svg đã
+  // dùng sẵn ở _product-category.scss.
+  &.link-view-all-gift-mobile .btn-view-all::after {
+    background-image: url("../images/icon/ic_chevron-right-orange-gift.svg");
   }
 }
 
@@ -1716,11 +1729,9 @@
       height: 10px;
       border-radius: 50%;
       background: $light;
-      border: 1px solid $color-C4C4C4;
       opacity: 1;
       &.swiper-pagination-bullet-active {
         background: $color-F38F2F;
-        border-color: $color-F38F2F;
       }
     }
   }
@@ -1753,11 +1764,18 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
+    @include maxWidth(767px) {
+      margin-bottom: 9px;
+    }
     .stars {
       gap: 8px;
       i {
         width: 15px;
         height: 15px;
+        @include maxWidth(767px) {
+          width: 9px;
+          height: 9px;
+        }
       }
     }
     .quote-icon {
@@ -1771,19 +1789,27 @@
     font-size: 13px;
     line-height: 1.7;
     margin-bottom: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
     @include minWidth(768px) {
       font-size: 15px;
+      -webkit-line-clamp: 4;
     }
   }
   .author {
     display: flex;
     flex-direction: column;
     strong {
-      color: $main-01;
+      color: $color-1E335C;
+      font-size: 28px;
+      font-weight: 400;
     }
     span {
       color: $color-797979;
-      font-size: 13px;
+      font-size: 15px;
+      font-weight: 300;
     }
   }
 }
@@ -1899,6 +1925,10 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    @include maxWidth(767px) {
+      max-width: 272px;
+      margin: 0 auto;
+    }
     @include minWidth(768px) {
       font-size: 16px;
       width: 343px;

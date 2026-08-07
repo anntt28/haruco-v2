@@ -11263,7 +11263,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   border-radius: 0 0 10px 10px;
 }
 .product-card .product-card-body h4 {
-  color: #121F38;
+  color: #1E335C;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
@@ -11413,6 +11413,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   justify-content: space-between;
   gap: 8px;
   margin-bottom: 12px;
+  border-top: 1px solid #EBEBEB;
+  padding-top: 6px;
 }
 .product-rating__info {
   display: flex;
@@ -11960,11 +11962,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .link-view-all.link-view-all-dark .btn-view-all::after {
   background-image: url("../images/icon/ic_arrow-right-white.svg");
 }
-.link-view-all.link-view-all-sale-mobile, .link-view-all.link-view-all-grey-mobile, .link-view-all.link-view-all-combo-mobile, .link-view-all.link-view-all-blog-mobile {
+.link-view-all.link-view-all-sale-mobile, .link-view-all.link-view-all-grey-mobile, .link-view-all.link-view-all-combo-mobile, .link-view-all.link-view-all-blog-mobile, .link-view-all.link-view-all-gift-mobile {
   display: none;
 }
 @media (max-width: 767px) {
-  .link-view-all.link-view-all-sale-mobile, .link-view-all.link-view-all-grey-mobile, .link-view-all.link-view-all-combo-mobile, .link-view-all.link-view-all-blog-mobile {
+  .link-view-all.link-view-all-sale-mobile, .link-view-all.link-view-all-grey-mobile, .link-view-all.link-view-all-combo-mobile, .link-view-all.link-view-all-blog-mobile, .link-view-all.link-view-all-gift-mobile {
     display: flex;
     justify-content: center;
     margin-top: 16px;
@@ -11974,6 +11976,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   .link-view-all.link-view-all-blog-mobile {
     margin-top: 40px;
   }
+}
+.link-view-all.link-view-all-gift-mobile .btn-view-all::after {
+  background-image: url("../images/icon/ic_chevron-right-orange-gift.svg");
 }
 
 .product-slider-section-light {
@@ -12509,12 +12514,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   height: 10px;
   border-radius: 50%;
   background: #fff;
-  border: 1px solid #C4C4C4;
   opacity: 1;
 }
 .feedback-section .feedback-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #F38F2F;
-  border-color: #F38F2F;
 }
 
 .feedback-card {
@@ -12547,12 +12550,23 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   justify-content: space-between;
   margin-bottom: 16px;
 }
+@media (max-width: 767px) {
+  .feedback-card .rating {
+    margin-bottom: 9px;
+  }
+}
 .feedback-card .rating .stars {
   gap: 8px;
 }
 .feedback-card .rating .stars i {
   width: 15px;
   height: 15px;
+}
+@media (max-width: 767px) {
+  .feedback-card .rating .stars i {
+    width: 9px;
+    height: 9px;
+  }
 }
 .feedback-card .rating .quote-icon {
   display: block;
@@ -12564,10 +12578,15 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   font-size: 13px;
   line-height: 1.7;
   margin-bottom: 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
 }
 @media (min-width: 768px) {
   .feedback-card .quote {
     font-size: 15px;
+    -webkit-line-clamp: 4;
   }
 }
 .feedback-card .author {
@@ -12575,11 +12594,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-direction: column;
 }
 .feedback-card .author strong {
-  color: #121F38;
+  color: #1E335C;
+  font-size: 28px;
+  font-weight: 400;
 }
 .feedback-card .author span {
   color: #797979;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 300;
 }
 
 .video-section {
@@ -12697,6 +12719,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+@media (max-width: 767px) {
+  .video-card .caption {
+    max-width: 272px;
+    margin: 0 auto;
+  }
 }
 @media (min-width: 768px) {
   .video-card .caption {
