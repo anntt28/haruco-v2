@@ -112,7 +112,7 @@ $(function () {
   });
   new Swiper(".gift-solution-slider", {
     loop: false,
-    slidesPerView: 1,
+    slidesPerView: 1.3,
     spaceBetween: 20,
     breakpoints: {
       567: {

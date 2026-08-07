@@ -91,6 +91,12 @@
   }
 }
 .introduce {
+  margin-top: 40px !important;
+  margin-bottom: 37px;
+  @include minWidth(768px) {
+    margin-top: 50px !important;
+    margin-bottom: 0;
+  }
   .img-line {
     margin-top: 23px;
     margin-bottom: 23px;
@@ -118,9 +124,13 @@
       font-weight: 500;
       line-height: 28px;
       letter-spacing: -0.03em;
+      @include maxWidth(767px) {
+        line-height: 1.26;
+        color: $color-1E335C;
+      }
     }
     p {
-      color: #525252;
+      color: $color-323232;
       font-weight: 300;
       line-height: 1.75;
       @include minWidth(768px) {
@@ -306,47 +316,57 @@
         font-size: 28px;
       }
     }
-    .btn-view-all {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: $light;
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 8px;
-        height: 7px;
-        background-image: url("../images/icon/ic_arrow-right-orange.svg");
-        background-repeat: no-repeat;
-        background-size: contain;
-      }
-    }
   }
   .product-slider-heading-sale {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    @include maxWidth(767px) {
+      justify-content: center;
+    }
+    @include minWidth(768px) {
+      flex-wrap: nowrap;
+    }
+    > .link-view-all {
+      @include maxWidth(767px) {
+        display: none;
+      }
+    }
     .sale-title {
       display: flex;
       align-items: center;
       gap: 8px;
+      .ic-lightning {
+        flex-shrink: 0;
+        display: flex;
+        svg {
+          display: block;
+        }
+      }
       h2 {
         text-transform: uppercase;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 28px;
+        letter-spacing: -0.03em;
       }
     }
     .sale-countdown {
-      color: $light;
-      font-size: 20px;
-      font-weight: 600;
+      display: flex;
+      gap: 2px;
       span {
-        display: inline-block;
-        background: rgba($dark, 0.15);
-        border-radius: 6px;
-        padding: 2px 8px;
-        min-width: 32px;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        height: 20px;
+        padding: 0 4px;
+        background: linear-gradient(180deg, $orange-1 0%, $primary 100%);
+        border-radius: 2px;
+        color: $light;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 15px;
+        letter-spacing: -0.03em;
       }
     }
   }
@@ -359,16 +379,44 @@
     @include minWidth(768px) {
       padding: 30px;
     }
+    // Style nav prev/next dùng chung cho MỌI Product Slider (đồng bộ theo
+    // đúng chuẩn đã áp dụng ở Sale Sập Sàn) — nền trắng, tròn, đổ bóng nhẹ,
+    // icon SVG riêng (arrow-circle-grey_ic.svg) thay Unicode mặc định của
+    // Swiper. Không tạo thêm style riêng theo từng section.
     .swiper-button-prev,
     .swiper-button-next {
-      background: $light;
+      background-color: $light;
       border-radius: 50%;
       width: 32px;
       height: 32px;
       box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+      background-image: url("../images/arrow-circle-grey_ic.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 30px 30px;
       &::after {
-        font-size: 12px;
-        color: $primary;
+        content: none;
+      }
+      &.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: auto;
+        pointer-events: none;
+      }
+    }
+    // Vị trí cố định (không scale theo breakpoint như base .swiper-button-prev/
+    // next dùng chung ở _slick.scss) — chỉ áp dụng navigation của Product
+    // Slider, không ảnh hưởng các Swiper khác trên site.
+    .swiper-button-prev {
+      left: -14px;
+      @include minWidth(768px) {
+        left: -15px;
+      }
+    }
+    .swiper-button-next {
+      right: -14px;
+      transform: scaleX(-1);
+      @include minWidth(768px) {
+        right: -15px;
       }
     }
   }
@@ -477,6 +525,9 @@
       display: flex;
       justify-content: space-between;
       gap: 6px;
+      @include minWidth(768px) {
+        justify-content: center;
+      }
       button {
         flex: 0 1 auto;
         min-width: 0;
@@ -510,9 +561,66 @@
     }
   }
 }
+// Sale Sập Sàn + Sản phẩm bán chạy (mobile): 2 nút hành động xếp chồng
+// full-width thay vì nằm cùng hàng như các product-slider khác. Selector
+// nối đủ qua .product-card .product-card-body để specificity ăn đứt rule
+// gốc (.product-card .product-card-body .product-card-actions button).
+.product-slider-sale .product-card .product-card-body .product-card-actions,
+.product-slider-bestseller .product-card .product-card-body .product-card-actions {
+  @include maxWidth(767px) {
+    flex-direction: column;
+    button {
+      width: 100%;
+      flex: 0 0 auto;
+    }
+  }
+}
 .rates {
   i {
     color: $color-FA53E3E;
+  }
+}
+// Rating (sao + số lượt đánh giá + "Đã bán xxxx") — dùng chung cho Product
+// Card ở nhiều product-slider (Sản phẩm bán chạy, Đai hỗ trợ, Trị liệu
+// giảm đau - thư giãn, Tập luyện - phục hồi chức năng...), thay cho
+// .sold (progress-bar) ở những nơi đã chuyển sang dùng Rating.
+.product-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  &__sold {
+    flex-shrink: 0;
+    color: #9d9d9d;
+    font-size: 12px;
+  }
+  .stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    i {
+      display: block;
+      width: 9px;
+      height: 9px;
+      background-image: url("../images/icon/ic_star-rating.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  .rating-count {
+    color: #9d9d9d;
+    font-size: 12px;
+  }
+  @include maxWidth(429px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
 }
 .blog-news {
@@ -530,6 +638,13 @@
     margin-bottom: 11px;
     @include minWidth(1024px) {
       margin-bottom: 24px;
+    }
+    // Đồng bộ typography heading với các section khác trên Homepage.
+    h2 {
+      font-weight: 500;
+      @include maxWidth(767px) {
+        font-size: 28px;
+      }
     }
   }
   .blog-content {
@@ -686,16 +801,56 @@
   @include minWidth(768px) {
     margin-top: 32px !important;
   }
+  .container-fluid {
+    padding-bottom: 16px;
+    @include minWidth(768px) {
+      padding-bottom: 31px;
+      border-bottom: 1px solid $color-D9D9D9;
+    }
+  }
   .trust-badges-list {
     list-style: none;
     margin: 0;
-    padding: 0 0 16px;
-    border-bottom: 1px solid $color-D9D9D9;
-    row-gap: 24px;
-    column-gap: 16px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: self-start;
+    position: relative;
     @include minWidth(768px) {
-      padding: 0 0 31px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
       gap: 16px;
+    }
+    // Divider "+" giữa 2 cột/2 hàng — pseudo-element được đặt làm grid item
+    // riêng (grid-row: 1 / 3 / align-self: stretch), tách biệt hoàn toàn khỏi
+    // align-items: self-start của các <li> nên luôn liền mạch hết chiều
+    // cao/rộng thật của grid dù item bên cạnh cao/thấp khác nhau.
+    &::before {
+      content: "";
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+      justify-self: center;
+      align-self: stretch;
+      width: 1px;
+      background: $color-D0D0D0;
+      @include minWidth(768px) {
+        content: none;
+      }
+    }
+    &::after {
+      content: "";
+      grid-column: 1 / 3;
+      grid-row: 1;
+      justify-self: stretch;
+      align-self: end;
+      height: 1px;
+      background: $color-D0D0D0;
+      @include minWidth(768px) {
+        content: none;
+      }
     }
     li {
       display: flex;
@@ -703,19 +858,35 @@
       align-items: center;
       text-align: center;
       gap: 8px;
-      flex: 0 0 47%;
-      max-width: 47%;
+      padding: 18px 12px;
       font-size: 16px;
       font-weight: 500;
       line-height: 28px;
       color: $color-1E335C;
+      &:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      &:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1;
+      }
+      &:nth-child(3) {
+        grid-column: 1;
+        grid-row: 2;
+      }
+      &:nth-child(4) {
+        grid-column: 2;
+        grid-row: 2;
+      }
       @include minWidth(768px) {
         flex-direction: row;
         text-align: left;
-        flex: 0 1 auto;
-        max-width: none;
         gap: 15px;
         font-size: 18px;
+        padding: 0;
+        grid-column: auto;
+        grid-row: auto;
       }
     }
     .icon {
@@ -724,12 +895,11 @@
       height: 50px;
       border-radius: 50%;
       background: $primary;
-      color: $light;
       display: flex;
       align-items: center;
       justify-content: center;
-      @include minWidth(768px) {
-        font-size: 18px;
+      svg {
+        display: block;
       }
     }
   }
@@ -775,18 +945,25 @@
   li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    color: #323232;
+    gap: 9px;
+    color: $color-323232;
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 12px;
     @include minWidth(768px) {
       font-size: 18px;
     }
-    i {
+    .icon {
       flex-shrink: 0;
-      margin-top: 4px;
-      color: $color-FF6D3E;
+      width: 12px;
+      height: 12px;
+      margin-top: 7px;
+      @include minWidth(768px) {
+        margin-top: 4px;
+      }
+      svg {
+        display: block;
+      }
     }
   }
 }
@@ -839,12 +1016,37 @@
 }
 
 // "Xem tất cả" link (text + circle icon), used across product-slider headings
+// (base .btn-view-all nằm ngay trong .link-view-all — không phụ thuộc
+// .product-slider-heading — để dùng lại được ở mọi vị trí, kể cả bản mobile
+// đặt riêng dưới danh sách sản phẩm Sale).
 .link-view-all {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
   color: $light;
+  .btn-view-all {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $light;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 12px;
+      background-image: url("../images/icon/ic_arrow-right-orange.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      display: block;
+    }
+  }
   font-size: 14px;
   @include minWidth(768px) {
     font-size: 16px;
@@ -865,14 +1067,27 @@
       }
     }
   }
+  // Xem tất cả riêng cho Sale, cho Đai hỗ trợ / Trị liệu giảm đau - thư
+  // giãn / Tập luyện - phục hồi chức năng, và cho Combo Sản Phẩm / Sản
+  // Phẩm Phù Hợp Với Bạn — đặt phía dưới .product-slider-card-wrap,
+  // chỉ mobile, cùng 1 pattern để đồng nhất UI.
+  &.link-view-all-sale-mobile,
+  &.link-view-all-grey-mobile,
+  &.link-view-all-combo-mobile {
+    display: none;
+    @include maxWidth(767px) {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+    }
+  }
 }
 
 // Light variant of product-slider-section (Sale / Combo / Sản phẩm phù hợp):
-// white background instead of the vivid orange-red gradient (Figma: Rectangle
-// trắng + ảnh texture 70% opacity — bỏ qua ảnh texture vì gần như không nhìn
-// thấy, chỉ giữ nền trắng làm nền chính xác về mặt màu sắc).
+// nền trắng + ảnh texture cam nhạt (Figma: Rectangle trắng + ảnh texture
+// 70% opacity, asset assets/images/bg-orange-light.png).
 .product-slider-section-light {
-  background: $light;
+  background: url("../images/bg-orange-light.png") top center / cover no-repeat, $light;
   .product-slider-heading {
     h2 {
       color: $main-01;
@@ -890,17 +1105,156 @@
       }
     }
   }
-  .product-slider-heading-sale .sale-countdown {
-    color: $primary;
-    span {
-      background: rgba($primary, 0.1);
+  .product-slider-heading-sale h2 {
+    color: $color-1E335C;
+    .text-sale {
+      color: $color-E83729;
     }
   }
 }
 // Combo + Sản phẩm phù hợp dùng chung 1 khối nền trong Figma ("Group 632979"):
-// trắng ở 1/3 trên, chuyển dần sang cam nhạt ở phía dưới.
+// trắng ở 1/3 trên, chuyển dần sang cam nhạt ở phía dưới. Nền này giờ đặt
+// trên .product-slider-wrapper-combo (bọc chung cả 2 section) — ở đây chỉ
+// bỏ nền + margin-top riêng của từng section để lộ nền wrapper phía sau.
 .product-slider-section-light-gradient {
+  margin-top: 0 !important;
+  background: none;
+}
+// Wrapper bọc chung "Combo Sản Phẩm" + "Sản Phẩm Phù Hợp Với Bạn" thành 1
+// khối nền liền mạch (áp dụng cho cả Desktop và Mobile).
+.product-slider-wrapper-combo {
   background: linear-gradient(180deg, $light 0%, $light 34%, $color-FFE0C4 100%);
+  // Đồng bộ Product Card với Đai hỗ trợ / Trị liệu giảm đau / Tập luyện:
+  // giới hạn tên sản phẩm tối đa 2 dòng, cắt bằng ellipsis.
+  .product-card .product-card-body h4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  // Banner ngang xen giữa Combo và Sản phẩm phù hợp: bỏ margin-top mặc định
+  // của .homepage section, cả desktop và mobile — chỉ riêng banner này.
+  .banner-ngang {
+    margin-top: 0;
+  }
+  // Đồng bộ typography heading với các section khác trên Homepage — áp dụng
+  // cả desktop và mobile.
+  .product-slider-heading h2 {
+    font-weight: 500;
+  }
+  @include maxWidth(767px) {
+    // Ẩn "Xem tất cả" ở header, dùng bản đặt dưới .product-slider-card-wrap
+    // (.link-view-all-combo-mobile) thay thế — đồng nhất với 3 section trên.
+    .product-slider-heading > .link-view-all {
+      display: none;
+    }
+    .product-slider-heading h2 {
+      font-size: 28px;
+    }
+    // 2 nút hành động xếp chồng full-width, đồng bộ với 3 section trên.
+    .product-card .product-card-body .product-card-actions {
+      flex-direction: column;
+      button {
+        width: 100%;
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
+// Variant nền xám riêng cho Đai hỗ trợ / Trị liệu giảm đau - thư giãn /
+// Tập luyện - phục hồi chức năng — class riêng, không sửa
+// .product-slider-section (gradient cam-đỏ) dùng chung cho các section khác.
+// Nền xám giờ đặt ở .product-slider-wrapper-grey (bọc chung cả 3 section +
+// banner ngang xen giữa) — class này chỉ còn lo phần chữ/margin riêng của
+// từng section con để dễ đọc trên nền sáng.
+.product-slider-section-grey {
+  margin-top: 0 !important;
+  // Bỏ hẳn gradient cam-đỏ mặc định của .product-slider-section để lộ
+  // đúng nền texture xám của .product-slider-wrapper-grey phía sau.
+  background: none;
+  .product-slider-heading h2 {
+    color: $main-01;
+  }
+  .link-view-all {
+    color: $color-FF6D3E;
+    &:hover {
+      color: $color-FF6D3E;
+    }
+  }
+  .btn-view-all {
+    background: $color-FF6D3E;
+    &::after {
+      background-image: url("../images/icon/ic_arrow-right-white.svg");
+    }
+  }
+}
+// Wrapper dùng ảnh texture xám thật từ Figma (bg-grey-pr.jpg), bao trọn
+// Đai hỗ trợ / Trị liệu giảm đau - thư giãn / Banner ngang / Tập luyện -
+// phục hồi chức năng thành 1 khối nền liền mạch.
+.product-slider-wrapper-grey {
+  background: url("../images/bg-grey-pr.jpg") repeat;
+  // Giới hạn tên sản phẩm tối đa 2 dòng, cắt bằng ellipsis — chỉ áp dụng
+  // trong 3 section này theo yêu cầu, không đụng .product-card dùng chung
+  // ở nơi khác.
+  .product-card .product-card-body h4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  // Riêng "Trị liệu giảm đau - Thư giãn" bỏ padding-top, cả desktop và mobile.
+  .product-slider-section-therapy {
+    padding-top: 0;
+  }
+  // Đồng bộ typography heading với các section khác trên Homepage — áp dụng
+  // cả desktop và mobile.
+  .product-slider-heading h2 {
+    font-weight: 500;
+  }
+  @include maxWidth(767px) {
+    // Padding riêng cho mobile — không đụng desktop.
+    .product-slider-section {
+      padding: 40px 0;
+    }
+    .product-slider-section-therapy {
+      padding-top: 0;
+    }
+    // Ẩn "Xem tất cả" ở header, dùng bản đặt dưới .product-slider-card-wrap
+    // (.link-view-all-grey-mobile) thay thế — đồng nhất với Sale.
+    .product-slider-heading > .link-view-all {
+      display: none;
+    }
+    .product-slider-heading h2 {
+      font-size: 28px;
+    }
+    // 2 nút hành động xếp chồng full-width, giống hệt Sản phẩm bán chạy.
+    .product-card .product-card-body .product-card-actions {
+      flex-direction: column;
+      button {
+        width: 100%;
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
+
+// "Sản phẩm bán chạy" — không kế thừa margin-top mặc định của .homepage section
+.product-slider-section-bestseller {
+  margin-top: 0 !important;
+  .bestseller-banner {
+    margin-top: 25px;
+    border-radius: 10px;
+    aspect-ratio: 617 / 212;
+    background-image: url("../images/banner-best-seller_sp.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    @include minWidth(768px) {
+      margin-top: 30px;
+      aspect-ratio: 2100 / 324;
+      background-image: url("../images/banner-best-seller_pc.png");
+    }
+  }
 }
 
 // Best seller heading: big watermark title + 3 feature badges
@@ -909,14 +1263,56 @@
   align-items: stretch;
   gap: 16px;
   position: relative;
-  .watermark-heading {
-    text-align: center;
-    text-transform: uppercase;
-    color: $light;
-    font-size: 28px;
-    font-weight: 600;
+  // Selector nối .product-slider-section-bestseller để specificity ăn đứt
+  // rule gốc .product-slider-section .product-slider-heading h2 (có thêm
+  // type selector h2 nên specificity cao hơn nếu chỉ dùng 2 class thường).
+  .product-slider-section-bestseller & h2.watermark-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 0;
     @include minWidth(768px) {
-      font-size: 48px;
+      gap: 27px;
+    }
+    .ic-lightning-bestseller {
+      flex-shrink: 0;
+      display: flex;
+      width: 38px;
+      height: 47px;
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      @include minWidth(768px) {
+        width: 83px;
+        height: 102px;
+      }
+    }
+    // Text "Sản phẩm bán chạy" là ảnh export thẳng từ Figma (không giả lập
+    // bằng CSS) — asset riêng cho desktop/mobile vì bố cục 1 dòng/2 dòng
+    // khác nhau theo thiết kế, không thể dùng chung 1 ảnh co giãn.
+    .watermark-heading-img {
+      display: block;
+      height: auto;
+      &.watermark-heading-img-pc {
+        display: none;
+      }
+      &.watermark-heading-img-sp {
+        width: 309px;
+        max-width: 100%;
+      }
+      @include minWidth(768px) {
+        &.watermark-heading-img-pc {
+          display: block;
+          width: 685px;
+          max-width: 100%;
+        }
+        &.watermark-heading-img-sp {
+          display: none;
+        }
+      }
     }
   }
   .feature-badges {
@@ -924,46 +1320,53 @@
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 10px;
-    margin: 0;
+    width: 100%;
+    max-width: 410px;
+    margin: 0 auto;
     padding: 0;
     text-align: center;
+    text-transform: uppercase;
     @include minWidth(768px) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
+      max-width: none;
     }
     li {
-      background: $light;
+      // Nền là ảnh riêng cho từng badge (có phần khoét "vé xé" ở 2 góc dưới
+      // theo Figma), không phải background dùng chung cho cả .feature-badges.
+      background-image: url("../images/bg-best-seller-sp.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
       color: $main-01;
       font-weight: 700;
-      border-radius: 50px;
       padding: 10px 16px;
       font-size: 14px;
       @include minWidth(768px) {
+        background-image: url("../images/bg-best-seller_pc.png");
         font-size: 18px;
       }
+      // 3 badge × 445px + 2 gap 20px = 1375px — chỉ đủ chỗ khi container-fluid
+      // đã bỏ padding hai bên (≥1024px) và đủ rộng; ở tablet hẹp hơn giữ layout
+      // 1fr co giãn để không tràn (chữ bị cắt mất nếu ép cứng width sớm hơn).
+      @include minWidth(1400px) {
+        padding: 10px 106px;
+        width: 445px;
+        box-sizing: border-box;
+      }
     }
-  }
-  .link-view-all {
-    align-self: center;
   }
 }
 
 // Two side-by-side rounded promo images ("Banner ngang")
 .banner-ngang {
-  .row {
-    margin-left: -5px;
-    margin-right: -5px;
+  .banner-ngang-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
     @include minWidth(768px) {
-      margin-left: -10px;
-      margin-right: -10px;
-    }
-  }
-  .col-6 {
-    padding-left: 5px;
-    padding-right: 5px;
-    @include minWidth(768px) {
-      padding-left: 10px;
-      padding-right: 10px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
   }
   img {
@@ -978,15 +1381,74 @@
 // Gift solution ("Giải pháp quà tặng doanh nghiệp")
 .gift-solution {
   background: linear-gradient(180deg, $color-FF6D3E 0%, $primary 100%);
+  margin-top: 0 !important;
   padding: 30px 0;
   @include minWidth(768px) {
     padding: 50px 0;
   }
-  .product-slider-heading h2 {
-    color: $light;
+  // Layout header giống các section Product Slider khác: tiêu đề trái,
+  // "Xem tất cả" phải, cùng hàng — .gift-solution không có class
+  // .product-slider-section nên không tự có layout này, phải khai báo riêng.
+  .product-slider-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    @include minWidth(768px) {
+      margin-bottom: 24px;
+    }
+    // Ẩn "Xem tất cả" ở header trên mobile, desktop giữ nguyên hiển thị.
+    > .link-view-all {
+      @include maxWidth(767px) {
+        display: none;
+      }
+    }
+    h2 {
+      color: $light;
+      font-weight: 500;
+      @include maxWidth(767px) {
+        font-size: 28px;
+      }
+    }
   }
   .gift-solution-wrap {
     position: relative;
+    // Đồng bộ icon + vị trí nav prev/next với .product-slider-card-wrap
+    // (nền trắng, tròn, đổ bóng nhẹ, icon SVG arrow-circle-grey_ic.svg) —
+    // chỉ đồng bộ giao diện/vị trí, không đổi logic hoạt động của slider.
+    .swiper-button-prev,
+    .swiper-button-next {
+      background-color: $light;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+      background-image: url("../images/arrow-circle-grey_ic.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 30px 30px;
+      &::after {
+        content: none;
+      }
+      &.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: auto;
+        pointer-events: none;
+      }
+    }
+    .swiper-button-prev {
+      left: -14px;
+      @include minWidth(768px) {
+        left: -15px;
+      }
+    }
+    .swiper-button-next {
+      right: -14px;
+      transform: scaleX(-1);
+      @include minWidth(768px) {
+        right: -15px;
+      }
+    }
   }
   .gift-solution-item {
     text-align: center;
@@ -1002,20 +1464,16 @@
       color: $light;
       font-size: 15px;
       font-weight: 500;
+      margin: 0 auto;
+      max-width: 100%;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
       @include minWidth(768px) {
         font-size: 17px;
+        max-width: 333px;
       }
-    }
-  }
-  .swiper-button-prev,
-  .swiper-button-next {
-    background: $light;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    &::after {
-      font-size: 12px;
-      color: $primary;
     }
   }
 }
@@ -1025,7 +1483,7 @@
   text-align: center;
   h2 {
     color: $main-01;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 500;
     margin-bottom: 24px;
     @include minWidth(768px) {
@@ -1097,6 +1555,10 @@
     justify-content: center;
     h2 {
       color: $main-01;
+      font-weight: 500;
+      @include maxWidth(767px) {
+        font-size: 28px;
+      }
     }
   }
   .feedback-wrap {
@@ -1158,6 +1620,10 @@
   }
   .product-slider-heading h2 {
     color: $main-01;
+    font-weight: 500;
+    @include maxWidth(767px) {
+      font-size: 28px;
+    }
   }
   .video-wrap {
     position: relative;
