@@ -10893,7 +10893,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .introduce .text h2 {
-  color: #121F38;
+  color: #1E335C;
   font-family: "Lexend";
   font-size: 28px;
   font-weight: 500;
@@ -10903,7 +10903,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (max-width: 767px) {
   .introduce .text h2 {
     line-height: 1.26;
-    color: #1E335C;
   }
 }
 .introduce .text p {
@@ -11462,11 +11461,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .blog-news .heading-haruco h2 {
+  color: #1E335C !important;
   font-weight: 500;
+  letter-spacing: 0.03em;
+  font-size: 35px;
+  line-height: 1.4;
 }
 @media (max-width: 767px) {
   .blog-news .heading-haruco h2 {
     font-size: 28px;
+    line-height: 1.12;
   }
 }
 .blog-news .blog-content .box-slider {
@@ -12015,7 +12019,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   margin-top: 0;
 }
 .product-slider-wrapper-combo .product-slider-heading h2 {
+  color: #1E335C;
   font-weight: 500;
+  letter-spacing: 0.03em;
+  font-size: 35px;
+  line-height: 1.4;
 }
 @media (max-width: 767px) {
   .product-slider-wrapper-combo .product-slider-heading > .link-view-all {
@@ -12023,6 +12031,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
   .product-slider-wrapper-combo .product-slider-heading h2 {
     font-size: 28px;
+    line-height: 1.12;
   }
   .product-slider-wrapper-combo .product-card .product-card-body .product-card-actions {
     flex-direction: column;
@@ -12038,7 +12047,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background: none;
 }
 .product-slider-section-grey .product-slider-heading h2 {
-  color: #121F38;
+  color: #1E335C;
 }
 .product-slider-section-grey .link-view-all {
   color: #FF6D3E;
@@ -12067,6 +12076,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .product-slider-wrapper-grey .product-slider-heading h2 {
   font-weight: 500;
+  letter-spacing: 0.03em;
+  font-size: 35px;
+  line-height: 1.4;
 }
 @media (max-width: 767px) {
   .product-slider-wrapper-grey .product-slider-section {
@@ -12080,6 +12092,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
   .product-slider-wrapper-grey .product-slider-heading h2 {
     font-size: 28px;
+    line-height: 1.12;
   }
   .product-slider-wrapper-grey .product-card .product-card-body .product-card-actions {
     flex-direction: column;
@@ -12448,7 +12461,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 
 .feedback-section {
-  background: #F9FAFE;
+  background: url("../images/bg-feed-back.png") center/cover no-repeat, #F9FAFE;
   padding: 30px 0;
 }
 @media (min-width: 768px) {
@@ -12458,18 +12471,38 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .feedback-section .product-slider-heading {
   justify-content: center;
+  margin-bottom: 31px;
+}
+@media (max-width: 767px) {
+  .feedback-section .product-slider-heading {
+    margin-bottom: 28px;
+  }
 }
 .feedback-section .product-slider-heading h2 {
-  color: #121F38;
+  color: #1E335C !important;
   font-weight: 500;
+  letter-spacing: 0.03em;
+  font-size: 35px;
+  line-height: 1.4;
 }
 @media (max-width: 767px) {
   .feedback-section .product-slider-heading h2 {
     font-size: 28px;
+    line-height: 1.12;
   }
 }
 .feedback-section .feedback-wrap {
   position: relative;
+}
+.feedback-section .feedback-pagination {
+  position: static;
+  bottom: 0;
+  margin-top: 22px;
+}
+@media (max-width: 767px) {
+  .feedback-section .feedback-pagination {
+    margin-top: 34px;
+  }
 }
 .feedback-section .feedback-pagination .swiper-pagination-bullet {
   width: 10px;
@@ -12569,12 +12602,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .video-section .product-slider-heading h2 {
-  color: #121F38;
+  color: #1E335C !important;
   font-weight: 500;
+  letter-spacing: 0.03em;
+  font-size: 35px;
+  line-height: 1.4;
 }
 @media (max-width: 767px) {
   .video-section .product-slider-heading h2 {
     font-size: 28px;
+    line-height: 1.12;
   }
 }
 .video-section .video-wrap {
@@ -12664,6 +12701,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 768px) {
   .video-card .caption {
     font-size: 16px;
+    width: 343px;
+    margin: 0 auto;
   }
 }
 

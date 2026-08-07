@@ -118,7 +118,7 @@
       }
     }
     h2 {
-      color: $main-01;
+      color: $color-1E335C;
       font-family: "Lexend";
       font-size: 28px;
       font-weight: 500;
@@ -126,7 +126,6 @@
       letter-spacing: -0.03em;
       @include maxWidth(767px) {
         line-height: 1.26;
-        color: $color-1E335C;
       }
     }
     p {
@@ -643,10 +642,16 @@
       margin-bottom: 24px;
     }
     // Đồng bộ typography heading với các section khác trên Homepage.
+    // !important để thắng .text-dark (Bootstrap utility cũng dùng !important).
     h2 {
+      color: $color-1E335C !important;
       font-weight: 500;
+      letter-spacing: 0.03em;
+      font-size: 35px;
+      line-height: 1.4;
       @include maxWidth(767px) {
         font-size: 28px;
+        line-height: 1.12;
       }
     }
   }
@@ -1199,7 +1204,11 @@
   // Đồng bộ typography heading với các section khác trên Homepage — áp dụng
   // cả desktop và mobile.
   .product-slider-heading h2 {
+    color: $color-1E335C;
     font-weight: 500;
+    letter-spacing: 0.03em;
+    font-size: 35px;
+    line-height: 1.4;
   }
   @include maxWidth(767px) {
     // Ẩn "Xem tất cả" ở header, dùng bản đặt dưới .product-slider-card-wrap
@@ -1209,6 +1218,7 @@
     }
     .product-slider-heading h2 {
       font-size: 28px;
+      line-height: 1.12;
     }
     // 2 nút hành động xếp chồng full-width, đồng bộ với 3 section trên.
     .product-card .product-card-body .product-card-actions {
@@ -1232,7 +1242,7 @@
   // đúng nền texture xám của .product-slider-wrapper-grey phía sau.
   background: none;
   .product-slider-heading h2 {
-    color: $main-01;
+    color: $color-1E335C;
   }
   .link-view-all {
     color: $color-FF6D3E;
@@ -1269,6 +1279,9 @@
   // cả desktop và mobile.
   .product-slider-heading h2 {
     font-weight: 500;
+    letter-spacing: 0.03em;
+    font-size: 35px;
+    line-height: 1.4;
   }
   @include maxWidth(767px) {
     // Padding riêng cho mobile — không đụng desktop.
@@ -1285,6 +1298,7 @@
     }
     .product-slider-heading h2 {
       font-size: 28px;
+      line-height: 1.12;
     }
     // 2 nút hành động xếp chồng full-width, giống hệt Sản phẩm bán chạy.
     .product-card .product-card-body .product-card-actions {
@@ -1658,18 +1672,27 @@
 
 // Feedback từ khách hàng
 .feedback-section {
-  background: $main-05;
+  background: url("../images/bg-feed-back.png") center / cover no-repeat, $main-05;
   padding: 30px 0;
   @include minWidth(768px) {
     padding: 50px 0;
   }
   .product-slider-heading {
     justify-content: center;
+    margin-bottom: 31px;
+    @include maxWidth(767px) {
+      margin-bottom: 28px;
+    }
     h2 {
-      color: $main-01;
+      // !important để thắng .text-dark (Bootstrap utility trên thẻ h2).
+      color: $color-1E335C !important;
       font-weight: 500;
+      letter-spacing: 0.03em;
+      font-size: 35px;
+      line-height: 1.4;
       @include maxWidth(767px) {
         font-size: 28px;
+        line-height: 1.12;
       }
     }
   }
@@ -1678,8 +1701,16 @@
   }
   // Pagination dạng chấm tròn riêng theo Figma — khác với dạng pill dài
   // mặc định (.swiper-pagination-bullet gốc ở _slick.scss), chỉ áp dụng
-  // trong section này.
+  // trong section này. Chuyển về normal flow (thay vì absolute mặc định
+  // của Swiper) để margin-top tạo khoảng cách thật với card phía trên,
+  // đúng theo Figma (dots nằm hẳn bên dưới, không đè lên card).
   .feedback-pagination {
+    position: static;
+    bottom: 0;
+    margin-top: 22px;
+    @include maxWidth(767px) {
+      margin-top: 34px;
+    }
     .swiper-pagination-bullet {
       width: 10px;
       height: 10px;
@@ -1774,10 +1805,15 @@
       margin-bottom: 24px;
     }
     h2 {
-      color: $main-01;
+      // !important để thắng .text-dark (Bootstrap utility trên thẻ h2).
+      color: $color-1E335C !important;
       font-weight: 500;
+      letter-spacing: 0.03em;
+      font-size: 35px;
+      line-height: 1.4;
       @include maxWidth(767px) {
         font-size: 28px;
+        line-height: 1.12;
       }
     }
   }
@@ -1865,6 +1901,8 @@
     -webkit-line-clamp: 2;
     @include minWidth(768px) {
       font-size: 16px;
+      width: 343px;
+      margin: 0 auto;
     }
   }
 }
