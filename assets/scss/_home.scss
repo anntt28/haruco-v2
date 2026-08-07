@@ -449,6 +449,11 @@
         font-size: 16px;
         min-height: 48px;
       }
+      // Bọc tên sản phẩm trong <a> để trỏ tới Product Detail — giữ nguyên
+      // màu/typography hiện có, chỉ thêm khả năng click.
+      a {
+        color: inherit;
+      }
     }
     .price {
       margin-bottom: 6px;
@@ -1559,6 +1564,10 @@
         font-size: 17px;
         max-width: 333px;
       }
+      // Bọc caption trong <a> để điều hướng — giữ nguyên màu/typography.
+      a {
+        color: inherit;
+      }
     }
   }
 }
@@ -1785,7 +1794,7 @@
     flex-direction: column;
     strong {
       color: $color-1E335C;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 400;
     }
     span {

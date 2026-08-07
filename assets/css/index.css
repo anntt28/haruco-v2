@@ -11255,6 +11255,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     min-height: 48px;
   }
 }
+.product-card .product-card-body h4 a {
+  color: inherit;
+}
 .product-card .product-card-body .price {
   margin-bottom: 6px;
 }
@@ -12341,6 +12344,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     max-width: 333px;
   }
 }
+.gift-solution .gift-solution-item .caption a {
+  color: inherit;
+}
 
 .press-logos {
   text-align: center;
@@ -12574,7 +12580,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .feedback-card .author strong {
   color: #1E335C;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 400;
 }
 .feedback-card .author span {
