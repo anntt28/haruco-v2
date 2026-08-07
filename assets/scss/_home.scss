@@ -18,6 +18,12 @@
   }
   .swiper-slide {
     position: relative;
+    // Bọc cả banner trong <a> để toàn bộ ảnh có thể click điều hướng.
+    > a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
   img {
     display: block;
@@ -34,30 +40,6 @@
     aspect-ratio: 4 / 3;
     @include minWidth(768px) {
       aspect-ratio: 14 / 5;
-    }
-  }
-  .banner-top-cta {
-    position: absolute;
-    left: 8%;
-    bottom: 14%;
-    .btn-view-detail {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: $light;
-      font-size: 14px;
-      font-weight: 600;
-      border: 2px solid $light;
-      border-radius: 50px;
-      padding: 6px 18px;
-      @include minWidth(768px) {
-        font-size: 20px;
-        padding: 8px 24px;
-      }
-      &:hover {
-        color: $light;
-        opacity: 0.85;
-      }
     }
   }
   .swiper-pagination-banner {

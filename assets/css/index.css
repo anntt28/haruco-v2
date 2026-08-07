@@ -10782,6 +10782,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .banner-top .swiper-slide {
   position: relative;
 }
+.banner-top .swiper-slide > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .banner-top img {
   display: block;
   width: 100%;
@@ -10803,32 +10808,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   .banner-top .swiper-slide {
     aspect-ratio: 14/5;
   }
-}
-.banner-top .banner-top-cta {
-  position: absolute;
-  left: 8%;
-  bottom: 14%;
-}
-.banner-top .banner-top-cta .btn-view-detail {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  border: 2px solid #fff;
-  border-radius: 50px;
-  padding: 6px 18px;
-}
-@media (min-width: 768px) {
-  .banner-top .banner-top-cta .btn-view-detail {
-    font-size: 20px;
-    padding: 8px 24px;
-  }
-}
-.banner-top .banner-top-cta .btn-view-detail:hover {
-  color: #fff;
-  opacity: 0.85;
 }
 .banner-top .swiper-pagination-banner {
   bottom: 30px;
