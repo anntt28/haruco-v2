@@ -80,6 +80,7 @@
     }
     .heading-haruco-new {
       margin-bottom: 16px;
+      text-transform: uppercase;
     }
     .description p {
       color: $color-323232;
@@ -122,27 +123,49 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 0;
       }
+      // Mobile (lưới 2x2): không dùng border riêng cho từng item (sẽ tạo
+      // thành khung bao quanh từng ô) — thay bằng 1 đường dashed dọc + 1
+      // đường dashed ngang cắt nhau chính giữa lưới, đặt trên chính
+      // .introduce-stats-grid để không cần thêm markup. Vị trí neo theo %
+      // (50%) nên luôn đúng giữa bất kể bề rộng/chiều cao thực tế của lưới.
+      @include maxWidth(767px) {
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 8px;
+          bottom: 8px;
+          left: 50%;
+          transform: translateX(-50%);
+          border-left: 1px dashed rgba($light, 0.4);
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          left: 12px;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          border-top: 1px dashed rgba($light, 0.4);
+        }
+      }
     }
     // .stat-item là "ô" (chiều rộng theo grid-template-columns), .item bên
     // trong mới là khối nội dung (icon/number/label) — tách riêng để có thể
     // căn khối nội dung lệch trái/phải trong ô đầu/cuối bằng justify-content
-    // mà không đổi cách xếp dọc icon/number/label bên trong.
+    // mà không đổi cách xếp dọc icon/number/label bên trong. Chỉ áp dụng
+    // trên Desktop — Mobile dùng lưới 2x2 đơn giản, các item không lệch
+    // trái/phải, chỉ có 2 đường dashed cắt nhau (xem .introduce-stats-grid).
     .stat-item {
       display: flex;
       justify-content: center;
       position: relative;
-      &:first-child {
-        justify-content: flex-start;
-      }
-      &:last-child {
-        justify-content: flex-end;
-      }
-      &:nth-child(odd) {
-        border-right: 1px solid rgba($light, 0.3);
-      }
       @include minWidth(768px) {
-        &:nth-child(odd) {
-          border-right: none;
+        &:first-child {
+          justify-content: flex-start;
+        }
+        &:last-child {
+          justify-content: flex-end;
         }
         &:not(:last-child) {
           border-right: 1px dashed $color-D0D0D0;
@@ -178,6 +201,7 @@
         color: $light;
         font-size: 15px;
         font-weight: 500;
+        text-transform: capitalize;
         @include minWidth(768px) {
           font-size: 20px;
         }
@@ -294,7 +318,7 @@
       // Mobile: 1 item / hàng (không phải lưới 2 cột) — mỗi item chiếm trọn
       // chiều rộng card.
       grid-template-columns: 1fr;
-      padding: 24px 0;
+      padding: 24px 15px;
       @include minWidth(768px) {
         grid-template-columns: repeat(4, 1fr);
         padding: 48px 0;
@@ -1033,6 +1057,7 @@
     .introduce-certs {
       display: block;
       margin-top: 0;
+      padding: 5px;
     }
     .swiper-button-prev-certs,
     .swiper-button-next-certs {

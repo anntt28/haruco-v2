@@ -69,7 +69,7 @@
   background-image: url("../images/arrow-circle-grey_ic.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 60%;
+  background-size: cover;
   @include minWidth(576px) {
     width: 40px;
     height: 40px;

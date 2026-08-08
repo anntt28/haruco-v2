@@ -10516,7 +10516,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background-image: url("../images/arrow-circle-grey_ic.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 60%;
+  background-size: cover;
 }
 @media (min-width: 576px) {
   .swiper-button-next,
@@ -13766,6 +13766,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .introduce-page .introduce-about .heading-haruco-new {
   margin-bottom: 16px;
+  text-transform: uppercase;
 }
 .introduce-page .introduce-about .description p {
   color: #323232;
@@ -13814,23 +13815,40 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     gap: 0;
   }
 }
+@media (max-width: 767px) {
+  .introduce-page .introduce-stats .introduce-stats-grid {
+    position: relative;
+  }
+  .introduce-page .introduce-stats .introduce-stats-grid::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 1px dashed rgba(255, 255, 255, 0.4);
+  }
+  .introduce-page .introduce-stats .introduce-stats-grid::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 1px dashed rgba(255, 255, 255, 0.4);
+  }
+}
 .introduce-page .introduce-stats .stat-item {
   display: flex;
   justify-content: center;
   position: relative;
 }
-.introduce-page .introduce-stats .stat-item:first-child {
-  justify-content: flex-start;
-}
-.introduce-page .introduce-stats .stat-item:last-child {
-  justify-content: flex-end;
-}
-.introduce-page .introduce-stats .stat-item:nth-child(odd) {
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-}
 @media (min-width: 768px) {
-  .introduce-page .introduce-stats .stat-item:nth-child(odd) {
-    border-right: none;
+  .introduce-page .introduce-stats .stat-item:first-child {
+    justify-content: flex-start;
+  }
+  .introduce-page .introduce-stats .stat-item:last-child {
+    justify-content: flex-end;
   }
   .introduce-page .introduce-stats .stat-item:not(:last-child) {
     border-right: 1px dashed #D0D0D0;
@@ -13868,6 +13886,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #fff;
   font-size: 15px;
   font-weight: 500;
+  text-transform: capitalize;
 }
 @media (min-width: 768px) {
   .introduce-page .introduce-stats .stat-item .label {
@@ -13985,7 +14004,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   display: grid;
   grid-template-columns: 1fr;
-  padding: 24px 0;
+  padding: 24px 15px;
 }
 @media (min-width: 768px) {
   .introduce-page .introduce-core-values .core-values-card {
@@ -14724,6 +14743,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .introduce-page .introduce-certs-section .introduce-certs {
   display: block;
   margin-top: 0;
+  padding: 5px;
 }
 .introduce-page .introduce-certs-section .swiper-button-prev-certs,
 .introduce-page .introduce-certs-section .swiper-button-next-certs {
