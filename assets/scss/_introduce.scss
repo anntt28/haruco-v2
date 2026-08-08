@@ -7,10 +7,10 @@
 .introduce-page {
   .heading-haruco-new {
     font-weight: 500;
-    letter-spacing: 0.03em;
+    letter-spacing: -0.03em;
     color: $color-1E335C;
     font-size: 28px;
-    line-height: 1.12;
+    line-height: 1.4;
     @include minWidth(768px) {
       font-size: 35px;
       line-height: 1.4;
@@ -103,9 +103,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 32px 0;
+    padding: 32px 0 635px;
     @include minWidth(768px) {
-      padding: 56px 0;
+      padding: 56px 0 233px;
     }
     .introduce-stats-grid {
       display: grid;
@@ -185,10 +185,10 @@
     // Kéo cả section lên đè vào phần padding-bottom của .introduce-stats
     // phía trên (giống Figma: card Mission/Vision nằm đè lên nền ảnh của
     // stats một phần) — chỉ đè vào vùng padding, không che số liệu/icon.
-    margin-top: -32px;
+    margin-top: -580px;
     padding-bottom: 40px;
     @include minWidth(768px) {
-      margin-top: -56px;
+      margin-top: -180px;
       padding-bottom: 70px;
     }
     .mission-vision-grid {
@@ -203,7 +203,6 @@
     .mv-item {
       flex: 1;
       background: $light;
-      border: 1px solid $color-E5E5E5;
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba($dark, 0.05);
       padding: 32px 24px;
@@ -257,19 +256,18 @@
   }
 
   .introduce-core-values {
-    padding: 40px 0;
+    padding: 0 0 40px;
     @include minWidth(768px) {
-      padding: 70px 0;
+      padding: 0 0 70px;
     }
     .heading-haruco-new {
       text-align: center;
       margin-bottom: 32px;
     }
-    // Giá trị cốt lõi là MỘT khối card trắng chung bo góc + border + shadow,
-    // các item ngăn cách bằng đường kẻ dọc/ngang — không phải 4 card riêng.
+    // Giá trị cốt lõi là MỘT khối card trắng chung bo góc + shadow, các item
+    // ngăn cách bằng đường kẻ dọc/ngang — không phải 4 card riêng.
     .core-values-card {
       background: $light;
-      border: 1px solid $color-E5E5E5;
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba($dark, 0.05);
       display: grid;
@@ -366,6 +364,9 @@
         color: $light;
         text-align: left;
         margin-bottom: 0;
+        @include minWidth(768px) {
+          font-size: 34px;
+        }
       }
       .dash {
         display: block;
@@ -382,6 +383,12 @@
       }
       .list-check li {
         color: $light;
+        .icon {
+          margin-top: 8px;
+        }
+        svg path {
+          fill: $light;
+        }
       }
     }
     .introduce-team-slider-wrap {
@@ -389,20 +396,30 @@
       flex: 1;
       min-width: 0;
     }
+    // Mobile: slidesPerView 1.2 (JS) + mép phải tràn sát viewport, cùng kỹ
+    // thuật bleed đã dùng ở .dev-timeline-list / .press-logos-list —
+    // margin-right:-16px đặt trực tiếp trên slider, không đặt trên -wrap
+    // để không ảnh hưởng vị trí neo của 2 nút prev/next.
+    .introduce-team-slider {
+      @include maxWidth(767px) {
+        margin-right: -16px;
+      }
+    }
     .doctor-card {
       background: $light;
       border-radius: 12px;
       overflow: hidden;
-      padding-bottom: 20px;
-      text-align: center;
       .photo img {
         width: 100%;
         aspect-ratio: 1 / 1;
         object-fit: cover;
         display: block;
       }
+      .box-text {
+        padding: 13px 16px 24px;
+      }
       .degree {
-        margin: 16px 0 0;
+        margin: 0;
         font-size: 16px;
         color: $color-1E335C;
       }
@@ -414,7 +431,6 @@
       }
       .details {
         margin-top: 12px;
-        padding: 0 16px;
         p {
           margin: 0;
           font-size: 14px;
@@ -438,10 +454,10 @@
         margin-top: 16px;
       }
     }
-    // Đồng bộ icon + kích thước nav prev/next với đúng convention của
-    // Product Slider (.product-slider-card-wrap trong _home.scss) — nền
-    // trắng, tròn 32px, đổ bóng nhẹ, icon SVG arrow-circle-grey_ic.svg,
-    // scaleX(-1) cho next — copy riêng theo section, không dùng mixin.
+    // Hình ảnh (nền trắng, icon, đổ bóng) dùng chung từ style Swiper common
+    // (.swiper-button-prev/.swiper-button-next trong _slick.scss) — ở đây
+    // chỉ override kích thước, vị trí và hiển thị responsive riêng cho
+    // Team Slider, không lặp lại phần hình ảnh.
     .swiper-button-prev-team,
     .swiper-button-next-team {
       position: absolute;
@@ -449,13 +465,6 @@
       transform: translateY(-50%);
       width: 32px;
       height: 32px;
-      border-radius: 50%;
-      background-color: $light;
-      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
-      background-image: url("../images/arrow-circle-grey_ic.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 30px 30px;
       cursor: pointer;
       z-index: 2;
       display: none;
@@ -534,9 +543,18 @@
         padding: 24px 32px;
       }
     }
+    // Mobile: icon + text nằm chung 1 hàng, text căn trái (đúng Figma) —
+    // Desktop giữ nguyên layout icon-trên/text-dưới, căn giữa như cũ.
     .usp-item {
       flex: 1;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+      @include minWidth(768px) {
+        display: block;
+        text-align: center;
+      }
       .icon-circle {
         width: 66px;
         height: 66px;
@@ -545,7 +563,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 16px;
+        flex-shrink: 0;
+        margin: 0;
+        @include minWidth(768px) {
+          margin: 0 auto 16px;
+        }
         svg {
           width: 48px;
           height: auto;
@@ -563,6 +585,8 @@
         line-height: 1.4;
         @include minWidth(768px) {
           font-size: 20px;
+          max-width: 370px;
+          margin: 0 auto;
         }
       }
     }
@@ -599,21 +623,6 @@
       &::-webkit-scrollbar {
         display: none;
       }
-      // Đường line ngang nối các mốc (đúng Figma: 1 line mảnh chạy dưới
-      // hàng hexagon, ngay tại vị trí chấm tròn) — top = padding-top(20) +
-      // badge height(106) + margin-bottom badge(12) + bán kính dot(7) =
-      // 145px. Neo theo cấu trúc item (không hardcode theo bề rộng tổng)
-      // nên không bị lệch khi số lượng/độ dài nội dung mốc thay đổi.
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 145px;
-        height: 1px;
-        background: $color-D9D9D9;
-        z-index: 0;
-      }
     }
     .dev-timeline-item {
       flex: 0 0 auto;
@@ -641,6 +650,20 @@
         margin: 0 auto 16px;
         position: relative;
         z-index: 1;
+        // Line dọc nối từ đáy badge xuống đỉnh dot — cùng màu với badge/dot
+        // của item. bottom:100% neo đúng đỉnh dot, height:12px khớp đúng
+        // margin-bottom của .badge nên chạm sát đáy badge, không cần chỉnh
+        // lại vị trí badge/dot hiện tại.
+        &::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 100%;
+          transform: translateX(-50%);
+          width: 1px;
+          height: 12px;
+          background: inherit;
+        }
       }
       p {
         color: $color-323232;
@@ -650,53 +673,92 @@
           font-size: 15px;
         }
       }
-      // Mũi tên màu ở mỗi điểm nối, đặt tại mép phải mỗi item (trừ item
-      // cuối) — màu mũi tên lấy theo màu của mốc KẾ TIẾP, đúng theo Figma.
+      // Đoạn line ngang riêng cho từng item — mỗi đoạn cùng màu với
+      // badge/dot của chính item đó (không phải 1 màu chung cho cả hàng).
+      // Kéo dài thêm nửa khoảng gap về mỗi bên để đoạn line của 2 item liền
+      // kề nối khít nhau tại đúng điểm giữa khoảng gap — không còn khoảng
+      // hở. Item đầu/cuối không kéo dài ra ngoài hàng.
+      &::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        right: -20px;
+        top: 125px;
+        height: 1px;
+        z-index: 0;
+        // Desktop: .dev-timeline-list dùng justify-content:space-between
+        // nên khoảng cách thực tế giữa 2 item KHÔNG bằng giá trị gap khai
+        // báo (24px) mà co giãn theo bề rộng container — đo thực tế ở
+        // container tối đa 1400px (khi viewport ≥ 1400px, cố định) ra đúng
+        // 62.5px/khoảng, nên nửa khoảng = 31.25px.
+        @include minWidth(768px) {
+          left: -31.25px;
+          right: -31.25px;
+        }
+      }
+      &:first-child::before {
+        left: 0;
+      }
+      &:last-child::before {
+        right: 0;
+      }
+      // Mũi tên màu ở mỗi điểm nối, nằm CHÍNH GIỮA khoảng gap giữa item này
+      // và item kế tiếp (không lệch về item nào) — màu mũi tên lấy theo màu
+      // của mốc KẾ TIẾP, đúng theo Figma. Tam giác rộng 10px, nằm giữa gap
+      // 40px (mobile)/24px (desktop) nên right = nửa gap còn lại + 10px.
       &:not(:last-child)::after {
         content: "";
         position: absolute;
-        top: 138px;
-        right: -32px;
+        top: 118px;
+        right: -25px;
         width: 0;
         height: 0;
         border-style: solid;
         border-width: 7px 0 7px 10px;
         border-color: transparent transparent transparent currentColor;
         z-index: 1;
-        @include maxWidth(767px) {
-          right: -20px;
+        // Cùng lý do với ::before ở trên: khoảng cách thực tế 62.5px,
+        // công thức căn giữa triangle rộng 10px trong khoảng gap G:
+        // right = (G - 10) / 2 + 10 = (62.5 - 10) / 2 + 10 = 36.25.
+        @include minWidth(768px) {
+          right: -36.25px;
         }
       }
       &.dev-timeline-item-2022 .badge,
-      &.dev-timeline-item-2022 .dot {
+      &.dev-timeline-item-2022 .dot,
+      &.dev-timeline-item-2022::before {
         background: #ffb031;
       }
       &.dev-timeline-item-2022::after {
         color: #6fc191;
       }
       &.dev-timeline-item-2023 .badge,
-      &.dev-timeline-item-2023 .dot {
+      &.dev-timeline-item-2023 .dot,
+      &.dev-timeline-item-2023::before {
         background: #6fc191;
       }
       &.dev-timeline-item-2023::after {
         color: #40c0de;
       }
       &.dev-timeline-item-2024 .badge,
-      &.dev-timeline-item-2024 .dot {
+      &.dev-timeline-item-2024 .dot,
+      &.dev-timeline-item-2024::before {
         background: #40c0de;
       }
       &.dev-timeline-item-2024::after {
         color: #fe8f65;
       }
       &.dev-timeline-item-2025 .badge,
-      &.dev-timeline-item-2025 .dot {
+      &.dev-timeline-item-2025 .dot,
+      &.dev-timeline-item-2025::before {
         background: #fe8f65;
       }
       &.dev-timeline-item-2025::after {
         color: #ed5e53;
       }
       &.dev-timeline-item-2026 .badge,
-      &.dev-timeline-item-2026 .dot {
+      &.dev-timeline-item-2026 .dot,
+      &.dev-timeline-item-2026::before {
         background: #ed5e53;
       }
     }
@@ -953,6 +1015,23 @@
       margin-bottom: 24px;
       @include minWidth(768px) {
         margin-bottom: 32px;
+      }
+      // Box "Xem tất cả" reuse từ .link-view-all (blog-news ở Homepage) chỉ
+      // hiển thị ở đây trên Desktop — Mobile dùng bản riêng đặt dưới
+      // .facilities-gallery (căn giữa), theo đúng pattern
+      // .link-view-all-*-mobile đã có ở _home.scss.
+      > .link-view-all {
+        @include maxWidth(767px) {
+          display: none;
+        }
+      }
+    }
+    .link-view-all-facilities-mobile {
+      display: none;
+      @include maxWidth(767px) {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
       }
     }
     .facilities-gallery {

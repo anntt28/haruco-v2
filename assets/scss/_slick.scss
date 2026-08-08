@@ -53,17 +53,31 @@
   width: 100%;
   position: relative;
 }
+// Icon nav prev/next dùng chung cho MỌI Swiper trên site (nền trắng, tròn,
+// đổ bóng nhẹ, icon SVG arrow-circle-grey_ic.svg, next lật ngang bằng
+// scaleX(-1)) — các section/slider cụ thể (Product Slider, Introduce
+// Team...) chỉ override lại size/vị trí riêng nếu cần, không lặp lại phần
+// hình ảnh này.
 .swiper-button-next,
 .swiper-button-prev
 {
   width: 26px;
   height: 26px;
   border-radius: 100%;
+  background-color: $light;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+  background-image: url("../images/arrow-circle-grey_ic.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
   @include minWidth(576px) {
     width: 40px;
     height: 40px;
   }
 
+}
+.swiper-button-next {
+  transform: scaleX(-1);
 }
 .swiper-button-prev
 {
@@ -94,10 +108,7 @@
 .swiper-button-next,
 .swiper-button-prev {
   &:after {
-    color: $main-01;
-    font-size: 16px;
-    font-weight: 900;
-    content: '';
+    content: none;
   }
 }
 

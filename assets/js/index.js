@@ -461,7 +461,7 @@ $(function () {
 
   var swiper10 = new Swiper(".introduce-team-slider", {
     loop: false,
-    slidesPerView: 1,
+    slidesPerView: 1.2,
     spaceBetween: 20,
     navigation: {
       nextEl: ".swiper-button-next-team",
