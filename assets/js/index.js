@@ -458,4 +458,72 @@ $(function () {
       $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
     }
   });
+
+  var swiper10 = new Swiper(".introduce-team-slider", {
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: ".swiper-button-next-team",
+      prevEl: ".swiper-button-prev-team",
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+    },
+  });
+
+  // Slider ảnh trong accordion "Từ thiện" (introduce.html) — mỗi item có 1
+  // swiper riêng. Item đang mở sẵn (.collapse.show) init ngay; các item còn
+  // lại chỉ init lần đầu khi mở (shown.bs.collapse) để tránh Swiper đo được
+  // width:0 do nằm trong .collapse đang display:none.
+  $(".charity-accordion-item").each(function () {
+    var $item = $(this);
+    var $collapse = $item.find(".collapse");
+    var sliderEl = $item.find(".charity-slider")[0];
+    var nextEl = $item.find(".swiper-button-next-charity")[0];
+    var prevEl = $item.find(".swiper-button-prev-charity")[0];
+
+    if ($collapse.hasClass("show")) {
+      new Swiper(sliderEl, {
+        loop: false,
+        slidesPerView: 1.6,
+        spaceBetween: 12,
+        navigation: {
+          nextEl: nextEl,
+          prevEl: prevEl,
+        },
+        breakpoints: {
+          576: {
+            slidesPerView: 2.3,
+            spaceBetween: 16,
+          },
+        },
+      });
+    } else {
+      $collapse.one("shown.bs.collapse", function () {
+        new Swiper(sliderEl, {
+          loop: false,
+          slidesPerView: 1.6,
+          spaceBetween: 12,
+          navigation: {
+            nextEl: nextEl,
+            prevEl: prevEl,
+          },
+          breakpoints: {
+            576: {
+              slidesPerView: 2.3,
+              spaceBetween: 16,
+            },
+          },
+        });
+      });
+    }
+  });
 });
