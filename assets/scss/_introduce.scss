@@ -73,6 +73,9 @@
         height: 2px;
         background: $color-FF6D3E;
         flex-shrink: 0;
+        @include minWidth(768px) {
+          margin-bottom: -11px;
+        }
       }
     }
     .heading-haruco-new {
@@ -95,6 +98,9 @@
       text-align: justify;
       border-radius: 10px;
       padding: 20px 32px;
+      @include minWidth(768px) {
+        margin-top: 25px;
+      }
     }
   }
 
@@ -117,12 +123,20 @@
         gap: 0;
       }
     }
+    // .stat-item là "ô" (chiều rộng theo grid-template-columns), .item bên
+    // trong mới là khối nội dung (icon/number/label) — tách riêng để có thể
+    // căn khối nội dung lệch trái/phải trong ô đầu/cuối bằng justify-content
+    // mà không đổi cách xếp dọc icon/number/label bên trong.
     .stat-item {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
+      justify-content: center;
       position: relative;
+      &:first-child {
+        justify-content: flex-start;
+      }
+      &:last-child {
+        justify-content: flex-end;
+      }
       &:nth-child(odd) {
         border-right: 1px solid rgba($light, 0.3);
       }
@@ -131,8 +145,14 @@
           border-right: none;
         }
         &:not(:last-child) {
-          border-right: 1px solid $color-D0D0D0;
+          border-right: 1px dashed $color-D0D0D0;
         }
+      }
+      .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
       }
       .icon {
         height: 61px;
@@ -271,7 +291,9 @@
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba($dark, 0.05);
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      // Mobile: 1 item / hàng (không phải lưới 2 cột) — mỗi item chiếm trọn
+      // chiều rộng card.
+      grid-template-columns: 1fr;
       padding: 24px 0;
       @include minWidth(768px) {
         grid-template-columns: repeat(4, 1fr);
@@ -281,26 +303,18 @@
     .core-value-item {
       text-align: center;
       padding: 24px 20px;
-      border-bottom: 1px solid $color-DDDDDD;
+      border-bottom: 1px dashed $color-DDDDDD;
       @include minWidth(768px) {
         padding: 0 24px;
         border-bottom: none;
       }
-      &:nth-child(odd) {
-        border-right: 1px solid $color-DDDDDD;
-      }
       @include minWidth(768px) {
-        &:nth-child(odd) {
-          border-right: none;
-        }
         &:not(:last-child) {
-          border-right: 1px solid $color-DDDDDD;
+          border-right: 1px dashed $color-DDDDDD;
         }
       }
-      &:nth-last-child(-n + 2) {
-        @include maxWidth(767px) {
-          border-bottom: none;
-        }
+      &:last-child {
+        border-bottom: none;
       }
       .icon {
         height: 50px;
@@ -569,13 +583,16 @@
           margin: 0 auto 16px;
         }
         svg {
-          width: 48px;
+          width: 52px;
           height: auto;
           display: block;
           padding: 8px;
           border-radius: 50%;
           background: linear-gradient(135deg, $color-FF6D3E 0%, $primary 100%);
           box-sizing: border-box;
+          @include minWidth(768px) {
+            width: 48px;
+          }
         }
       }
       p {
@@ -975,7 +992,7 @@
         background-image: url("../images/arrow-circle-grey_ic.svg");
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 14px;
+        background-size: contain;
         cursor: pointer;
         z-index: 2;
       }
@@ -999,6 +1016,44 @@
       margin-bottom: 24px;
       @include minWidth(768px) {
         margin-bottom: 40px;
+      }
+    }
+    // Trên Introduce, "Đối tác chiến lược" hiển thị dạng slider có nav mũi
+    // tên 2 bên (đúng Figma: node "Chứng nhận" có 2 icon tròn điều hướng ở
+    // mép trái/phải) — khác với lưới tĩnh tái sử dụng từ Homepage
+    // (_home.scss). Chỉ override display/behaviour tại đây, không đổi
+    // component .introduce-certs gốc dùng chung ở Homepage.
+    .introduce-certs-slider-wrap {
+      position: relative;
+      margin-top: 24px;
+      @include minWidth(768px) {
+        margin-top: 40px;
+      }
+    }
+    .introduce-certs {
+      display: block;
+      margin-top: 0;
+    }
+    .swiper-button-prev-certs,
+    .swiper-button-next-certs {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      z-index: 2;
+    }
+    .swiper-button-prev-certs {
+      left: -8px;
+      @include minWidth(768px) {
+        left: -16px;
+      }
+    }
+    .swiper-button-next-certs {
+      right: -8px;
+      transform: translateY(-50%) scaleX(-1);
+      @include minWidth(768px) {
+        right: -16px;
       }
     }
   }
@@ -1031,7 +1086,7 @@
       @include maxWidth(767px) {
         display: flex;
         justify-content: center;
-        margin-top: 16px;
+        margin-top: 30px;
       }
     }
     .facilities-gallery {
@@ -1079,6 +1134,10 @@
     .heading-haruco-new {
       text-align: center;
       margin-bottom: 24px;
+      @include maxWidth(767px) {
+        max-width: 296px;
+        margin: 0 auto 24px;
+      }
     }
     // Nút CTA dùng cùng gradient cam→đỏ với .product-group-card .caption /
     // .introduce-team — chữ trắng, bo góc, icon mũi tên trắng.

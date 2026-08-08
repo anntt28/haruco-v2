@@ -479,6 +479,34 @@ $(function () {
     },
   });
 
+  var swiper11 = new Swiper(".introduce-certs-section .introduce-certs", {
+    loop: false,
+    slidesPerView: 2,
+    spaceBetween: 16,
+    navigation: {
+      nextEl: ".swiper-button-next-certs",
+      prevEl: ".swiper-button-prev-certs",
+    },
+    breakpoints: {
+      576: {
+        slidesPerView: 3,
+        spaceBetween: 16,
+      },
+      768: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+      1400: {
+        slidesPerView: 6,
+        spaceBetween: 20,
+      },
+    },
+  });
+
   // Slider ảnh trong accordion "Từ thiện" (introduce.html) — mỗi item có 1
   // swiper riêng. Item đang mở sẵn (.collapse.show) init ngay; các item còn
   // lại chỉ init lần đầu khi mở (shown.bs.collapse) để tránh Swiper đo được

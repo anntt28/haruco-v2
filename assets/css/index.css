@@ -13759,6 +13759,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background: #FF6D3E;
   flex-shrink: 0;
 }
+@media (min-width: 768px) {
+  .introduce-page .introduce-about .eyebrow .dash {
+    margin-bottom: -11px;
+  }
+}
 .introduce-page .introduce-about .heading-haruco-new {
   margin-bottom: 16px;
 }
@@ -13779,6 +13784,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   text-align: justify;
   border-radius: 10px;
   padding: 20px 32px;
+}
+@media (min-width: 768px) {
+  .introduce-page .introduce-about .highlight-box {
+    margin-top: 25px;
+  }
 }
 .introduce-page .introduce-stats {
   background-image: url("../images/introduce/stats-bg.png");
@@ -13806,10 +13816,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .introduce-page .introduce-stats .stat-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  justify-content: center;
   position: relative;
+}
+.introduce-page .introduce-stats .stat-item:first-child {
+  justify-content: flex-start;
+}
+.introduce-page .introduce-stats .stat-item:last-child {
+  justify-content: flex-end;
 }
 .introduce-page .introduce-stats .stat-item:nth-child(odd) {
   border-right: 1px solid rgba(255, 255, 255, 0.3);
@@ -13819,8 +13833,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     border-right: none;
   }
   .introduce-page .introduce-stats .stat-item:not(:last-child) {
-    border-right: 1px solid #D0D0D0;
+    border-right: 1px dashed #D0D0D0;
   }
+}
+.introduce-page .introduce-stats .stat-item .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 .introduce-page .introduce-stats .stat-item .icon {
   height: 61px;
@@ -13964,7 +13984,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   padding: 24px 0;
 }
 @media (min-width: 768px) {
@@ -13976,7 +13996,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .introduce-page .introduce-core-values .core-value-item {
   text-align: center;
   padding: 24px 20px;
-  border-bottom: 1px solid #DDDDDD;
+  border-bottom: 1px dashed #DDDDDD;
 }
 @media (min-width: 768px) {
   .introduce-page .introduce-core-values .core-value-item {
@@ -13984,21 +14004,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     border-bottom: none;
   }
 }
-.introduce-page .introduce-core-values .core-value-item:nth-child(odd) {
-  border-right: 1px solid #DDDDDD;
-}
 @media (min-width: 768px) {
-  .introduce-page .introduce-core-values .core-value-item:nth-child(odd) {
-    border-right: none;
-  }
   .introduce-page .introduce-core-values .core-value-item:not(:last-child) {
-    border-right: 1px solid #DDDDDD;
+    border-right: 1px dashed #DDDDDD;
   }
 }
-@media (max-width: 767px) {
-  .introduce-page .introduce-core-values .core-value-item:nth-last-child(-n+2) {
-    border-bottom: none;
-  }
+.introduce-page .introduce-core-values .core-value-item:last-child {
+  border-bottom: none;
 }
 .introduce-page .introduce-core-values .core-value-item .icon {
   height: 50px;
@@ -14270,13 +14282,18 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .introduce-page .introduce-product-groups .usp-item .icon-circle svg {
-  width: 48px;
+  width: 52px;
   height: auto;
   display: block;
   padding: 8px;
   border-radius: 50%;
   background: linear-gradient(135deg, #FF6D3E 0%, #E2313B 100%);
   box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .introduce-page .introduce-product-groups .usp-item .icon-circle svg {
+    width: 48px;
+  }
 }
 .introduce-page .introduce-product-groups .usp-item p {
   margin: 0;
@@ -14667,7 +14684,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background-image: url("../images/arrow-circle-grey_ic.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 14px;
+  background-size: contain;
   cursor: pointer;
   z-index: 2;
 }
@@ -14693,6 +14710,45 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 768px) {
   .introduce-page .introduce-certs-section .heading-haruco-new {
     margin-bottom: 40px;
+  }
+}
+.introduce-page .introduce-certs-section .introduce-certs-slider-wrap {
+  position: relative;
+  margin-top: 24px;
+}
+@media (min-width: 768px) {
+  .introduce-page .introduce-certs-section .introduce-certs-slider-wrap {
+    margin-top: 40px;
+  }
+}
+.introduce-page .introduce-certs-section .introduce-certs {
+  display: block;
+  margin-top: 0;
+}
+.introduce-page .introduce-certs-section .swiper-button-prev-certs,
+.introduce-page .introduce-certs-section .swiper-button-next-certs {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}
+.introduce-page .introduce-certs-section .swiper-button-prev-certs {
+  left: -8px;
+}
+@media (min-width: 768px) {
+  .introduce-page .introduce-certs-section .swiper-button-prev-certs {
+    left: -16px;
+  }
+}
+.introduce-page .introduce-certs-section .swiper-button-next-certs {
+  right: -8px;
+  transform: translateY(-50%) scaleX(-1);
+}
+@media (min-width: 768px) {
+  .introduce-page .introduce-certs-section .swiper-button-next-certs {
+    right: -16px;
   }
 }
 .introduce-page .introduce-facilities {
@@ -14726,7 +14782,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   .introduce-page .introduce-facilities .link-view-all-facilities-mobile {
     display: flex;
     justify-content: center;
-    margin-top: 16px;
+    margin-top: 30px;
   }
 }
 .introduce-page .introduce-facilities .facilities-gallery {
@@ -14770,6 +14826,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .introduce-page .introduce-cta-banner .heading-haruco-new {
   text-align: center;
   margin-bottom: 24px;
+}
+@media (max-width: 767px) {
+  .introduce-page .introduce-cta-banner .heading-haruco-new {
+    max-width: 296px;
+    margin: 0 auto 24px;
+  }
 }
 .introduce-page .introduce-cta-banner .btn-cta-banner {
   display: inline-flex;
