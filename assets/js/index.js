@@ -493,15 +493,15 @@ $(function () {
     if ($collapse.hasClass("show")) {
       new Swiper(sliderEl, {
         loop: false,
-        slidesPerView: 1.6,
+        slidesPerView: 2,
         spaceBetween: 12,
         navigation: {
           nextEl: nextEl,
           prevEl: prevEl,
         },
         breakpoints: {
-          576: {
-            slidesPerView: 2.3,
+          768: {
+            slidesPerView: 3,
             spaceBetween: 16,
           },
         },
@@ -510,15 +510,15 @@ $(function () {
       $collapse.one("shown.bs.collapse", function () {
         new Swiper(sliderEl, {
           loop: false,
-          slidesPerView: 1.6,
+          slidesPerView: 2,
           spaceBetween: 12,
           navigation: {
             nextEl: nextEl,
             prevEl: prevEl,
           },
           breakpoints: {
-            576: {
-              slidesPerView: 2.3,
+            768: {
+              slidesPerView: 3,
               spaceBetween: 16,
             },
           },

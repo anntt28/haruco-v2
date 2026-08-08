@@ -1,3 +1,4 @@
+
 // Style riêng cho trang "Giới thiệu" (introduce.html) — mọi selector bọc
 // trong .introduce-page (class của <main>) để không ảnh hưởng Homepage hay
 // các trang khác dùng chung index.css (đặc biệt .heading-haruco-new và các
@@ -29,15 +30,49 @@
     @include minWidth(768px) {
       padding: 70px 0;
     }
+    .introduce-about-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      @include minWidth(1024px) {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 30px;
+      }
+    }
+    .introduce-about-text {
+      @include minWidth(1024px) {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+    }
+    .introduce-about-image {
+      @include minWidth(1024px) {
+        flex: 1 1 0;
+      }
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 685 / 520;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
     .eyebrow {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-weight: 300;
       letter-spacing: 0.1em;
       color: $color-1E335C;
-      font-size: 16px;
+      font-size: 24px;
       margin-bottom: 8px;
-      @include minWidth(768px) {
-        font-size: 24px;
+      .dash {
+        display: inline-block;
+        width: 40px;
+        height: 2px;
+        background: $color-FF6D3E;
+        flex-shrink: 0;
       }
     }
     .heading-haruco-new {
@@ -45,17 +80,29 @@
     }
     .description p {
       color: $color-323232;
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.875;
+      text-align: justify;
       margin-bottom: 16px;
-      @include minWidth(768px) {
-        font-size: 16px;
-      }
+    }
+    .highlight-box {
+      margin-top: 16px;
+      background: $color-FF6D3E;
+      color: $light;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.875;
+      text-align: justify;
+      border-radius: 10px;
+      padding: 20px 32px;
     }
   }
 
   .introduce-stats {
-    background: $main-01;
+    background-image: url("../images/introduce/stats-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 32px 0;
     @include minWidth(768px) {
       padding: 56px 0;
@@ -63,82 +110,147 @@
     .introduce-stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 32px 16px;
       text-align: center;
       @include minWidth(768px) {
         grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        gap: 0;
       }
     }
     .stat-item {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      &:nth-child(odd) {
+        border-right: 1px solid rgba($light, 0.3);
+      }
+      @include minWidth(768px) {
+        &:nth-child(odd) {
+          border-right: none;
+        }
+        &:not(:last-child) {
+          border-right: 1px solid $color-D0D0D0;
+        }
+      }
+      .icon {
+        height: 61px;
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 4px;
+        svg {
+          display: block;
+          height: 100%;
+          width: auto;
+        }
+      }
       .number {
         color: $light;
         font-size: 36px;
-        font-weight: 500;
+        font-weight: 400;
         letter-spacing: -0.02em;
         @include minWidth(768px) {
           font-size: 64px;
         }
       }
       .label {
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 14px;
+        color: $light;
+        font-size: 15px;
+        font-weight: 500;
         @include minWidth(768px) {
-          font-size: 16px;
+          font-size: 20px;
         }
       }
     }
   }
 
+  // Wrapper dùng chung cho Mission/Vision + Core Values — nền #f9f9f9 + ảnh
+  // overlay sóng cam nhạt (Rectangle 101), đúng theo Figma (2 section này
+  // nằm trên cùng 1 nền chung, không phải mỗi section tự có nền riêng).
+  // display:flow-root để .introduce-mission-vision có thể "đè" margin-top
+  // âm lên .introduce-stats phía trên mà KHÔNG kéo theo nền của wrapper này
+  // (chặn margin-collapse) và không cần overflow:hidden (sẽ cắt mất phần đè).
+  .intro-mv-cv-wrap {
+    display: flow-root;
+    background-color: $color-F9F9F9;
+    background-image: url("../images/introduce/mv-section-overlay.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+
   .introduce-mission-vision {
-    padding: 40px 0;
+    position: relative;
+    // Kéo cả section lên đè vào phần padding-bottom của .introduce-stats
+    // phía trên (giống Figma: card Mission/Vision nằm đè lên nền ảnh của
+    // stats một phần) — chỉ đè vào vùng padding, không che số liệu/icon.
+    margin-top: -32px;
+    padding-bottom: 40px;
     @include minWidth(768px) {
-      padding: 70px 0;
+      margin-top: -56px;
+      padding-bottom: 70px;
     }
     .mission-vision-grid {
       display: flex;
       flex-direction: column;
-      gap: 32px;
-      @include minWidth(768px) {
+      gap: 24px;
+      @include minWidth(1024px) {
         flex-direction: row;
-        gap: 60px;
+        gap: 30px;
       }
     }
     .mv-item {
       flex: 1;
-      .icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: $color-FFE0C4;
-        color: $color-F8633A;
+      background: $light;
+      border: 1px solid $color-E5E5E5;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba($dark, 0.05);
+      padding: 32px 24px;
+      @include minWidth(768px) {
+        padding: 46px 52px 56px;
+      }
+      .mv-item-header {
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        margin-bottom: 16px;
+        gap: 16px;
+        margin-bottom: 17px;
+        @include minWidth(768px) {
+          gap: 24px;
+        }
+      }
+      .icon {
+        flex-shrink: 0;
+        display: flex;
+        svg {
+          display: block;
+          width: 40px;
+          height: auto;
+          @include minWidth(768px) {
+            width: auto;
+          }
+        }
       }
       .heading-haruco-new {
-        margin-bottom: 8px;
+        margin-bottom: 0;
       }
       .subheading {
         color: $color-E83729;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 16px;
-        margin-bottom: 12px;
+        margin-bottom: 19px;
         @include minWidth(768px) {
-          font-size: 18px;
+          font-size: 20px;
         }
       }
       p:not(.subheading) {
         color: $color-323232;
         font-size: 15px;
         line-height: 1.6;
+        text-align: justify;
         @include minWidth(768px) {
           font-size: 16px;
+          line-height: 1.875;
         }
       }
     }
@@ -146,7 +258,6 @@
 
   .introduce-core-values {
     padding: 40px 0;
-    background: $color-F9F9F9;
     @include minWidth(768px) {
       padding: 70px 0;
     }
@@ -154,60 +265,86 @@
       text-align: center;
       margin-bottom: 32px;
     }
-    .core-values-grid {
+    // Giá trị cốt lõi là MỘT khối card trắng chung bo góc + border + shadow,
+    // các item ngăn cách bằng đường kẻ dọc/ngang — không phải 4 card riêng.
+    .core-values-card {
+      background: $light;
+      border: 1px solid $color-E5E5E5;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba($dark, 0.05);
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      padding: 24px 0;
       @include minWidth(768px) {
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
+        padding: 48px 0;
       }
     }
-    .core-value-card {
-      background: $light;
-      border-radius: 12px;
-      padding: 24px 16px;
+    .core-value-item {
       text-align: center;
-      box-shadow: 0 0 9px rgba($dark, 0.06);
+      padding: 24px 20px;
+      border-bottom: 1px solid $color-DDDDDD;
+      @include minWidth(768px) {
+        padding: 0 24px;
+        border-bottom: none;
+      }
+      &:nth-child(odd) {
+        border-right: 1px solid $color-DDDDDD;
+      }
+      @include minWidth(768px) {
+        &:nth-child(odd) {
+          border-right: none;
+        }
+        &:not(:last-child) {
+          border-right: 1px solid $color-DDDDDD;
+        }
+      }
+      &:nth-last-child(-n + 2) {
+        @include maxWidth(767px) {
+          border-bottom: none;
+        }
+      }
       .icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: $color-FFE0C4;
-        color: $color-F8633A;
+        height: 50px;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
-        font-size: 22px;
-        margin: 0 auto 16px;
+        margin-bottom: 16px;
+        svg {
+          display: block;
+          height: 100%;
+          width: auto;
+        }
       }
       h4 {
         color: $color-1E335C;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
         margin-bottom: 8px;
         @include minWidth(768px) {
-          font-size: 20px;
+          font-size: 22px;
         }
       }
       p {
         color: $color-323232;
         font-size: 14px;
         line-height: 1.5;
+        @include minWidth(768px) {
+          font-size: 16px;
+          line-height: 1.875;
+        }
       }
     }
   }
 
   .introduce-team {
-    background: $main-01;
+    // Nền gradient cam→đỏ theo Figma (lấy mẫu từ ảnh xuất ra: đỉnh ~#F86438,
+    // đáy ~#EA3C2B) — dùng lại đúng 2 biến màu đã có ở .gift-solution thay
+    // vì tạo biến hex mới, vì rất sát với mẫu màu thực tế.
+    background: linear-gradient(180deg, $color-FF6D3E 0%, $primary 100%);
     padding: 40px 0;
     @include minWidth(768px) {
       padding: 70px 0;
-    }
-    .heading-haruco-new {
-      color: $light;
-      text-align: center;
-      margin-bottom: 32px;
     }
     .introduce-team-grid {
       display: flex;
@@ -221,6 +358,21 @@
     .introduce-team-intro {
       @include minWidth(1024px) {
         flex: 0 0 340px;
+      }
+      // Heading nằm trong cột intro, căn trái, đúng vị trí Figma (không căn
+      // giữa toàn section như trước) — vẫn dùng chung .heading-haruco-new,
+      // chỉ override layout riêng cho section này.
+      .heading-haruco-new {
+        color: $light;
+        text-align: left;
+        margin-bottom: 0;
+      }
+      .dash {
+        display: block;
+        width: 40px;
+        height: 2px;
+        background: $color-FFB031;
+        margin: 16px 0 24px;
       }
       p {
         color: rgba(255, 255, 255, 0.85);
@@ -249,43 +401,61 @@
         object-fit: cover;
         display: block;
       }
-      h4 {
-        margin: 16px 0 4px;
+      .degree {
+        margin: 16px 0 0;
+        font-size: 16px;
         color: $color-1E335C;
-        font-size: 18px;
       }
-      .degree,
-      .role {
-        font-size: 13px;
-        color: $color-6F6F6F;
-        margin: 0;
+      h4 {
+        margin: 4px 0 0;
+        color: $color-E83729;
+        font-size: 20px;
+        font-weight: 500;
+      }
+      .details {
+        margin-top: 12px;
+        padding: 0 16px;
+        p {
+          margin: 0;
+          font-size: 14px;
+          line-height: 1.5;
+          color: $color-1E335C;
+          @include minWidth(768px) {
+            font-size: 15px;
+          }
+        }
       }
       .link-detail {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        justify-content: center;
+        border: 1px solid $color-F8633A;
+        border-radius: 10px;
+        height: 30px;
+        padding: 0 16px;
         color: $color-F8633A;
         font-size: 14px;
-        margin-top: 12px;
+        margin-top: 16px;
       }
     }
-    // Đồng bộ icon nav prev/next với các slider khác của site (nền trắng,
-    // tròn, đổ bóng nhẹ, icon SVG arrow-circle-grey_ic.svg) — copy riêng
-    // theo đúng convention hiện tại, không dùng mixin cho style.
+    // Đồng bộ icon + kích thước nav prev/next với đúng convention của
+    // Product Slider (.product-slider-card-wrap trong _home.scss) — nền
+    // trắng, tròn 32px, đổ bóng nhẹ, icon SVG arrow-circle-grey_ic.svg,
+    // scaleX(-1) cho next — copy riêng theo section, không dùng mixin.
     .swiper-button-prev-team,
     .swiper-button-next-team {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background-color: $light;
-      box-shadow: 0 2px 8px rgba($dark, 0.12);
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
       background-image: url("../images/arrow-circle-grey_ic.svg");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 16px;
+      background-size: 30px 30px;
       cursor: pointer;
       z-index: 2;
       display: none;
@@ -294,10 +464,10 @@
       }
     }
     .swiper-button-prev-team {
-      left: -20px;
+      left: -16px;
     }
     .swiper-button-next-team {
-      right: -20px;
+      right: -16px;
       transform: translateY(-50%) scaleX(-1);
     }
   }
@@ -326,29 +496,73 @@
       box-shadow: 0 0 9px rgba($dark, 0.06);
       .image img {
         width: 100%;
-        aspect-ratio: 447 / 356;
+        aspect-ratio: 447 / 289;
         object-fit: cover;
         display: block;
       }
+      // Caption là dải gradient cam→đỏ phủ hết chiều ngang card (đúng
+      // Figma: gradient trái-phải, đỏ $primary → cam $color-FF6D3E), chữ
+      // trắng căn giữa — không phải nền trắng/chữ màu như trước.
       .caption {
-        padding: 16px;
+        padding: 14px 16px;
         text-align: center;
         font-weight: 500;
-        color: $color-1E335C;
-        background: $light;
+        font-size: 20px;
+        color: $light;
+        background: linear-gradient(90deg, $primary 0%, $color-FF6D3E 100%);
+        @include minWidth(768px) {
+          padding: 16px;
+          font-size: 26px;
+        }
       }
     }
+    // USP row: 1 card trắng viền cam nhạt bo góc, 3 cột — mỗi cột icon tròn
+    // gradient cam-đỏ (có viền/halo nhạt bao quanh) + checkmark trắng, text
+    // căn giữa bên dưới. Thay hoàn toàn cho .list-check (không đúng thiết
+    // kế Figma của section này).
     .usp-row {
       margin-top: 32px;
-      .list-check {
+      background: $light;
+      border: 1px solid $color-FFC093;
+      border-radius: 10px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      @include minWidth(768px) {
+        flex-direction: row;
+        padding: 24px 32px;
+      }
+    }
+    .usp-item {
+      flex: 1;
+      text-align: center;
+      .icon-circle {
+        width: 66px;
+        height: 66px;
+        border-radius: 50%;
+        background: $color-FFECDF;
         display: flex;
-        flex-direction: column;
-        gap: 12px;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        svg {
+          width: 48px;
+          height: auto;
+          display: block;
+          padding: 8px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, $color-FF6D3E 0%, $primary 100%);
+          box-sizing: border-box;
+        }
+      }
+      p {
+        margin: 0;
+        color: $color-1E335C;
+        font-size: 16px;
+        line-height: 1.4;
         @include minWidth(768px) {
-          flex-direction: row;
-          li {
-            flex: 1;
-          }
+          font-size: 20px;
         }
       }
     }
@@ -385,12 +599,28 @@
       &::-webkit-scrollbar {
         display: none;
       }
+      // Đường line ngang nối các mốc (đúng Figma: 1 line mảnh chạy dưới
+      // hàng hexagon, ngay tại vị trí chấm tròn) — top = padding-top(20) +
+      // badge height(106) + margin-bottom badge(12) + bán kính dot(7) =
+      // 145px. Neo theo cấu trúc item (không hardcode theo bề rộng tổng)
+      // nên không bị lệch khi số lượng/độ dài nội dung mốc thay đổi.
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 145px;
+        height: 1px;
+        background: $color-D9D9D9;
+        z-index: 0;
+      }
     }
     .dev-timeline-item {
       flex: 0 0 auto;
       width: 230px;
       text-align: center;
       position: relative;
+      z-index: 1;
       .badge {
         width: 96px;
         height: 106px;
@@ -409,6 +639,8 @@
         height: 14px;
         border-radius: 50%;
         margin: 0 auto 16px;
+        position: relative;
+        z-index: 1;
       }
       p {
         color: $color-323232;
@@ -418,21 +650,50 @@
           font-size: 15px;
         }
       }
+      // Mũi tên màu ở mỗi điểm nối, đặt tại mép phải mỗi item (trừ item
+      // cuối) — màu mũi tên lấy theo màu của mốc KẾ TIẾP, đúng theo Figma.
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 138px;
+        right: -32px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 0 7px 10px;
+        border-color: transparent transparent transparent currentColor;
+        z-index: 1;
+        @include maxWidth(767px) {
+          right: -20px;
+        }
+      }
       &.dev-timeline-item-2022 .badge,
       &.dev-timeline-item-2022 .dot {
         background: #ffb031;
+      }
+      &.dev-timeline-item-2022::after {
+        color: #6fc191;
       }
       &.dev-timeline-item-2023 .badge,
       &.dev-timeline-item-2023 .dot {
         background: #6fc191;
       }
+      &.dev-timeline-item-2023::after {
+        color: #40c0de;
+      }
       &.dev-timeline-item-2024 .badge,
       &.dev-timeline-item-2024 .dot {
         background: #40c0de;
       }
+      &.dev-timeline-item-2024::after {
+        color: #fe8f65;
+      }
       &.dev-timeline-item-2025 .badge,
       &.dev-timeline-item-2025 .dot {
         background: #fe8f65;
+      }
+      &.dev-timeline-item-2025::after {
+        color: #ed5e53;
       }
       &.dev-timeline-item-2026 .badge,
       &.dev-timeline-item-2026 .dot {
@@ -458,19 +719,32 @@
     }
     .culture-text {
       flex: 1;
+      .dash {
+        display: block;
+        width: 80px;
+        height: 2px;
+        background: $color-F8633A;
+        margin: 12px 0 16px;
+        @include minWidth(768px) {
+          width: 104px;
+        }
+      }
       .tagline {
         color: $color-E83729;
-        font-weight: 600;
-        font-size: 16px;
-        margin: 12px 0;
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 1.5;
+        margin: 0 0 16px;
         @include minWidth(768px) {
-          font-size: 18px;
+          font-size: 30px;
         }
       }
       p:not(.tagline) {
         color: $color-323232;
         font-size: 15px;
         line-height: 1.7;
+        text-align: justify;
+        margin-bottom: 16px;
         @include minWidth(768px) {
           font-size: 16px;
         }
@@ -566,8 +840,17 @@
     }
     .charity-accordion {
       margin-top: 24px;
+      // Background + border peach áp dụng cho CẢ 2 trạng thái đóng/mở, bọc
+      // quanh toàn bộ item (header + body khi mở) — đúng Figma (node
+      // "Group 632846": nền #fff4ed, border #ffc093, bo góc 10px, phủ hết
+      // chiều cao khi mở chứ không chỉ riêng header).
       .charity-accordion-item {
         margin-bottom: 12px;
+        background: $color-FFF4ED;
+        border: 1px solid $color-FFC093;
+        border-radius: 10px;
+        overflow: hidden;
+        @include trans;
       }
       .charity-accordion-header {
         display: flex;
@@ -575,10 +858,6 @@
         gap: 10px;
         cursor: pointer;
         padding: 16px 20px;
-        border-radius: 10px;
-        background: $color-FFF4ED;
-        border: 1px solid $color-FFC093;
-        @include trans;
         .icon {
           color: $color-F8633A;
           flex-shrink: 0;
@@ -600,20 +879,14 @@
           }
         }
         // Bootstrap gắn class .collapsed vào trigger khi target ĐANG ĐÓNG —
-        // nghĩa là mặc định (không .collapsed) = đang mở, bỏ nền pill và
-        // xoay chevron lên (thay vì đổi icon fa-chevron-up/down bằng JS).
-        &:not(.collapsed) {
-          background: transparent;
-          border-color: transparent;
-          padding-left: 0;
-          padding-right: 0;
-          .chevron i {
-            transform: rotate(180deg);
-          }
+        // nghĩa là mặc định (không .collapsed) = đang mở, xoay chevron lên
+        // (thay vì đổi icon fa-chevron-up/down bằng JS).
+        &:not(.collapsed) .chevron i {
+          transform: rotate(180deg);
         }
       }
       .charity-accordion-body {
-        padding: 16px 0 8px;
+        padding: 0 20px 20px;
       }
       .charity-slider-wrap {
         position: relative;
@@ -724,13 +997,28 @@
     @include minWidth(768px) {
       padding: 60px 0 90px;
     }
-    p {
-      color: $color-1E335C;
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 20px;
+    .heading-haruco-new {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    // Nút CTA dùng cùng gradient cam→đỏ với .product-group-card .caption /
+    // .introduce-team — chữ trắng, bo góc, icon mũi tên trắng.
+    .btn-cta-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, $primary 0%, $color-FF6D3E 100%);
+      color: $light;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 10px;
+      padding: 12px 28px;
       @include minWidth(768px) {
-        font-size: 24px;
+        font-size: 20px;
+        padding: 14px 32px;
+      }
+      i {
+        color: $light;
       }
     }
   }
