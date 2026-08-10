@@ -554,4 +554,43 @@ $(function () {
       });
     }
   });
+
+  new Swiper(".product-category-bestseller-slider", {
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 16,
+    navigation: {
+      nextEl: ".swiper-button-next-pc-bestseller",
+      prevEl: ".swiper-button-prev-pc-bestseller",
+    },
+    breakpoints: {
+      576: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+    },
+  });
+
+  $(".product-category-sort .sort-chip").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+
+  $(".product-category-pagination .pagination-list li:not(.pagination-next)").on("click", function (e) {
+    e.preventDefault();
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+
+  $(".btn-seo-toggle").on("click", function () {
+    var $section = $(this).closest(".product-category-seo");
+    var $btn = $(this);
+    var expanded = $section.hasClass("expanded");
+    $section.toggleClass("expanded");
+    $btn.contents().first().replaceWith(expanded ? "Xem thêm" : $btn.data("toggle-text"));
+  });
 });

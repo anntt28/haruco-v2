@@ -1,470 +1,756 @@
-.banner-c-top {
- margin-top: 30px;
- .content {
-  img {
-   height: auto;
-  }
-  .text {
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
-   width: 50%;
-   padding-left: 10px;
-   @include minmaxWidth(768px, 1199px) {
-    padding-left: 50px;
-  }
-  @include minWidth(1200px) {
-    padding-left: 84px;
-  }
-   h1 {
-    font-family: "Plus Jakarta Sans";
-    font-size: 16px;
-    line-height: 1.5;
+
+// Style riêng cho trang "Danh mục sản phẩm" (product-category.html) — mọi
+// selector bọc trong .product-category-page (class của <main>) để không
+// ảnh hưởng Homepage hay các trang khác dùng chung index.css.
+.product-category-page {
+  // Giống .heading-haruco-new của Introduce (_introduce.scss) — tách riêng
+  // 1 bản cho trang này vì mỗi page-scope tự có style dùng chung riêng theo
+  // đúng convention đã dùng cho Introduce (không share class xuyên page).
+  .heading-haruco-new {
     font-weight: 500;
-    text-transform: uppercase;
-    overflow: hidden;
+    letter-spacing: -0.03em;
+    color: $color-1E335C;
+    font-size: 28px;
+    line-height: 1.4;
+    @include minWidth(768px) {
+      font-size: 35px;
+    }
+  }
+
+  // Giới hạn tên sản phẩm tối đa 2 dòng cho MỌI Product Card trên trang
+  // Danh mục sản phẩm (Bestseller lẫn Grid), không chỉ riêng 1 section.
+  .product-card .product-card-body h4 a {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    @include minmaxWidth(768px, 1199px) {
-      font-size: 22px;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  // Padding ảnh cho MỌI Product Card trên trang (Bestseller lẫn Grid) — áp
+  // dụng đồng nhất cả PC/Mobile, không bọc trong breakpoint. Ghi đè cả
+  // padding mặc định 20px dùng chung ở Homepage (_home.scss) lẫn padding:0
+  // riêng của card Bestseller (xem .product-category-bestseller-slider
+  // .product-card, đã bỏ padding:0 ở đó để rule này thật sự có tác dụng).
+  .product-card .product-card-image {
+    padding: 3px;
+  }
+
+  .breadcrumbs {
+    padding: 12px 0;
+    border-bottom: 1px solid $color-E6E6E6;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
-    @include minWidth(1200px) {
-      font-size: 36px;
-    }
-   }
-  }
- }
- .breadcrumbs {
-  margin-bottom: 0px;
-  @include minWidth(1200px) {
-    margin-bottom: 45px;
-  }
- }
-}
-.breadcrumbs {
- padding-top: 20px;
- padding-bottom: 20px;
- border-bottom: 1px solid $color-E0E0E0;
- font-weight: 300;
- li {
-  list-style-type: disc;
-  list-style-position: inside;
-  &::marker {
-   color: $color-D9D9D9;
-  }
- }
- a {
-  color: $color-797979;
-  font-weight: 300;
-  &:hover {
-   color: $primary;
-  }
- }
- span {
-  color: $color-797979;
- }
-}
-.content-page-cate-pr {
- padding-top: 39px;
- margin-bottom: 45px;
-}
-.row-page-child {
- display: grid;
- grid-template-columns: 1fr;
- gap: 20px;
- @include minWidth(768px) {
-  grid-template-columns: 240px 1fr;
- }
-}
-.shop-side-bar {
- .box-cate-pr {
-  &:not(:last-child) {
-   margin-bottom: 20px;
-  }
- }
-}
-.box-cate-pr {
- border-radius: 20px;
- background: #fff;
- box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.07);
- margin-bottom: 30px;
- @include minWidth(768px) {
-  margin-bottom: 0;
- }
- h4 {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 33px;
-  text-transform: uppercase;
-  padding: 11px 0;
-  background: linear-gradient(75.84deg, #e72b29 20.81%, #f26d42 95.07%);
-  color: $light;
-  border-top-right-radius: 20px;
- }
- .list-cate-pr {
-  font-size: 17px;
-  li {
-   &.active {
-    a {
-     color: #121f38;
-     font-weight: 700;
-    }
-   }
-   a {
-    padding: 11px 17px;
-    display: flex;
-    align-items: center;
-    color: #424242;
-    &:hover {
-     color: $primary;
-    }
-   }
-   &:not(:last-child) {
-    a {
-     border-bottom: 1px solid #e8e8e8;
-    }
-   }
-  }
- }
-}
-.list-cate-pr-arrow {
- a {
-  &::before {
-   content: "";
-   background-image: url("../images/icon/ic_chevron-right-orange.svg");
-   width: 7px;
-   height: 7px;
-   background-size: contain;
-   background-repeat: no-repeat;
-   display: block;
-   margin-right: 8px;
-   margin-top: -1px;
-  }
- }
-}
-.list-cate-pr-checked {
- .custom-form-group {
-  cursor: pointer;
-  position: relative;
-  padding: 11px 17px;
-  input {
-   padding: 0;
-   height: initial;
-   width: initial;
-   margin-bottom: 0;
-   display: none;
-   cursor: pointer;
-   &:checked {
-    & + label {
-     &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 18px;
-      left: 21px;
-      width: 4px;
-      height: 9px;
-      border: solid #e2313b;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-     }
-    }
-   }
-  }
-  label {
-   &::before {
-    content: "";
-    -webkit-appearance: none;
-    background-color: transparent;
-    border: 1px solid $color-E0E0E0;
-    border-radius: 2px;
-    padding: 5px;
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-    cursor: pointer;
-    margin-right: 14px;
-    margin-top: -1px;
-   }
-  }
- }
- li {
-  &.active {
-   label {
-    color: #121f38;
-    font-weight: 700;
-   }
-  }
-  &:not(:last-child) {
-   border-bottom: 1px solid #e8e8e8;
-  }
- }
- label {
-  margin-bottom: 0;
-  cursor: pointer;
- }
-}
-.before-loop-wrapper-filter {
-  .des{
-    margin-bottom: 26px;
-    color: $grey-7;
-    font-size: 14px;
-    line-height: 1.7;
-    @include minWidth(768px) {
-      font-size: 17px;
-     }
-  }
- .filter-grid {
-  gap: 12px;
-  .icon{
-    cursor: pointer;
-    svg{
-      rect{
-        fill: $color-E0E0E0;
+    li {
+      color: $color-6B6B6B;
+      font-size: 14px;
+      @include minWidth(768px) {
+        font-size: 15px;
       }
     }
-    &.active{
-      svg{
-        rect{
-          fill: $grey-6;
+    a {
+      color: $color-6B6B6B;
+    }
+    span {
+      color: $color-6B6B6B;
+      margin: 0 4px;
+    }
+  }
+
+  .product-category-hero {
+    padding-top: 16px;
+    @include minWidth(768px) {
+      padding-top: 24px;
+    }
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 410 / 300;
+      object-fit: cover;
+      object-position: left center;
+      border-radius: 10px;
+      @include minWidth(768px) {
+        aspect-ratio: 1400 / 500;
+      }
+    }
+  }
+
+  .product-category-title {
+    padding: 24px 0;
+    background-color: $color-F9F9F9;
+    .product-category-title-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      .heading-haruco-new {
+        margin: 0;
+      }
+      .dash {
+        display: inline-block;
+        width: 38px;
+        height: 2px;
+        background: $color-E83729;
+        flex-shrink: 0;
+        margin-bottom: -18px;
+      }
+    }
+    p {
+      color: $color-323232;
+      font-size: 16px;
+      line-height: 1.875;
+      text-align: justify;
+      margin: 0;
+    }
+  }
+
+  // Thanh cam kết dịch vụ — desktop: 1 hàng ngang bo góc, gradient cam→đỏ,
+  // ngăn cách bởi border-right; mobile: xếp cột, ẩn "Chính hãng 100%" và
+  // đổi thứ tự theo đúng Figma mobile (Phí Ship, Đổi trả, Kiểm tra hàng,
+  // Bảo hành) bằng flex order — giữ 1 bộ markup duy nhất theo thứ tự
+  // Desktop, không viết 2 lần HTML khác nhau cho 2 breakpoint.
+  .product-category-badges {
+    padding: 16px 0;
+    .product-category-badges-list {
+      list-style: none;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
+      border: 1px solid $color-FF6D3E;
+      border-radius: 10px;
+      @include minWidth(992px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        gap: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: $light;
+        font-size: 15px;
+        font-weight: 500;
+        @include minWidth(992px) {
+          font-size: 18px;
+          padding: 0 20px;
+          border-right: 1px solid $color-FFC093;
+          white-space: nowrap;
+        }
+        &:last-child {
+          @include minWidth(992px) {
+            border-right: none;
+          }
+        }
+        &:first-child {
+          @include minWidth(992px) {
+            padding-left: 0;
+          }
+        }
+        i {
+          font-size: 20px;
+          flex-shrink: 0;
+        }
+      }
+      .badge-genuine {
+        @include maxWidth(991px) {
+          display: none;
+        }
+      }
+      .badge-return {
+        order: 2;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+      .badge-ship {
+        order: 1;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+      .badge-check {
+        order: 3;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+      .badge-warranty {
+        order: 4;
+        @include minWidth(992px) {
+          order: 0;
         }
       }
     }
   }
- }
- .filter {
-  margin-bottom: 25px;
-  @include minWidth(768px) {
-   margin-bottom: 25px;
+
+  .product-category-filter-sort {
+    padding: 16px 0;
   }
-  @include minWidth(1024px) {
+
+  .product-category-filter {
     display: flex;
-   }
-  .woocommerce-ordering {
-   align-items: center;
-   p {
-    &:first-child {
-     margin-right: 6px;
-     margin-top: -7px;
-    }
-   }
-   br {
-    display: none;
-   }
-  }
-  .button-box {
-   position: relative;
-   width: 108px;
-   height: 39px;
-   margin-right: 6px;
-   margin-bottom: 10px;
-   input {
-    z-index: 1000;
-    opacity: 0.01;
-    display: block;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-   }
-   input[type="radio"] {
-    &:checked {
-     & + label {
-      background-color: $color-FF6D3E;
-      border: 1px solid $color-FF6D3E;
-      color: $light;
-     }
-    }
-   }
-   .Checked {
-    & + label {
-     background-color: $color-FF6D3E;
-     border: 1px solid $color-FF6D3E;
-    }
-   }
-   label {
-    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    margin-bottom: 0;
-    border: 1px solid #dbdbdb;
-    background: #fff;
-    transition: all 0.3s;
-    z-index: 99;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-   }
-  }
-  button {
-   width: 101px;
-   height: 39px;
-   flex-shrink: 0;
-   border-radius: 5px;
-   border: 1px solid #dbdbdb;
-   background: #fff;
-   transition: all 0.3s;
-   margin-right: 6px;
-   margin-bottom: 10px;
-   @include minWidth(768px) {
-    margin-bottom: 0;
-   }
-   &.active {
-    border: 1px solid #8dc540;
-    background: #8dc540;
-    color: $light;
-   }
-   &:hover {
-    border: 1px solid #8dc540;
-    background: #8dc540;
-    color: $light;
-   }
-  }
-  form {
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-  }
-  .custom-select-h {
-   width: 232px;
-   flex-shrink: 0;
-   position: relative;
-   &::after {
-    content: "";
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 6px solid #aeaeae;
-    position: absolute;
-    right: 20px;
-    background: $light;
-    top: 43%;
-    transform: translateY(-50%);
-   }
-  }
-  select {
-   appearance: none;
-   width: 100%;
-   height: 39px;
-   flex-shrink: 0;
-   border: 1px solid #dbdbdb;
-   border-radius: 5px;
-   padding: 0 22px;
-   outline: none;
-   text-overflow: ellipsis;
-   overflow: hidden !important;
-   margin-bottom: 10px;
-   cursor: pointer;
-  }
- }
-}
-.list-product-page-child {
- display: grid;
- grid-template-columns: repeat(2, minmax(0, 1fr));
- gap: 10px;
- margin-bottom: 22px;
- transition: all 0.3s;
- &.list-view{
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  .item-best-seller{
-    display: flex;
-    align-items: center;
-    .info{
-      text-align: left;
-      padding: 5px 5px 18px 11px;
-      h4{
-        text-align: left;
+    gap: 16px;
+    background: $color-FFF6F0;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    .filter-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 16px;
+      flex: 0 0 100%;
+      @include minWidth(768px) {
+        flex: 0 0 auto;
+        font-size: 20px;
+      }
+      i:first-child {
+        color: $color-1E335C;
+      }
+      i:last-child {
+        font-size: 12px;
       }
     }
-    .img{
-      margin-bottom: 0;
-    }
-  }
- }
- .item-best-seller{
-  margin-top: 0;
-  transition: all 0.3s;
- }
- .image-cover-h {
-  padding-top: 95%;
-  @include minWidth(768px) {
-   padding-top: 96%;
-  }
- }
- @include minmaxWidth(768px, 1023px) {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-  margin-bottom: 0;
- }
- @include minWidth(1200px) {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
- }
-}
-.after-loop-wrapper {
-  margin-top: 44px;
-  border-top: 1px dashed #E5E5E5;
- .page-numbers {
-  margin-top: 38px;
- }
- .about-me {
-  margin-top: 27px;
-  margin-bottom: 63px;
-  p {
-   color: $dark;
-   text-align: justify;
-   font-weight: 300;
-   line-height: 30px;
-   letter-spacing: -0.32px;
-  }
-  .btn-border-rounded {
-   color: $color-FF6D3E;
-   border: 1px solid $color-FF6D3E;
-  }
- }
-}
-.page-numbers {
- display: flex;
- li {
-  margin-right: 5px;
-  a {
-   width: 42px;
-   height: 42px;
-   flex-shrink: 0;
-   border: 1px solid #dbdbdb;
-   display: flex;
-   align-items: center;
-   text-align: center;
-   justify-content: center;
-   border-radius: 100%;
-   color: #707070;
-   font-weight: 500;
-   &:hover {
-    background: $color-FF6D3E;
-    color: $light;
-    svg{
-      path{
-        fill: $light;
+    .filter-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+      @include minWidth(768px) {
+        display: flex;
+        flex-wrap: wrap;
       }
     }
-   }
+    .filter-dropdown {
+      min-width: 0;
+      .dropdown-toggle {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        background: $light;
+        border: 1px solid $color-FFC093;
+        border-radius: 5px;
+        color: $color-5E5E5E;
+        font-size: 14px;
+        padding: 8px 12px;
+        @include minWidth(768px) {
+          font-size: 15px;
+          min-width: 150px;
+        }
+        &::after {
+          margin-left: auto;
+        }
+      }
+      // z-index cao hơn mặc định của Bootstrap (.dropdown-menu: 1000) để
+      // menu "Giá" (menu cao, tràn xuống gần section Bán chạy ngay bên
+      // dưới) luôn vẽ trên các section sau nó khi mở, tránh bị section
+      // khác che mất phần cuối — giữ dự phòng dù
+      // .product-category-bestseller hiện không còn set z-index riêng.
+      .dropdown-menu {
+        min-width: 100%;
+        z-index: 1010;
+      }
+    }
   }
-  span {
-   width: 42px;
-   height: 42px;
-   background: $color-FF6D3E;
-   color: $light;
-   display: flex;
-   align-items: center;
-   text-align: center;
-   justify-content: center;
-   border-radius: 100%;
-   font-weight: 500;
+
+  .product-category-sort {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    .sort-label {
+      color: $color-1E335C;
+      font-size: 14px;
+      @include minWidth(768px) {
+        font-size: 15px;
+      }
+    }
+    .sort-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .sort-chip {
+      background: $light;
+      border: 1px solid $color-DBDBDB;
+      border-radius: 5px;
+      color: $color-5E5E5E;
+      font-size: 14px;
+      padding: 6px 16px;
+      cursor: pointer;
+      @include trans;
+      @include minWidth(768px) {
+        font-size: 15px;
+      }
+      &.active {
+        background: $color-F8633A;
+        border-color: $color-F8633A;
+        color: $light;
+      }
+    }
   }
- }
+
+  // "Đai hỗ trợ bán chạy nhất" — nền export nguyên trạng từ Figma (Group
+  // 632978, tia nắng cam/đỏ) đặt trên wrapper riêng
+  // .product-category-bestseller-inner (bọc heading + card-wrap), không
+  // đặt trực tiếp trên .product-category-bestseller. Không dùng
+  // position/z-index trên section này (đã bỏ theo yêu cầu) — thứ tự vẽ
+  // dựa theo DOM order/stacking mặc định, không cần ép layer riêng. Heading
+  // watermark tái dùng đúng icon tia sét (.ic-lightning-bestseller) đã có ở
+  // Homepage nhưng dùng text thật (<h2>) thay vì ảnh watermark vì text đổi
+  // theo từng danh mục.
+  .product-category-bestseller {
+    margin: 24px 0;
+    width: 100%;
+    // Wrapper riêng cho phần nền + nội dung (Group 632978) — tách khỏi
+    // .product-category-bestseller để nền/padding/border-radius luôn đi
+    // cùng khối heading+card, không phụ thuộc vào section ngoài.
+    .product-category-bestseller-inner {
+      padding: 32px 16px;
+      background-image: url("../images/product-category/bestseller-bg.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      @include minWidth(768px) {
+        padding: 40px 31px;
+      }
+    }
+    .product-category-bestseller-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      @include minWidth(768px) {
+        gap: 20px;
+      }
+      // Mobile: font-size/line-height/max-width đặt trực tiếp trên <h2>
+      // (không phải trên .product-category-bestseller-heading — nếu đặt ở
+      // wrapper flex ngoài, max-width:219px sẽ ép luôn cả 2 icon tia sét
+      // vào chung khoảng đó thay vì chỉ giới hạn riêng phần chữ, và
+      // font-size sẽ không có tác dụng vì <h2> đã tự set font-size riêng
+      // đè lên giá trị kế thừa từ cha). max-width:219px giúp "Đai hỗ trợ
+      // bán chạy nhất" xuống đúng 2 dòng theo thiết kế.
+      h2 {
+        color: $light;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 1.45;
+        max-width: 219px;
+        text-align: center;
+        letter-spacing: -0.03em;
+        margin: 0;
+        @include minWidth(768px) {
+          font-size: 35px;
+          line-height: normal;
+          max-width: none;
+        }
+      }
+      .ic-lightning-bestseller svg {
+        width: 26px;
+        height: auto;
+        display: block;
+        @include minWidth(768px) {
+          width: 45px;
+        }
+      }
+    }
+    .product-category-bestseller-card-wrap {
+      position: relative;
+    }
+    // Product Card riêng cho slider Bán chạy (Figma Group 632777) — khác
+    // hẳn Product Card ở lưới danh mục (Group 632981/632982):
+    // - Ảnh tràn viền (object-fit:cover, không border/padding, chỉ bo góc
+    //   trên) thay vì ảnh nền trắng + border + object-fit:contain mặc định.
+    // - Hàng dưới cùng gộp chung nút hành động (trái) + lượt bán/sao đánh
+    //   giá (phải) trên CÙNG 1 hàng (space-between), thay vì 2 hàng riêng
+    //   (.product-rating rồi mới đến .product-card-actions) như card mặc
+    //   định — đúng theo bố cục thật trong Figma.
+    .product-category-bestseller-slider .product-card {
+      .product-card-image {
+        border: none;
+        border-radius: 10px 10px 0 0;
+        img {
+          object-fit: cover;
+        }
+      }
+      .product-card-body {
+        padding: 12px 19px 21px 19px;
+        @include minWidth(768px) {
+          padding: 12px 19px 25px;
+        }
+      }
+      .pc-bestseller-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 12px;
+        border-top: 1px solid $color-EBEBEB;
+        padding-top: 10px;
+      }
+      .product-card-actions {
+        justify-content: flex-start;
+        gap: 8px;
+        @include minWidth(768px) {
+          justify-content: flex-start;
+        }
+      }
+      .product-rating {
+        margin-bottom: 0;
+        padding-top: 0;
+        border-top: none;
+        flex-shrink: 0;
+      }
+    }
+    .swiper-button-prev-pc-bestseller {
+      left: -8px;
+      @include minWidth(768px) {
+        left: -16px;
+      }
+    }
+    .swiper-button-next-pc-bestseller {
+      right: -8px;
+      @include minWidth(768px) {
+        right: -16px;
+      }
+    }
+  }
+
+  // Lưới sản phẩm (Group 632981 / 632982) — reuse nguyên .product-card của
+  // Homepage, chỉ đổi cách bao (CSS Grid tĩnh thay vì Swiper) theo đúng
+  // yêu cầu: Desktop 5 cột / Mobile 2 cột.
+  .product-category-grid {
+    padding: 24px 0;
+    .product-category-grid-card {
+      background: $light;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba($dark, 0.05);
+      padding: 20px 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 16px;
+      @include minWidth(768px) {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 24px;
+        padding: 30px;
+      }
+      // Nút "Mua ngay"/"Thêm vào giỏ" xếp chồng dọc trên Mobile (đúng
+      // Figma Grid — khác với slider Bán chạy vẫn giữ 2 nút nằm ngang),
+      // theo đúng pattern đã có sẵn cho .product-slider-sale/-bestseller
+      // ở _home.scss (maxWidth 767px: flex-direction column, button 100%).
+      .product-card-body .product-card-actions {
+        @include maxWidth(767px) {
+          flex-direction: column;
+          button {
+            width: 100%;
+            flex: 0 0 auto;
+          }
+        }
+      }
+    }
+  }
+
+  .product-category-promo-banner {
+    padding: 16px 0;
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 10px;
+    }
+    // "Banner ngang" (Figma) — dùng ảnh khác nhau hẳn giữa Desktop/Mobile
+    // (không phải cùng 1 ảnh responsive qua CSS), nên tách 2 wrapper riêng
+    // thay vì đổi background-image qua breakpoint. Breakpoint riêng
+    // 1023/1024px theo đúng yêu cầu, không dùng chung mốc 768px của các
+    // section khác trong trang.
+    .banner-pc {
+      display: none;
+      @include minWidth(1024px) {
+        display: block;
+      }
+    }
+    .banner-mobile {
+      display: block;
+      @include minWidth(1024px) {
+        display: none;
+      }
+    }
+    .promo-banner-split {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      @include minWidth(768px) {
+        flex-direction: row;
+      }
+      img {
+        @include minWidth(768px) {
+          flex: 1;
+          min-width: 0;
+        }
+      }
+    }
+  }
+
+  .product-category-pagination {
+    padding: 16px 0 32px;
+    .pagination-list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        background: $light;
+        border: 1px solid $color-E6E6E6;
+        color: $color-707070;
+        font-size: 15px;
+        letter-spacing: -0.05em;
+        @include trans;
+      }
+      li.active a {
+        background: $color-FF6D3E;
+        border-color: $color-E6E6E6;
+        color: $light;
+      }
+      li.pagination-next a {
+        color: $color-888888;
+      }
+    }
+  }
+
+  // "Bài SEO" — 2 đoạn văn, đoạn 2 ẩn mặc định, mở ra qua nút "Xem thêm"
+  // (đổi text/icon bằng jQuery, xem index.js).
+  .product-category-seo {
+    padding: 24px 0;
+    text-align: center;
+    .product-category-seo-content {
+      p {
+        color: $color-323232;
+        font-size: 16px;
+        line-height: 1.875;
+        text-align: justify;
+        margin-bottom: 16px;
+      }
+      .product-category-seo-more {
+        display: none;
+      }
+    }
+    &.expanded .product-category-seo-more {
+      display: block;
+    }
+    .btn-seo-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: $light;
+      border: 1px solid $color-F8633A;
+      border-radius: 10px;
+      color: $color-F8633A;
+      font-size: 16px;
+      padding: 8px 20px;
+      cursor: pointer;
+      i {
+        @include trans;
+      }
+    }
+    &.expanded .btn-seo-toggle i {
+      transform: rotate(180deg);
+    }
+  }
+
+  .product-category-related {
+    padding: 24px 0 40px;
+    .heading-haruco-new {
+      margin-bottom: 24px;
+    }
+    .related-article-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      @include minWidth(768px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+    .related-article-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: $light;
+      border: 1px solid $color-DBDBDB;
+      border-radius: 10px;
+    }
+    .related-article-image {
+      flex: 0 0 130px;
+      @include minWidth(768px) {
+        flex: 0 0 190px;
+      }
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 260 / 213;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
+    .related-article-body {
+      flex: 1;
+      min-width: 0;
+      @include minWidth(768px) {
+        padding-right: 26px;
+      }
+      .related-article-meta {
+        color: $color-6B6B6B;
+        font-size: 13px;
+        font-weight: 300;
+        margin-bottom: 8px;
+        @include minWidth(768px) {
+          font-size: 14px;
+        }
+      }
+      h4 {
+        margin: 0 0 8px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        a {
+          color: $color-1E335C;
+        }
+        @include minWidth(768px) {
+          font-size: 18px;
+        }
+      }
+      .description {
+        margin: 0;
+        color: $color-393939;
+        font-size: 14px;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        @include minWidth(768px) {
+          font-size: 15px;
+        }
+        // Ẩn hẳn trên Mobile — chỉ hiển thị description ở Desktop.
+        @include maxWidth(767px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // Popup Layer (Figma node "Popup") — toast hiển thị "vừa có người mua",
+  // là con thực sự của .cta-float (xem product-category.html) nên KHÔNG
+  // dùng position:fixed riêng — nó xếp theo flex column cùng 3 icon
+  // Messenger/Phone/Zalo, đứng cuối cùng (dưới 3 icon) theo đúng DOM order.
+  // .cta-float (cha) vẫn position:fixed nên cả cụm icon + popup vẫn nổi cố
+  // định ở góc màn hình như cũ. Không có nút đóng — popup luôn hiển thị.
+  .cta-float-popup {
+    width: calc(100vw - 32px);
+    max-width: 380px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba($dark, 0.15);
+    @include minWidth(768px) {
+      max-width: 420px;
+    }
+    .cta-float-popup-image {
+      flex: 0 0 76px;
+      background: $light;
+      border: 1px solid $color-EBEBEB;
+      border-radius: 10px;
+      overflow: hidden;
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        padding: 8px;
+      }
+    }
+    .cta-float-popup-body {
+      flex: 1;
+      min-width: 0;
+      h4 {
+        margin: 0 0 4px;
+        color: $light;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.4;
+      }
+      .cta-float-popup-note {
+        margin: 0 0 10px;
+        color: rgba($light, 0.85);
+        font-size: 12px;
+      }
+    }
+    .cta-float-popup-actions {
+      display: flex;
+      gap: 8px;
+      button {
+        flex: 1;
+        border-radius: 10px;
+        font-size: 12px;
+        padding: 6px 4px;
+        cursor: pointer;
+        white-space: nowrap;
+        // Desktop: width cố định theo đúng yêu cầu, không kéo giãn đều
+        // bằng flex:1 nữa (flex-grow:0 để width cố định thật sự có tác
+        // dụng thay vì bị flex:1 override).
+        @include minWidth(768px) {
+          flex: 0 0 auto;
+        }
+      }
+      .btn-buy-now {
+        background: transparent;
+        border: 1px solid $light;
+        color: $light;
+        @include minWidth(768px) {
+          width: 87px;
+        }
+      }
+      .btn-add-cart {
+        background: $light;
+        border: 1px solid $light;
+        color: $color-E83729;
+        @include minWidth(768px) {
+          width: 110px;
+        }
+      }
+    }
+  }
 }

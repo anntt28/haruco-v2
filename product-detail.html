@@ -8,6 +8,7 @@
   <title>Chi tiết sản phẩm</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.0/swiper-bundle.css"
@@ -21,56 +22,24 @@
 </head>
 
 <body>
-  <header class="header-page py-6 transition">
-    <div class="header-top">
+  <header class="header-page-new">
+    <div class="header-page-new-top d-none d-xl-block">
       <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center ">
-          <div class="text text-uppercase text-main-01 d-md-block d-none ">Công ty TNHH Rezkin Việt Nam</div>
-          <div class="feature d-flex align-items-center">
-            <ul class="user-f d-flex align-items-center">
-              <li>
-                <a href="mailto:hotro.haruco@gmail.com" class="mail">
-                    <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19.5949 0.904883C19.5047 0.548242 19.2297 0.264648 18.8773 0.163672C18.7871 0.137891 18.6926 0.122851 18.5938 0.122851H1.40625C1.30742 0.122851 1.21289 0.137891 1.12266 0.163672C0.770313 0.264648 0.495313 0.548242 0.405078 0.904883C0.385742 0.986523 0.375 1.07031 0.375 1.15625V12.8437C0.375 13.4109 0.839063 13.875 1.40625 13.875H18.5938C19.1609 13.875 19.625 13.4109 19.625 12.8437V1.15625C19.625 1.07031 19.6143 0.986523 19.5949 0.904883ZM17.8848 1.15625L10.3652 8.67578C10.1654 8.87559 9.83672 8.87559 9.63691 8.67578L2.11523 1.15625H17.8848ZM18.5938 12.3281C18.5938 12.6117 18.3617 12.8437 18.0781 12.8437H1.92188C1.63828 12.8437 1.40625 12.6117 1.40625 12.3281V1.90605L9.27168 9.77148C9.67344 10.1732 10.3287 10.1732 10.7305 9.77148L18.5938 1.90605V12.3281Z" fill="#121F38"/>
-                      </svg>                  
-                      <span>
-                        hotro.haruco@gmail.com
-                      </span>
-                </a>
-              </li>
-              <li>
-                <a href=""><svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M14.2038 4.60389L13.3382 5.45198L11.231 3.38555L12.095 2.53798C12.1355 2.49862 12.1835 2.46748 12.2363 2.44633C12.2891 2.42518 12.3457 2.41444 12.4027 2.41473C12.5201 2.41473 12.6294 2.45756 12.711 2.53798L14.2033 4.0002C14.2849 4.08038 14.3308 4.18897 14.3309 4.3022C14.331 4.41543 14.2853 4.52409 14.2038 4.60441M6.86405 11.6617L4.89285 9.73368L10.703 4.07436L12.6363 5.9695L6.86405 11.6617ZM4.37125 12.2398L4.47845 10.5306L6.08805 12.1067L4.37125 12.2398ZM14.8193 3.39651L13.3254 1.9369C12.8358 1.45437 11.9707 1.45437 11.4811 1.9369L10.2619 3.34011L3.76325 9.42975L3.33552 13.0796L3.54352 13.2545L7.17445 12.7704L13.3878 6.4019L14.8193 5.25667C15.327 4.75847 15.327 3.89628 14.8193 3.39651ZM13.5073 7.66777C13.2619 7.66777 13.0838 7.85995 13.0838 8.0986V13.794C13.0838 14.3616 12.6342 14.8462 12.0545 14.8462H2.90032C2.31952 14.8462 1.64752 14.3616 1.64752 13.794V4.82218C1.64752 4.25505 2.31952 3.64979 2.90085 3.64979H7.82938C8.07258 3.64979 8.26885 3.47328 8.26885 3.23462C8.26885 2.9944 8.07258 2.81946 7.82938 2.81946H2.90085C1.74245 2.81946 0.800049 3.68635 0.800049 4.8227V13.794C0.800049 14.9298 1.74245 15.675 2.90138 15.675H12.0534C13.2128 15.675 13.9297 14.9298 13.9297 13.794V8.0986C13.9297 7.85995 13.7499 7.66777 13.5062 7.66777" fill="#121F38"/>
-                  </svg>
-                  
-                  <span>Đăng kí</span></a>
-              </li>
-              <li>
-                <a href=""><svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.7831 8.28794C9.30498 7.93857 8.78412 7.66309 8.23161 7.46494C9.3966 6.73443 10.1118 5.43604 10.1118 4.02484C10.1118 1.80582 8.3593 0 6.20866 0C4.05692 0 2.30609 1.8058 2.30609 4.02484C2.30609 4.78056 2.50988 5.5165 2.90026 6.1571C3.22732 6.69574 3.67378 7.14763 4.20019 7.4755C3.63935 7.67196 3.10961 7.9523 2.62429 8.30653C2.09454 8.69369 1.6292 9.16189 1.2394 9.69625C0.429227 10.8105 0 12.1349 0 13.5275C0 13.789 0.203789 14 0.455342 14C0.708555 14 0.914004 13.789 0.914004 13.5275C0.914004 12.0759 1.4632 10.7077 2.45936 9.6742C3.45334 8.6453 4.77103 8.07773 6.16704 8.07631C6.21258 8.0809 6.26033 8.07631 6.30587 8.06484L6.34362 8.05739C7.70075 8.08547 8.97737 8.65189 9.94966 9.65615C10.9459 10.6882 11.4939 12.057 11.4939 13.51C11.4939 13.7686 11.6988 13.9808 11.9509 13.9808C12.203 13.9808 12.4074 13.7686 12.4074 13.51C12.4074 12.116 11.9798 10.7916 11.168 9.67934C10.7798 9.14246 10.3128 8.67453 9.7831 8.28794ZM6.20868 7.10756C4.56114 7.10756 3.21957 5.72557 3.21957 4.02486C3.21957 2.32558 4.56115 0.94303 6.20868 0.94303C7.85513 0.94303 9.1967 2.32558 9.1967 4.02486C9.1967 5.72556 7.85513 7.10756 6.20868 7.10756Z" fill="#121F38"/>
-                  </svg>                  
-                  <span>Đăng nhập</span></a>
-              </li>
-            </ul>
+        <div class="header-page-new-top-inner">
+          <div class="logo">
+            <a href="./index.html"><img src="./assets/images/logo-1.png" alt="Haruco"></a>
           </div>
-          <a class="btn-card-mobile d-md-none d-block ">
-            <img src="/assets/images/ic-cart-mobile.svg" alt="">
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="header-middle d-xl-block d-none">
-      <div class="container-fluid">
-        <div class="content-h-middle d-flex justify-content-between align-items-center ">
-          <div class="logo d-flex align-items-center">
-            <img src="./assets/images/logo-1.png" alt="logo">
-          </div>
-          <div class="search-product"> 
+          <div class="header-page-new-search">
             <form>
               <div class="input-group">
                 <div class="dropdown dropdown-search">
                   <button class="btn-dropdown-search" type="button" data-toggle="dropdown" aria-expanded="false">
-                     Tất cả
+                    Tất cả
+                    <div class="icon">
+                      <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.04248 5.66325L7.98473 1.47159C8.31762 1.11764 8.29759 0.560035 7.94015 0.230887C7.59567 -0.0863318 7.0623 -0.0753763 6.73114 0.25572L4.04248 2.94382L1.5833 0.296015C1.2535 -0.0590835 0.70383 -0.0949373 0.330694 0.214309C-0.0723105 0.548311 -0.112935 1.15192 0.241681 1.53691L4.04248 5.66325Z" fill="#FF6D3E"/>
+                      </svg>
+                    </div>
                   </button>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Đai chống gù lưng</a>
@@ -78,179 +47,237 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                   </div>
                 </div>
-                <input type="text" placeholder="Tìm kiếm sản phẩm...">
-                <button type="submit" class="btn-search btn-linear-rounded d-flex align-items-center justify-content-center">
-                  <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.39764 1.82143C12.0358 1.82143 14.9958 4.81743 14.9958 8.50002C14.9958 12.1826 12.0359 15.1786 8.39764 15.1786C4.7594 15.1786 1.79949 12.1826 1.79949 8.50002C1.79949 4.81743 4.75938 1.82143 8.39764 1.82143ZM8.39764 0C3.75978 0 0 3.80562 0 8.50002C0 13.1944 3.75978 17 8.39764 17C13.0355 17 16.7952 13.1944 16.7952 8.50002C16.7952 3.80562 13.0355 0 8.39764 0Z" fill="white"/>
-                    <path d="M16.995 16.9997C16.7648 16.9997 16.5346 16.9108 16.3588 16.7329L13.9595 14.3043C13.6081 13.9489 13.6081 13.372 13.9595 13.0165C14.311 12.6608 14.8804 12.6608 15.2318 13.0165L17.6311 15.4451C17.9826 15.8005 17.9826 16.3775 17.6311 16.7329C17.4554 16.9108 17.2252 16.9997 16.995 16.9997Z" fill="white"/>
-                    </svg>       
+                <input type="text" placeholder="Nhập từ tìm kiếm...">
+                <button type="submit" class="btn-search-new">
+                  Tìm kiếm
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.8805 14.4553L11.4315 10.5205C12.3566 9.40828 12.913 7.98179 12.913 6.42562C12.913 2.87751 10.0217 0 6.4565 0C2.89016 0 0 2.87751 0 6.42562C0 9.97374 2.89016 12.8512 6.4565 12.8512C7.78301 12.8512 9.01562 12.4517 10.0404 11.7694L13.4683 15.6809C13.8075 16.0699 14.4015 16.1073 14.7889 15.7708C15.181 15.432 15.2197 14.8432 14.8805 14.4553ZM1.76086 6.42562C1.76086 3.84836 3.86685 1.75244 6.4565 1.75244C9.04614 1.75244 11.1521 3.84836 11.1521 6.42562C11.1521 9.00288 9.04614 11.0988 6.4565 11.0988C3.86685 11.0988 1.76086 9.00288 1.76086 6.42562Z" fill="white"/>
+                  </svg>
                 </button>
               </div>
             </form>
+            <ul class="quick-links-new">
+              <li><a href="#">Đai hỗ trợ</a></li>
+              <li><a href="#">Trị liệu giảm đau - thư giãn</a></li>
+              <li><a href="#">Tập luyện - phục hồi chức năng</a></li>
+              <li><a href="#">Thiết bị CSSK</a></li>
+            </ul>
           </div>
-          <div class="contact d-flex align-items-center ">
-              <div class="call item">
-                <div class="icon">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="19" stroke="url(#paint0_linear_1_989)" stroke-width="2"/>
-                    <path d="M14.9803 12.8H10.7468C8.82982 20.379 15.3264 26.4667 18.8143 28.5631C22.6483 30.856 26.5356 30.5269 28 30.0758V25.9359C28 25.108 27.4143 24.901 27.1214 24.901L22.9678 24.0253L20.6514 26.2544C17.7759 24.9806 15.353 21.69 14.501 20.2039L16.8973 17.8155C16.631 16.7275 16.0666 14.3763 15.9388 13.6757C15.811 12.9751 15.2465 12.8 14.9803 12.8Z" fill="url(#paint1_linear_1_989)"/>
-                    <path d="M23.967 19.4832C23.4493 17.1406 21.8406 16.3458 21.101 16.2412C20.2875 16.0738 20.2073 15.2651 20.269 14.8816C20.5648 13.9613 21.44 14.0798 21.8406 14.2541C24.5033 15.0908 25.6004 17.7402 25.8161 18.9603C26.038 19.797 25.4771 20.285 25.1689 20.4245C24.3553 20.5918 24.0287 19.8667 23.967 19.4832Z" fill="url(#paint2_linear_1_989)"/>
-                    <path d="M28.0184 19.1789C27.166 14.2824 23.0786 12.7345 21.1415 12.5726C20.2891 12.4949 20.2052 11.763 20.2697 11.4068C20.3472 10.7073 21.0769 10.5972 21.432 10.6296C27.6309 11.4845 29.7618 16.6853 30.0524 19.1789C30.2073 20.0338 29.6004 20.3771 29.2775 20.4418C28.5026 20.5196 28.1798 19.9561 28.1152 19.6646L28.0184 19.1789Z" fill="url(#paint3_linear_1_989)"/>
-                    <defs>
-                    <linearGradient id="paint0_linear_1_989" x1="0" y1="20" x2="40" y2="20" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#E2313B"/>
-                    <stop offset="1" stop-color="#F26D42"/>
-                    </linearGradient>
-                    <linearGradient id="paint1_linear_1_989" x1="10.4" y1="21.6" x2="28" y2="21.6" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#E2313B"/>
-                    <stop offset="1" stop-color="#F26D42"/>
-                    </linearGradient>
-                    <linearGradient id="paint2_linear_1_989" x1="20.2527" y1="17.2912" x2="25.8667" y2="17.2912" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#E2313B"/>
-                    <stop offset="1" stop-color="#F26D42"/>
-                    </linearGradient>
-                    <linearGradient id="paint3_linear_1_989" x1="20.2527" y1="15.5368" x2="30.0772" y2="15.5368" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#E2313B"/>
-                    <stop offset="1" stop-color="#F26D42"/>
-                    </linearGradient>
-                    </defs>
-                    </svg>  
-                </div>
-                <div class="text">
-                  <p>Hotline - Zalo</p>
-                  <a href="tel:0839697689" class="tel">0839.697.689</a>
-                </div>
+          <div class="header-page-new-actions">
+            <a href="#" class="btn-cart-new">
+              <div class="icon">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.691 4.44495C20.5037 4.11232 20.2353 3.83512 19.9122 3.64039C19.5891 3.44566 19.2223 3.34006 18.8475 3.33388H4.96659L4.33761 0.822847C4.27406 0.580453 4.13228 0.367244 3.93537 0.217947C3.73845 0.068649 3.49799 -0.00794058 3.25317 0.000651623H1.08428C0.796695 0.000696731 0.520905 0.117776 0.317568 0.326138C0.114231 0.5345 0 0.817081 0 1.11173C0 1.40637 0.114231 1.68895 0.317568 1.89732C0.520905 2.10568 0.796695 2.22276 1.08428 2.2228H2.42899L5.42206 13.6224C5.4856 13.8648 5.62738 14.078 5.8243 14.2273C6.02122 14.3766 6.26167 14.4532 6.5065 14.4446H16.2665C16.4668 14.444 16.6629 14.3866 16.8333 14.2787C17.0037 14.1709 17.1415 14.0168 17.2317 13.8335L20.7886 6.54488C20.9428 6.2138 21.0146 5.84876 20.9975 5.48234C20.9805 5.11593 20.8752 4.75953 20.691 4.44495Z" fill="white"/>
+                  <path d="M4.33761 18.3334C4.33761 18.7754 4.50899 19.1993 4.81405 19.5119C5.11911 19.8244 5.53286 20 5.96428 20C6.3957 20 6.80945 19.8244 7.1145 19.5119C7.41956 19.1993 7.59094 18.7754 7.59094 18.3334C7.59094 17.8914 7.41956 17.4675 7.1145 17.1549C6.80945 16.8424 6.3957 16.6668 5.96428 16.6668C5.53286 16.6668 5.11911 16.8424 4.81405 17.1549C4.50899 17.4675 4.33761 17.8914 4.33761 18.3334Z" fill="white"/>
+                  <path d="M15.1821 18.3334C15.1821 18.7754 15.3534 19.1993 15.6585 19.5119C15.9636 19.8244 16.3773 20 16.8087 20C17.2401 20 17.6539 19.8244 17.9589 19.5119C18.264 19.1993 18.4354 18.7754 18.4354 18.3334C18.4354 17.8914 18.264 17.4675 17.9589 17.1549C17.6539 16.8424 17.2401 16.6668 16.8087 16.6668C16.3773 16.6668 15.9636 16.8424 15.6585 17.1549C15.3534 17.4675 15.1821 17.8914 15.1821 18.3334Z" fill="white"/>
+                </svg>
               </div>
-              <div class="btn-cart btn-linear-rounded">
+              <span class="badge">0</span>
+            </a>
+            <div class="header-page-new-account">
+              <a href="#" class="acc-register">
                 <div class="icon">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2.57393 0.604335H0.516347C0.10483 0.667647 0.00195085 1.0264 0.00195099 1.19787C-0.0297042 1.6727 0.331692 1.87054 0.516347 1.91011H2.13867L4.55238 9.90303L5.69988 9.34907L4.15669 4.12597H14.0489L13.1784 8.51812L5.73945 9.42821L4.55238 9.98217C3.95884 10.7736 4.2754 11.5649 4.2754 11.6441C4.56029 12.4354 5.52841 12.5542 5.97686 12.5146C7.17976 12.3247 11.3846 12.1453 13.3367 12.0793C14.0014 12.0793 14.1413 11.7364 14.1281 11.5649C14.1281 11.1534 13.706 11.0505 13.495 11.0505L5.66031 11.4462C5.05886 11.4462 5.17229 10.9978 5.30419 10.7736L13.6928 9.78433C14.2309 9.72102 14.3391 9.36226 14.3259 9.19079L15.4338 3.61157C15.4655 2.94682 14.9722 2.807 14.7216 2.82019H3.761L3.28617 1.19787C3.15955 0.659732 2.75859 0.577956 2.57393 0.604335Z" fill="white"/>
-                    <circle cx="5.22509" cy="14.2952" r="1.30577" fill="white"/>
-                    <circle cx="12.5057" cy="14.2952" r="1.30577" fill="white"/>
-                    <rect x="7.32214" y="3.96769" width="0.633103" height="5.53965" fill="white"/>
-                    <rect x="10.646" y="3.96769" width="0.633103" height="5.53965" fill="white"/>
-                    <rect x="4.71069" y="6.18355" width="9.17999" height="0.633103" fill="white"/>
-                    <path d="M5.73941 9.46777L5.58113 8.95337L4.35449 9.23035L4.55234 9.98216L5.73941 9.46777Z" fill="white"/>
-                    </svg>
+                    <g clip-path="url(#clip0_header_edit)">
+                      <path d="M14.2037 3.88059L13.3381 4.74389L11.2309 2.6404L12.0949 1.77763C12.1354 1.73757 12.1835 1.70586 12.2363 1.68434C12.2891 1.66281 12.3456 1.65188 12.4027 1.65218C12.52 1.65218 12.6293 1.69577 12.7109 1.77763L14.2032 3.26608C14.2849 3.3477 14.3308 3.45823 14.3309 3.57349C14.331 3.68876 14.2852 3.79937 14.2037 3.88113M6.864 11.065L4.8928 9.10238L10.7029 3.34156C11.0883 3.09156 11.5132 3.09156 11.8507 3.34156L16.3506 5.966L15.9458 5.9579L6.864 11.065ZM4.3712 11.6535L4.4784 9.91359L6.088 11.5179L4.3712 11.6535ZM14.8192 2.65156L13.3253 1.16577C12.8357 0.674585 11.9707 0.674585 11.4811 1.16577L10.2619 2.59415L3.7632 8.793L3.33547 12.5083L3.54347 12.6864L7.1744 12.1936L13.3877 5.71085L14.8192 4.54508C15.3269 4.03794 15.3269 3.16029 14.8192 2.65156ZM13.5072 6.99942C13.2618 6.99942 13.0837 7.19505 13.0837 7.43798V13.235C13.0837 13.813 12.6341 14.3066 12.0544 14.3066H2.90027C2.31947 14.3066 1.64747 13.813 1.64747 13.235V4.10218C1.64747 3.52505 2.31947 2.90938 2.90085 2.90938H7.82938C8.07258 2.90938 8.26885 2.72971 8.26885 2.48677C8.26885 2.24224 8.07258 2.06416 7.82938 2.06416H2.90085C1.74245 2.06416 0.8 2.94659 0.8 4.10333V13.235C0.8 14.3917 1.74245 15.1503 2.90138 15.1503H12.0533C13.2128 15.1503 13.9296 14.3917 13.9296 13.235V7.43798C13.9296 7.19505 13.7499 6.99942 13.5062 6.99942" fill="#F8633A"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_header_edit">
+                        <rect width="16" height="15.9476" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
                 </div>
-                <div class="text">Giỏ hàng ( 0)</div>
-              </div>
+                Đăng ký
+              </a>
+              <span class="divider"></span>
+              <a href="#" class="acc-login">
+                <div class="icon">
+                  <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.7831 8.28794C9.30498 7.93857 8.78412 7.66309 8.23161 7.46494C9.3966 6.73443 10.1118 5.43604 10.1118 4.02484C10.1118 1.80582 8.3593 0 6.20866 0C4.05692 0 2.30609 1.8058 2.30609 4.02484C2.30609 4.78056 2.50988 5.5165 2.90026 6.1571C3.22732 6.69574 3.67378 7.14763 4.20019 7.4755C3.63935 7.67196 3.10961 7.9523 2.62429 8.30653C2.09454 8.69369 1.6292 9.16189 1.2394 9.69625C0.429227 10.8105 0 12.1349 0 13.5275C0 13.789 0.203789 14 0.455342 14C0.708555 14 0.914004 13.789 0.914004 13.5275C0.914004 12.0759 1.4632 10.7077 2.45936 9.6742C3.45334 8.6453 4.77103 8.07773 6.16704 8.07631C6.21258 8.0809 6.26033 8.07631 6.30587 8.06484L6.34362 8.05739C7.70075 8.08547 8.97737 8.65189 9.94966 9.65615C10.9459 10.6882 11.4939 12.057 11.4939 13.51C11.4939 13.7686 11.6988 13.9808 11.9509 13.9808C12.203 13.9808 12.4074 13.7686 12.4074 13.51C12.4074 12.116 11.9798 10.7916 11.168 9.67934C10.7798 9.14246 10.3128 8.67453 9.7831 8.28794ZM6.20868 7.10756C4.56114 7.10756 3.21957 5.72557 3.21957 4.02486C3.21957 2.32558 4.56115 0.94303 6.20868 0.94303C7.85513 0.94303 9.1967 2.32558 9.1967 4.02486C9.1967 5.72556 7.85513 7.10756 6.20868 7.10756Z" fill="#F8633A"/>
+                  </svg>
+                </div>
+                Đăng nhập
+              </a>
             </div>
-            
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-page-new-bottom d-none d-xl-block">
+      <div class="container-fluid">
+        <div class="header-page-new-bottom-inner">
+          <div class="dropdown btn-category-new">
+            <button class="dropdown-toggle" type="button" id="dropdownMenuButtonNew" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="icon">
+                <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_header_hamburger)">
+                    <path d="M1.2 8.8H10.8C11.4627 8.8 12 9.29251 12 9.9C12 10.5075 11.4627 11 10.8 11H1.2C0.53728 11 0 10.5075 0 9.9C0 9.29251 0.53728 8.8 1.2 8.8Z" fill="white"/>
+                    <path d="M10.8 6.60001H1.2C0.53728 6.60001 0 6.1075 0 5.50001C0 4.89251 0.53728 4.40001 1.2 4.40001H10.8C11.4627 4.40001 12 4.89251 12 5.50001C12 6.1075 11.4627 6.60001 10.8 6.60001Z" fill="white"/>
+                    <path d="M10.8 2.2H1.2C0.53728 2.2 0 1.70749 0 1.1C0 0.492504 0.53728 -3.09944e-06 1.2 -3.09944e-06H10.8C11.4627 -3.09944e-06 12 0.492504 12 1.1C12 1.70749 11.4627 2.2 10.8 2.2Z" fill="white"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_header_hamburger">
+                      <rect width="12" height="11" fill="white" transform="matrix(1 0 0 -1 0 11)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <span>Danh mục sản phẩm</span>
+              <div class="icon icon-arrow">
+                <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.04248 5.66324L7.98473 1.47158C8.31762 1.11763 8.29759 0.560028 7.94015 0.230879C7.59567 -0.0863394 7.0623 -0.075384 6.73114 0.255712L4.04248 2.94381L1.5833 0.296007C1.2535 -0.0590912 0.70383 -0.0949449 0.330694 0.214302C-0.0723105 0.548303 -0.112935 1.15191 0.241681 1.5369L4.04248 5.66324Z" fill="white"/>
+                </svg>
+              </div>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonNew">
+              <a class="dropdown-item" href="#">Gối thảo dược</a>
+              <a class="dropdown-item" href="#">Chườm mặt thảo dược</a>
+              <a class="dropdown-item" href="#">Đai lưng thảo dược</a>
+            </div>
+          </div>
+          <nav class="primary-navigation-new" aria-label="Primary menu">
+            <ul class="menu-wrapper-new">
+              <li class="menu-item"><a href="#">Trang chủ</a></li>
+              <li class="menu-item"><a href="#">Giới thiệu</a></li>
+              <li class="menu-item menu-item-has-children">
+                <a href="#">Tư vấn và chọn sản phẩm
+                  <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.56408 4.74081L7.03203 1.28392C7.3417 0.975243 7.32354 0.468405 6.99257 0.182677C6.70157 -0.0685476 6.2679 -0.0596821 5.9874 0.203225L3.56408 2.47463L1.34714 0.236838C1.06671 -0.0462352 0.619037 -0.0752703 0.304386 0.169207C-0.0676356 0.458259 -0.10437 1.00708 0.225807 1.34314L3.56408 4.74081Z" fill="white"/>
+                  </svg>
+                </a>
+                <ul class="sub-menu">
+                  <li><a href="#">Đai hỗ trợ</a></li>
+                  <li><a href="#">Trị liệu giảm đau - Thư giãn</a></li>
+                  <li><a href="#">Gối hỗ trợ sức khỏe</a></li>
+                  <li><a href="#">Tập luyện – phục hồi chức năng</a></li>
+                  <li><a href="#">Nẹp chỉnh hình</a></li>
+                  <li><a href="#">Thiết bị hỗ trợ người già / người bệnh</a></li>
+                  <li><a href="#">Thiết bị y tế</a></li>
+                  <li><a href="#">Chăm sóc răng miệng tại nhà</a></li>
+                </ul>
+              </li>
+              <li class="menu-item"><a href="#">Sức khỏe và làm đẹp
+                <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.56408 4.74081L7.03203 1.28392C7.3417 0.975243 7.32354 0.468405 6.99257 0.182677C6.70157 -0.0685476 6.2679 -0.0596821 5.9874 0.203225L3.56408 2.47463L1.34714 0.236838C1.06671 -0.0462352 0.619037 -0.0752703 0.304386 0.169207C-0.0676356 0.458259 -0.10437 1.00708 0.225807 1.34314L3.56408 4.74081Z" fill="white"/>
+                </svg>
+              </a></li>
+              <li class="menu-item"><a href="#">Quà tặng sức khỏe
+                <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.56408 4.74081L7.03203 1.28392C7.3417 0.975243 7.32354 0.468405 6.99257 0.182677C6.70157 -0.0685476 6.2679 -0.0596821 5.9874 0.203225L3.56408 2.47463L1.34714 0.236838C1.06671 -0.0462352 0.619037 -0.0752703 0.304386 0.169207C-0.0676356 0.458259 -0.10437 1.00708 0.225807 1.34314L3.56408 4.74081Z" fill="white"/>
+                </svg>
+              </a></li>
+              <li class="menu-item"><a href="#">Liên hệ</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="header-page-new-mobile d-xl-none d-block">
+      <div class="container-fluid">
+        <div class="header-page-new-mobile-top">
+          <button id="btn-hamburger-new" class="icon-menu-new" aria-label="Mở menu" aria-expanded="false">
+            <svg class="icon-bars" width="20" height="14" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.4 17.6H29.6C30.9254 17.6 32 18.585 32 19.8C32 21.015 30.9254 22 29.6 22H2.4C1.07456 22 0 21.015 0 19.8C0 18.585 1.07456 17.6 2.4 17.6Z" fill="#F8633A"/>
+              <path d="M29.6 13.2H2.4C1.07456 13.2 0 12.215 0 11C0 9.78501 1.07456 8.8 2.4 8.8H29.6C30.9254 8.8 32 9.78501 32 11C32 12.215 30.9254 13.2 29.6 13.2Z" fill="#F8633A"/>
+              <path d="M29.6 4.4H2.4C1.07456 4.4 0 3.41499 0 2.2C0 0.985013 1.07456 0 2.4 0H29.6C30.9254 0 32 0.985013 32 2.2C32 3.41499 30.9254 4.4 29.6 4.4Z" fill="#F8633A"/>
+            </svg>
+            <svg class="icon-close" width="16" height="16" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.9304 24.1529L1.69711 4.9196C0.759887 3.98237 0.696567 2.52603 1.55569 1.66691C2.41482 0.80778 3.87116 0.871098 4.80838 1.80833L24.0417 21.0416C24.9789 21.9789 25.0422 23.4352 24.1831 24.2943C23.324 25.1534 21.8676 25.0901 20.9304 24.1529Z" fill="#F8633A"/>
+              <path d="M2.0697 20.9304L21.303 1.69706C22.2402 0.759828 23.6966 0.696508 24.5557 1.55563C25.4148 2.41476 25.3515 3.8711 24.4143 4.80833L5.18097 24.0416C4.24374 24.9789 2.7874 25.0422 1.92828 24.183C1.06915 23.3239 1.13247 21.8676 2.0697 20.9304Z" fill="#F8633A"/>
+            </svg>
+          </button>
+          <div class="logo">
+            <a href="./index.html"><img src="./assets/images/logo-1.png" alt="Haruco"></a>
+          </div>
+          <div class="header-page-new-mobile-account">
+            <a href="#" class="acc-register-m" aria-label="Đăng ký">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.7547 3.86667L15.6727 4.94933L13.0387 2.31133L14.1187 1.22933C14.1693 1.17909 14.2293 1.13933 14.2953 1.11233C14.3613 1.08533 14.432 1.07163 14.5033 1.072C14.65 1.072 14.7867 1.12667 14.8887 1.22933L16.754 3.096C16.8561 3.19836 16.9134 3.33698 16.9136 3.48153C16.9137 3.62608 16.8566 3.76413 16.7547 3.86667ZM7.58 12.8767L5.116 10.4153L12.3787 3.19067L14.7953 5.61L7.58 12.8767ZM4.464 13.6147L4.598 11.4327L6.61 13.4447L4.464 13.6147ZM17.524 2.32533L15.6567 0.462C15.0447 -0.154 13.9633 -0.154 13.3513 0.462L11.8273 2.25333L3.704 10.0273L3.16933 14.6867L3.42933 14.91L7.968 14.292L15.7347 6.162L17.524 4.7C18.1587 4.064 18.1587 2.96333 17.524 2.32533ZM15.884 7.778C15.5773 7.778 15.3547 8.02333 15.3547 8.328V15.5987C15.3547 16.3233 14.7927 16.942 14.068 16.942H2.62533C1.89933 16.942 1.05933 16.3233 1.05933 15.5987V4.14533C1.05933 3.42133 1.89933 2.64867 2.626 2.64867H8.78667C9.09067 2.64867 9.336 2.42333 9.336 2.11867C9.336 1.812 9.09067 1.58867 8.78667 1.58867H2.626C1.178 1.58867 0 2.69533 0 4.146V15.5987C0 17.0487 1.178 18 2.62667 18H14.0667C15.516 18 16.412 17.0487 16.412 15.5987V8.328C16.412 8.02333 16.1873 7.778 15.8827 7.778" fill="#F8633A"/>
+              </svg>
+            </a>
+            <span class="divider"></span>
+            <a href="#" class="acc-login-m" aria-label="Đăng nhập">
+              <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.6158 10.6559C11.9993 10.2067 11.3276 9.85254 10.6151 9.59778C12.1174 8.65855 13.0397 6.98919 13.0397 5.1748C13.0397 2.32177 10.7798 0 8.00641 0C5.23162 0 2.97383 2.32175 2.97383 5.1748C2.97383 6.14643 3.23663 7.09264 3.74004 7.91627C4.1618 8.60882 4.73754 9.18981 5.41638 9.61136C4.69314 9.86395 4.01001 10.2244 3.38416 10.6798C2.70102 11.1776 2.10094 11.7796 1.59828 12.4666C0.553512 13.8992 0 15.602 0 17.3925C0 17.7287 0.262797 18 0.587188 18C0.91372 18 1.17866 17.7287 1.17866 17.3925C1.17866 15.5262 1.88687 13.767 3.17148 12.4383C4.45327 11.1154 6.15251 10.3857 7.95274 10.3838C8.01147 10.3897 8.07304 10.3838 8.13176 10.3691L8.18045 10.3595C9.93054 10.3956 11.5768 11.1239 12.8306 12.4151C14.1153 13.742 14.8221 15.5019 14.8221 17.37C14.8221 17.7025 15.0863 17.9753 15.4114 17.9753C15.7365 17.9753 16 17.7025 16 17.37C16 15.5777 15.4486 13.8749 14.4017 12.4449C13.9012 11.7546 13.299 11.153 12.6158 10.6559ZM8.00643 9.13829C5.88183 9.13829 4.15181 7.36145 4.15181 5.17482C4.15181 2.99003 5.88186 1.21247 8.00643 1.21247C10.1296 1.21247 11.8596 2.99003 11.8596 5.17482C11.8596 7.36143 10.1296 9.13829 8.00643 9.13829Z" fill="#F8633A"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="header-page-new-mobile-search">
+          <form>
+            <div class="input-group">
+              <div class="dropdown dropdown-search">
+                <button class="btn-dropdown-search" type="button" data-toggle="dropdown" aria-expanded="false">
+                  Tất cả
+                  <div class="icon">
+                    <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.04248 5.66325L7.98473 1.47159C8.31762 1.11764 8.29759 0.560035 7.94015 0.230887C7.59567 -0.0863318 7.0623 -0.0753763 6.73114 0.25572L4.04248 2.94382L1.5833 0.296015C1.2535 -0.0590835 0.70383 -0.0949373 0.330694 0.214309C-0.0723105 0.548311 -0.112935 1.15192 0.241681 1.53691L4.04248 5.66325Z" fill="#FF6D3E"/>
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Đai chống gù lưng</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+              <div class="search-input-wrap">
+                <svg class="search-input-icon" width="15" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.8805 14.4553L11.4315 10.5205C12.3566 9.40828 12.913 7.98179 12.913 6.42562C12.913 2.87751 10.0217 0 6.4565 0C2.89016 0 0 2.87751 0 6.42562C0 9.97374 2.89016 12.8512 6.4565 12.8512C7.78301 12.8512 9.01562 12.4517 10.0404 11.7694L13.4683 15.6809C13.8075 16.0699 14.4015 16.1073 14.7889 15.7708C15.181 15.432 15.2197 14.8432 14.8805 14.4553ZM1.76086 6.42562C1.76086 3.84836 3.86685 1.75244 6.4565 1.75244C9.04614 1.75244 11.1521 3.84836 11.1521 6.42562C11.1521 9.00288 9.04614 11.0988 6.4565 11.0988C3.86685 11.0988 1.76086 9.00288 1.76086 6.42562Z" fill="#F8633A"/>
+                </svg>
+                <input type="text" placeholder="Nhập từ tìm kiếm...">
+              </div>
+              <a href="#" class="btn-cart-new-m" aria-label="Giỏ hàng">
+                <svg width="18" height="18" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.691 4.44495C20.5037 4.11232 20.2353 3.83512 19.9122 3.64039C19.5891 3.44566 19.2223 3.34006 18.8475 3.33388H4.96659L4.33761 0.822847C4.27406 0.580453 4.13228 0.367244 3.93537 0.217947C3.73845 0.068649 3.49799 -0.00794058 3.25317 0.000651623H1.08428C0.796695 0.000696731 0.520905 0.117776 0.317568 0.326138C0.114231 0.5345 0 0.817081 0 1.11173C0 1.40637 0.114231 1.68895 0.317568 1.89732C0.520905 2.10568 0.796695 2.22276 1.08428 2.2228H2.42899L5.42206 13.6224C5.4856 13.8648 5.62738 14.078 5.8243 14.2273C6.02122 14.3766 6.26167 14.4532 6.5065 14.4446H16.2665C16.4668 14.444 16.6629 14.3866 16.8333 14.2787C17.0037 14.1709 17.1415 14.0168 17.2317 13.8335L20.7886 6.54488C20.9428 6.2138 21.0146 5.84876 20.9975 5.48234C20.9805 5.11593 20.8752 4.75953 20.691 4.44495Z" fill="white"/>
+                  <path d="M4.33761 18.3334C4.33761 18.7754 4.50899 19.1993 4.81405 19.5119C5.11911 19.8244 5.53286 20 5.96428 20C6.3957 20 6.80945 19.8244 7.1145 19.5119C7.41956 19.1993 7.59094 18.7754 7.59094 18.3334C7.59094 17.8914 7.41956 17.4675 7.1145 17.1549C6.80945 16.8424 6.3957 16.6668 5.96428 16.6668C5.53286 16.6668 5.11911 16.8424 4.81405 17.1549C4.50899 17.4675 4.33761 17.8914 4.33761 18.3334Z" fill="white"/>
+                  <path d="M15.1821 18.3334C15.1821 18.7754 15.3534 19.1993 15.6585 19.5119C15.9636 19.8244 16.3773 20 16.8087 20C17.2401 20 17.6539 19.8244 17.9589 19.5119C18.264 19.1993 18.4354 18.7754 18.4354 18.3334C18.4354 17.8914 18.264 17.4675 17.9589 17.1549C17.6539 16.8424 17.2401 16.6668 16.8087 16.6668C16.3773 16.6668 15.9636 16.8424 15.6585 17.1549C15.3534 17.4675 15.1821 17.8914 15.1821 18.3334Z" fill="white"/>
+                </svg>
+                <span class="badge">0</span>
+              </a>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </header>
-  <!-- header pc -->
-  <div class="header-bottom d-xl-block d-none ">
-    <div class="container-fluid">
-      <div class="content-header-bottom d-flex align-items-center ">
-        <div class="main-menu d-flex align-items-center">
-          <div class="menu-category-product">
-            <button class="btn-cat-p dropdown-toggle d-flex align-items-center " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="icon">
-                <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0_39_548)">
-                  <path d="M1.8 12H16.2C17.1941 12 18 12.6716 18 13.5C18 14.3284 17.1941 15 16.2 15H1.8C0.80592 15 0 14.3284 0 13.5C0 12.6716 0.80592 12 1.8 12Z" fill="white"/>
-                  <path d="M16.2 9H1.8C0.80592 9 0 8.3284 0 7.5C0 6.6716 0.80592 6 1.8 6H16.2C17.1941 6 18 6.6716 18 7.5C18 8.3284 17.1941 9 16.2 9Z" fill="white"/>
-                  <path d="M16.2 3H1.8C0.80592 3 0 2.3284 0 1.5C0 0.6716 0.80592 0 1.8 0H16.2C17.1941 0 18 0.6716 18 1.5C18 2.3284 17.1941 3 16.2 3Z" fill="white"/>
-                  </g>
-                  <defs>
-                  <clipPath id="clip0_39_548">
-                  <rect width="18" height="15" fill="white" transform="matrix(1 0 0 -1 0 15)"/>
-                  </clipPath>
-                  </defs>
-                  </svg> 
-              </div>
-              <span>Danh mục sản phẩm</span>
-              <div class="icon icon-arrow">
-                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4.94792 7L9.36232 2.07164C9.71837 1.67414 9.69654 1.0663 9.3129 0.695354C8.9166 0.312163 8.284 0.325166 7.90378 0.72432L4.94792 3.82734L2.24451 0.771039C1.86696 0.3442 1.21585 0.301662 0.785968 0.67575C0.352398 1.05305 0.308064 1.71088 0.68709 2.14295L4.94792 7Z" fill="white"/>
-                  </svg> 
-              </div>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Gối thảo dược</a>
-              <a class="dropdown-item" href="#">Chườm mặt thảo dược</a>
-              <a class="dropdown-item" href="#"> Đai lưng thảo dược</a>
-            </div>
-          </div>
-          <nav id="site-navigation" class="primary-navigation" aria-label="Primary menu">
-            <div class="primary-menu-container">
-              <ul id="primary-menu-list" class="menu-wrapper">
-                <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6">
-                  <a href="#">Trang chủ</a>
-                </li>
-                <li id="menu-item-7" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7">
-                  <a href="#">Giới thiệu</a>
-                </li>
-                <li id="menu-item-8" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8">
-                  <a href="#">Sản phẩm</a>
-                </li>
-                <li id="menu-item-9" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9">
-                  <a href="#">Tin tức & sự kiện</a>
-                </li>
-                <li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10">
-                  <a href="#">check hàng chính hãng</a>
-                </li>
-                <li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11">
-                  <a href="#">Liên hệ</a>
-                </li>
-              </ul>
-            </div>
-          </nav>          
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- header mobile -->
-  <div class="header-bottom-mobile d-xl-none d-flex ">
-    <div class="container-fluid ">
-      <div class="content-header-bottom-mobile d-flex align-items-center justify-content-between ">
-        <div id="btn-hamburger" class="icon-menu-mobile">
-          <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="38" height="38" stroke="#8DC540"/>
-            <path d="M9.6 11.352H30.4C31.8359 11.352 33 10.2173 33 8.81766C33 7.41801 31.8359 6.28329 30.4 6.28329H9.6C8.16411 6.28329 7 7.41801 7 8.81766C7 10.2173 8.16411 11.352 9.6 11.352Z" fill="#0D6C42"/>
-            <path d="M30.4 14.6105H9.6C8.16411 14.6105 7 15.7452 7 17.1449C7 18.5445 8.16411 19.6792 9.6 19.6792H30.4C31.8359 19.6792 33 18.5445 33 17.1449C33 15.7452 31.8359 14.6105 30.4 14.6105Z" fill="#0D6C42"/>
-            <path d="M30.4 22.9377H9.6C8.16411 22.9377 7 24.0724 7 25.472C7 26.8717 8.16411 28.0064 9.6 28.0064H30.4C31.8359 28.0064 33 26.8717 33 25.472C33 24.0724 31.8359 22.9377 30.4 22.9377Z" fill="#0D6C42"/>
-            </svg>            
-        </div>
-        <div class="logo-mobile">
-          <img src="/assets/images/logo-1.png" alt="logo mobile">
-        </div>
-        <div class="btn-search-m">
-          <form>
-            <input type="text" placeholder="Tìm kiếm sản phẩm">
-          </form>
-          <button type="submit">
-            <img src="./assets/images/icon/ic_search.svg" alt="logo mobile">
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <aside class="menu-aside-page">
+  <aside class="menu-aside-page menu-mobile-new">
     <div class="backdrop"></div>
-    <div class="menu-aside px-5">
+    <div class="menu-aside">
       <div class="primary-menu-container">
         <ul id="primary-menu-list" class="menu-wrapper">
-          <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6">
+          <li class="menu-item">
             <a href="#">Trang chủ</a>
           </li>
-          <li id="menu-item-7" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7">
+          <li class="menu-item">
             <a href="#">Giới thiệu</a>
           </li>
-          <li id="menu-item-8" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8">
-            <a href="#">Sản phẩm</a>
+          <li class="menu-item menu-item-has-children">
+            <a href="#" class="menu-item-toggle">
+              Tư vấn và chọn sản phẩm
+              <svg class="icon-caret" width="9" height="16" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.02934 8.59329L13.8475 2.47654C14.5065 1.88535 14.4696 0.841811 13.7705 0.298635C13.2412 -0.112632 12.4963 -0.0976553 11.984 0.334557L7.02934 4.51416L2.49415 0.394089C1.9786 -0.0742705 1.20751 -0.12339 0.636702 0.275767C-0.145325 0.822624 -0.219675 1.95308 0.483991 2.59765L7.02934 8.59329Z" fill="black"/>
+              </svg>
+            </a>
+            <ul class="sub-menu">
+              <li><a href="#">Đai hỗ trợ</a></li>
+              <li><a href="#">Trị liệu giảm đau - Thư giãn</a></li>
+              <li><a href="#">Gối hỗ trợ sức khỏe</a></li>
+              <li><a href="#">Tập luyện – phục hồi chức năng</a></li>
+              <li><a href="#">Nẹp chỉnh hình</a></li>
+              <li><a href="#">Thiết bị hỗ trợ người già / người bệnh</a></li>
+              <li><a href="#">Thiết bị y tế</a></li>
+              <li><a href="#">Chăm sóc răng miệng tại nhà</a></li>
+            </ul>
           </li>
-          <li id="menu-item-9" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9">
-            <a href="#">Tin tức & sự kiện</a>
+          <li class="menu-item">
+            <a href="#">Sức khỏe và làm đẹp</a>
           </li>
-          <li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10">
-            <a href="#">Check hàng chính hãng</a>
+          <li class="menu-item">
+            <a href="#">Quà tặng sức khỏe</a>
           </li>
-          <li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11">
+          <li class="menu-item">
             <a href="#">Liên hệ</a>
           </li>
         </ul>
@@ -261,1112 +288,208 @@
       </div>
     </div>
   </aside>
-  <main class="product-detail-page">
-    <section class="breadcrumbs-box">
-        <div class="container-fluid">
-            <div class="breadcrumbs">
-                <ul>
-                    <li>
-                        <a href="">Trang chủ</a>
-                        <span>/</span>
-                        <span>Sản phẩm</span>
-                        <span>/</span>
-                        <span>Đai lưng Haruco Nhật Bản</span>
-                    </li>
-                </ul>
-            </div>
+  <main class="introduce-page">
+
+    <div class="cta-float">
+      <a href="#" class="cta-float-item cta-float-messenger" aria-label="Messenger">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.00127483 14.5482C0.00127483 6.18674 6.551 0 15.0006 0C23.4503 0 30 6.18674 30 14.5482C30 22.9097 23.4503 29.0964 15.0006 29.0964C13.4882 29.0964 12.0258 28.8964 10.6633 28.5215C10.3974 28.4499 10.1149 28.472 9.86336 28.584L6.87598 29.8963C6.6959 29.9765 6.49884 30.011 6.30222 29.9969C6.1056 29.9828 5.91549 29.9205 5.74868 29.8155C5.58187 29.7105 5.4435 29.566 5.34581 29.3948C5.24812 29.2236 5.19411 29.031 5.18855 28.8339L5.10106 26.1593C5.09428 25.9981 5.05541 25.84 4.98673 25.694C4.91805 25.5481 4.82093 25.4173 4.70108 25.3094C3.19735 23.9531 2.00029 22.2916 1.18984 20.4359C0.379382 18.5802 -0.0258238 16.573 0.00127483 14.5482ZM10.4008 11.811L6.00102 18.8102C5.56354 19.4726 6.401 20.235 7.02598 19.7476L11.7633 16.1605C12.0883 15.9105 12.5132 15.9105 12.8507 16.1605L16.3506 18.7852C17.4005 19.5726 18.9005 19.2851 19.6004 18.1853L24.0003 11.1861C24.4377 10.5237 23.6003 9.7738 22.9753 10.2487L18.238 13.8358C17.9255 14.0858 17.488 14.0858 17.163 13.8358L13.6632 11.2111C13.4143 11.0231 13.129 10.8889 12.8255 10.817C12.522 10.7451 12.2068 10.7372 11.9 10.7936C11.5933 10.85 11.3016 10.9696 11.0435 11.1447C10.7854 11.3199 10.5665 11.5468 10.4008 11.811Z" fill="white"/>
+          </svg>
         </div>
-    </section>
-    <div>
-      <div class="main-info-product">
-        <div class="container-fluid">
-          <div class="content">
-            <div class="d-flex box-info-left">
-              <div class="box-thumb-gallery">
-                <div class="product-gallery-h">
-                  <div class="slider-images-main swiper-container">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                        <div class="img img-cover-h">
-                          <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="img img-cover-h">
-                          <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="img img-cover-h">
-                          <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="img img-cover-h">
-                          <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="img img-cover-h">
-                          <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="box-slider-w">
-                    <div class="slider-thumb-child swiper-container">
-                      <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                          <div class="img">
-                            <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="img">
-                            <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="img">
-                            <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="img">
-                            <img src="./assets/images/thumb-pr-1.jpg" alt="image">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <ul class="table-of-content table-of-content-detail-pr">
-                  <li>
-                    <span class="icon">
-                      <img src="./assets/images/img_notes.svg" alt="icon">
-                    </span>
-                    <a href="#thongtinsanpham">
-                      Thông tin sản phẩm
-                    </a>
-                  </li>
-                  <li>
-                    <span class="icon">
-                      <img src="./assets/images/img_setting.svg" alt="icon">
-                    </span>
-                    <a href="#thongsokythuat">
-                      Thông số kỹ thuật
-                    </a>
-                  </li>
-                  <li>
-                    <span class="icon">
-                      <img src="./assets/images/img_guide.svg" alt="icon">
-                    </span>
-                    <a href="#huongdansudung">
-                      Hướng dẫn sử dụng
-                    </a>
-                  </li>
-                  <li>
-                    <span class="icon">
-                      <img src="./assets/images/img_check-search.svg" alt="icon">
-                    </span>
-                    <a href="#">
-                      Check hàng chính hãng
-                    </a>
-                  </li>
-                  <li>
-                    <span class="icon">
-                      <img src="./assets/images/img_ratings.svg" alt="icon">
-                    </span>
-                    <a href="#danhgiasanpham">
-                      Đánh giá sản phẩm
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="box-product-info">
-                <div class="summary entry-summary">
-                  <h1>Đai chống gù lưng HRC63</h1>
-                  <div class="d-flex rate-total-sell-pr">
-                    <div class="rates">
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star star-grey"></i>
-                    </div>
-                    <span>(60 đánh giá)</span>
-                    <span class="and">|</span>
-                    <span>Đã bán 8.4k</span>
-                  </div>
-                  <p class="price mb-0">
-                    <del>
-                      <span class="woocommerce-Price-amount">
-                        <bdi>
-                          500,000
-                          <span class="woocommerce-Price-currencySymbol">đ</span>
-                        </bdi>
-                      </span>
-                    </del>
-                    <ins >
-                      <span  class="woocommerce-Price-amount">
-                        <bdi>
-                          310.000
-                        </bdi>
-                        <span class="woocommerce-Price-currencySymbol">đ</span>
-                      </span>
-                    </ins>
-                    <span class="percentage">
-                      -38%
-                    </span>
-                  </p>
-                  <ul class="list-meta-product">
-                    <li>
-                      <span>Mã sản phẩm</span>
-                      <span>HRC63</span>
-                    </li>
-                    <li>
-                      <span>Xuất xứ:</span>
-                      <span>Chính hãng</span>
-                    </li>
-                    <li>
-                      <span>Tình trang</span>
-                      <span>Còn hàng (272 sản phẩm)</span>
-                    </li>
-                    <li class="my-3">
-                      <span>
-                        Màu sắc:
-                      </span>
-                      <p class="list-item-bo mb-0 d-inline-block ml-2">
-                        <span class="active">Đen</span>
-                        <span>Kem</span>
-                        <span>Xanh nhạt</span>
-                        <span>Hồng</span>
-                      </p>
-                    </li>
-                    <li class="mt-2">
-                      <span>Sizes:</span>
-                      <p class="list-item-bo mb-0 d-inline-block ml-2">
-                        <span class="active">S</span>
-                        <span>M</span>
-                        <span>L</span>
-                        <span>XL</span>
-                      </p>
-                      <button type="button" class="btn-blue-underline" data-toggle="modal" data-target="#exampleModal">
-                        Hướng dẫn chọn size 
-                      </button>
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              ...
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <form action="" class="quantityz-form">
-                    <div class="quantityz d-flex align-items-center">
-                      <label>Chọn số lượng:</label>
-                      <div class="qty-input">
-                        <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                        <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                        <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                      </div>
-                    </div>
-                  </form>
-                  <ul class="benefit-when-you-buy">
-                    <li>Miễn phí vận chuyển, bảo hành đổi trả</li>
-                    <li>Hàng có sẵn, nhận đặt số lượng lớn</li>
-                    <li>Chiết khấu – giảm giá lớn</li>
-                    <li>Xuất hóa đơn theo yêu cầu</li>
-                  </ul>
-                  <button type="submit" class="btn-linear-rounded btn-cart-detail">
-                    Mua hàng
-                    <span class="icon">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.57393 0.604335H0.516347C0.10483 0.667647 0.00195085 1.0264 0.00195099 1.19787C-0.0297042 1.6727 0.331692 1.87054 0.516347 1.91011H2.13867L4.55238 9.90303L5.69988 9.34907L4.15669 4.12597H14.0489L13.1784 8.51812L5.73945 9.42821L4.55238 9.98217C3.95884 10.7736 4.2754 11.5649 4.2754 11.6441C4.56029 12.4354 5.52841 12.5542 5.97686 12.5146C7.17976 12.3247 11.3846 12.1453 13.3367 12.0793C14.0014 12.0793 14.1413 11.7364 14.1281 11.5649C14.1281 11.1534 13.706 11.0505 13.495 11.0505L5.66031 11.4462C5.05886 11.4462 5.17229 10.9978 5.30419 10.7736L13.6928 9.78433C14.2309 9.72102 14.3391 9.36226 14.3259 9.19079L15.4338 3.61157C15.4655 2.94682 14.9722 2.807 14.7216 2.82019H3.761L3.28617 1.19787C3.15955 0.659732 2.75859 0.577956 2.57393 0.604335Z" fill="white"></path>
-                        <circle cx="5.22509" cy="14.2952" r="1.30577" fill="white"></circle>
-                        <circle cx="12.5057" cy="14.2952" r="1.30577" fill="white"></circle>
-                        <rect x="7.32214" y="3.96769" width="0.633103" height="5.53965" fill="white"></rect>
-                        <rect x="10.646" y="3.96769" width="0.633103" height="5.53965" fill="white"></rect>
-                        <rect x="4.71069" y="6.18355" width="9.17999" height="0.633103" fill="white"></rect>
-                        <path d="M5.73941 9.46777L5.58113 8.95337L4.35449 9.23035L4.55234 9.98216L5.73941 9.46777Z" fill="white"></path>
-                        </svg>
-                    </span>
-                  </button>
-                  <div class="d-flex justify-content-center">
-                    <button class="btn-bo-F13B3B">Thêm vào giỏ</button>
-                    <a href="" class="btn-orange-bo">Tư vấn sản phẩm</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="benefits-of-purchasing">
-                <div class="box-cate-pr">
-                    <h4 class="d-flex align-items-center justify-content-center">
-                      <span class="icon d-flex mr-2 mb-1">
-                        <img src="./assets/images/img-like.svg" alt="icon">
-                      </span>
-                      Lợi ích khi mua hàng</h4>
-                    <ul class="list-benefits-of-purchasing">
-                      <li>
-                        <span class="icon">
-                          <img src="./assets/images/img-check-pr.svg" alt="icon">
-                        </span>
-                        <div class="text">
-                            <h5>Kiểm tra hàng hóa</h5>
-                            <p class="mb-0">Cho phép kiểm hàng hóa trước khi nhận</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="icon">
-                          <img src="./assets/images/san-pham-an-toan.svg" alt="icon">
-                        </span>
-                        <div class="text">
-                            <h5>Sản phẩm an toàn</h5>
-                            <p class="mb-0">Cho phép kiểm hàng hóa trước khi nhận</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="icon">
-                          <img src="./assets/images/tu-van-tan-tam.svg" alt="icon">
-                        </span>
-                        <div class="text">
-                            <h5>Tư vấn tận tâm</h5>
-                            <p class="mb-0">Cho phép kiểm hàng hóa trước khi nhận</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="icon">
-                          <img src="./assets/images/giao-hang-thu-tien.svg" alt="icon">
-                        </span>
-                        <div class="text">
-                            <h5>Giao hàng thu tiền</h5>
-                            <p class="mb-0">Cho phép kiểm hàng hóa trước khi nhận</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="icon">
-                          <img src="./assets/images/mien-phi-giao-hang.svg" alt="icon">
-                        </span>
-                        <div class="text">
-                            <h5>Miễn phí giao hàng</h5>
-                            <p class="mb-0">Cho phép kiểm hàng hóa trước khi nhận</p>
-                        </div>
-                      </li>
-                      <li>
-                        <span class="icon">
-                          <img src="./assets/images/mien-phi-doi-tra.svg" alt="icon">
-                        </span>
-                        <div class="text">
-                            <h5>Miễn phí đổi trả</h5>
-                            <p class="mb-0">Cho phép kiểm hàng hóa trước khi nhận</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-            </div>
-          </div>
+      </a>
+      <a href="tel:0839697689" class="cta-float-item cta-float-phone" aria-label="Gọi điện">
+        <div class="icon">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.78434 16.2928C1.21109 12.0083 -0.487189 7.58587 0.121442 4.17796V4.02037C1.94733 -0.786147 7.1796 -0.904339 7.97474 1.67621L9.54541 6.28574C9.67133 6.6657 9.68935 7.07333 9.59746 7.46299C9.50557 7.85265 9.3074 8.20895 9.02512 8.49201L7.45446 10.0679C8.90205 13.2595 11.4456 15.8221 14.6206 17.2875L15.9458 15.9579C16.208 15.6938 16.5339 15.5023 16.8917 15.4022C17.2496 15.3021 17.6272 15.2967 17.9877 15.3866L23.2887 16.7064C25.8017 17.4254 25.9784 22.6161 20.864 24.7534C15.5434 26.2407 8.46558 20.6955 4.78434 16.2928Z" fill="white"/>
+          </svg>
         </div>
-    </div>
-    <div class="info-detail-product">
-      <div class="container-fluid">
-        <div class="content">
-          <div class="detail-box">
-            <div class="info-about-product" id="thongtinsanpham">
-              <div class="d-flex heading-info">
-                <span class="icon">
-                  <img src="./assets/images/img_notes.svg" alt="icon">
-                </span>
-                Thông tin sản phẩm
-              </div>
-              <div class="des mt-3">
-                <h3>Giới thiệu đai chống gù lưng cao cấp HG63</h3>
-                <p>
-                  Đối với những bệnh nhân bị đau lưng cột sống hay thoát vị đĩa đệm do bệnh lý có liên quan thì thường được bác sĩ khuyên dùng đai lưng cột sống.
-                  Đai lưng cột sống là dụng cụ dùng để hỗ trợ hoặc điều trị các chứng bệnh liên quan đến lưng, cột sống. Cụ thể là bệnh đau lưng, thoái hóa cột sống, cong vẹo cột sống,… Đặc biệt là bệnh thoát vị đĩa đệm. Nhờ thiết kế thông minh, nguyên lý hoạt động rõ ràng, đai lưng giúp làm giảm triệu chứng của bệnh. Giúp phục hồi những tổn thương cho cột sống một cách nhanh chóng.
-                  Trên thị trường hiện nay có khá nhiều sản phẩm đai lưng, nhưng nổi bật nhất vẫn là đai lưng Haruco. Sản phẩm này thiết kế giúp cố định cột sống, hạn chế sự di chuyển và vận động. Giúp giảm đau và bảo vệ cột sống khỏi những chấn thương không đáng có.
-                </p>
-              </div>
-            </div>
-            <div class="specifications" id="thongsokythuat">
-              <div class="d-flex heading-info">
-                <span class="icon">
-                  <img src="./assets/images/img_setting.svg" alt="icon">
-                </span>
-                Thông số kỹ thuật
-              </div>
-              <div class="table-specifi">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Tên sản phẩm</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Xuất xứ</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Chất liệu</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Màu sắc</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Trọng lượng</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Size</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Kiểm hàng</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Chính sách giao hàng</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Chính sách đổi hàng</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                    <tr>
-                      <td>Chính sách bảo hành</td>
-                      <td>Đai định hình và chống gù lưng HG64</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="box-guide mt-5" id="huongdansudung">
-              <div class="d-flex heading-info">
-                <span class="icon">
-                  <img src="./assets/images/img_guide.svg" alt="icon">
-                </span>
-                Hướng dẫn sử dụng
-              </div>
-              <div class="des mt-3">
-                <p>
-                  Đai lưng Haruco thiết kế đơn giản nên việc sử dụng không hề khó khăn. Đai lưng có 02 miếng đá núi lửa, miếng to dán sau lưng, miếng nhỏ dán trước bụng. Để đai lưng phát huy công dụng, bạn cần sử dụng làm theo hướng dẫn sau:
-                  Bước 1: Đầu tiên bạn sẽ lắp miếng đá trắng to vào phía giữa đai, còn miếng đá nhỏ sẽ lắp vào bên phải của đai lưng.
-                  Bước 2: Tiếp theo bạn cho miếng đá trắng to tiếp xúc ở phía sau lưng, miếng đá nhỏ tiếp xúc với bụng.
-                  Bước 3: Bạn dán hai đầu dây sao cho chắc chắn, điều chỉnh độ rộng hẹp để phù hợp với kích thước của cơ thể.
-                </p>
-              </div>
-            </div>
-            <div class="box-reviews" id="danhgiasanpham">
-              <div class="d-flex heading-info">
-                <span class="icon">
-                  <img src="./assets/images/img_ratings.svg" alt="icon">
-                </span>
-                Đánh giá sản phẩm
-              </div>
-              <div class="title-total-review">
-                60 đánh giá cho Đai chống gù lưng cao cấp HG63
-              </div>
-              <div class="box-average">
-                <div class="summary-h">
-                  <div class="score-h">
-                    4.9 <i class="fa-solid fa-star"></i>
-                  </div>
-                  <p>Đánh giá trung bình</p>
-                </div>
-                <div class="detail">
-                  <ul>
-                    <li>
-                      <div class="star-title">
-                        5 <i class="fa-solid fa-star"></i>
-                      </div>
-                      <div class="progress-wrap">
-                        <div class="h-review-progress">
-                         <div class="bar bg"></div>
-                         <div class="bar fg"></div>
-                        </div>
-                        <div class="percent">44%</div>
-                        <span class="px-2">|</span>
-                        <span>53 đánh giá</span>
-                       </div>
-                    </li>
-                    <li>
-                      <div class="star-title">
-                        4 <i class="fa-solid fa-star"></i>
-                      </div>
-                      <div class="progress-wrap">
-                        <div class="h-review-progress">
-                         <div class="bar bg"></div>
-                         <div class="bar fg"></div>
-                        </div>
-                        <div class="percent">44%</div>
-                        <span class="px-2">|</span>
-                        <span>53 đánh giá</span>
-                       </div>
-                    </li>
-                    <li>
-                      <div class="star-title">
-                        3 <i class="fa-solid fa-star"></i>
-                      </div>
-                      <div class="progress-wrap">
-                        <div class="h-review-progress">
-                         <div class="bar bg"></div>
-                         <div class="bar fg"></div>
-                        </div>
-                        <div class="percent">44%</div>
-                        <span class="px-2">|</span>
-                        <span>53 đánh giá</span>
-                       </div>
-                    </li>
-                    <li>
-                      <div class="star-title">
-                        2 <i class="fa-solid fa-star"></i>
-                      </div>
-                      <div class="progress-wrap">
-                        <div class="h-review-progress">
-                         <div class="bar bg"></div>
-                         <div class="bar fg"></div>
-                        </div>
-                        <div class="percent">44%</div>
-                        <span class="px-2">|</span>
-                        <span>53 đánh giá</span>
-                       </div>
-                    </li>
-                    <li>
-                      <div class="star-title">
-                        1 <i class="fa-solid fa-star"></i>
-                      </div>
-                      <div class="progress-wrap">
-                        <div class="h-review-progress">
-                         <div class="bar bg"></div>
-                         <div class="bar fg"></div>
-                        </div>
-                        <div class="percent">44%</div>
-                        <span class="px-2">|</span>
-                        <span>53 đánh giá</span>
-                       </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="box-button">
-                    <button class="btn-review-now btn-bo-F13B3B">
-                      Đánh giá ngay
-                    </button>
-                </div>
-              </div>
-              <div class="list-comment">
-                <ul>
-                  <li>
-                    <div class="mod-reviews">
-                      <div class="top">
-                        <span class="name">Phạm Phương</span>
-                        <span class="verify">
-                          <img src="./assets/images/icon/ic_check-circle.svg" alt="icon">
-                          <span>
-                            Đã mua tại Haruco
-                          </span>
-                        </span>
-                      </div>
-                      <div class="middle">
-                        <div class="rates">
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star star-grey"></i>
-                        </div>
-                        <span class="px-2 and">|</span>
-                        <p class="mb-0 d-inline-flex align-items-center">
-                          <img src="./assets/images/icon/ic_heart.svg" alt="heart" class="mr-2">
-                          Sẽ giới thiệu cho bạn bè, người thân
-                        </p>
-                      </div>
-                      <div class="des">
-                        Đai lưng chữa thoát vị đĩa đệm Haruco HRC-006 là sản phẩm hỗ trợ cải thiện tư thế, ngăn ngừa cong vẹo cột sống và giảm đau nhức do ngồi sai tư thế trong thời gian dài.
-                      </div>
-                      <div class="bottom">
-                        <p class="mb-0 d-inline-flex align-items-center">
-                          <img src="./assets/images/icon/ic_like-grey.svg" alt="like" class="mr-2">
-                          Hữu ích (16)
-                        </p>
-                        <span class="px-2 and">|</span>
-                        <span>Đã dùng khoảng 3 ngày</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="mod-reviews">
-                      <div class="top">
-                        <span class="name">Phạm Phương</span>
-                        <span class="verify">
-                          <img src="./assets/images/icon/ic_check-circle.svg" alt="icon">
-                          <span>
-                            Đã mua tại Haruco
-                          </span>
-                        </span>
-                      </div>
-                      <div class="middle">
-                        <div class="rates">
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star star-grey"></i>
-                        </div>
-                        <span class="px-2 and">|</span>
-                        <p class="mb-0 d-inline-flex align-items-center">
-                          <img src="./assets/images/icon/ic_heart.svg" alt="heart" class="mr-2">
-                          Sẽ giới thiệu cho bạn bè, người thân
-                        </p>
-                      </div>
-                      <div class="des">
-                        Đai lưng chữa thoát vị đĩa đệm Haruco HRC-006 là sản phẩm hỗ trợ cải thiện tư thế, ngăn ngừa cong vẹo cột sống và giảm đau nhức do ngồi sai tư thế trong thời gian dài.
-                      </div>
-                      <div class="bottom">
-                        <p class="mb-0 d-inline-flex align-items-center">
-                          <img src="./assets/images/icon/ic_like-grey.svg" alt="like" class="mr-2">
-                          Hữu ích (16)
-                        </p>
-                        <span class="px-2 and">|</span>
-                        <span>Đã dùng khoảng 3 ngày</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                <form action="" class="comment-h mt-3" style="display: none;">
-                  <div class="comment-form-rating">
-                    <label for="rating">Đánh giá của bạn&nbsp;<span class="required">*</span></label>
-                    <div class="star-container">
-                      <div class="icon star-yellow">
-                       <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"></path>
-                       </svg>
-                      </div>
-                      <div class="icon">
-                       <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"></path>
-                       </svg>
-                      </div>
-                      <div class="icon">
-                       <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"></path>
-                       </svg>
-                      </div>
-                      <div class="icon">
-                       <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"></path>
-                       </svg>
-                      </div>
-                      <div class="icon">
-                       <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"></path>
-                       </svg>
-                      </div>
-                     </div>
-                  </div>
-                  <p class="comment-form-comment">
-                    <label for="comment">Nhận xét của bạn&nbsp;<span class="required">*</span></label>
-                    <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
-                  </p>
-                  <p class="comment-form-author"><label for="author">Tên&nbsp;<span class="required">*</span></label><input id="author" name="author" type="text" value="" size="30" required=""></p>
-                  <p class="comment-form-email"><label for="email">Email&nbsp;<span class="required">*</span></label><input id="email" name="email" type="email" value="" size="30" required=""></p>
-                  <p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Lưu tên của tôi, email, và trang web trong trình duyệt này cho lần bình luận kế tiếp của tôi.</label></p>
-                  <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Gửi đi"> <input type="hidden" name="comment_post_ID" value="126" id="comment_post_ID">
-                    <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                    </p>
-                </form>
-                <div class="btn-feature">
-                  <a href="" class="btn-f btn-border-rounded"><img src="/assets/images/ic-rea-more-review.png" alt="">Xem 128 đánh giá</a>
-                  <a href="" class="btn-f btn-orange-bo active"><img src="/assets/images/ic-reviews.png" alt=""><span class="write-review">Viết đánh giá</span><span class="hidden-review">Ẩn viết đánh giá</span></a>
-                </div>
-              </div>
-              
-            </div>
-            <div class="image-from-customer">
-              <h2>Hình ảnh từ khách hàng</h2>
-              <div class="slider-image-from-customer swiper-container">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="img">
-                      <img src="./assets/images/customer-2.jpg" alt="customer">
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="img">
-                      <img src="./assets/images/customer-2.jpg" alt="customer">
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="img">
-                      <img src="./assets/images/customer-2.jpg" alt="customer">
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="img">
-                      <img src="./assets/images/customer-2.jpg" alt="customer">
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="img">
-                      <img src="./assets/images/customer-2.jpg" alt="customer">
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="img">
-                      <img src="./assets/images/customer-2.jpg" alt="customer">
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="img">
-                      <img src="./assets/images/customer-2.jpg" alt="customer">
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-button-next swiper-button-next-9">
-                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.5625 21.375C12.375 21.375 12.1875 21.3 12.0375 21.15C11.7375 20.85 11.7375 20.3813 12.0375 20.0812L17.6625 14.4562C17.9625 14.1562 18.4313 14.1562 18.7313 14.4562C19.0313 14.7562 19.0313 15.225 18.7313 15.525L13.1063 21.15C12.9375 21.3 12.75 21.375 12.5625 21.375Z" fill="#FFE3C2"></path>
-                    <path d="M18.1875 15.75C18 15.75 17.8125 15.675 17.6625 15.525L12.0375 9.9C11.7375 9.6 11.7375 9.13125 12.0375 8.83125C12.3375 8.53125 12.8063 8.53125 13.1063 8.83125L18.7313 14.4562C19.0313 14.7562 19.0313 15.225 18.7313 15.525C18.5625 15.675 18.375 15.75 18.1875 15.75Z" fill="#FFE3C2"></path>
-                    <path d="M15 30C6.73125 30 0 23.2688 0 15C0 6.73125 6.73125 0 15 0C23.2688 0 30 6.73125 30 15C30 23.2688 23.2688 30 15 30ZM15 1.5C7.55625 1.5 1.5 7.55625 1.5 15C1.5 22.4438 7.55625 28.5 15 28.5C22.4438 28.5 28.5 22.4438 28.5 15C28.5 7.55625 22.4438 1.5 15 1.5Z" fill="#FFE3C2"></path>
-                    </svg>
-                </div>
-              </div>
-            </div>
-            <div class="box-pr-related">
-              <div class="heading-type-2 heading-news-detail">
-                <h2>Sản phẩm tương tự</h2>
-              </div>
-              <div class="list-product-page-child grid-view">
-                <div class="item-best-seller">
-                  <div class="img">
-                    <img src="./assets/images/product-1.png" alt="image">
-                    <span class="highlight-tag">
-                        Bán chạy
-                      </span>
-                  </div>
-                  <div class="info">
-                    <h4>Chườm mặt thảo dược Hatoco</h4>
-                    <div class="price d-flex">
-                      <span class="sale">200.000đ</span>
-                      <span class="cost cost-s">399.000đ</span>
-                    </div>
-                    <a href="" class="btn-border-rounded">
-                      Mua hàng <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.57393 0.00432931H0.516347C0.10483 0.0676408 0.00195085 0.426398 0.00195099 0.597863C-0.0297042 1.07269 0.331692 1.27053 0.516347 1.3101H2.13867L4.55238 9.30303L5.69988 8.74906L4.15669 3.52596H14.0489L13.1784 7.91811L5.73945 8.8282L4.55238 9.38216C3.95884 10.1735 4.2754 10.9649 4.2754 11.0441C4.56029 11.8354 5.52841 11.9541 5.97686 11.9146C7.17976 11.7246 11.3846 11.5453 13.3367 11.4793C14.0014 11.4793 14.1413 11.1364 14.1281 10.9649C14.1281 10.5534 13.706 10.4505 13.495 10.4505L5.66031 10.8462C5.05886 10.8462 5.17229 10.3978 5.30419 10.1735L13.6928 9.18432C14.2309 9.12101 14.3391 8.76225 14.3259 8.59079L15.4338 3.01157C15.4655 2.34681 14.9722 2.207 14.7216 2.22019H3.761L3.28617 0.597863C3.15955 0.0597258 2.75859 -0.02205 2.57393 0.00432931Z" fill="#FF6D3E"></path>
-                        <circle cx="5.22509" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <circle cx="12.5058" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <rect x="7.32214" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="10.646" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="4.71063" y="5.5835" width="9.17999" height="0.633103" fill="#FF6D3E"></rect>
-                        <path d="M5.73941 8.86791L5.58113 8.35352L4.35449 8.6305L4.55234 9.38231L5.73941 8.86791Z" fill="#FF6D3E"></path>
-                        </svg>     
-                    </a>
-                  </div>
-                </div>
-                <div class="item-best-seller">
-                  <div class="img">
-                    <img src="./assets/images/product-1.png" alt="image">
-                    <span class="highlight-tag">
-                        Bán chạy
-                      </span>
-                  </div>
-                  <div class="info">
-                    <h4>Chườm mặt thảo dược Hatoco</h4>
-                    <div class="price d-flex">
-                      <span class="sale">200.000đ</span>
-                      <span class="cost cost-s">399.000đ</span>
-                    </div>
-                    <a href="" class="btn-border-rounded">
-                      Mua hàng <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.57393 0.00432931H0.516347C0.10483 0.0676408 0.00195085 0.426398 0.00195099 0.597863C-0.0297042 1.07269 0.331692 1.27053 0.516347 1.3101H2.13867L4.55238 9.30303L5.69988 8.74906L4.15669 3.52596H14.0489L13.1784 7.91811L5.73945 8.8282L4.55238 9.38216C3.95884 10.1735 4.2754 10.9649 4.2754 11.0441C4.56029 11.8354 5.52841 11.9541 5.97686 11.9146C7.17976 11.7246 11.3846 11.5453 13.3367 11.4793C14.0014 11.4793 14.1413 11.1364 14.1281 10.9649C14.1281 10.5534 13.706 10.4505 13.495 10.4505L5.66031 10.8462C5.05886 10.8462 5.17229 10.3978 5.30419 10.1735L13.6928 9.18432C14.2309 9.12101 14.3391 8.76225 14.3259 8.59079L15.4338 3.01157C15.4655 2.34681 14.9722 2.207 14.7216 2.22019H3.761L3.28617 0.597863C3.15955 0.0597258 2.75859 -0.02205 2.57393 0.00432931Z" fill="#FF6D3E"></path>
-                        <circle cx="5.22509" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <circle cx="12.5058" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <rect x="7.32214" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="10.646" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="4.71063" y="5.5835" width="9.17999" height="0.633103" fill="#FF6D3E"></rect>
-                        <path d="M5.73941 8.86791L5.58113 8.35352L4.35449 8.6305L4.55234 9.38231L5.73941 8.86791Z" fill="#FF6D3E"></path>
-                        </svg>     
-                    </a>
-                  </div>
-                </div>
-                <div class="item-best-seller">
-                  <div class="img">
-                    <img src="./assets/images/product-1.png" alt="image">
-                    <span class="highlight-tag">
-                        Bán chạy
-                      </span>
-                  </div>
-                  <div class="info">
-                    <h4>Chườm mặt thảo dược Hatoco</h4>
-                    <div class="price d-flex">
-                      <span class="sale">200.000đ</span>
-                      <span class="cost cost-s">399.000đ</span>
-                    </div>
-                    <a href="" class="btn-border-rounded">
-                      Mua hàng <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.57393 0.00432931H0.516347C0.10483 0.0676408 0.00195085 0.426398 0.00195099 0.597863C-0.0297042 1.07269 0.331692 1.27053 0.516347 1.3101H2.13867L4.55238 9.30303L5.69988 8.74906L4.15669 3.52596H14.0489L13.1784 7.91811L5.73945 8.8282L4.55238 9.38216C3.95884 10.1735 4.2754 10.9649 4.2754 11.0441C4.56029 11.8354 5.52841 11.9541 5.97686 11.9146C7.17976 11.7246 11.3846 11.5453 13.3367 11.4793C14.0014 11.4793 14.1413 11.1364 14.1281 10.9649C14.1281 10.5534 13.706 10.4505 13.495 10.4505L5.66031 10.8462C5.05886 10.8462 5.17229 10.3978 5.30419 10.1735L13.6928 9.18432C14.2309 9.12101 14.3391 8.76225 14.3259 8.59079L15.4338 3.01157C15.4655 2.34681 14.9722 2.207 14.7216 2.22019H3.761L3.28617 0.597863C3.15955 0.0597258 2.75859 -0.02205 2.57393 0.00432931Z" fill="#FF6D3E"></path>
-                        <circle cx="5.22509" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <circle cx="12.5058" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <rect x="7.32214" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="10.646" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="4.71063" y="5.5835" width="9.17999" height="0.633103" fill="#FF6D3E"></rect>
-                        <path d="M5.73941 8.86791L5.58113 8.35352L4.35449 8.6305L4.55234 9.38231L5.73941 8.86791Z" fill="#FF6D3E"></path>
-                        </svg>     
-                    </a>
-                  </div>
-                </div>
-                <div class="item-best-seller">
-                  <div class="img">
-                    <img src="./assets/images/product-1.png" alt="image">
-                    <span class="highlight-tag">
-                      Bán chạy
-                    </span>
-                  </div>
-                  <div class="info">
-                    <h4>Chườm mặt thảo dược Hatoco</h4>
-                    <div class="price d-flex">
-                      <span class="sale">200.000đ <small>(-20%)</small></span>
-                      <span class="cost cost-s">399.000đ</span>
-                    </div>
-                    <a href="" class="btn-border-rounded">
-                      Mua hàng <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.57393 0.00432931H0.516347C0.10483 0.0676408 0.00195085 0.426398 0.00195099 0.597863C-0.0297042 1.07269 0.331692 1.27053 0.516347 1.3101H2.13867L4.55238 9.30303L5.69988 8.74906L4.15669 3.52596H14.0489L13.1784 7.91811L5.73945 8.8282L4.55238 9.38216C3.95884 10.1735 4.2754 10.9649 4.2754 11.0441C4.56029 11.8354 5.52841 11.9541 5.97686 11.9146C7.17976 11.7246 11.3846 11.5453 13.3367 11.4793C14.0014 11.4793 14.1413 11.1364 14.1281 10.9649C14.1281 10.5534 13.706 10.4505 13.495 10.4505L5.66031 10.8462C5.05886 10.8462 5.17229 10.3978 5.30419 10.1735L13.6928 9.18432C14.2309 9.12101 14.3391 8.76225 14.3259 8.59079L15.4338 3.01157C15.4655 2.34681 14.9722 2.207 14.7216 2.22019H3.761L3.28617 0.597863C3.15955 0.0597258 2.75859 -0.02205 2.57393 0.00432931Z" fill="#FF6D3E"></path>
-                        <circle cx="5.22509" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <circle cx="12.5058" cy="13.6949" r="1.30577" fill="#FF6D3E"></circle>
-                        <rect x="7.32214" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="10.646" y="3.36768" width="0.633103" height="5.53965" fill="#FF6D3E"></rect>
-                        <rect x="4.71063" y="5.5835" width="9.17999" height="0.633103" fill="#FF6D3E"></rect>
-                        <path d="M5.73941 8.86791L5.58113 8.35352L4.35449 8.6305L4.55234 9.38231L5.73941 8.86791Z" fill="#FF6D3E"></path>
-                        </svg>     
-                    </a>
-                  </div>
-                </div>
-              </div>
-             </div>
-          </div>
-          <div class="sidebar-detail-pr">
-            <div class="box-cate-pr">
-              <h4>Sản phẩm bán chạy</h4>
-              <ul class="list-pr-vertical">
-                <li>
-                  <div class="item-best-seller">
-                    <div class="img">
-                      <img src="./assets/images/product-1.png" alt="image">
-                    </div>
-                    <div class="info">
-                      <h5><a href="">Chườm mặt thảo dược Hatoco</a></h5>
-                      <div class="price d-flex">
-                        <span class="sale">200.000đ <small>(-20%)</small></span>
-                        <span class="cost cost-s">399.000đ</span>
-                      </div>     
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item-best-seller">
-                    <div class="img">
-                      <img src="./assets/images/product-1.png" alt="image">
-                    </div>
-                    <div class="info">
-                      <h5><a href="">Chườm mặt thảo dược Hatoco</a></h5>
-                      <div class="price d-flex">
-                        <span class="sale">200.000đ <small>(-20%)</small></span>
-                        <span class="cost cost-s">399.000đ</span>
-                      </div>     
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item-best-seller">
-                    <div class="img">
-                      <img src="./assets/images/product-1.png" alt="image">
-                    </div>
-                    <div class="info">
-                      <h5><a href="">Chườm mặt thảo dược Hatoco</a></h5>
-                      <div class="price d-flex">
-                        <span class="sale">200.000đ <small>(-20%)</small></span>
-                        <span class="cost cost-s">399.000đ</span>
-                      </div>     
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item-best-seller">
-                    <div class="img">
-                      <img src="./assets/images/product-1.png" alt="image">
-                    </div>
-                    <div class="info">
-                      <h5><a href="">Chườm mặt thảo dược Hatoco</a></h5>
-                      <div class="price d-flex">
-                        <span class="sale">200.000đ <small>(-20%)</small></span>
-                        <span class="cost cost-s">399.000đ</span>
-                      </div>     
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="banner mt-3 text-center">
-              <img src="./assets/images/banner-pr-detail.png" alt="banner">
-            </div>
-            <div class="banner mt-3 text-center">
-              <img src="./assets/images/banner-pr-detail-2.png" alt="banner">
-            </div>
-          </div>
+      </a>
+      <a href="#" class="cta-float-item cta-float-zalo" aria-label="Zalo">
+        <div class="icon">
+          <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.484 24.355C15.5787 24.355 13.6733 24.0244 11.9921 23.3632C11.2076 23.1428 10.6472 22.8122 9.97489 22.8122C9.30232 22.8122 8.62999 23.2531 8.06956 23.5837C6.94868 24.1347 5.7159 24.355 4.371 24.2449C3.58645 24.1347 3.47438 23.6938 4.03477 23.2531C4.25892 23.0326 4.70716 22.8122 4.81931 22.5919C5.26762 22.3713 5.49178 21.9306 5.7159 21.6C6.27635 20.7182 6.50037 20.0571 5.82804 19.2856C3.92272 17.1918 2.80194 14.547 2.80194 11.5714C2.80194 6.50201 6.38836 2.09381 11.4318 0H6.05206C2.80194 0 0 2.75505 0 6.06125V20.9388C0 24.2449 2.80194 27 6.05206 27H20.9584C24.0972 27 26.817 24.4304 27 21.2767C24.4236 23.1458 21.0656 24.355 17.484 24.355Z" fill="white"/>
+            <path d="M22.8636 14.7673C24.3206 14.6571 25.2172 13.8857 25.3294 12.2326C25.1052 10.5796 24.3206 9.80812 22.8636 9.58774C21.2945 9.80808 20.5101 10.5796 20.3979 12.2326C20.5101 13.8857 21.2945 14.6571 22.8636 14.7673ZM22.8636 10.9102C23.536 10.9102 23.8724 11.351 23.8724 12.2326C23.8724 13.1143 23.536 13.555 22.8636 13.555C22.1911 13.555 21.855 13.1143 21.7428 12.2326C21.855 11.351 22.1911 10.9102 22.8636 10.9102Z" fill="white"/>
+            <path d="M15.3545 14.7673C15.9149 14.7673 16.3632 14.547 16.6994 14.2164C16.8116 14.547 17.0357 14.7673 17.3718 14.7673C17.8202 14.7673 18.0443 14.4367 18.0443 13.8857V10.5796C18.0443 9.91837 17.8201 9.69793 17.3718 9.69793C17.0357 9.69793 16.8116 9.91837 16.6994 10.249C16.4753 9.80812 16.0269 9.58777 15.3545 9.58777C14.0096 9.80812 13.2251 10.6898 13.113 12.2327C13.2252 13.8857 14.0096 14.6571 15.3545 14.7673ZM15.5787 10.9102C16.2511 10.9102 16.5874 11.351 16.6994 12.2326C16.5874 13.1143 16.2511 13.555 15.5787 13.555C14.9062 13.555 14.5699 13.1143 14.4579 12.2326C14.5699 11.351 14.9062 10.9102 15.5787 10.9102Z" fill="white"/>
+            <path d="M19.2772 14.7673C19.7255 14.7673 19.9497 14.547 19.9497 13.9959V8.26532C19.9497 7.82446 19.7254 7.49386 19.2772 7.49386C18.8289 7.49386 18.6048 7.82446 18.6048 8.26532V13.9959C18.6048 14.547 18.8289 14.7673 19.2772 14.7673Z" fill="white"/>
+            <path d="M7.7334 8.70611C7.84541 9.03672 7.95742 9.25713 8.4057 9.25713H10.8715L7.84538 13.555C7.73337 13.6652 7.73337 13.8857 7.73337 14.1061C7.73337 14.4367 7.95738 14.657 8.51781 14.7673H12.2164C12.6647 14.657 12.8888 14.4367 12.8888 14.1061C12.8888 13.6652 12.6647 13.555 12.2164 13.4449H9.52661L12.4406 9.36732C12.6647 9.14688 12.6647 8.92653 12.6647 8.70611C12.6647 8.26532 12.4406 8.04487 11.8801 8.04487H8.4057C7.95742 8.04487 7.84541 8.26532 7.7334 8.70611Z" fill="white"/>
+          </svg>
         </div>
-      </div>
-    </div>
+      </a>
     </div>
   </main>
+  
   <footer class="footer-page">
-    <section class="footer-m">
-      <div class="container-fluid">
-        <div class="footer-middle">
-          <div class="row">
-            <div class="col-xl-5">
-              <div class="info-company-ft">
-                <div class="logo">
-                  <a href="">
-                    <img src="./assets/images/logo-white.svg" alt="image">
-                  </a>
-                </div>
-                <p class="des-intro text-white">Haruco là website của công ty Rezkin Việt Nam nhà nhập khẩu và phân phối các dòng sản phẩm chăm sóc sức khỏe nhập khẩu từ Nhật Bản với gần 10 năm kinh nghiệm có trụ sở tại Hà Nội.</p>
-                <div class="info">
-                  <h5>Công ty TNHH Rezkin Việt Nam</h5>
-                  <ul class="list-info">
-                    <li>
-                      <div class="icon">
-                        <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="5.23055" cy="4.61608" r="2.07702" fill="white"/>
-                          <path d="M5.23055 1.07697V0C2.09195 0.0615412 0.845741 2.48729 0.614961 3.69247C0.245713 5.29255 0.871382 6.64132 1.23037 7.11571L5.23055 12.4236V10.5389C4.48693 9.55171 2.85352 7.37726 2.26888 6.57722C1.68424 5.77718 1.61501 5.06433 1.65347 4.80791C1.71501 1.8847 4.06384 1.10261 5.23055 1.07697Z" fill="white"/>
-                          <path d="M5.23055 1.08031V0C8.39645 0.0617318 9.6535 2.49499 9.88629 3.70391C10.2587 5.30893 9.62764 6.66189 9.26552 7.13774L5.23055 12.4621V10.5716C5.98064 9.58128 7.62826 7.4001 8.21798 6.59758C8.80771 5.79507 8.87754 5.08001 8.83875 4.82279C8.77667 1.89054 6.40742 1.10603 5.23055 1.08031Z" fill="white"/>
-                          <circle cx="5.23055" cy="4.6155" r="0.923119" fill="white"/>
-                          </svg>                          
-                      </div>
-                        <span>Địa chỉ:  Đại Áng, Thanh Trì, Hà Nội</span>
-                    </li>
-                    <li>
-                      <div class="icon">
-                        <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M2.86265 0.34082H0.216757C-0.981381 5.07772 3.07898 8.8825 5.25892 10.1928C7.6552 11.6258 10.0848 11.4201 11 11.1382V8.55078C11 8.03331 10.6339 7.90394 10.4509 7.90394L7.85489 7.35661L6.40714 8.74981C4.60993 7.9537 3.09562 5.89706 2.56311 4.96825L4.06078 3.47553C3.89438 2.79552 3.54159 1.32602 3.46171 0.888151C3.38184 0.450287 3.02905 0.34082 2.86265 0.34082Z" fill="white"/>
-                          </svg>                          
-                      </div>
-                        <a href="tel:0839697689">Hotline: 0839.697.689
-                        </a>
-                    </li>
-                    <li>
-                      <div class="icon">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.72485 2.49265V5.17325L8.96468 5.73337V2.61268H2.24319V5.73337L1.48302 5.17325V2.61268C1.48302 2.00454 1.96312 1.82584 2.20318 1.8125H8.96468C9.57282 1.84451 9.72485 2.27927 9.72485 2.49265Z" fill="white"/>
-                          <rect width="5.12114" height="0.72016" rx="0.36008" transform="matrix(-1 0 0 1 8.16452 3.37207)" fill="white"/>
-                          <rect width="5.12114" height="0.72016" rx="0.36008" transform="matrix(-1 0 0 1 8.16452 4.8125)" fill="white"/>
-                          <path d="M5.84401 0.411511L7.6044 1.81182H6.44414L5.60396 1.17168L4.80378 1.81182H3.60351C4.12363 1.3984 5.21187 0.53954 5.40391 0.411511C5.59595 0.283483 5.77733 0.358166 5.84401 0.411511Z" fill="white"/>
-                          <path d="M11.0451 4.53239L9.72485 3.45215V4.41236L10.205 4.81245L8.96469 5.69265L5.60394 8.05317V8.93337C5.69996 8.93337 5.83065 8.85335 5.884 8.81334L6.68418 8.21321L9.44479 10.3337C9.73286 10.4937 9.91156 10.3737 9.96491 10.2937C10.221 10.0376 10.0449 9.81357 9.9249 9.73355L7.32432 7.77311L10.445 5.53261V10.3337C10.445 10.6858 10.1516 10.7738 10.0049 10.7738H6.12405V11.5339H10.0849C11.0131 11.4379 11.2185 10.7471 11.2052 10.4137V4.81245C11.2052 4.65242 11.0985 4.55906 11.0451 4.53239Z" fill="white"/>
-                          <path d="M5.56396 8.05317L1.00294 4.81245L1.48305 4.45237V3.45215L0.242773 4.45237C0.0187225 4.61241 -0.0106173 4.8658 0.00271893 4.97249V10.3737C0.0987406 11.3019 0.789561 11.5339 1.12297 11.5339H6.36414V10.7738H1.12297C0.77089 10.7738 0.736216 10.4004 0.762888 10.2137V5.53261L3.88358 7.77311L1.20299 9.77356C1.04295 9.9656 1.1363 10.2003 1.20299 10.2937C1.36302 10.4537 1.61641 10.387 1.7231 10.3337L4.52373 8.21321C4.72377 8.35991 5.17187 8.68531 5.36391 8.81334C5.55596 8.94137 5.57729 8.94671 5.56396 8.93337V8.05317Z" fill="white"/>
-                          </svg>                          
-                      </div>
-                        <a href="mailto:hotro.haruco@gmail.com">Email: hotro.haruco@gmail.com</a>
-                    </li>
-                    <li>
-                      <div class="icon"><svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="5.23055" cy="4.61608" r="2.07702" fill="white"/>
-                        <path d="M5.23055 1.07697V0C2.09195 0.0615412 0.845741 2.48729 0.614961 3.69247C0.245713 5.29255 0.871382 6.64132 1.23037 7.11571L5.23055 12.4236V10.5389C4.48693 9.55171 2.85352 7.37726 2.26888 6.57722C1.68424 5.77718 1.61501 5.06433 1.65347 4.80791C1.71501 1.8847 4.06384 1.10261 5.23055 1.07697Z" fill="white"/>
-                        <path d="M5.23055 1.08031V0C8.39645 0.0617318 9.6535 2.49499 9.88629 3.70391C10.2587 5.30893 9.62764 6.66189 9.26552 7.13774L5.23055 12.4621V10.5716C5.98064 9.58128 7.62826 7.4001 8.21798 6.59758C8.80771 5.79507 8.87754 5.08001 8.83875 4.82279C8.77667 1.89054 6.40742 1.10603 5.23055 1.08031Z" fill="white"/>
-                        <circle cx="5.23055" cy="4.6155" r="0.923119" fill="white"/>
-                        </svg>       
-                      </div>
-                        <a href="https://hatoco.vn/">Website: harucovietnam.com</a>
-                    </li>
-                  </ul>
-                  <ul class="list-sns-ic d-flex">
-                    <li>
-                      <a href="">
-                        <img src="./assets/images/icon/ic_google-plus.svg" alt="icon">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="./assets/images/icon/ic_facebook.svg" alt="icon">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="./assets/images/icon/ic_twitter.svg" alt="icon">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="./assets/images/icon/ic_youtube.svg" alt="icon">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="./assets/images/icon/ic_in.svg" alt="icon">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="./assets/images/icon/ic_tiktok.svg" alt="icon">
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3">
-              <div class="box-menu">
-                <div class="title-ft">
-                  <h4>Thông tin chung</h4>
-                </div>
-                <ul class="menu-ft">
-                  <li><a href="#">
-                    <div class="icon">
-                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                        </svg>                                              
-                    </div>
-                    Giới thiệu về Haruco</a></li>
-                  <li><a href="#">
-                    <div class="icon">
-                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                        </svg>                                              
-                    </div>
-                    Giới thiệu chung</a></li>
-                  <li><a href="#">
-                    <div class="icon">
-                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                        </svg>                                              
-                    </div>
-                    Chính sách bảo hành</a></li>
-                </ul>
-                <div class="line-FB9E82"></div>
-                <div class="title-ft">
-                  <h4>Sản phẩm haruco</h4>
-                </div>
-                <ul class="menu-ft">
-                  <li><a href="#">
-                    <div class="icon">
-                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                        </svg>                                              
-                    </div>
-                    Giới thiệu chung</a></li>
-                  <li><a href="#">
-                    <div class="icon">
-                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                        </svg>                                              
-                    </div>
-                    Giới thiệu chung</a></li>
-                  <li><a href="#">
-                    <div class="icon">
-                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                        </svg>                                              
-                    </div>
-                    Giới thiệu chung</a></li>
-                  <li><a href="#"><div class="icon">
-                    <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                      </svg>                                              
-                  </div>
-                    Giới thiệu chung</a></li>
-                  <li><a href="#">
-                    <div class="icon">
-                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.546432 0.504883C0.420517 0.504883 0.294063 0.539459 0.191093 0.610099C-0.0383319 0.767177 -0.0650038 1.04312 0.131873 1.22644L3.10476 4.00149L0.131873 6.77654C-0.0650038 6.95987 -0.0383219 7.23582 0.191093 7.39289C0.419977 7.54932 0.765183 7.52862 0.960991 7.34551L4.23907 4.28598C4.4146 4.12229 4.4146 3.8807 4.23907 3.71701L0.960991 0.657475C0.853214 0.556736 0.700087 0.504883 0.546432 0.504883Z" fill="white"/>
-                        </svg>                                              
-                    </div>
-                    Giới thiệu chung</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xl-4">
-              <div class="facebook-box">
-                <div class="title-ft">
-                  <h4 class="mb-3">KẾT NỐI FACEBOOK</h4>
-                  <div class="content-iframe mb-2">
-
-                  </div>
-                  <div class="receive-incentives">
-                    <div class="icon">
-                      <svg width="46" height="40" viewBox="0 0 46 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M45.9796 13.9566V35.0871C45.9796 37.7961 43.7114 40 40.9235 40H5.05613C2.26815 40.0001 0 37.7961 0 35.0871V10.6173C0 7.90835 2.26815 5.70447 5.05613 5.70447H25.4806C25.955 5.70447 26.3395 6.07807 26.3395 6.53903C26.3395 6.99998 25.955 7.37359 25.4806 7.37359H5.05613C3.21533 7.37349 1.71779 8.82869 1.71779 10.6173V13.0918L21.3511 22.3563C22.391 22.847 23.5824 22.8441 24.6197 22.3482L35.79 17.0097C36.2158 16.8063 36.7304 16.9767 36.9399 17.3903C37.1492 17.8039 36.9739 18.304 36.5482 18.5076L25.3779 23.8461C23.863 24.5701 22.1218 24.5755 20.6007 23.8577L1.71779 14.9473V35.0871C1.71779 36.8758 3.21533 38.3309 5.05613 38.3309H40.9235C42.7642 38.3309 44.2617 36.8758 44.2617 35.0871V13.9566C44.2617 13.4956 44.6462 13.122 45.1206 13.122C45.595 13.122 45.9796 13.4957 45.9796 13.9566ZM13.4157 25.7843L5.04506 33.9177C4.50214 34.4452 4.89418 35.3424 5.6524 35.3424C5.87218 35.3424 6.09196 35.2609 6.25973 35.098L14.6303 26.9645C14.9658 26.6386 14.9658 26.1101 14.6303 25.7842C14.2949 25.4584 13.751 25.4584 13.4157 25.7843ZM32.564 25.7843C32.2285 25.4584 31.6848 25.4584 31.3492 25.7843C31.0138 26.1102 31.0138 26.6387 31.3492 26.9646L39.7199 35.0981C40.0555 35.424 40.5991 35.4239 40.9346 35.0981C41.2701 34.7721 41.2701 34.2437 40.9346 33.9177L32.564 25.7843ZM30.3407 4.79229L44.866 0.0448452C45.5373 -0.174644 46.1799 0.448958 45.9538 1.10186L41.0679 15.2157C40.8277 15.9098 39.8455 15.9866 39.4941 15.3387L36.2912 9.43356L30.2141 6.32158C29.5485 5.98089 29.6252 5.02606 30.3407 4.79229ZM32.7886 5.75333L36.7673 7.79077L39.646 4.9937C39.9815 4.66785 40.5252 4.66785 40.8608 4.9937C41.1962 5.31964 41.1962 5.8481 40.8608 6.17404L37.9821 8.97112L40.079 12.8373L43.7743 2.16277L32.7886 5.75333Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <div class="text">
-                      <h5>ĐĂNG KÝ nhận tin</h5>
-                      <p class="mb-0">Đăng ký nhận tin ưu đãi khuyến mại tại đây</p>
-                    </div>
-                  </div>
-                  <div class="form-receive">
-                    <div class="wpcf7 js" id="wpcf7-f12-o1" lang="en-US" dir="ltr">
-                      <div class="screen-reader-response">
-                         <p role="status" aria-live="polite" aria-atomic="true"></p>
-                         <ul></ul>
-                      </div>
-                      <form action="/#wpcf7-f12-o1" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-                         <p>
-                            <label><span class="wpcf7-form-control-wrap" data-name="email"><input size="40" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email class-email" id="id-email" aria-invalid="false" placeholder="Email của bạn..." value="" type="email" name="email"></span></label>
-                         </p>
-                         <p>
-                            <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Submit"><span class="wpcf7-spinner"></span>
-                         </p>
-                         <div class="wpcf7-response-output" aria-hidden="true"></div>
-                      </form>
-                   </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="container-fluid">
+      <div class="footer-newsletter">
+        <div class="footer-newsletter-info">
+          <div class="icon">
+            <svg width="46" height="40" viewBox="0 0 46 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M45.9796 13.9566V35.0871C45.9796 37.7961 43.7114 40 40.9235 40H5.05613C2.26815 40.0001 0 37.7961 0 35.0871V10.6173C0 7.90835 2.26815 5.70447 5.05613 5.70447H25.4806C25.955 5.70447 26.3395 6.07807 26.3395 6.53903C26.3395 6.99998 25.955 7.37359 25.4806 7.37359H5.05613C3.21533 7.37349 1.71779 8.82869 1.71779 10.6173V13.0918L21.3511 22.3563C22.391 22.847 23.5824 22.8441 24.6197 22.3482L35.79 17.0097C36.2158 16.8063 36.7304 16.9767 36.9399 17.3903C37.1492 17.8039 36.9739 18.304 36.5482 18.5076L25.3779 23.8461C23.863 24.5701 22.1218 24.5755 20.6007 23.8577L1.71779 14.9473V35.0871C1.71779 36.8758 3.21533 38.3309 5.05613 38.3309H40.9235C42.7642 38.3309 44.2617 36.8758 44.2617 35.0871V13.9566C44.2617 13.4956 44.6462 13.122 45.1206 13.122C45.595 13.122 45.9796 13.4957 45.9796 13.9566ZM13.4157 25.7843L5.04506 33.9177C4.50214 34.4452 4.89418 35.3424 5.6524 35.3424C5.87218 35.3424 6.09196 35.2609 6.25973 35.098L14.6303 26.9645C14.9658 26.6386 14.9658 26.1101 14.6303 25.7842C14.2949 25.4584 13.751 25.4584 13.4157 25.7843ZM32.564 25.7843C32.2285 25.4584 31.6848 25.4584 31.3492 25.7843C31.0138 26.1102 31.0138 26.6387 31.3492 26.9646L39.7199 35.0981C40.0555 35.424 40.5991 35.4239 40.9346 35.0981C41.2701 34.7721 41.2701 34.2437 40.9346 33.9177L32.564 25.7843ZM30.3407 4.79229L44.866 0.0448452C45.5373 -0.174644 46.1799 0.448958 45.9538 1.10186L41.0679 15.2157C40.8277 15.9098 39.8455 15.9866 39.4941 15.3387L36.2912 9.43356L30.2141 6.32158C29.5485 5.98089 29.6252 5.02606 30.3407 4.79229ZM32.7886 5.75333L36.7673 7.79077L39.646 4.9937C39.9815 4.66785 40.5252 4.66785 40.8608 4.9937C41.1962 5.31964 41.1962 5.8481 40.8608 6.17404L37.9821 8.97112L40.079 12.8373L43.7743 2.16277L32.7886 5.75333Z" fill="white"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Đăng ký nhận tin</h3>
+            <p>Đăng ký nhận tin ưu đãi khuyến mại, sản phẩm mới tại đây</p>
           </div>
         </div>
-        <div class="footer-bottom">
-          <div class="row flex-md-row flex-column-reverse ">
-            <div class="col-md-7">
-              <div class="text text-md-left text-center">© Copyright - Công ty TNHH Rezkin Việt Nam</div>
+        <form class="footer-newsletter-form">
+          <input type="tel" name="phone" placeholder="Số điện thoại" required>
+          <button type="submit" aria-label="Đăng ký nhận tin">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.91165 15.7553L3.48687 13.4133C3.56003 13.1072 3.51115 12.7842 3.35089 12.5146C3.19063 12.2451 2.932 12.0508 2.6314 11.9743C2.3308 11.8978 2.01261 11.9451 1.74624 12.1061C1.47986 12.267 1.28691 12.5285 1.20946 12.8334L0.035534 17.6057C-0.0186271 17.8245 -0.0106329 18.0544 0.0585893 18.2688C0.127811 18.4832 0.255424 18.6732 0.42662 18.8168C0.597816 18.9605 0.805578 19.0518 1.0258 19.0803C1.24602 19.1088 1.46967 19.0732 1.67081 18.9777L19.2797 10.6263C19.4823 10.5303 19.6538 10.3776 19.774 10.186C19.8941 9.99442 19.958 9.77194 19.958 9.54474C19.958 9.31755 19.8941 9.09507 19.774 8.90348C19.6538 8.71189 19.4823 8.55915 19.2797 8.46323L1.67081 0.111759C1.46686 0.014925 1.23982 -0.0202713 1.01674 0.0103607C0.793664 0.0409927 0.583954 0.136164 0.412605 0.284531C0.241255 0.432898 0.115492 0.628204 0.0503031 0.847178C-0.0148862 1.06615 -0.0167531 1.29956 0.0449251 1.51958L2.39277 9.87105C2.46273 10.1206 2.61082 10.3402 2.81461 10.4965C3.0184 10.6528 3.26678 10.7373 3.52209 10.7372H8.21779C8.52913 10.7372 8.82772 10.6115 9.04788 10.3878C9.26803 10.164 9.39171 9.86057 9.39171 9.54415C9.39171 9.22773 9.26803 8.92427 9.04788 8.70052C8.82772 8.47678 8.52913 8.35108 8.21779 8.35108H4.40723L3.01026 3.37957L16.0068 9.54415L2.91165 15.7553Z" fill="#E83729"/>
+              </svg>
             </div>
-            <div class="col-md-5">
-              <ul class="list-menu-ft-bot d-flex justify-content-end align-items-center">
-                <li>
-                  <a href="">
-                    Giới thiệu  
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    Sản phẩm
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    tin tức
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    Liên hệ
-                  </a>
-                </li>
-              </ul>
+          </button>
+        </form>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-col footer-about">
+          <div class="footer-logo">
+            <img src="./assets/images/logo-1.png" alt="Haruco">
+          </div>
+          <p>Haruco là website của công ty Rezkin Việt Nam nhà nhập khẩu và phân phối các dòng sản phẩm chăm sóc sức khỏe nhập khẩu từ Nhật Bản.</p>
+          <ul class="footer-social">
+            <li><a href="" aria-label="Google Plus">
+              <div class="icon">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12.5" cy="12.5" r="12.5" fill="#E83729"/>
+                  <path d="M20.263 9.99972V11.9045H22.1428L22.1409 13.8092H20.2545L20.263 15.714H18.3898V13.8092H16.5034V11.9045H18.3898V9.99972H20.263ZM13.5653 13.8092H9.92416V11.9045H15.5635V13.8092C15.1161 16.5121 12.7185 18.5711 9.92416 18.5711C9.04789 18.571 8.1837 18.364 7.40016 17.9664C6.61662 17.5689 5.93529 16.9918 5.41021 16.281C4.88513 15.5701 4.53076 14.7451 4.37521 13.8712C4.21966 12.9974 4.26721 12.0989 4.51408 11.247C4.76096 10.395 5.20037 9.61308 5.79745 8.9632C6.39454 8.31332 7.13287 7.81337 7.95387 7.50301C8.77487 7.19266 9.65595 7.08044 10.5272 7.17525C11.3985 7.27007 12.2359 7.56931 12.9732 8.04925L11.9572 9.6521C11.2886 9.21688 10.5011 9.00753 9.70784 9.05402C8.91453 9.10054 8.15617 9.40056 7.54163 9.9110C6.92708 10.4215 6.48796 11.1161 6.2873 11.8952C6.08664 12.6743 6.13477 13.4978 6.42477 14.2475C6.71476 14.9971 7.23172 15.6344 7.90143 16.0678C8.57113 16.5012 9.35914 16.7084 10.1523 16.6597C10.9455 16.6111 11.7031 16.309 12.3163 15.7968C12.9294 15.2847 13.3667 14.5889 13.5653 13.8092Z" fill="white"/>
+                </svg>
+              </div>
+            </a></li>
+            <li><a href="" aria-label="Facebook">
+              <div class="icon">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12.5" cy="12.5" r="12.5" fill="#3B60E3"/>
+                  <path d="M10.342 10.1633H8.57141V12.8571H10.342V20.7143H13.7726V12.8571H16.2072L16.4286 10.1633H13.7726V8.47959C13.7726 7.58163 14.2891 7.5068 14.5473 7.58163H16.4286V5H13.33C10.9396 5.17959 10.342 6.94558 10.342 7.80612V10.1633Z" fill="white"/>
+                </svg>
+              </div>
+            </a></li>
+            <li><a href="" aria-label="Youtube">
+              <div class="icon">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12.5" cy="12.5" r="12.5" fill="#E83729"/>
+                  <g clip-path="url(#clip0_youtube_footer)">
+                    <path d="M14.0848 15.4718V17.4903C14.0848 17.9176 13.9604 18.1312 13.7117 18.1312C13.565 18.1312 13.4215 18.0611 13.2812 17.9208V15.0413C13.4215 14.901 13.565 14.8309 13.7117 14.8309C13.9604 14.8309 14.0848 15.0445 14.0848 15.4718ZM17.3182 15.4814V15.9214H16.4573V15.4814C16.4573 15.0477 16.6008 14.8309 16.8877 14.8309C17.1747 14.8309 17.3182 15.0477 17.3182 15.4814ZM8.07716 13.3959H9.10076V12.4967H6.11606V13.3959H7.12053V18.8391H8.07716V13.3959ZM10.8323 18.8391H11.6837V14.1134H10.8323V17.7295C10.6409 17.9973 10.4592 18.1312 10.287 18.1312C10.1722 18.1312 10.1052 18.0643 10.0861 17.9303C10.0797 17.9112 10.0765 17.7996 10.0765 17.5955V14.1134H9.22512V17.8538C9.22512 18.1663 9.25063 18.3991 9.30165 18.5522C9.37818 18.7881 9.56313 18.9061 9.85649 18.9061C10.1626 18.9061 10.4879 18.7116 10.8323 18.3226V18.8391ZM14.9362 17.4233V15.5388C14.9362 15.0732 14.9075 14.7575 14.8501 14.5917C14.7417 14.2346 14.5153 14.056 14.1709 14.056C13.852 14.056 13.5555 14.2282 13.2812 14.5726V12.4967H12.4298V18.8391H13.2812V18.38C13.5682 18.7307 13.8648 18.9061 14.1709 18.9061C14.5153 18.9061 14.7417 18.7307 14.8501 18.38C14.9075 18.2078 14.9362 17.8889 14.9362 17.4233ZM18.1696 17.3277V17.2033H17.2991C17.2991 17.5286 17.2927 17.7231 17.28 17.7868C17.2353 18.0164 17.1078 18.1312 16.8973 18.1312C16.6039 18.1312 16.4573 17.9112 16.4573 17.4712V16.6389H18.1696V15.6536C18.1696 15.1497 18.0835 14.7798 17.9113 14.5439C17.6626 14.2186 17.3246 14.056 16.8973 14.056C16.4636 14.056 16.1224 14.2186 15.8737 14.5439C15.6951 14.7798 15.6059 15.1497 15.6059 15.6536V17.3085C15.6059 17.8124 15.6983 18.1823 15.8833 18.4182C16.132 18.7435 16.4764 18.9061 16.9164 18.9061C17.3756 18.9061 17.72 18.7371 17.9496 18.3991C18.0644 18.2269 18.1314 18.0547 18.1505 17.8825C18.1633 17.8251 18.1696 17.6402 18.1696 17.3277ZM12.3533 8.59361V6.58468C12.3533 6.14463 12.2162 5.92461 11.942 5.92461C11.6677 5.92461 11.5306 6.14463 11.5306 6.58468V8.59361C11.5306 9.04004 11.6677 9.26325 11.942 9.26325C12.2162 9.26325 12.3533 9.04004 12.3533 8.59361ZM19.2315 15.7779C19.2315 17.2703 19.1486 18.3863 18.9828 19.1261C18.8935 19.5024 18.7085 19.8181 18.4279 20.0732C18.1473 20.3283 17.8221 20.475 17.4522 20.5133C16.2787 20.6472 14.5089 20.7141 12.1428 20.7141C9.77678 20.7141 8.00701 20.6472 6.83354 20.5133C6.46364 20.475 6.13679 20.3283 5.85299 20.0732C5.56919 19.8181 5.38583 19.5024 5.30292 19.1261C5.13711 18.4118 5.0542 17.2958 5.0542 15.7779C5.0542 14.2856 5.13711 13.1695 5.30292 12.4297C5.39221 12.0534 5.57716 11.7377 5.85777 11.4826C6.13838 11.2275 6.46683 11.0777 6.8431 11.033C8.01019 10.9055 9.77678 10.8417 12.1428 10.8417C14.5089 10.8417 16.2787 10.9055 17.4522 11.033C17.8221 11.0777 18.1489 11.2275 18.4327 11.4826C18.7165 11.7377 18.8999 12.0534 18.9828 12.4297C19.1486 13.144 19.2315 14.2601 19.2315 15.7779ZM9.6843 3.57129H10.6601L9.50254 7.38825V9.98073H8.54591V7.38825C8.45662 6.91631 8.26211 6.24029 7.96236 5.36019C7.72639 4.7033 7.51912 4.107 7.34055 3.57129H8.35458L9.03379 6.08723L9.6843 3.57129ZM13.2238 6.75688V8.43098C13.2238 8.94756 13.1346 9.32384 12.956 9.55981C12.72 9.88506 12.382 10.0477 11.942 10.0477C11.5147 10.0477 11.1798 9.88506 10.9375 9.55981C10.7589 9.31746 10.6696 8.94119 10.6696 8.43098V6.75688C10.6696 6.24667 10.7589 5.87358 10.9375 5.63762C11.1798 5.31236 11.5147 5.14973 11.942 5.14973C12.382 5.14973 12.72 5.31236 12.956 5.63762C13.1346 5.87358 13.2238 6.24667 13.2238 6.75688ZM16.4286 5.20713V9.98073H15.558V9.45458C15.22 9.84999 14.8916 10.0477 14.5727 10.0477C14.2793 10.0477 14.0912 9.92971 14.0083 9.69374C13.9573 9.54068 13.9317 9.30152 13.9317 8.97626V5.20713H14.8023V8.71797C14.8023 8.92843 14.8055 9.04004 14.8119 9.05279C14.831 9.1931 14.8979 9.26325 15.0127 9.26325C15.1849 9.26325 15.3667 9.12614 15.558 8.8519V5.20713H16.4286Z" fill="white"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_youtube_footer">
+                      <rect width="17.1429" height="17.1429" fill="white" transform="translate(3.57141 3.57129)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </a></li>
+            <li><a href="" aria-label="Tiktok">
+              <div class="icon">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12.5" cy="12.5" r="12.5" fill="#121F38"/>
+                  <g clip-path="url(#clip0_tiktok_footer)">
+                    <path d="M13.2042 5.0131C14.0619 5 14.9131 5.00655 15.7643 5C15.8167 6.00177 16.1768 7.02319 16.9101 7.73032C17.6434 8.4571 18.6779 8.79102 19.6863 8.90233V11.541C18.7434 11.5083 17.794 11.3118 16.9363 10.9059C16.5631 10.7356 16.2161 10.5196 15.8756 10.297C15.869 12.2088 15.8821 14.1207 15.8625 16.0261C15.8101 16.9427 15.5089 17.8528 14.9786 18.6058C14.1209 19.8629 12.6346 20.6814 11.109 20.7075C10.1727 20.7599 9.23639 20.5046 8.43759 20.0331C7.11499 19.254 6.18524 17.8266 6.04774 16.2945C6.03465 15.9671 6.0281 15.6397 6.0412 15.3189C6.15905 14.0749 6.77452 12.8832 7.73046 12.0713C8.81735 11.1285 10.3364 10.6767 11.7572 10.9452C11.7703 11.9142 11.731 12.8832 11.731 13.8523C11.0828 13.6427 10.3233 13.7017 9.75365 14.0945C9.34115 14.363 9.02687 14.7755 8.86318 15.2403C8.72569 15.5743 8.76497 15.9409 8.77152 16.2945C8.92866 17.3683 9.96317 18.2719 11.0632 18.1736C11.7965 18.1671 12.4971 17.7415 12.8768 17.1195C13.0012 16.9034 13.1387 16.6808 13.1453 16.4255C13.2107 15.2534 13.1846 14.088 13.1911 12.916C13.1977 10.2773 13.1846 7.64521 13.2042 5.0131Z" fill="white"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_tiktok_footer">
+                      <rect width="15.7143" height="15.7143" fill="white" transform="translate(5 5)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact">
+          <h4>Công ty TNHH Rezkin Việt Nam</h4>
+          <ul>
+            <li>
+              <div class="icon">
+                <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="4.72832" cy="4.61608" r="2.07702" fill="#1E335C"/>
+                  <path d="M4.72833 1.07697V0C1.58973 0.0615412 0.343513 2.48729 0.112733 3.69247C-0.256515 5.29255 0.369155 6.64132 0.728145 7.11571L4.72833 12.4236V10.5389C3.9847 9.55171 2.3513 7.37726 1.76665 6.57722C1.18201 5.77718 1.11278 5.06433 1.15124 4.80791C1.21278 1.8847 3.56161 1.10261 4.72833 1.07697Z" fill="#1E335C"/>
+                  <path d="M4.7283 1.08031V0C7.89419 0.0617318 9.15124 2.49499 9.38403 3.70391C9.75649 5.30893 9.12538 6.66189 8.76326 7.13774L4.7283 12.4621V10.5716C5.47839 9.58128 7.126 7.4001 7.71572 6.59758C8.30545 5.79507 8.37529 5.08001 8.33649 4.82279C8.27441 1.89054 5.90516 1.10603 4.7283 1.08031Z" fill="#1E335C"/>
+                  <circle cx="4.72836" cy="4.6155" r="0.923119" fill="#1E335C"/>
+                </svg>
+              </div>
+              Địa chỉ: Tòa SHG, số 8 Quang Trung, Hà Nội
+            </li>
+            <li>
+              <div class="icon">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.86265 0H0.216757C-0.981381 4.7369 3.07898 8.54168 5.25892 9.85196C7.6552 11.285 10.0848 11.0793 11 10.7973V8.20996C11 7.69249 10.6339 7.56312 10.4509 7.56312L7.85489 7.01579L6.40714 8.40899C4.60993 7.61288 3.09562 5.55624 2.56311 4.62743L4.06078 3.13471C3.89438 2.4547 3.54159 0.985196 3.46171 0.547331C3.38184 0.109466 3.02905 0 2.86265 0Z" fill="#1E335C"/>
+                </svg>
+              </div>
+              <a href="tel:0589533456">Hotline: 0589533456</a>
+            </li>
+            <li>
+              <div class="icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.72485 2.15183V4.83243L8.96468 5.39255V2.27186H2.24319V5.39255L1.48302 4.83243V2.27186C1.48302 1.66372 1.96312 1.48502 2.20318 1.47168H8.96468C9.57282 1.50369 9.72485 1.93845 9.72485 2.15183Z" fill="#1E335C"/>
+                  <rect width="5.12114" height="0.72016" rx="0.36008" transform="matrix(-1 0 0 1 8.16455 3.03125)" fill="#1E335C"/>
+                  <rect width="5.12114" height="0.72016" rx="0.36008" transform="matrix(-1 0 0 1 8.16455 4.47168)" fill="#1E335C"/>
+                  <path d="M5.84404 0.0706912L7.60443 1.471H6.44417L5.60399 0.83086L4.80381 1.471H3.60354C4.12366 1.05758 5.2119 0.19872 5.40394 0.0706912C5.59598 -0.0573374 5.77736 0.0173459 5.84404 0.0706912Z" fill="#1E335C"/>
+                  <path d="M11.0452 4.19157L9.72488 3.11133V4.07154L10.205 4.47163L8.96472 5.35183L5.60397 7.71235V8.59255C5.69999 8.59255 5.83069 8.51253 5.88403 8.47252L6.68421 7.87239L9.44482 9.99286C9.73289 10.1529 9.91159 10.0329 9.96494 9.95285C10.221 9.69679 10.045 9.47274 9.92493 9.39273L7.32435 7.43229L10.445 5.19179V9.99286C10.445 10.3449 10.1516 10.433 10.0049 10.433H6.12408V11.1931H10.085C11.0132 11.0971 11.2186 10.4063 11.2052 10.0729V4.47163C11.2052 4.3116 11.0985 4.21824 11.0452 4.19157Z" fill="#1E335C"/>
+                  <path d="M5.56396 7.71235L1.00294 4.47163L1.48305 4.11155V3.11133L0.242773 4.11155C0.0187225 4.27159 -0.0106173 4.52498 0.00271893 4.63167V10.0329C0.0987406 10.9611 0.789561 11.1931 1.12297 11.1931H6.36414V10.433H1.12297C0.77089 10.433 0.736216 10.0595 0.762888 9.87283V5.19179L3.88358 7.43229L1.20299 9.43274C1.04295 9.62478 1.1363 9.8595 1.20299 9.95285C1.36302 10.1129 1.61641 10.0462 1.7231 9.99286L4.52373 7.87239C4.72377 8.01909 5.17187 8.34449 5.36391 8.47252C5.55596 8.60055 5.57729 8.60589 5.56396 8.59255V7.71235Z" fill="#1E335C"/>
+                </svg>
+              </div>
+              <a href="mailto:hotro.haruco@gmail.com">Email: hotro.haruco@gmail.com</a>
+            </li>
+            <li>
+              <div class="icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.75534 0C3.07874 0 0.7994 1.70019 0.0409192 4.04334H0.887763C0.975739 3.81175 1.08093 3.58859 1.20266 3.37471H2.8323C2.76123 3.59342 2.7028 3.81714 2.65439 4.04334H3.47989C3.53756 3.81538 3.60631 3.59152 3.68804 3.37471H5.26075V4.04334H6.05778V3.37471H7.75681C7.84823 3.59172 7.92505 3.81519 7.98987 4.04334H8.81536C8.7599 3.8169 8.69535 3.59362 8.6161 3.37471H10.308C10.4298 3.58863 10.5349 3.8117 10.6229 4.04334H11.468C10.7095 1.70019 8.43193 0 5.75534 0ZM6.958 0.924843C8.0736 1.17788 9.04794 1.77129 9.75294 2.58851H8.27452C7.94434 1.95839 7.50685 1.38969 6.958 0.924843ZM4.31962 0.982756C3.82553 1.43515 3.43582 1.98292 3.14542 2.58851H1.75774C2.41325 1.82865 3.30142 1.26237 4.31962 0.982756ZM6.05778 1.23547C6.58326 1.59029 7.00728 2.0582 7.34406 2.58851H6.05778V1.23547ZM5.26075 1.24073V2.58851H4.05987C4.36839 2.05698 4.76225 1.59025 5.26075 1.24073ZM0.279316 4.80322C0.200007 4.80322 0.133754 4.82088 0.0800587 4.85762C0.0263631 4.89437 0 4.94015 0 4.99275C0 5.03211 0.0114901 5.08665 0.0373612 5.15771L0.460783 6.35808C0.473682 6.39397 0.488528 6.43444 0.50526 6.47741C0.521991 6.52039 0.545371 6.55862 0.572865 6.59149C0.600357 6.62435 0.637774 6.64959 0.684947 6.6687C0.732119 6.68781 0.791358 6.69678 0.862855 6.69678C0.951525 6.69678 1.02117 6.68092 1.07457 6.6494C1.12797 6.61787 1.16608 6.58397 1.18665 6.54586C1.20721 6.50774 1.23279 6.44903 1.26493 6.36861L1.64387 5.31566L2.02104 6.37387C2.05244 6.45228 2.07745 6.51014 2.09754 6.54761C2.11762 6.58508 2.15444 6.62007 2.20784 6.65115C2.26124 6.68224 2.33229 6.69678 2.42133 6.69678C2.51494 6.69678 2.5883 6.68162 2.64016 6.6494C2.69201 6.61718 2.7283 6.58091 2.74869 6.54059C2.76906 6.50028 2.79295 6.43881 2.82163 6.35808L3.24505 5.15771C3.27129 5.08236 3.28419 5.02782 3.28419 4.99275C3.28419 4.93922 3.25671 4.89391 3.20235 4.85762C3.14799 4.82134 3.08278 4.80322 3.00487 4.80322C2.92674 4.80322 2.86646 4.81687 2.82519 4.84534C2.78391 4.87381 2.75556 4.90476 2.73979 4.93835C2.72401 4.97194 2.70775 5.01634 2.69175 5.06997L2.39287 6.09133L2.0584 5.1349C2.02715 5.05458 2.00176 4.99688 1.9819 4.95941C1.96203 4.92194 1.92366 4.88559 1.86982 4.85236C1.81597 4.81913 1.74087 4.80322 1.64387 4.80322C1.54849 4.80322 1.47398 4.81859 1.41793 4.8506C1.36187 4.88262 1.32184 4.92015 1.29873 4.96116C1.27562 5.00218 1.25039 5.05924 1.22223 5.1349L0.889542 6.09133L0.588877 5.06295C0.565364 4.98496 0.534849 4.92291 0.498144 4.87517C0.461437 4.82744 0.388845 4.80322 0.279316 4.80322ZM4.37655 4.80322C4.29724 4.80322 4.23099 4.82088 4.17729 4.85762C4.12359 4.89437 4.09723 4.94015 4.09723 4.99275C4.09723 5.03211 4.1105 5.08665 4.13637 5.15771L4.55979 6.35808C4.57269 6.39397 4.58754 6.43444 4.60427 6.47741C4.621 6.52039 4.6426 6.55862 4.6701 6.59149C4.69759 6.62435 4.735 6.64959 4.78218 6.6687C4.82935 6.68781 4.88859 6.69678 4.96009 6.69678C5.04876 6.69678 5.12017 6.68092 5.17358 6.6494C5.22698 6.61787 5.26331 6.58397 5.28388 6.54586C5.30444 6.50774 5.33002 6.44903 5.36216 6.36861L5.74111 5.31566L6.11827 6.37387C6.14967 6.45228 6.17468 6.51014 6.19477 6.54761C6.21485 6.58508 6.25167 6.62007 6.30507 6.65115C6.35847 6.68224 6.42952 6.69678 6.51857 6.69678C6.61217 6.69678 6.68554 6.68162 6.73739 6.6494C6.78924 6.61718 6.82553 6.58091 6.84592 6.54059C6.86629 6.50028 6.89018 6.43881 6.91886 6.35808L7.34228 5.15771C7.36852 5.08236 7.38142 5.02782 7.38142 4.99275C7.38142 4.93922 7.35394 4.89391 7.29958 4.85762C7.24522 4.82134 7.18001 4.80322 7.1021 4.80322C7.02397 4.80322 6.96369 4.81687 6.92242 4.84534C6.88114 4.87381 6.85279 4.90476 6.83702 4.93835C6.82124 4.97194 6.80498 5.01634 6.78899 5.06997L6.4901 6.09133L6.15563 5.1349C6.12438 5.05458 6.09899 4.99688 6.07913 4.95941C6.05926 4.92194 6.02267 4.88559 5.96883 4.85236C5.91498 4.81913 5.83988 4.80322 5.74288 4.80322C5.6475 4.80322 5.57121 4.81859 5.51516 4.8506C5.45911 4.88262 5.41907 4.92015 5.39596 4.96116C5.37285 5.00218 5.34762 5.05924 5.31946 5.1349L4.98677 6.09133L4.68611 5.06295C4.66259 4.98496 4.63386 4.92291 4.59715 4.87517C4.56045 4.82744 4.48608 4.80322 4.37655 4.80322ZM8.47378 4.80322C8.39447 4.80322 8.32822 4.82088 8.27452 4.85762C8.22082 4.89437 8.19446 4.94015 8.19446 4.99275C8.19446 5.03211 8.20773 5.08665 8.2336 5.15771L8.65702 6.35808C8.66992 6.39397 8.68477 6.43444 8.7015 6.47741C8.71823 6.52039 8.73983 6.55862 8.76733 6.59149C8.79482 6.62435 8.83224 6.64959 8.87941 6.6687C8.92658 6.68781 8.98582 6.69678 9.05732 6.69678C9.14599 6.69678 9.21741 6.68092 9.27081 6.6494C9.32421 6.61787 9.36055 6.58397 9.38111 6.54586C9.40167 6.50774 9.42903 6.44903 9.46117 6.36861L9.83834 5.31566L10.2155 6.37387C10.2469 6.45228 10.2719 6.51014 10.292 6.54761C10.3121 6.58508 10.3489 6.62007 10.4023 6.65115C10.4557 6.68224 10.5268 6.69678 10.6158 6.69678C10.7094 6.69678 10.7828 6.68162 10.8346 6.6494C10.8865 6.61718 10.9228 6.58091 10.9431 6.54059C10.9635 6.50028 10.9874 6.43881 11.0161 6.35808L11.4395 5.15771C11.4657 5.08236 11.4786 5.02782 11.4786 4.99275C11.4786 4.93922 11.4529 4.89391 11.3986 4.85762C11.3442 4.82134 11.2772 4.80322 11.1993 4.80322C11.1212 4.80322 11.0609 4.81687 11.0196 4.84534C10.9784 4.87381 10.95 4.90476 10.9343 4.93835C10.9185 4.97194 10.9022 5.01634 10.8862 5.06997L10.5891 6.09133L10.2529 5.1349C10.2216 5.05458 10.1962 4.99688 10.1764 4.95941C10.1565 4.92194 10.1199 4.88559 10.0661 4.85236C10.0122 4.81913 9.93711 4.80322 9.84011 4.80322C9.74473 4.80322 9.66844 4.81859 9.61239 4.8506C9.55634 4.88262 9.5163 4.92015 9.49319 4.96116C9.47008 5.00218 9.44485 5.05924 9.41669 5.1349L9.084 6.09133L8.78512 5.06295C8.7616 4.98496 8.73109 4.92291 8.69438 4.87517C8.65768 4.82744 8.58331 4.80322 8.47378 4.80322ZM0.010675 7.35312C0.734763 9.7492 3.03942 11.5 5.75534 11.5C8.4713 11.5 10.7759 9.74925 11.5 7.35312H10.6585C10.5782 7.5791 10.4823 7.79758 10.3703 8.0077H8.66236C8.73507 7.79347 8.79509 7.57447 8.84561 7.35312H8.03256C7.9758 7.57694 7.9078 7.79562 7.82441 8.0077H6.05778V7.35312H5.26075V8.0077H3.64712C3.57396 7.7964 3.511 7.5775 3.45854 7.35312H2.64016C2.68601 7.57472 2.74197 7.79348 2.80562 8.0077H1.14039C1.02833 7.79758 0.930646 7.5791 0.850402 7.35312H0.010675ZM1.66344 8.79391H3.09205C3.38362 9.4592 3.77021 10.0534 4.26802 10.505C3.21992 10.2059 2.3166 9.59907 1.66344 8.79391ZM3.97981 8.79391H5.26075V10.2628C4.74313 9.93911 4.3102 9.42312 3.97981 8.79391ZM6.05778 8.79391H7.42768C7.07988 9.36739 6.62759 9.86353 6.05778 10.2259V8.79391ZM8.34391 8.79391H9.84723C9.12785 9.6807 8.10347 10.3264 6.91886 10.5857C7.52672 10.1008 7.99902 9.48355 8.34391 8.79391Z" fill="#1E335C"/>
+                </svg>
+              </div>
+              <a href="https://haruco.com.vn">Website: haruco.com.vn</a>
+            </li>
+            <li>
+              <div class="icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.5 5.75C11.5 8.92564 8.92564 11.5 5.75 11.5C2.57436 11.5 0 8.92564 0 5.75C0 2.57436 2.57436 0 5.75 0C8.92564 0 11.5 2.57436 11.5 5.75Z" fill="#1E335C"/>
+                  <path d="M4.97471 4.82812H4.24841V5.93312H4.97471V9.15605H6.3819V5.93312H7.38055L7.47134 4.82812H6.3819V4.13749C6.3819 3.76916 6.59374 3.73846 6.69965 3.76916H7.47134V2.71019H6.20033C5.21983 2.78386 4.97471 3.50825 4.97471 3.86124V4.82812Z" fill="white"/>
+                </svg>
+              </div>
+              Fanpagefacebook: Haruco Việt Nam
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-links">
+          <h4>Thông tin chung</h4>
+          <ul>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Tìm hiểu về Haruco</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Chính sách đổi trả &amp; hoàn tiền</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Chính sách bảo hành</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Chính sách bảo mật thông tin</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i>Chính sách vận chuyển &amp; giao nhận</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-map">
+          <img src="./assets/images/home-footer-map.png" alt="Bản đồ vị trí Haruco">
+        </div>
+      </div>
+
+      <div class="footer-meta">
+        <div class="footer-copyright">© Copyright - Công ty TNHH Rezkin Việt Nam</div>
+        <div class="footer-meta-right">
+          <a href="tel:0589533456" class="footer-hotline">
+            <div class="icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25.3641 12.1228C25.2427 5.41688 20.2175 0 14.0469 0H13.1406C6.96997 0 1.94481 5.41688 1.82338 12.1219C0.7395 12.7716 0 13.9706 0 15.3572V17.2322C0 19.3003 1.62581 20.9822 3.625 20.9822C5.62419 20.9822 7.25 19.3003 7.25 17.2322V15.3572C7.24862 14.3696 6.87085 13.4223 6.19867 12.721C5.52648 12.0197 4.61409 11.6208 3.65944 11.6109C4.01378 6.17813 8.12544 1.875 13.1406 1.875H14.0469C19.063 1.875 23.1737 6.17813 23.5281 11.6109C22.5734 11.6208 21.661 12.0197 20.9888 12.721C20.3166 13.4223 19.9389 14.3696 19.9375 15.3572V17.2322C19.9375 18.9253 21.0341 20.3428 22.5258 20.8069C21.1795 22.6401 19.2571 23.9298 17.0901 24.4538C16.9404 23.9896 16.6537 23.5858 16.2702 23.2993C15.8868 23.0128 15.4261 22.8582 14.9531 22.8572C14.3522 22.8572 13.776 23.1041 13.3511 23.5437C12.9262 23.9832 12.6875 24.5793 12.6875 25.2009C12.6875 25.8225 12.9262 26.4187 13.3511 26.8582C13.776 27.2978 14.3522 27.5447 14.9531 27.5447C15.3391 27.5442 15.7184 27.4412 16.055 27.2457C16.3915 27.0503 16.6739 26.7688 16.8753 26.4281C18.5085 26.1326 20.0597 25.4719 21.4206 24.4923C22.7816 23.5127 23.9196 22.2377 24.7551 20.7563C26.1671 20.2444 27.1875 18.8663 27.1875 17.2322V15.3572C27.1875 13.9706 26.448 12.7716 25.3641 12.1228ZM5.4375 15.3572V17.2322C5.4375 18.2663 4.62459 19.1072 3.625 19.1072C2.62541 19.1072 1.8125 18.2663 1.8125 17.2322V15.3572C1.8125 14.3231 2.62541 13.4822 3.625 13.4822C4.62459 13.4822 5.4375 14.3231 5.4375 15.3572ZM25.375 17.2322C25.375 18.2372 24.6047 19.0538 23.6441 19.0988L23.5734 19.0641C23.567 19.0791 23.5571 19.0913 23.5507 19.1053C23.0724 19.1021 22.6146 18.9034 22.2773 18.5525C21.94 18.2016 21.7505 17.727 21.75 17.2322V15.3572C21.75 14.3231 22.5629 13.4822 23.5625 13.4822C24.5621 13.4822 25.375 14.3231 25.375 15.3572V17.2322Z" fill="white"/>
+              </svg>
             </div>
+            Hotline: 0589.533.456
+          </a>
+          <div class="footer-badges">
+            <img src="./assets/images/home-footer-badge-bocongthuong.png" alt="Đã thông báo Bộ Công Thương">
+            <img src="./assets/images/home-footer-badge-dmca.png" alt="DMCA Protected">
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
