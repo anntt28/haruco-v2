@@ -99,7 +99,10 @@ $(function () {
       },
     },
   };
-  [1, 2, 3, 4, 5, "sale", "bestseller"].forEach(function (i) {
+  // "combo" / "related" — Combo Sản Phẩm và Sản Phẩm liên quan ở Product
+  // Detail, tái dùng đúng productSliderOptions (Đai hỗ trợ) theo Design
+  // Document mục 3, không viết config Swiper riêng.
+  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related"].forEach(function (i) {
     new Swiper(
       ".product-slider-" + i,
       $.extend({}, productSliderOptions, {
@@ -109,6 +112,21 @@ $(function () {
         },
       })
     );
+  });
+  // Anchor Navigation (Group 633028, Product Detail) — cuộn mượt tới
+  // section tương ứng. Item "Check hành chính hãng" cố tình không dùng
+  // thẻ <a> (xem product-detail.html) nên không bị handler này bắt phải.
+  $(".detail-product-anchor a").on("click", function (e) {
+    e.preventDefault();
+    var target = $($(this).attr("href"));
+    if (target.length) {
+      $("html, body").animate(
+        {
+          scrollTop: target.offset().top - 100,
+        },
+        "linear"
+      );
+    }
   });
   new Swiper(".gift-solution-slider", {
     loop: false,
@@ -163,25 +181,47 @@ $(function () {
       },
     },
   });
-  new Swiper(".video-slider", {
-    loop: false,
-    slidesPerView: 1,
-    spaceBetween: 20,
-    navigation: {
-      nextEl: ".video-next",
-      prevEl: ".video-prev",
-    },
-    breakpoints: {
-      567: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-    },
-  });
+  // "Video sản phẩm" — dùng chung 1 component (.video-wrap/.video-slider/
+  // .video-card) cho cả Homepage và Product Detail, chỉ khác breakpoints
+  // (Product Detail cần slidesPerView:2 ở Desktop thay vì 3 như Homepage).
+  new Swiper(
+    ".video-slider",
+    $(".product-detail-page").length
+      ? {
+          loop: false,
+          slidesPerView: 1,
+          spaceBetween: 20,
+          navigation: {
+            nextEl: ".video-next",
+            prevEl: ".video-prev",
+          },
+          breakpoints: {
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+          },
+        }
+      : {
+          loop: false,
+          slidesPerView: 1,
+          spaceBetween: 20,
+          navigation: {
+            nextEl: ".video-next",
+            prevEl: ".video-prev",
+          },
+          breakpoints: {
+            567: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          },
+        }
+  );
   $(".video-wrap").on("click", ".btn-play-video", function () {
     const thumb = $(this).closest(".video-card-thumb");
     $(".video-card-thumb")
@@ -204,32 +244,47 @@ $(function () {
     );
     thumb.empty().append(iframe);
   });
-  var swiper7 = new Swiper(".product-gallery-h .slider-thumb-child", {
-    loop: false,
-    slidesPerView: 3,
-    slidesPerGroup: 1,
-    freeMode: true,
-    watchSlidesVisibility: true,
-    watchSlidesProgress: true,
-    spaceBetween: 10,
-    navigation: {
-      nextEl: ".swiper-button-next-6",
-      prevEl: ".swiper-button-prev-6",
-    },
-    breakpoints: {
-      1200: {
-        slidesPerView: 4,
-        spaceBetween: 16,
+  // .product-gallery-h có thể xuất hiện nhiều hơn 1 lần trên cùng 1 trang
+  // (ví dụ Product Detail: 1 bản cho Desktop, 1 bản cho Mobile, ẩn/hiện
+  // bằng CSS) — dùng .each() + phần tử DOM cụ thể cho nextEl/prevEl/thumbs
+  // thay vì selector class dùng chung, để MỌI instance đều được khởi tạo
+  // đúng thay vì chỉ instance đầu tiên.
+  $(".product-gallery-h").each(function () {
+    var $gallery = $(this);
+    var thumbEl = $gallery.find(".slider-thumb-child")[0];
+    var mainEl = $gallery.find(".slider-images-main")[0];
+    var nextEl = $gallery.find(".swiper-button-next-6")[0];
+    var prevEl = $gallery.find(".swiper-button-prev-6")[0];
+    if (!thumbEl || !mainEl) {
+      return;
+    }
+    var thumbSwiper = new Swiper(thumbEl, {
+      loop: false,
+      slidesPerView: 3,
+      slidesPerGroup: 1,
+      freeMode: true,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: nextEl,
+        prevEl: prevEl,
       },
-    },
-  });
-  var swiper8 = new Swiper(".product-gallery-h .slider-images-main", {
-    slidesPerView: 1,
-    slidesPerGroup: 1,
-    spaceBetween: 24,
-    thumbs: {
-      swiper: swiper7,
-    },
+      breakpoints: {
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 16,
+        },
+      },
+    });
+    new Swiper(mainEl, {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 24,
+      thumbs: {
+        swiper: thumbSwiper,
+      },
+    });
   });
   var swiper9 = new Swiper(".slider-image-from-customer", {
     loop: true,
@@ -251,8 +306,8 @@ $(function () {
     },
   });
   $(".list-item-bo span").on("click", function (e) {
-      $(this).siblings('span').removeClass('active');
-      $(this).addClass('active'); 
+      $(this).closest(".list-item-bo").find("span").removeClass('active');
+      $(this).addClass('active');
     });
     $('.qty-count').on('click', function () {
       const input = $(this).siblings('.product-qty') // lấy input cùng nhóm

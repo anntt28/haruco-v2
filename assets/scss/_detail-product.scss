@@ -1,0 +1,1375 @@
+// Style riêng cho trang "Chi tiết sản phẩm" (product-detail.html) — mọi
+// selector bọc trong .product-detail-page (class của <main>) để không ảnh
+// hưởng Homepage/Introduce/Product Category dùng chung index.css. Theo
+// đúng Design Document: .claude/docs/design/product-detail-page-design.md
+.product-detail-page {
+  // Bootstrap xl breakpoint (mặc định 1200px, xem _custom-bootstrap.scss)
+  // không khớp breakpoint Desktop/Mobile của riêng trang này (Desktop
+  // ≥1024px theo Design Document). Ghi đè lại 3 utility d-xl-* CHỈ trong
+  // phạm vi trang này (specificity cao hơn nhờ .product-detail-page) để
+  // dùng đúng breakpoint 1024px mà không đụng tới _custom-bootstrap.scss
+  // (sẽ ảnh hưởng Header và mọi trang khác nếu sửa global).
+  .d-xl-none {
+    @include minWidth(1024px) {
+      display: none !important;
+    }
+  }
+  .d-xl-block {
+    display: none;
+    @include minWidth(1024px) {
+      display: block !important;
+    }
+  }
+  .d-xl-flex {
+    display: none;
+    @include minWidth(1024px) {
+      display: flex !important;
+    }
+  }
+
+  // ============================================================
+  // Breadcrumb
+  // ============================================================
+  .breadcrumbs {
+    padding: 12px 0;
+    border-bottom: 1px solid $color-E6E6E6;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      color: $color-6B6B6B;
+      font-size: 14px;
+      @include minWidth(1024px) {
+        font-size: 15px;
+      }
+    }
+    a {
+      color: $color-6B6B6B;
+    }
+    span {
+      color: $color-6B6B6B;
+      margin: 0 4px;
+    }
+  }
+
+  // ============================================================
+  // Section heading dùng chung (icon cam + text đỏ + đường kẻ) — tái dùng
+  // cho 6 section: Thông tin sản phẩm, Thông số kỹ thuật, Hướng dẫn sử
+  // dụng, Video hướng dẫn sử dụng, Hỏi đáp, Đánh giá sản phẩm.
+  // ============================================================
+  .detail-product-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    @include minWidth(1024px) {
+      margin-bottom: 28px;
+    }
+    .icon {
+      flex-shrink: 0;
+      color: $color-F8633A;
+      font-size: 18px;
+      @include minWidth(1024px) {
+        font-size: 22px;
+      }
+    }
+    h2 {
+      margin: 0;
+      color: $color-E83729;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 20px;
+      white-space: nowrap;
+      @include minWidth(1024px) {
+        font-size: 28px;
+      }
+    }
+    .line {
+      flex: 1;
+      height: 1px;
+      background: $color-D0D0D0;
+    }
+  }
+
+  // ============================================================
+  // Hero: Gallery + Thông tin mua hàng + Có thể bạn cũng thích (Desktop)
+  // / Gallery -> Thông tin mua hàng -> Anchor -> mua kèm giá sốc (Mobile)
+  // ============================================================
+  .detail-product-hero {
+    background: $color-F9F9F9;
+    padding: 16px 0 24px;
+    @include minWidth(1024px) {
+      padding: 24px 0 32px;
+    }
+  }
+
+  // Layout hero bằng flexbox + order: Gallery Container chỉ có 1 instance
+  // duy nhất trong DOM (order:1, luôn hiện, chứa cả Anchor Navigation bên
+  // trong) — Info/Upsell lặp lại 2 bản (desktop/mobile, ẩn/hiện bằng
+  // d-none/d-xl-block/d-xl-none) và định vị bằng order tương ứng cho từng
+  // breakpoint.
+  .detail-product-hero-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include minWidth(1024px) {
+      flex-flow: row wrap;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .detail-product-gallery-container {
+      order: 1;
+      // min-width:0 bắt buộc: mặc định flex item có min-width:auto, khiến
+      // Swiper (đo kích thước container để tính lại slide width) và flexbox
+      // (đo kích thước nội dung để tính lại layout) kẹt trong vòng lặp phản
+      // hồi lẫn nhau, gây width/height phình to bất thường (đã kiểm chứng
+      // lúc verify bằng Playwright — không có min-width:0 sẽ lỗi).
+      min-width: 0;
+      @include minWidth(1024px) {
+        flex: 0 0 572px;
+      }
+    }
+    .detail-product-info--desktop {
+      order: 2;
+      @include minWidth(1024px) {
+        flex: 0 0 453px;
+      }
+    }
+    .detail-product-upsell {
+      order: 3;
+      @include minWidth(1024px) {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+    .detail-product-info--mobile {
+      order: 2;
+    }
+    .detail-product-upsell-mobile {
+      order: 3;
+    }
+  }
+
+  // Gallery Container (dùng chung selector .product-gallery-h /
+  // .slider-images-main / .slider-thumb-child đã có sẵn JS khởi tạo
+  // Swiper trong index.js) — bọc Main Image + Thumbnails + Anchor
+  // Navigation cùng 1 box, Anchor nằm dưới, cùng cấp (sibling) với
+  // .detail-product-gallery-thumbs-wrap.
+  .detail-product-gallery-container {
+    .detail-product-gallery {
+      margin-bottom: 12px;
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        background: $light;
+        border: 1px solid $color-EBEBEB;
+        border-radius: 10px;
+        padding: 16px;
+      }
+    }
+    .detail-product-gallery-thumbs-wrap {
+      position: relative;
+      .slider-thumb-child {
+        .swiper-slide {
+          cursor: pointer;
+          img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background: $light;
+            border: 1px solid $color-EBEBEB;
+            border-radius: 10px;
+            padding: 8px;
+            @include trans;
+          }
+          &-thumb-active img,
+          &.swiper-slide-thumb-active img {
+            border-color: $color-F8633A;
+          }
+        }
+      }
+      .swiper-button-prev-6,
+      .swiper-button-next-6 {
+        display: none;
+      }
+    }
+  }
+
+  // Thông tin mua hàng — white card
+  .detail-product-info {
+    background: $light;
+    border: 1px solid $color-EBEBEB;
+    border-radius: 10px;
+    padding: 20px;
+    @include minWidth(1024px) {
+      padding: 24px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid $color-E4E4E4;
+      margin: 16px 0;
+    }
+    .detail-product-title {
+      margin: 0 0 10px;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.35;
+      @include minWidth(1024px) {
+        font-size: 27px;
+      }
+    }
+    .detail-product-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      .stars i {
+        width: 14px;
+        height: 14px;
+        background-image: url("../images/icon/ic_star-rating.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .detail-product-rating-count {
+        color: $color-9D9D9D;
+        font-size: 13px;
+      }
+      .detail-product-sold {
+        color: $color-9D9D9D;
+        font-size: 13px;
+        &::before {
+          content: "|";
+          margin-right: 8px;
+          color: $color-9D9D9D;
+        }
+      }
+    }
+    .detail-product-price {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 4px;
+      .new {
+        color: $primary;
+        font-weight: 500;
+        font-size: 26px;
+        @include minWidth(1024px) {
+          font-size: 35px;
+        }
+      }
+      .old {
+        color: $color-9D9D9D;
+        text-decoration: line-through;
+        font-size: 16px;
+      }
+      .badge-off {
+        border: 1px solid $color-FF6D3E;
+        border-radius: 10px;
+        color: $color-FF6D3E;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 2px 10px;
+      }
+    }
+    .detail-product-option {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+    }
+    .detail-product-option-label {
+      flex: 0 0 100px;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 15px;
+    }
+    .list-item-bo {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      flex: 1;
+      span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 36px;
+        padding: 0 12px;
+        border: 1px solid $color-D9D9D9;
+        border-radius: 8px;
+        color: $color-9D9D9D;
+        font-size: 14px;
+        cursor: pointer;
+        @include trans;
+        &.active {
+          border-color: $color-FF6D3E;
+          background: $color-FF6D3E;
+          color: $light;
+        }
+      }
+    }
+    .detail-product-size-guide {
+      flex: 0 0 100%;
+      color: $color-119DDE;
+      text-decoration: underline;
+      font-size: 14px;
+    }
+    .qty-input {
+      display: inline-flex;
+    }
+    .detail-product-meta {
+      p {
+        margin: 0 0 4px;
+        color: $color-1E335C;
+        font-size: 14px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .list-check {
+      margin-bottom: 0;
+      li {
+        @include minWidth(1024px) {
+          font-size: 16px;
+        }
+      }
+    }
+    .detail-product-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      button {
+        flex: 1;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 500;
+        background: $light;
+        cursor: pointer;
+        @include trans;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .btn-buy-now {
+        border: none;
+        background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+        color: $light;
+        @include minWidth(1024px) {
+          flex: 0 0 140px;
+          width: 140px;
+          font-size: 19px;
+        }
+      }
+      .btn-add-cart {
+        border: 1.5px solid $color-E83729;
+        color: $color-E83729;
+        @include minWidth(1024px) {
+          flex: 0 0 161px;
+          width: 161px;
+          font-size: 19px;
+        }
+      }
+    }
+  }
+
+  // "Có thể bạn cũng thích" / "mua kèm giá sốc" / "sản phẩm mới" — dùng
+  // chung 1 kiểu header pill + list hàng sản phẩm mini.
+  .detail-product-upsell,
+  .detail-product-upsell-mobile,
+  .detail-product-aside-widget {
+    background: $light;
+    border: 1px solid $color-EBEBEB;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  // Box "Có thể bạn cũng thích" (Desktop) bỏ toàn bộ padding — heading pill
+  // và list bên trong chạy sát viền, overflow:hidden để bo góc box + pill
+  // khớp nhau. .detail-product-upsell-list tự thêm padding riêng để nội
+  // dung hàng sản phẩm không dính sát viền.
+  .detail-product-upsell {
+    padding: 0;
+    overflow: hidden;
+  }
+  .detail-product-upsell-heading {
+    border-radius: 10px;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 14px;
+    span {
+      color: $light;
+      font-weight: 500;
+      font-size: 16px;
+      text-transform: uppercase;
+      @include minWidth(1024px) {
+        font-size: 20px;
+      }
+    }
+  }
+  .detail-product-upsell-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    // Box cha (.detail-product-upsell) đã bỏ toàn bộ padding — list tự
+    // thêm padding riêng để hàng sản phẩm không dính sát viền. Không áp
+    // dụng khi list nằm trong .detail-product-upsell-mobile/.detail-product-
+    // aside-widget vì 2 box đó vẫn giữ padding riêng (tránh cộng dồn).
+    .detail-product-upsell > & {
+      padding: 0 16px 16px;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  .detail-product-upsell-image {
+    flex: 0 0 70px;
+    border: 1px solid $color-EBEBEB;
+    border-radius: 8px;
+    overflow: hidden;
+    @include minWidth(1024px) {
+      flex-basis: 80px;
+    }
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      padding: 6px;
+    }
+  }
+  .detail-product-upsell-body {
+    flex: 1;
+    min-width: 0;
+    .name {
+      margin: 0 0 4px;
+      color: $color-1E335C;
+      font-size: 13px;
+      line-height: 1.4;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      @include minWidth(1024px) {
+        font-size: 15px;
+      }
+    }
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      .old {
+        color: $color-9D9D9D;
+        text-decoration: line-through;
+        font-size: 12px;
+      }
+      .new {
+        color: $color-E83729;
+        font-size: 13px;
+      }
+    }
+    .badge-off {
+      display: inline-block;
+      background: $color-F8633A;
+      color: $light;
+      font-size: 11px;
+      border-radius: 6px;
+      padding: 1px 6px;
+    }
+  }
+  .detail-product-upsell-add {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: $color-F8633A;
+    color: $light;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .btn-buy-now-sm {
+    flex-shrink: 0;
+    border: 1px solid $color-E83729;
+    color: $color-E83729;
+    background: $light;
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .qty-input-sm {
+    flex-shrink: 0;
+  }
+  .detail-product-upsell-more {
+    display: block;
+    margin: 12px auto 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid $color-EBEBEB;
+    background: $light;
+    color: $color-9D9D9D;
+    cursor: pointer;
+  }
+
+  // ============================================================
+  // Anchor Navigation (Group 633028)
+  // ============================================================
+  .detail-product-anchor {
+    margin-top: 17px;
+    background: $color-FFF6F0;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    padding: 12px 0;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    li {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      border-right: 1px solid $color-FFC093;
+      &:last-child {
+        border-right: none;
+      }
+    }
+    a,
+    .detail-product-anchor-unmapped {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      text-align: center;
+      cursor: pointer;
+      .icon {
+        color: $color-F8633A;
+        font-size: 18px;
+      }
+      .label {
+        color: $color-1E335C;
+        font-size: 12px;
+        line-height: 1.3;
+        @include minWidth(1024px) {
+          font-size: 15px;
+        }
+      }
+    }
+    .detail-product-anchor-unmapped {
+      cursor: help;
+    }
+  }
+
+  // Anchor Mobile: 2 hàng (3 item + 2 item), có đường kẻ ngang phân cách.
+  .detail-product-anchor--mobile {
+    ul {
+      flex-wrap: wrap;
+    }
+    li {
+      flex: 0 0 33.3333%;
+      border-bottom: 1px solid $color-FFC093;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      &:nth-child(3) {
+        border-right: none;
+      }
+      &.row-2 {
+        flex: 0 0 50%;
+        border-bottom: none;
+        margin-bottom: 0;
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  // ============================================================
+  // Thanh cam kết dịch vụ — tái dùng đúng class .product-category-badges /
+  // .product-category-badges-list (Product Category page). CSS gốc của 2
+  // class này bị bọc trong .product-category-page nên phải copy lại 1 bản
+  // scope dưới .product-detail-page (KHÔNG đổi file _product-category.scss)
+  // để cùng class/markup thực sự hiển thị đúng — đúng tinh thần Design
+  // Document mục 1.4 "chỉ đổi page-scope wrapper (class cha) nếu cần".
+  // ============================================================
+  .product-category-badges {
+    padding: 16px 0;
+    .product-category-badges-list {
+      list-style: none;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
+      border: 1px solid $color-FF6D3E;
+      border-radius: 10px;
+      @include minWidth(992px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        gap: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: $light;
+        font-size: 15px;
+        font-weight: 500;
+        @include minWidth(992px) {
+          font-size: 18px;
+          padding: 0 20px;
+          border-right: 1px solid $color-FFC093;
+          white-space: nowrap;
+        }
+        &:last-child {
+          @include minWidth(992px) {
+            border-right: none;
+          }
+        }
+        &:first-child {
+          @include minWidth(992px) {
+            padding-left: 0;
+          }
+        }
+        i {
+          font-size: 20px;
+          flex-shrink: 0;
+        }
+      }
+      .badge-genuine {
+        @include maxWidth(991px) {
+          display: none;
+        }
+      }
+      .badge-return {
+        order: 2;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+      .badge-ship {
+        order: 1;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+      .badge-check {
+        order: 3;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+      .badge-warranty {
+        order: 4;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+    }
+  }
+
+  // ============================================================
+  // Mô tả sản phẩm ("Thông tin sản phẩm") + sidebar (Desktop only)
+  // ============================================================
+  .detail-product-description {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+  }
+  .detail-product-description-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .detail-product-description-main {
+    flex: 1;
+    min-width: 0;
+    @include minWidth(1024px) {
+      max-width: 1034px;
+    }
+    h3 {
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 18px;
+      margin-bottom: 12px;
+      @include minWidth(1024px) {
+        font-size: 24px;
+      }
+    }
+    h4 {
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 17px;
+      margin: 24px 0 12px;
+      @include minWidth(1024px) {
+        font-size: 24px;
+      }
+    }
+    p {
+      color: $color-323232;
+      font-size: 15px;
+      line-height: 1.75;
+      text-align: justify;
+      margin-bottom: 12px;
+      @include minWidth(1024px) {
+        font-size: 16px;
+      }
+    }
+  }
+  .detail-product-description-image {
+    margin: 20px 0;
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 10px;
+    }
+    &-round img {
+      border-radius: 50%;
+      max-width: 495px;
+      margin: 0 auto;
+    }
+  }
+  .detail-product-feature-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin-bottom: 16px;
+      strong {
+        display: block;
+        color: $color-1E335C;
+        font-size: 16px;
+        margin-bottom: 6px;
+        @include minWidth(1024px) {
+          font-size: 18px;
+        }
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+  .detail-product-description-aside {
+    flex: 0 0 334px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .detail-product-fontsize-toggle {
+    background: $light;
+    border: 1px solid $color-EBEBEB;
+    border-radius: 10px;
+    padding: 16px;
+    .label {
+      display: block;
+      color: $color-1E335C;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .detail-product-fontsize-options {
+      display: flex;
+      gap: 10px;
+      button {
+        flex: 1;
+        border: 1px solid $color-D9D9D9;
+        background: $light;
+        color: $color-9D9D9D;
+        border-radius: 8px;
+        font-size: 13px;
+        padding: 8px;
+        cursor: pointer;
+        &.active {
+          border-color: $color-FF6D3E;
+          background: $color-FF6D3E;
+          color: $light;
+        }
+      }
+    }
+  }
+  .detail-product-gift-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    .image {
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 334 / 200;
+        object-fit: cover;
+      }
+    }
+    p {
+      margin: 0;
+      color: $color-1E335C;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
+
+  // ============================================================
+  // Thông số kỹ thuật
+  // ============================================================
+  .detail-product-specs {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+  }
+  // Semantic <table> (không phải div/row kiểu Bootstrap) — table-layout:fixed
+  // + width cố định cho cột đầu giữ 2 cột luôn thẳng hàng ở mọi số lượng
+  // dòng, không cần hard-code theo số specs.
+  .detail-product-specs-table {
+    width: 100%;
+    max-width: 1036px;
+    background: $light;
+    border: 1px solid $color-DEDEDE;
+    border-radius: 10px;
+    // border-collapse:collapse khiến border-radius/border ngoài của <table>
+    // không hiển thị (border bị "collapse" vào cell, trong khi cell chỉ có
+    // border-bottom/border-right chứ không phải border đủ 4 cạnh) — dùng
+    // separate + border-spacing:0 để border/border-radius của bảng vẫn vẽ
+    // đúng, đồng thời cell vẫn sát nhau như collapse.
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    table-layout: fixed;
+    tr:not(:last-child) {
+      th,
+      td {
+        border-bottom: 1px solid $color-DEDEDE;
+      }
+    }
+    th,
+    td {
+      padding: 10px 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: left;
+      vertical-align: top;
+      @include minWidth(1024px) {
+        font-size: 16px;
+        line-height: 50px;
+        padding: 0 20px;
+      }
+    }
+    th {
+      width: 40%;
+      color: $color-1E335C;
+      font-weight: 500;
+      border-right: 1px solid $color-DEDEDE;
+      @include minWidth(1024px) {
+        width: 184px;
+      }
+    }
+    td {
+      color: $color-393939;
+    }
+  }
+
+  // ============================================================
+  // Hướng dẫn sử dụng
+  // ============================================================
+  .detail-product-usage {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+  }
+  .detail-product-usage-images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    @include minWidth(1024px) {
+      max-width: 500px;
+      margin-bottom: 30px;
+    }
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+  .detail-product-usage-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: dp-step;
+    li {
+      margin-bottom: 16px;
+    }
+    h4 {
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 6px;
+      @include minWidth(1024px) {
+        font-size: 18px;
+      }
+    }
+    p {
+      color: $color-323232;
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+
+  // ============================================================
+  // Video hướng dẫn sử dụng — tái dùng nguyên .video-wrap/.video-slider/
+  // .video-card (Homepage, "Video sản phẩm"), chỉ style riêng phần padding
+  // section (heading dùng chung .detail-product-section-heading ở trên).
+  // ============================================================
+  .detail-product-video {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+  }
+
+  // ============================================================
+  // Hỏi đáp về sản phẩm (Accordion) — cơ chế Bootstrap collapse, style
+  // riêng cho Product Detail (KHÔNG copy nguyên .charity-accordion vì
+  // trạng thái mở ở đây đổi hẳn nền/màu chữ, không chỉ nền pill).
+  // ============================================================
+  .detail-product-faq {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+  }
+  .detail-product-faq-accordion {
+    max-width: 1036px;
+  }
+  .detail-product-faq-item {
+    margin-bottom: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .detail-product-faq-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    background: $color-FFF4ED;
+    border: 1px solid $color-FFC093;
+    @include trans;
+    .title {
+      color: $color-1E335C;
+      font-size: 15px;
+      @include minWidth(1024px) {
+        font-size: 18px;
+      }
+    }
+    .chevron {
+      flex-shrink: 0;
+      color: $color-1E335C;
+      i {
+        @include trans;
+      }
+    }
+    // Bootstrap gắn .collapsed khi target đang ĐÓNG — mặc định (không
+    // .collapsed) = đang mở.
+    &:not(.collapsed) {
+      background: $color-F8633A;
+      border-color: $color-DEDEDE;
+      .title {
+        color: $light;
+        font-weight: 600;
+      }
+      .chevron {
+        color: $light;
+        i {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+  .detail-product-faq-body {
+    padding: 16px 20px;
+    background: $color-F8633A;
+    border: 1px solid $color-DEDEDE;
+    border-top: none;
+    p {
+      margin: 0;
+      color: $light;
+      font-size: 14px;
+      line-height: 1.7;
+      @include minWidth(1024px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  // ============================================================
+  // Đánh giá sản phẩm — dựng lại bằng HTML/CSS sống thay cho ảnh flatten
+  // trong Figma (xem Design Document mục 9, Open Question 6).
+  // ============================================================
+  .detail-product-reviews {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+  }
+  .detail-product-reviews-card {
+    background: $light;
+    border: 1px solid $color-DEDEDE;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 1036px;
+    @include minWidth(1024px) {
+      padding: 30px;
+    }
+    h3 {
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 17px;
+      margin-bottom: 20px;
+      @include minWidth(1024px) {
+        font-size: 24px;
+      }
+    }
+  }
+  .detail-product-reviews-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $color-EBEBEB;
+  }
+  .detail-product-reviews-average {
+    flex: 0 0 140px;
+    text-align: center;
+    .score {
+      display: block;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1.2;
+    }
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      margin: 4px 0;
+      i {
+        width: 14px;
+        height: 14px;
+        background-image: url("../images/icon/ic_star-rating.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+    .label {
+      display: block;
+      color: $color-9D9D9D;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+  }
+  .detail-product-reviews-histogram {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    min-width: 200px;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .star-label {
+      flex: 0 0 44px;
+      color: $color-9D9D9D;
+      font-size: 13px;
+    }
+    .bar {
+      flex: 1;
+      height: 8px;
+      border-radius: 4px;
+      background: $color-F5F5F5;
+      overflow: hidden;
+      span {
+        display: block;
+        height: 100%;
+        background: $color-FA53E3E;
+        border-radius: 4px;
+      }
+    }
+    .count {
+      flex: 0 0 34px;
+      text-align: right;
+      color: $color-9D9D9D;
+      font-size: 13px;
+    }
+  }
+  .detail-product-reviews-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 16px 0;
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-EBEBEB;
+      }
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      .name {
+        color: $color-1E335C;
+        font-weight: 500;
+        font-size: 15px;
+      }
+      .badge-verified {
+        background: $color-F5F5F5;
+        color: $color-9D9D9D;
+        font-size: 11px;
+        border-radius: 6px;
+        padding: 2px 8px;
+      }
+    }
+    .stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 6px;
+      i {
+        width: 12px;
+        height: 12px;
+        background-image: url("../images/icon/ic_star-rating.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+    .tag {
+      display: inline-block;
+      color: $color-F8633A;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .content {
+      margin: 0 0 8px;
+      color: $color-323232;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .foot {
+      color: $color-9D9D9D;
+      font-size: 12px;
+    }
+  }
+
+  // ============================================================
+  // Combo Sản Phẩm + Banner ngang + Sản Phẩm liên quan — dùng chung 1
+  // wrapper mang nền theo Group 632942 (nền trắng, full-bleed).
+  // ============================================================
+  .detail-product-combo-wrapper {
+    background: $light url("../images/bg-detail-product-combo-wrapper.png") no-repeat top center / cover;
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+    > .container-fluid {
+      margin-bottom: 32px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    .product-slider-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      @include minWidth(1024px) {
+        margin-bottom: 24px;
+      }
+      h2 {
+        margin: 0;
+        color: $color-1E335C;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        font-size: 22px;
+        @include minWidth(1024px) {
+          font-size: 35px;
+        }
+      }
+      .link-view-all {
+        color: $color-FF6D3E;
+        white-space: nowrap;
+        &:hover {
+          color: $color-FF6D3E;
+        }
+      }
+      .btn-view-all {
+        background: $color-FF6D3E;
+      }
+    }
+    .product-slider-card-wrap {
+      position: relative;
+    }
+    // Combo/Sản phẩm liên quan tái dùng .product-card gốc + Swiper config
+    // productSliderOptions (xem index.js) — chỉ bổ sung mobile button-stack
+    // giống hệt .product-slider-sale/.product-slider-bestseller vì
+    // .product-slider-1 gốc (Đai hỗ trợ) không có sẵn rule này.
+    .product-slider-combo,
+    .product-slider-related {
+      .product-card .product-card-body .product-card-actions {
+        @include maxWidth(1023px) {
+          flex-direction: column;
+          button {
+            width: 100%;
+            flex: 0 0 auto;
+          }
+        }
+      }
+    }
+    .detail-product-view-all-mobile {
+      justify-content: center;
+      margin-top: 16px;
+      color: $color-FF6D3E;
+      .btn-view-all {
+        background: $color-FF6D3E;
+      }
+    }
+  }
+
+  .detail-product-banner {
+    .banner-pc {
+      display: none;
+      @include minWidth(1024px) {
+        display: block;
+      }
+    }
+    .banner-mobile {
+      display: block;
+      @include minWidth(1024px) {
+        display: none;
+      }
+    }
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+
+  // ============================================================
+  // Bài viết liên quan — tái dùng .item-blog-new-simple / .blog-list-3col
+  // (Homepage). Card thứ 4 chỉ hiện trên Mobile theo đúng số lượng quan
+  // sát được trong Figma mobile (xem Design Document mục 4 / mục 9).
+  // ============================================================
+  .detail-product-articles {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+    .product-slider-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      @include minWidth(1024px) {
+        margin-bottom: 24px;
+      }
+      h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .link-view-all {
+        color: $color-FF6D3E;
+        &:hover {
+          color: $color-FF6D3E;
+        }
+      }
+      .btn-view-all {
+        background: $color-FF6D3E;
+      }
+    }
+    .blog-list-3col {
+      @include maxWidth(1023px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+      @include minWidth(1024px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .detail-product-view-all-mobile {
+      justify-content: center;
+      margin-top: 16px;
+      color: $color-FF6D3E;
+      .btn-view-all {
+        background: $color-FF6D3E;
+      }
+    }
+  }
+
+  // ============================================================
+  // Size Guide Modal — tái dùng Bootstrap Modal có sẵn của project
+  // (.modal/.modal-dialog/.modal-content đã customize trong _common.scss),
+  // chỉ override riêng phần padding/width cho modal ảnh này (không đụng
+  // _common.scss vì đó là style dùng chung, ảnh hưởng modal khác).
+  // ============================================================
+  .detail-product-size-guide-modal {
+    .modal-dialog {
+      max-width: 500px;
+      @include minWidth(768px) {
+        max-width: 500px;
+      }
+      @include minWidth(1200px) {
+        max-width: 500px;
+      }
+    }
+    .modal-content {
+      padding: 0;
+      overflow: hidden;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
