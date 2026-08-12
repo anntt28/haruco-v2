@@ -253,8 +253,6 @@ $(function () {
     var $gallery = $(this);
     var thumbEl = $gallery.find(".slider-thumb-child")[0];
     var mainEl = $gallery.find(".slider-images-main")[0];
-    var nextEl = $gallery.find(".swiper-button-next-6")[0];
-    var prevEl = $gallery.find(".swiper-button-prev-6")[0];
     if (!thumbEl || !mainEl) {
       return;
     }
@@ -266,10 +264,6 @@ $(function () {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       spaceBetween: 10,
-      navigation: {
-        nextEl: nextEl,
-        prevEl: prevEl,
-      },
       breakpoints: {
         1200: {
           slidesPerView: 4,
@@ -308,6 +302,20 @@ $(function () {
   $(".list-item-bo span").on("click", function (e) {
       $(this).closest(".list-item-bo").find("span").removeClass('active');
       $(this).addClass('active');
+    });
+    // "Kích thước chữ" (Product Detail, .detail-product-description-main) —
+    // đổi biến CSS --dp-font-scale để scale font-size của content đọc
+    // (h3/h4/p/feature-list) theo hệ số var(--dp-font-scale) đã khai báo
+    // trong _detail-product.scss, không đụng tới style của chính nút bấm.
+    $(".detail-product-fontsize-options button").on("click", function () {
+      const $btn = $(this);
+      $btn.siblings().removeClass("active");
+      $btn.addClass("active");
+      const scale = $btn.data("fontsize-scale") || 1;
+      const mainEl = $btn.closest(".detail-product-description-main").get(0);
+      if (mainEl) {
+        mainEl.style.setProperty("--dp-font-scale", scale);
+      }
     });
     $('.qty-count').on('click', function () {
       const input = $(this).siblings('.product-qty') // lấy input cùng nhóm
@@ -647,5 +655,13 @@ $(function () {
     var expanded = $section.hasClass("expanded");
     $section.toggleClass("expanded");
     $btn.contents().first().replaceWith(expanded ? "Xem thêm" : $btn.data("toggle-text"));
+  });
+
+  $(".detail-product-reviews-card .progress-wrap").each(function () {
+    const $wrap = $(this);
+    const barWidth = $wrap.find(".h-review-progress").outerWidth();
+    const fgWidth = $wrap.find(".h-review-progress .bar.fg").outerWidth();
+    const percent = Math.round((fgWidth / barWidth) * 100);
+    $wrap.find(".percent").text(percent + "%");
   });
 });
