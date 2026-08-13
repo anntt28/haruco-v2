@@ -101,8 +101,10 @@ $(function () {
   };
   // "combo" / "related" — Combo Sản Phẩm và Sản Phẩm liên quan ở Product
   // Detail, tái dùng đúng productSliderOptions (Đai hỗ trợ) theo Design
-  // Document mục 3, không viết config Swiper riêng.
-  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related"].forEach(function (i) {
+  // Document mục 3, không viết config Swiper riêng. "expert" — "Chuyên
+  // gia khuyên dùng" ở List News, cùng lý do (tái dùng nguyên slider
+  // Sản phẩm liên quan, chỉ đổi tên suffix để không trùng "related").
+  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related", "expert"].forEach(function (i) {
     new Swiper(
       ".product-slider-" + i,
       $.extend({}, productSliderOptions, {
@@ -112,6 +114,19 @@ $(function () {
         },
       })
     );
+  });
+  // List News — ".list-news-tabs" KHÔNG phải tab component (không có
+  // switching/active state/content ẩn-hiện) — chỉ là 1 slider danh sách
+  // link điều hướng (mỗi slide chứa 1 thẻ <a>). Slider đơn giản, không
+  // cần xử lý gì thêm ngoài Swiper + navigation thông thường.
+  new Swiper(".list-news-tabs__slider", {
+    loop: false,
+    slidesPerView: "auto",
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".list-news-tabs-next",
+      prevEl: ".list-news-tabs-prev",
+    },
   });
   // Anchor Navigation (Group 633028, Product Detail) — cuộn mượt tới
   // section tương ứng. Item "Check hành chính hãng" cố tình không dùng

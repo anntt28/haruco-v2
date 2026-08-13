@@ -1,211 +1,588 @@
-.template-blog-new {
-  display: grid;
-  margin-bottom: 35px;
-  gap: 30px;
-  @include minWidth(1200px) {
-    grid-template-columns: 1fr 283px;
-    column-gap: 30px;
+// List News (list-news.html) — trọng tâm là grid "List tin", theo Design
+// Document .claude/docs/design/list-news-design.md. Reuse nguyên
+// .blog-list-3col và .item-blog-new-simple (_home.scss) — không tạo lại
+// grid/component mới, chỉ thêm layout/spacing riêng của trang này.
+.list-news-page {
+  .list-news-list {
+    padding: 32px 0;
+    @include minWidth(768px) {
+      padding: 48px 0;
+    }
   }
-  .after-loop-wrapper-news {
-    margin-top: 40px;
-  }
-}
-.list-news-overlay {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  @include minWidth(768px) {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-  .img{
-    margin-bottom: 0;
-  }
-  .item-news-overlay {
-    &:first-child {
-      grid-row: 1 / span 2;
-      .img {
-        padding-top: 78%;
+
+  // _home.scss có rule mobile khiến .item-blog-new-simple:not(:first-child)
+  // chuyển sang layout ngang/compact (ẩn .des) dưới 767px — đúng hành vi
+  // cho Homepage nhưng vi phạm yêu cầu List News (mọi card phải giữ nguyên
+  // thiết kế Desktop trên Mobile). Không sửa/xoá rule ở _home.scss — chỉ
+  // override lại đúng từng property đã bị đổi, scope trong
+  // .list-news-page để không ảnh hưởng Homepage.
+  .list-news-list .item-blog-new-simple {
+    @include maxWidth(767px) {
+      display: block;
+      border-color: $color-EBEBEB;
+      .image-cover-h {
+        padding-top: 55%;
+        height: auto;
       }
-      .text {
-        padding: 0 30px 19px 30px;
+      .box-text {
+        padding: 24px 30px 30px;
+      }
+      .des {
+        display: -webkit-box;
+      }
+      h3 a {
+        font-size: 18px;
+        line-height: 30px;
+        -webkit-line-clamp: 2;
       }
     }
   }
-}
-.item-news-overlay {
-  position: relative;
-  .img {
-    padding-top: 75%;
-    border-radius: 20px;
-    overflow: hidden;
-    img {
-      width: 100%;
+
+  // ============================================================
+  // Breadcrumb — tái dùng đúng pattern .breadcrumbs đã có ở
+  // .product-category-page/.product-detail-page (_product-category.scss,
+  // _detail-product.scss). Không có bản dùng chung (unscoped) trong
+  // project nên copy lại 1 bản scope riêng cho .list-news-page, đúng
+  // convention hiện tại (mỗi page tự scope 1 bản).
+  // ============================================================
+  .breadcrumbs {
+    padding: 12px 0;
+    border-bottom: 1px solid $color-E6E6E6;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
-    &::after {
-      content: "";
-      background: linear-gradient(
-        180deg,
-        rgba(18, 31, 56, 0) 57%,
-        rgba(18, 31, 56, 0.608) 79.8%,
-        rgba(18, 31, 56, 0.8) 94%
-      );
-      width: 100%;
-      height: 100%;
+    li {
+      color: $color-6B6B6B;
+      font-size: 14px;
+      @include minWidth(768px) {
+        font-size: 15px;
+      }
+    }
+    a {
+      color: $color-6B6B6B;
+    }
+    span {
+      color: $color-6B6B6B;
+      margin: 0 4px;
+    }
+  }
+
+  // ============================================================
+  // Banner (Figma "Ảnh bìa") — hero cover full-width, heading "Haruco
+  // News" đè lên ảnh nền. Không có component tương tự để tái dùng (đã
+  // search toàn project) — dùng lại asset banner-child-page.png (đã có
+  // sẵn trong assets/images/, chưa được dùng ở trang nào) thay cho ảnh
+  // collage gốc trong Figma (không có file export tương ứng trong repo).
+  // ============================================================
+  .list-news-banner {
+    padding: 16px 0;
+    @include minWidth(768px) {
+      padding: 24px 0;
+    }
+    .list-news-banner-inner {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1400 / 500;
+        object-fit: cover;
+      }
+    }
+    .list-news-banner-title {
       position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-  .text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    color: $light;
-    padding: 0px 30px 10px 30px;
-    width: 100%;
-    h3 {
-      font-size: 18px;
-      font-weight: 500;
-      line-height: 1.5;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
-    p {
-      font-size: 11px;
-      line-height: 2;
-      letter-spacing: 0.26px;
-      @include minWidth(1024px) {
-        font-size: 13px;
+      top: 50%;
+      left: 24px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      color: $light;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      border-radius: 10px;
+      @include minWidth(768px) {
+        font-size: 40px;
+        padding: 20px 40px;
+        left: 60px;
       }
     }
   }
-}
-.list-news-vertical {
-  margin-top: 30px;
-  .item-news-vertical {
-    &:not(:last-child) {
-      margin-bottom: 30px;
+
+  // ============================================================
+  // Heading "Sức khỏe & làm đẹp" — chỉ còn <h2>, phần tab filter đã
+  // chuyển sang section riêng .list-news-tabs (nav-link slider, không
+  // phải tab component — xem block .list-news-tabs bên dưới).
+  // ============================================================
+  .list-news-heading {
+    padding: 24px 0 0;
+    .list-news-heading-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      @include minWidth(768px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    h2 {
+      margin: 0;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      @include minWidth(768px) {
+        font-size: 35px;
+      }
     }
   }
-}
-.item-news-vertical {
-  display: grid;
-  align-items: center;
-  box-shadow: 0px 2px 8px 0px #d1725338;
-  border-radius: 20px;
-  overflow: hidden;
-  @include minWidth(768px) {
-    grid-template-columns: 302px 1fr;
-    height: 225px;
-  }
-  .img {
-    img {
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
+
+  // ============================================================
+  // "Tiêu điểm" (Featured) — thẻ 2 cột: ảnh trái + panel gradient cam đỏ
+  // phải (badge + meta + tiêu đề + mô tả + link). Không có component
+  // tương tự trong project (đã search) — implementation riêng, chỉ scope
+  // trong .list-news-page. Panel dùng lại đúng gradient thương hiệu
+  // linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%) đã dùng
+  // ở .detail-product-upsell-heading/.footer-newsletter/tab active.
+  // ============================================================
+  .list-news-featured {
+    padding: 24px 0;
+    @include minWidth(768px) {
+      padding: 32px 0;
     }
-  }
-  .text {
-    padding: 32px 34px;
-    h3 {
-      font-size: 20px;
-      line-height: 1.5;
+    .list-news-featured-inner {
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
       overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      color: $main-01;
-      a {
-        transition: all 0.3s;
-        &:hover {
-          color: initial;
+      @include minWidth(768px) {
+        flex-direction: row;
+      }
+    }
+    .list-news-featured-image {
+      flex: 0 0 auto;
+      min-width: 0;
+      @include minWidth(768px) {
+        flex: 0 0 50%;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 699 / 464;
+        object-fit: cover;
+      }
+    }
+    .list-news-featured-body {
+      flex: 0 0 auto;
+      min-width: 0;
+      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      color: $light;
+      padding: 24px;
+      @include minWidth(768px) {
+        flex: 0 0 50%;
+        padding: 40px 50px;
+      }
+      .badge-featured {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid $light;
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+      .post-meta {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 8px;
+      }
+      h3 {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        @include minWidth(768px) {
+          font-size: 26px;
+        }
+      }
+      .des {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 16px;
+        opacity: 0.95;
+      }
+      .link-view-detail {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: $light;
+        text-decoration: underline;
+        font-size: 15px;
+        .btn-view-detail {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: $light;
+          position: relative;
+          flex-shrink: 0;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 12px;
+            background-image: url("../images/icon/ic_arrow-right-orange.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+          }
         }
       }
     }
-    p {
-      font-size: 13px;
-      line-height: 2;
-      letter-spacing: 0.26px;
-    }
-    .des {
-      color: $gray-01;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
-      margin-top: 8px;
-    }
   }
-}
-.side-bar-child-page {
-  .box-cate-pr {
-    &:not(:last-child) {
-      margin-bottom: 30px;
-    }
-  }
-}
-.title-side-bar {
-  background: linear-gradient(75.84deg, #e72b29 20.81%, #f26d42 95.07%);
-  color: $light;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.27;
-  padding: 10px 9px 8px 9px;
-  border-top-right-radius: 20px;
-}
-.list-news-spotlight {
-  margin-top: 20px;
-  .item-blog-new {
-    &:not(:last-child) {
-      margin-bottom: 15px;
-    }
-  }
-  .text {
-    margin-top: 12px;
-  }
-  h3 {
-    font-size: 17px;
-    line-height: 1.7;
-  }
-  p {
-    font-size: 13px;
-    color: $grey-6;
-  }
-}
-.list-news-latest {
-  margin-top: 20px;
-  .item-news-vertical {
-    height: 100%;
-    grid-template-columns: 90px 1fr;
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
-    .img {
-      height: 75px;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 0;
-      img {
-        height: 100%;
+
+  // ============================================================
+  // "Nhận tư vấn sức khỏe" — CTA chèn giữa hàng 2 và hàng 3 của List tin
+  // (đúng vị trí Figma: node "Form" nằm giữa 2 group card). Không trùng
+  // với .footer-newsletter (nội dung/mục đích khác — tư vấn sức khỏe vs
+  // đăng ký nhận tin) nên tạo implementation riêng, nhưng mượn lại đúng
+  // ngôn ngữ hình ảnh đã có (gradient thương hiệu, input bo góc 10px).
+  // ============================================================
+  .list-news-consult {
+    padding: 24px 0;
+    .list-news-consult-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      @include minWidth(768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 24px 40px;
       }
     }
-    .text {
-      padding: 0 13px 0;
+    .list-news-consult-image {
+      display: none;
+      @include minWidth(768px) {
+        display: block;
+        flex: 0 0 200px;
+        img {
+          display: block;
+          width: 100%;
+          border-radius: 10px;
+        }
+      }
+    }
+    .list-news-consult-body {
+      flex: 1;
+      min-width: 0;
       h3 {
-        font-size: 16px;
-        -webkit-line-clamp: 2;
-        margin-bottom: 0;
+        color: $light;
+        font-size: 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        @include minWidth(768px) {
+          font-size: 28px;
+        }
       }
-      p {
-        font-size: 11px;
-        letter-spacing: 0;
-        color: $grey-6;
+    }
+    .list-news-consult-form {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+      @include minWidth(768px) {
+        margin: 0;
+      }
+      input {
+        width: 100%;
+        height: 45px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        padding: 0 50px 0 18px;
+        color: $main-01;
+        font-size: 14px;
+      }
+      button {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        padding: 0;
+        color: $color-F8633A;
+        font-size: 18px;
+      }
+    }
+  }
+
+  // ============================================================
+  // Pagination — tái dùng đúng .product-category-pagination /
+  // .pagination-list (_product-category.scss:510+), chỉ đổi tên section
+  // wrapper cho đúng scope List News.
+  // ============================================================
+  .list-news-pagination {
+    padding: 16px 0 32px;
+    .pagination-list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        background: $light;
+        border: 1px solid $color-E6E6E6;
+        color: $color-707070;
+        font-size: 15px;
+        letter-spacing: -0.05em;
+        @include trans;
+      }
+      li.active a {
+        background: $color-FF6D3E;
+        border-color: $color-E6E6E6;
+        color: $light;
+      }
+      li.pagination-next a {
+        color: $color-888888;
+      }
+    }
+  }
+
+  // ============================================================
+  // Banner — box riêng cho Mobile (chưa có ảnh thật, chỉ tạo structure/
+  // style container để thêm ảnh sau). Desktop tiếp tục dùng
+  // .list-news-banner-inner như cũ; 2 khối ẩn/hiện đối nghịch nhau theo
+  // breakpoint, không hiển thị đồng thời.
+  // ============================================================
+  .list-news-banner-inner {
+    @include maxWidth(767px) {
+      display: none;
+    }
+  }
+  .list-news-banner__mobile {
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    // Mượn lại đúng tỷ lệ ảnh hero mobile đã dùng cho
+    // .product-category-hero img (_product-category.scss) — cùng bài
+    // toán (ảnh cover mobile riêng, khác tỷ lệ desktop 1400/500), chưa có
+    // số đo riêng từ Figma cho box này.
+    aspect-ratio: 410 / 300;
+    background: $color-F9F9F9;
+    @include minWidth(768px) {
+      display: none;
+    }
+  }
+
+  // ============================================================
+  // "Chuyên gia khuyên dùng" — tái dùng nguyên slider "Sản phẩm liên
+  // quan" của Product Detail (.product-slider-card-wrap, .product-card,
+  // productSliderOptions qua suffix "expert" trong index.js — xem
+  // .product-slider-heading/.product-slider-card-wrap gốc tại
+  // _detail-product.scss:1577+/1616+). Không sửa _detail-product.scss —
+  // copy lại đúng phần cần thiết, scope riêng .list-news-expert. Chỉ khác
+  // biệt so với bản gốc: nền #F9F9F9 phủ toàn section (yêu cầu Figma)
+  // thay vì nền trắng mặc định của Product Detail.
+  // ============================================================
+  .list-news-expert {
+    background: $color-F9F9F9;
+    padding: 32px 0;
+    @include minWidth(768px) {
+      padding: 48px 0;
+    }
+    .product-slider-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      @include minWidth(768px) {
+        margin-bottom: 24px;
+      }
+      h2 {
+        margin: 0;
+        color: $color-1E335C;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        font-size: 22px;
+        @include minWidth(768px) {
+          font-size: 35px;
+        }
+      }
+      .link-view-all {
+        white-space: nowrap;
+      }
+    }
+    .product-slider-card-wrap {
+      background: $light;
+      border-radius: 10px;
+      box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+      padding: 16px 10px;
+      position: relative;
+      @include minWidth(768px) {
+        padding: 30px;
+      }
+      .swiper-button-prev,
+      .swiper-button-next {
+        background-color: $light;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+        background-image: url("../images/arrow-circle-grey_ic.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 30px 30px;
+        &::after {
+          content: none;
+        }
+        &.swiper-button-disabled {
+          opacity: 0.35;
+          cursor: auto;
+          pointer-events: none;
+        }
+      }
+      .swiper-button-prev {
+        left: -14px;
+        @include minWidth(768px) {
+          left: -15px;
+        }
+      }
+      .swiper-button-next {
+        right: -14px;
+        transform: scaleX(-1);
+        @include minWidth(768px) {
+          right: -15px;
+        }
+      }
+    }
+    // Mobile: 2 nút hành động ("Mua ngay"/"Thêm vào giỏ") xếp dọc thay vì
+    // ngang, giống hệt cách Combo/Sản phẩm liên quan xử lý ở Product
+    // Detail — chỉ đổi breakpoint sang maxWidth(767px) cho khớp convention
+    // riêng của List News (768px) thay vì 1023px của Product Detail.
+    .product-card .product-card-body .product-card-actions {
+      @include maxWidth(767px) {
+        flex-direction: column;
+        button {
+          width: 100%;
+          flex: 0 0 auto;
+        }
+      }
+    }
+    .list-news-view-all-mobile {
+      justify-content: center;
+      margin-top: 16px;
+    }
+  }
+
+  // ============================================================
+  // ".list-news-tabs" KHÔNG phải tab component — không có active state,
+  // không có tab-content/tab-pane, không điều khiển section khác. Đây
+  // chỉ là 1 slider danh sách link điều hướng, mỗi slide chứa đúng 1 thẻ
+  // <a> (href="#" — chưa có URL/danh mục thật trong project, không tự
+  // đoán). slidesPerView:"auto" vì các item độ rộng khác nhau (pill theo
+  // độ dài text), không phải slide đều nhau như .item-blog-new-simple.
+  // Nav prev/next dùng lại đúng icon .swiper-button-prev/-next
+  // (arrow-circle-grey_ic.svg) đã dùng cho .list-news-expert/Combo/
+  // Related ở Product Detail.
+  // ============================================================
+  .list-news-tabs {
+    padding: 24px 0;
+    @include minWidth(768px) {
+      padding: 32px 0;
+    }
+    .list-news-tabs__wrap {
+      position: relative;
+    }
+    .list-news-tabs__slider {
+      .swiper-wrapper {
+        align-items: stretch;
+      }
+      // Swiper base CSS (CDN) mặc định ".swiper-slide { width:100%; }" —
+      // đúng cho slidesPerView dạng số (Swiper tự set inline width qua JS
+      // để override), nhưng KHÔNG override cho slidesPerView:"auto" —
+      // phải tự set width:auto ở đây để slide co đúng theo nội dung
+      // (<a> bên trong), nếu không mọi slide sẽ rộng bằng cả container.
+      .swiper-slide {
+        width: auto;
+      }
+    }
+    .list-news-tabs__link {
+      // inline-flex (không phải flex): slidesPerView:"auto" của Swiper cần
+      // slide tự co theo độ rộng nội dung — flex (block-level) sẽ giãn hết
+      // chiều rộng .swiper-slide, khiến "auto" tính sai thành full-width.
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 16px;
+      border: 1px solid $color-D0D0D0;
+      border-radius: 10px;
+      font-size: 15px;
+      white-space: nowrap;
+      color: $color-9D9D9D;
+      background: $light;
+      cursor: pointer;
+      @include trans;
+      &:hover {
+        color: $color-9D9D9D;
+      }
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      background-color: $light;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+      background-image: url("../images/arrow-circle-grey_ic.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 30px 30px;
+      &::after {
+        content: none;
+      }
+      &.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: auto;
+        pointer-events: none;
+      }
+    }
+    .swiper-button-prev {
+      left: -14px;
+      @include minWidth(768px) {
+        left: -15px;
+      }
+    }
+    .swiper-button-next {
+      right: -14px;
+      transform: scaleX(-1);
+      @include minWidth(768px) {
+        right: -15px;
       }
     }
   }
