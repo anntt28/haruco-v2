@@ -1734,6 +1734,9 @@
       }
       .btn-view-all {
         background: $color-FF6D3E;
+        &::after {
+          background-image: url("../images/icon/ic_arrow-right-white.svg");
+        }
       }
     }
     .blog-list-3col {
@@ -1743,6 +1746,36 @@
       @include minWidth(1024px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
+      // .item-blog-new-simple (_home.scss) giữ layout ảnh trên/chữ dưới
+      // riêng cho :first-child ở Mobile (≤767px) — hành vi đúng cho danh
+      // sách "Sức khỏe & làm đẹp" ở Homepage nhưng không đúng cho "Bài
+      // viết liên quan" ở Product Detail, nơi mọi item phải đồng nhất.
+      // Override tại đây (scope theo .detail-product-articles) thay vì
+      // sửa rule dùng chung, để không ảnh hưởng Homepage. Lặp lại đúng
+      // style của &:not(:first-child) cho :first-child, cùng breakpoint
+      // 767px với rule gốc.
+      .item-blog-new-simple:first-child {
+        @include maxWidth(767px) {
+          display: grid;
+          grid-template-columns: 156px 1fr;
+          border-color: #dbdbdb;
+          .image-cover-h {
+            padding-top: 0;
+            height: 100%;
+          }
+          .box-text {
+            padding: 8px 4px 8px 12px;
+          }
+          .des {
+            display: none;
+          }
+          h3 a {
+            font-size: 16px;
+            line-height: 1.4;
+            -webkit-line-clamp: 3;
+          }
+        }
+      }
     }
     .detail-product-view-all-mobile {
       justify-content: center;
@@ -1750,6 +1783,9 @@
       color: $color-FF6D3E;
       .btn-view-all {
         background: $color-FF6D3E;
+        &::after {
+          background-image: url("../images/icon/ic_arrow-right-white.svg");
+        }
       }
     }
   }

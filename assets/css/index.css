@@ -17572,6 +17572,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .product-detail-page .detail-product-articles .product-slider-heading .btn-view-all {
   background: #FF6D3E;
 }
+.product-detail-page .detail-product-articles .product-slider-heading .btn-view-all::after {
+  background-image: url("../images/icon/ic_arrow-right-white.svg");
+}
 @media (max-width: 1023px) {
   .product-detail-page .detail-product-articles .blog-list-3col {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -17582,6 +17585,28 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+@media (max-width: 767px) {
+  .product-detail-page .detail-product-articles .blog-list-3col .item-blog-new-simple:first-child {
+    display: grid;
+    grid-template-columns: 156px 1fr;
+    border-color: #dbdbdb;
+  }
+  .product-detail-page .detail-product-articles .blog-list-3col .item-blog-new-simple:first-child .image-cover-h {
+    padding-top: 0;
+    height: 100%;
+  }
+  .product-detail-page .detail-product-articles .blog-list-3col .item-blog-new-simple:first-child .box-text {
+    padding: 8px 4px 8px 12px;
+  }
+  .product-detail-page .detail-product-articles .blog-list-3col .item-blog-new-simple:first-child .des {
+    display: none;
+  }
+  .product-detail-page .detail-product-articles .blog-list-3col .item-blog-new-simple:first-child h3 a {
+    font-size: 16px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+  }
+}
 .product-detail-page .detail-product-articles .detail-product-view-all-mobile {
   justify-content: center;
   margin-top: 16px;
@@ -17589,6 +17614,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .product-detail-page .detail-product-articles .detail-product-view-all-mobile .btn-view-all {
   background: #FF6D3E;
+}
+.product-detail-page .detail-product-articles .detail-product-view-all-mobile .btn-view-all::after {
+  background-image: url("../images/icon/ic_arrow-right-white.svg");
 }
 .product-detail-page .detail-product-size-guide-modal .modal-dialog {
   max-width: 500px;
