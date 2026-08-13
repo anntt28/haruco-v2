@@ -8,6 +8,40 @@
     @include minWidth(768px) {
       padding: 48px 0;
     }
+    // Pagination (tái dùng đúng .pagination-list ở _product-category.scss:
+    // 510+) — nằm trong .list-news-list, là sibling của .blog-list-3col,
+    // căn giữa ngang, chỉ áp dụng cho section thực sự chứa .pagination-list.
+    .pagination-list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 32px 0 0;
+      padding: 0;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        background: $light;
+        border: 1px solid $color-E6E6E6;
+        color: $color-707070;
+        font-size: 15px;
+        letter-spacing: -0.05em;
+        @include trans;
+      }
+      li.active a {
+        background: $color-FF6D3E;
+        border-color: $color-E6E6E6;
+        color: $light;
+      }
+      li.pagination-next a {
+        color: $color-888888;
+      }
+    }
   }
 
   // _home.scss có rule mobile khiến .item-blog-new-simple:not(:first-child)
@@ -119,7 +153,14 @@
   // phải tab component — xem block .list-news-tabs bên dưới).
   // ============================================================
   .list-news-heading {
-    padding: 24px 0 0;
+    // Trước đây chỉ có padding-top vì .list-news-tabs còn là section riêng
+    // ngay bên dưới (tự có padding-top làm khoảng cách) — giờ tabs đã gộp
+    // vào cùng hàng với h2 nên heading cần padding đầy đủ như 1 section
+    // bình thường.
+    padding: 24px 0;
+    @include minWidth(768px) {
+      padding: 32px 0;
+    }
     .list-news-heading-row {
       display: flex;
       flex-direction: column;
@@ -128,6 +169,14 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+      }
+    }
+    .list-news-tabs {
+      @include minWidth(768px) {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        justify-content: flex-end;
       }
     }
     h2 {
@@ -184,16 +233,29 @@
       background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
       color: $light;
       padding: 24px;
+      // Bọc content bằng .list-news-featured-content để căn giữa theo
+      // chiều dọc (display:flex ở đây, .list-news-featured-content chỉ
+      // là 1 khối con bình thường, không cần CSS riêng — width tự nhiên
+      // 100% vì là block-level).
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       @include minWidth(768px) {
         flex: 0 0 50%;
         padding: 40px 50px;
       }
+      // Asset thực tế nằm tại assets/images/bg-tieu-diem.png (không có
+      // trong thư mục con images/bg/ như đường dẫn được cung cấp) — kích
+      // thước gốc 131×33, đúng là background riêng cho badge này (không
+      // phải background cho cả section), dùng background-size:100% 100%
+      // để khớp khít theo kích thước thực tế của badge.
       .badge-featured {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        border: 1px solid $light;
-        border-radius: 20px;
+        background-image: url("../images/bg-tieu-diem.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
         padding: 4px 14px;
         font-size: 14px;
         margin-bottom: 16px;
@@ -260,12 +322,20 @@
   // ============================================================
   .list-news-consult {
     padding: 24px 0;
+    // Asset thực tế nằm tại assets/images/bg-nhan-tu-van-suc-khoe.png
+    // (không có thư mục con images/bg/). Ảnh 1400×198 đã bao gồm sẵn cả
+    // ảnh chuyên gia tư vấn + nền gradient — thay thế hoàn toàn gradient
+    // CSS + <img> riêng (.list-news-consult-image, đã xoá khỏi HTML vì
+    // nếu giữ sẽ hiển thị trùng ảnh chuyên gia 2 lần).
     .list-news-consult-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      background-image: url("../images/bg-nhan-tu-van-suc-khoe.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
       border-radius: 10px;
       padding: 24px;
       text-align: center;
@@ -274,18 +344,6 @@
         justify-content: space-between;
         text-align: left;
         padding: 24px 40px;
-      }
-    }
-    .list-news-consult-image {
-      display: none;
-      @include minWidth(768px) {
-        display: block;
-        flex: 0 0 200px;
-        img {
-          display: block;
-          width: 100%;
-          border-radius: 10px;
-        }
       }
     }
     .list-news-consult-body {
@@ -329,46 +387,6 @@
         padding: 0;
         color: $color-F8633A;
         font-size: 18px;
-      }
-    }
-  }
-
-  // ============================================================
-  // Pagination — tái dùng đúng .product-category-pagination /
-  // .pagination-list (_product-category.scss:510+), chỉ đổi tên section
-  // wrapper cho đúng scope List News.
-  // ============================================================
-  .list-news-pagination {
-    padding: 16px 0 32px;
-    .pagination-list {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 33px;
-        height: 33px;
-        border-radius: 50%;
-        background: $light;
-        border: 1px solid $color-E6E6E6;
-        color: $color-707070;
-        font-size: 15px;
-        letter-spacing: -0.05em;
-        @include trans;
-      }
-      li.active a {
-        background: $color-FF6D3E;
-        border-color: $color-E6E6E6;
-        color: $light;
-      }
-      li.pagination-next a {
-        color: $color-888888;
       }
     }
   }
@@ -511,10 +529,9 @@
   // Related ở Product Detail.
   // ============================================================
   .list-news-tabs {
-    padding: 24px 0;
-    @include minWidth(768px) {
-      padding: 32px 0;
-    }
+    // Không còn padding riêng ở đây: trước đây đây là 1 <section> độc lập,
+    // giờ đã lồng vào trong .list-news-heading-row (cùng hàng với h2) nên
+    // khoảng cách dọc đã do padding của .list-news-heading quyết định.
     .list-news-tabs__wrap {
       position: relative;
     }
@@ -529,6 +546,17 @@
       // (<a> bên trong), nếu không mọi slide sẽ rộng bằng cả container.
       .swiper-slide {
         width: auto;
+      }
+      // Active slide (tự động do Swiper gắn/gỡ class .swiper-slide-active
+      // theo vị trí trượt, không cần JS riêng) dùng gradient thương hiệu
+      // giống .list-news-featured-body/.footer-newsletter.
+      .swiper-slide-active .list-news-tabs__link {
+        border-color: transparent;
+        color: $light;
+        background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+        &:hover {
+          color: $light;
+        }
       }
     }
     .list-news-tabs__link {
