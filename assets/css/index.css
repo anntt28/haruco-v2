@@ -44,7 +44,7 @@ body {
 .container-fluid {
   padding: 0 16px;
 }
-@media (min-width: 1119px) {
+@media (min-width: 1400px) {
   .container-fluid {
     padding: 0;
   }
@@ -15759,8 +15759,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   .list-news-page .list-news-heading .list-news-tabs {
     flex: 1 1 auto;
     min-width: 0;
-    display: flex;
-    justify-content: flex-end;
+    max-width: 745px;
   }
 }
 .list-news-page .list-news-heading h2 {
@@ -15772,6 +15771,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 768px) {
   .list-news-page .list-news-heading h2 {
+    flex-shrink: 0;
     font-size: 35px;
   }
 }
@@ -15910,23 +15910,32 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
-    padding: 24px 40px;
+    padding: 52px 40px;
+    background-size: contain;
   }
 }
 .list-news-page .list-news-consult .list-news-consult-body {
   flex: 1;
   min-width: 0;
 }
+@media (min-width: 768px) {
+  .list-news-page .list-news-consult .list-news-consult-body {
+    flex: 0 0 auto;
+    width: 43%;
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
 .list-news-page .list-news-consult .list-news-consult-body h3 {
   color: #fff;
   font-size: 20px;
   font-weight: 500;
-  text-transform: uppercase;
   margin-bottom: 16px;
 }
 @media (min-width: 768px) {
   .list-news-page .list-news-consult .list-news-consult-body h3 {
-    font-size: 28px;
+    font-size: 25px;
+    font-weight: 300;
   }
 }
 .list-news-page .list-news-consult .list-news-consult-form {
@@ -15936,6 +15945,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 768px) {
   .list-news-page .list-news-consult .list-news-consult-form {
+    max-width: none;
     margin: 0;
   }
 }
@@ -15949,6 +15959,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #121F38;
   font-size: 14px;
 }
+.list-news-page .list-news-consult .list-news-consult-form input::placeholder, .list-news-page .list-news-consult .list-news-consult-form .modal textarea::placeholder, .modal .list-news-page .list-news-consult .list-news-consult-form textarea::placeholder, .list-news-page .list-news-consult .list-news-consult-form .modal .select2-container--default .select2-selection--single::placeholder, .modal .select2-container--default .list-news-page .list-news-consult .list-news-consult-form .select2-selection--single::placeholder {
+  color: #121F38;
+  font-weight: 300;
+}
 .list-news-page .list-news-consult .list-news-consult-form button {
   position: absolute;
   top: 50%;
@@ -15957,8 +15971,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background: transparent;
   border: none;
   padding: 0;
-  color: #F8633A;
-  font-size: 18px;
+}
+.list-news-page .list-news-consult .list-news-consult-form button .icon {
+  display: flex;
+  width: 20px;
+  height: 20px;
 }
 @media (max-width: 767px) {
   .list-news-page .list-news-banner-inner {
@@ -16118,10 +16135,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   width: 32px;
   height: 32px;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
-  background-image: url("../images/arrow-circle-grey_ic.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 30px 30px;
+  background-image: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .list-news-page .list-news-tabs .swiper-button-prev::after,
 .list-news-page .list-news-tabs .swiper-button-next::after {
@@ -16135,6 +16152,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .list-news-page .list-news-tabs .swiper-button-prev {
   left: -14px;
+  transform: scaleX(-1);
 }
 @media (min-width: 768px) {
   .list-news-page .list-news-tabs .swiper-button-prev {
@@ -16143,7 +16161,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .list-news-page .list-news-tabs .swiper-button-next {
   right: -14px;
-  transform: scaleX(-1);
+  transform: none;
 }
 @media (min-width: 768px) {
   .list-news-page .list-news-tabs .swiper-button-next {

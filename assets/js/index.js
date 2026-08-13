@@ -117,16 +117,27 @@ $(function () {
   });
   // List News — ".list-news-tabs" KHÔNG phải tab component (không có
   // switching/active state/content ẩn-hiện) — chỉ là 1 slider danh sách
-  // link điều hướng (mỗi slide chứa 1 thẻ <a>). Slider đơn giản, không
-  // cần xử lý gì thêm ngoài Swiper + navigation thông thường.
-  new Swiper(".list-news-tabs__slider", {
-    loop: false,
-    slidesPerView: "auto",
-    spaceBetween: 10,
-    navigation: {
-      nextEl: ".list-news-tabs-next",
-      prevEl: ".list-news-tabs-prev",
-    },
+  // link điều hướng (mỗi slide chứa 1 thẻ <a>). slidesPerView:"auto" ở
+  // MỌI breakpoint (mỗi item rộng theo content, không chia đều cột) —
+  // slidesPerGroup:1 để Next/Prev mỗi lần chỉ dịch đúng 1 item,
+  // slideToClickedSlide để click thẳng vào 1 slide cũng chuyển tới đó.
+  // Dùng .each() + navigation tìm trong closest .list-news-tabs__wrap
+  // (giống pattern .product-gallery-h) để nếu trang có nhiều instance
+  // .list-news-tabs__slider, mỗi slider tự bind đúng cặp nút prev/next
+  // của chính nó, không conflict lẫn nhau.
+  $(".list-news-tabs__slider").each(function () {
+    var $wrap = $(this).closest(".list-news-tabs__wrap");
+    new Swiper(this, {
+      loop: false,
+      slidesPerView: "auto",
+      spaceBetween: 10,
+      slidesPerGroup: 1,
+      slideToClickedSlide: true,
+      navigation: {
+        nextEl: $wrap.find(".list-news-tabs-next")[0],
+        prevEl: $wrap.find(".list-news-tabs-prev")[0],
+      },
+    });
   });
   // Anchor Navigation (Group 633028, Product Detail) — cuộn mượt tới
   // section tương ứng. Item "Check hành chính hãng" cố tình không dùng

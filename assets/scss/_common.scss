@@ -31,7 +31,7 @@ body {
 }
 .container-fluid {
   padding: 0 16px;
-  @include minWidth(1119px) {
+  @include minWidth(1400px) {
     padding: 0;
   }
   max-width: 1400px;

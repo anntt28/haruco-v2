@@ -172,11 +172,15 @@
       }
     }
     .list-news-tabs {
+      // min-width:0 để item có thể co lại nhỏ hơn tổng width nội dung của
+      // 8 slide (slidesPerView:"auto" — Swiper không set width theo số,
+      // slide co theo content) — phần vượt quá sẽ bị .swiper-container
+      // (overflow:hidden) cắt/ẩn, đúng hành vi slider (dùng nav để xem các
+      // slide còn lại), không đẩy ngược ra ngoài làm co hẹp <h2>.
       @include minWidth(768px) {
         flex: 1 1 auto;
         min-width: 0;
-        display: flex;
-        justify-content: flex-end;
+        max-width: 745px;
       }
     }
     h2 {
@@ -185,7 +189,11 @@
       font-weight: 500;
       letter-spacing: -0.03em;
       font-size: 24px;
+      // Không co lại khi .list-news-tabs (8 slide) đòi nhiều chỗ hơn không
+      // gian còn lại của hàng — chỉ .list-news-tabs co (flex-shrink mặc
+      // định), <h2> luôn giữ đúng width nội dung của nó.
       @include minWidth(768px) {
+        flex-shrink: 0;
         font-size: 35px;
       }
     }
@@ -343,20 +351,31 @@
         flex-direction: row;
         justify-content: space-between;
         text-align: left;
-        padding: 24px 40px;
+        padding: 52px 40px;
+        background-size: contain;
       }
     }
     .list-news-consult-body {
       flex: 1;
       min-width: 0;
+      // Desktop: box neo bên phải .list-news-consult-inner theo đúng tỉ lệ
+      // Figma (43%) — phải bỏ flex-grow (flex:1 ở trên) vì đây là flex-child
+      // duy nhất trong hàng, nếu không flex-grow:1 sẽ ép nó giãn full width
+      // bất kể width:43% khai báo bên dưới.
+      @include minWidth(768px) {
+        flex: 0 0 auto;
+        width: 43%;
+        margin-right: 0;
+        margin-left: auto;
+      }
       h3 {
         color: $light;
         font-size: 20px;
         font-weight: 500;
-        text-transform: uppercase;
         margin-bottom: 16px;
         @include minWidth(768px) {
-          font-size: 28px;
+          font-size: 25px;
+          font-weight: 300;
         }
       }
     }
@@ -365,6 +384,7 @@
       max-width: 400px;
       margin: 0 auto;
       @include minWidth(768px) {
+        max-width: none;
         margin: 0;
       }
       input {
@@ -376,6 +396,10 @@
         padding: 0 50px 0 18px;
         color: $main-01;
         font-size: 14px;
+        &::placeholder {
+          color: $main-01;
+          font-weight: 300;
+        }
       }
       button {
         position: absolute;
@@ -385,8 +409,11 @@
         background: transparent;
         border: none;
         padding: 0;
-        color: $color-F8633A;
-        font-size: 18px;
+        .icon {
+          display: flex;
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }
@@ -541,9 +568,10 @@
       }
       // Swiper base CSS (CDN) mặc định ".swiper-slide { width:100%; }" —
       // đúng cho slidesPerView dạng số (Swiper tự set inline width qua JS
-      // để override), nhưng KHÔNG override cho slidesPerView:"auto" —
-      // phải tự set width:auto ở đây để slide co đúng theo nội dung
-      // (<a> bên trong), nếu không mọi slide sẽ rộng bằng cả container.
+      // để override), nhưng KHÔNG override cho slidesPerView:"auto" (dùng
+      // ở mọi breakpoint) — phải tự set width:auto ở đây để slide co đúng
+      // theo nội dung (<a> bên trong), nếu không mọi slide sẽ rộng bằng cả
+      // container.
       .swiper-slide {
         width: auto;
       }
@@ -580,6 +608,12 @@
         color: $color-9D9D9D;
       }
     }
+    // Icon nav riêng cho .list-news-tabs (SVG mũi tên 9×12 #9D9D9D, không
+    // dùng chung arrow-circle-grey_ic.svg như các slider khác trong
+    // project) — SVG nhúng trực tiếp trong HTML, .swiper-button-prev/-next
+    // chỉ còn là khung tròn nền trắng + đổ bóng, căn giữa icon con bằng
+    // flex. Prev dùng lại đúng SVG "Next" rồi flip ngang bằng
+    // transform:scaleX(-1) thay vì tạo path riêng.
     .swiper-button-prev,
     .swiper-button-next {
       background-color: $light;
@@ -587,10 +621,14 @@
       width: 32px;
       height: 32px;
       box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
-      background-image: url("../images/arrow-circle-grey_ic.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 30px 30px;
+      // _slick.scss có base rule global dùng background-image:
+      // url(arrow-circle-grey_ic.svg) cho MỌI .swiper-button-prev/-next —
+      // rule scoped ở đây không tự set lại background-image nên icon cũ
+      // vẫn lộ ra phía sau SVG mới; phải reset về none.
+      background-image: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &::after {
         content: none;
       }
@@ -602,13 +640,18 @@
     }
     .swiper-button-prev {
       left: -14px;
+      transform: scaleX(-1);
       @include minWidth(768px) {
         left: -15px;
       }
     }
     .swiper-button-next {
       right: -14px;
-      transform: scaleX(-1);
+      // _slick.scss có base rule global ".swiper-button-next{transform:
+      // scaleX(-1)}" (lật icon dùng chung arrow-circle-grey_ic.svg) — icon
+      // riêng của .list-news-tabs đã là mũi tên "Next" đúng chiều sẵn nên
+      // phải reset lại transform, không thì bị lật ngược ý muốn.
+      transform: none;
       @include minWidth(768px) {
         right: -15px;
       }
