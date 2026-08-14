@@ -15905,6 +15905,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   padding: 24px;
   text-align: center;
 }
+@media (max-width: 767px) {
+  .list-news-page .list-news-consult .list-news-consult-inner {
+    display: none;
+  }
+}
 @media (min-width: 768px) {
   .list-news-page .list-news-consult .list-news-consult-inner {
     flex-direction: row;
@@ -15976,6 +15981,38 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: flex;
   width: 20px;
   height: 20px;
+}
+.list-news-page .list-news-consult .list-news-consult-inner__mobile {
+  display: block;
+  padding: 18px;
+  border-radius: 10px;
+  background-image: url("../images/bg-nhan-tu-van-suc-khoe_sp.png"), linear-gradient(90deg, #E83729 0%, #F8633A 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, center;
+}
+@media (min-width: 768px) {
+  .list-news-page .list-news-consult .list-news-consult-inner__mobile {
+    display: none;
+  }
+}
+.list-news-page .list-news-consult .list-news-consult-inner__mobile .list-news-consult-mobile-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.list-news-page .list-news-consult .list-news-consult-inner__mobile .list-news-consult-mobile-row img {
+  flex-shrink: 0;
+  width: 80px;
+  height: auto;
+}
+.list-news-page .list-news-consult .list-news-consult-inner__mobile .list-news-consult-mobile-text {
+  margin: 0;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 @media (max-width: 767px) {
   .list-news-page .list-news-banner-inner {
@@ -16130,11 +16167,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .list-news-page .list-news-tabs .swiper-button-prev,
 .list-news-page .list-news-tabs .swiper-button-next {
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 50%;
   width: 32px;
-  height: 32px;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+  height: 41px;
+  box-shadow: none;
   background-image: none;
   display: flex;
   align-items: center;
@@ -16156,7 +16193,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 768px) {
   .list-news-page .list-news-tabs .swiper-button-prev {
-    left: -15px;
+    left: -22px;
   }
 }
 .list-news-page .list-news-tabs .swiper-button-next {
@@ -16165,7 +16202,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 768px) {
   .list-news-page .list-news-tabs .swiper-button-next {
-    right: -15px;
+    right: -22px;
   }
 }
 

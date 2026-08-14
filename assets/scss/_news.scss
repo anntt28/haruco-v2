@@ -347,6 +347,13 @@
       border-radius: 10px;
       padding: 24px;
       text-align: center;
+      // Mobile giờ dùng .list-news-consult-inner__mobile riêng (layout
+      // khác hẳn: ảnh + text 1 hàng, form hàng dưới) — ẩn bản Desktop này
+      // trên Mobile, giống đúng pattern .list-news-banner-inner/
+      // .list-news-banner__mobile đã dùng trước đó trong file này.
+      @include maxWidth(767px) {
+        display: none;
+      }
       @include minWidth(768px) {
         flex-direction: row;
         justify-content: space-between;
@@ -414,6 +421,44 @@
           width: 20px;
           height: 20px;
         }
+      }
+    }
+    // Mobile — layout khác hẳn bản Desktop (ảnh + text chung 1 hàng, form
+    // xuống hàng dưới) nên tạo riêng element thay vì cố nhét chung
+    // .list-news-consult-inner, cùng pattern ẩn/hiện đối nghịch theo
+    // breakpoint với .list-news-banner-inner/.list-news-banner__mobile.
+    // Asset bg-nhan-tu-van-suc-khoe_sp.png rất nhạt/gần trong suốt (chủ ý
+    // để lớp gradient thương hiệu hiện xuyên qua bên dưới) nên dùng
+    // multiple background: ảnh là layer trên, gradient là layer dưới.
+    .list-news-consult-inner__mobile {
+      display: block;
+      padding: 18px;
+      border-radius: 10px;
+      background-image: url("../images/bg-nhan-tu-van-suc-khoe_sp.png"),
+        linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      background-repeat: no-repeat, no-repeat;
+      background-size: cover, cover;
+      background-position: center, center;
+      @include minWidth(768px) {
+        display: none;
+      }
+      .list-news-consult-mobile-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+        img {
+          flex-shrink: 0;
+          width: 80px;
+          height: auto;
+        }
+      }
+      .list-news-consult-mobile-text {
+        margin: 0;
+        color: $light;
+        font-size: 24px;
+        letter-spacing: -0.03em;
+        line-height: 1;
       }
     }
   }
@@ -616,11 +661,11 @@
     // transform:scaleX(-1) thay vì tạo path riêng.
     .swiper-button-prev,
     .swiper-button-next {
-      background-color: $light;
+      background-color: transparent;
       border-radius: 50%;
       width: 32px;
-      height: 32px;
-      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+      height: 41px;
+      box-shadow: none;
       // _slick.scss có base rule global dùng background-image:
       // url(arrow-circle-grey_ic.svg) cho MỌI .swiper-button-prev/-next —
       // rule scoped ở đây không tự set lại background-image nên icon cũ
@@ -642,7 +687,7 @@
       left: -14px;
       transform: scaleX(-1);
       @include minWidth(768px) {
-        left: -15px;
+        left: -22px;
       }
     }
     .swiper-button-next {
@@ -653,7 +698,7 @@
       // phải reset lại transform, không thì bị lật ngược ý muốn.
       transform: none;
       @include minWidth(768px) {
-        right: -15px;
+        right: -22px;
       }
     }
   }
