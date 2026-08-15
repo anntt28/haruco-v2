@@ -49,8 +49,11 @@
   // cho Homepage nhưng vi phạm yêu cầu List News (mọi card phải giữ nguyên
   // thiết kế Desktop trên Mobile). Không sửa/xoá rule ở _home.scss — chỉ
   // override lại đúng từng property đã bị đổi, scope trong
-  // .list-news-page để không ảnh hưởng Homepage.
-  .list-news-list .item-blog-new-simple {
+  // .list-news-page để không ảnh hưởng Homepage. Chỉ áp dụng khi
+  // .blog-list-3col KHÔNG có class .list — xem block ".blog-list-3col.list"
+  // bên dưới cho biến thể dạng list (cố ý giữ nguyên layout split gốc của
+  // _home.scss cho biến thể đó).
+  .list-news-list .blog-list-3col:not(.list) .item-blog-new-simple {
     @include maxWidth(767px) {
       display: block;
       border-color: $color-EBEBEB;
@@ -68,6 +71,59 @@
         font-size: 18px;
         line-height: 30px;
         -webkit-line-clamp: 2;
+      }
+    }
+  }
+
+  // ============================================================
+  // ".blog-list-3col.list" — biến thể "dạng list" cho Mobile: item đầu
+  // tiên giữ layout ảnh trên/chữ dưới (giống rule :not(.list) phía trên),
+  // các item còn lại dùng lại đúng layout ngang (ảnh trái/chữ phải, ẩn
+  // .des) đã có sẵn ở _home.scss cho .item-blog-new-simple:not(:first-child)
+  // — copy lại giá trị vì rule :not(.list) ở trên đã che mất rule gốc của
+  // _home.scss trong phạm vi .list-news-list. Desktop không đổi (chỉ nằm
+  // trong @include maxWidth(767px)).
+  // ============================================================
+  .blog-list-3col.list {
+    @include maxWidth(767px) {
+      .item-blog-new-simple:first-child {
+        display: block;
+        border-color: $color-EBEBEB;
+        .image-cover-h {
+          padding-top: 55%;
+          height: auto;
+        }
+        .box-text {
+          padding: 24px 30px 30px;
+        }
+        .des {
+          display: -webkit-box;
+        }
+        h3 a {
+          font-size: 18px;
+          line-height: 30px;
+          -webkit-line-clamp: 2;
+        }
+      }
+      .item-blog-new-simple:not(:first-child) {
+        display: grid;
+        grid-template-columns: 156px 1fr;
+        border-color: #dbdbdb;
+        .image-cover-h {
+          padding-top: 0;
+          height: 100%;
+        }
+        .box-text {
+          padding: 8px 4px 8px 12px;
+        }
+        .des {
+          display: none;
+        }
+        h3 a {
+          font-size: 16px;
+          line-height: 1.4;
+          -webkit-line-clamp: 3;
+        }
       }
     }
   }
@@ -104,11 +160,13 @@
   }
 
   // ============================================================
-  // Banner (Figma "Ảnh bìa") — hero cover full-width, heading "Haruco
-  // News" đè lên ảnh nền. Không có component tương tự để tái dùng (đã
-  // search toàn project) — dùng lại asset banner-child-page.png (đã có
-  // sẵn trong assets/images/, chưa được dùng ở trang nào) thay cho ảnh
+  // Banner (Figma "Ảnh bìa") — hero cover full-width. Không có component
+  // tương tự để tái dùng (đã search toàn project) — dùng lại asset
+  // banner-child-page.png (đã có sẵn trong assets/images/) thay cho ảnh
   // collage gốc trong Figma (không có file export tương ứng trong repo).
+  // Heading "Haruco News" đã được bake sẵn vào ảnh (cả bản desktop và
+  // banner-child-page_mobile.png cho mobile) nên không cần overlay title
+  // riêng bằng HTML/CSS nữa.
   // ============================================================
   .list-news-banner {
     padding: 16px 0;
@@ -116,7 +174,6 @@
       padding: 24px 0;
     }
     .list-news-banner-inner {
-      position: relative;
       border-radius: 10px;
       overflow: hidden;
       img {
@@ -124,25 +181,6 @@
         width: 100%;
         aspect-ratio: 1400 / 500;
         object-fit: cover;
-      }
-    }
-    .list-news-banner-title {
-      position: absolute;
-      top: 50%;
-      left: 24px;
-      transform: translateY(-50%);
-      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
-      color: $light;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      padding: 12px 20px;
-      border-radius: 10px;
-      @include minWidth(768px) {
-        font-size: 40px;
-        padding: 20px 40px;
-        left: 60px;
       }
     }
   }
@@ -287,6 +325,13 @@
         line-height: 1.6;
         margin-bottom: 16px;
         opacity: 0.95;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 4;
+        @include maxWidth(1023px) {
+          -webkit-line-clamp: 6;
+        }
       }
       .link-view-detail {
         display: inline-flex;
@@ -359,6 +404,8 @@
         justify-content: space-between;
         text-align: left;
         padding: 52px 40px;
+      }
+      @include minWidth(1199px) {
         background-size: contain;
       }
     }
@@ -446,10 +493,10 @@
         display: flex;
         align-items: center;
         gap: 14px;
-        margin-bottom: 16px;
+        margin-bottom: 0;
         img {
           flex-shrink: 0;
-          width: 80px;
+          width: 124px;
           height: auto;
         }
       }
@@ -458,14 +505,14 @@
         color: $light;
         font-size: 24px;
         letter-spacing: -0.03em;
-        line-height: 1;
+        line-height: 1.2;
       }
     }
   }
 
   // ============================================================
-  // Banner — box riêng cho Mobile (chưa có ảnh thật, chỉ tạo structure/
-  // style container để thêm ảnh sau). Desktop tiếp tục dùng
+  // Banner — box riêng cho Mobile, dùng ảnh export sẵn
+  // banner-child-page_mobile.png. Desktop tiếp tục dùng
   // .list-news-banner-inner như cũ; 2 khối ẩn/hiện đối nghịch nhau theo
   // breakpoint, không hiển thị đồng thời.
   // ============================================================
@@ -478,14 +525,16 @@
     display: block;
     border-radius: 10px;
     overflow: hidden;
-    // Mượn lại đúng tỷ lệ ảnh hero mobile đã dùng cho
-    // .product-category-hero img (_product-category.scss) — cùng bài
-    // toán (ảnh cover mobile riêng, khác tỷ lệ desktop 1400/500), chưa có
-    // số đo riêng từ Figma cho box này.
-    aspect-ratio: 410 / 300;
-    background: $color-F9F9F9;
     @include minWidth(768px) {
       display: none;
+    }
+    img {
+      display: block;
+      width: 100%;
+      // Tỷ lệ đúng theo ảnh banner-child-page_mobile.png export sẵn (khác
+      // tỷ lệ desktop 1400/500).
+      aspect-ratio: 410 / 200;
+      object-fit: cover;
     }
   }
 
@@ -606,6 +655,13 @@
     // khoảng cách dọc đã do padding của .list-news-heading quyết định.
     .list-news-tabs__wrap {
       position: relative;
+      // Mobile/tablet: bỏ nav prev/next (xem rule .swiper-button-prev/-next
+      // bên dưới) nên bù lại bằng cách tràn mép phải sát viewport — kéo
+      // tràn đúng 16px padding của .container-fluid (_common.scss) để slide
+      // cuối có thể cắt ngay tại mép màn hình thay vì chừa khoảng trắng dư.
+      @include maxWidth(1023px) {
+        margin-right: -16px;
+      }
     }
     .list-news-tabs__slider {
       .swiper-wrapper {
@@ -678,17 +734,19 @@
         content: none;
       }
       &.swiper-button-disabled {
-        opacity: 0.35;
+        opacity: 0;
         cursor: auto;
         pointer-events: none;
       }
+      // Mobile/tablet: ẩn hẳn nav, thay bằng vuốt/kéo tay trên slider
+      // (slidesPerView:"auto" vẫn hoạt động bình thường không cần nav).
+      @include maxWidth(1023px) {
+        display: none;
+      }
     }
     .swiper-button-prev {
-      left: -14px;
+      left: -28px;
       transform: scaleX(-1);
-      @include minWidth(768px) {
-        left: -22px;
-      }
     }
     .swiper-button-next {
       right: -14px;
