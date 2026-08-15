@@ -248,7 +248,7 @@
   .list-news-featured {
     padding: 24px 0;
     @include minWidth(768px) {
-      padding: 32px 0;
+      padding: 0 0 32px;
     }
     .list-news-featured-inner {
       display: flex;
@@ -316,8 +316,23 @@
         font-weight: 500;
         line-height: 1.4;
         margin-bottom: 12px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        // em (không phải px) để tự khớp theo font-size đổi ở từng
+        // breakpoint (20px mobile/26px desktop) mà không cần tính lại số
+        // theo từng mốc — line-height 1.4 (không đơn vị) nên 1 dòng luôn
+        // bằng đúng 1.4em, giữ chiều cao ổn định khi tiêu đề ngắn hơn số
+        // dòng tối đa, tránh nhảy layout.
+        min-height: 2.8em;
         @include minWidth(768px) {
           font-size: 26px;
+        }
+        @include maxWidth(1023px) {
+          -webkit-line-clamp: 4;
+          min-height: 5.6em;
         }
       }
       .des {

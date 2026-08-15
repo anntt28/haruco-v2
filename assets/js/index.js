@@ -115,6 +115,44 @@ $(function () {
       })
     );
   });
+  // "post" — "Tham khảo thêm các dòng sản phẩm khác" trong post-detail (News
+  // Detail): số item/hàng riêng (2 mobile / 4 PC) theo yêu cầu design, khác
+  // productSliderOptions (2/3/5) nên viết config riêng thay vì dùng chung ở
+  // vòng lặp trên — card/product-card giữ nguyên, chỉ đổi slidesPerView.
+  new Swiper(".product-slider-post", {
+    loop: false,
+    slidesPerView: 2,
+    spaceBetween: 14,
+    navigation: {
+      nextEl: ".product-slider-next-post",
+      prevEl: ".product-slider-prev-post",
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 24,
+      },
+    },
+  });
+  // "Mã giảm giá" (News Detail, dưới .product-slider-expert) — slider
+  // voucher, theo đúng pattern nav-arrow-only (không pagination) đã dùng ở
+  // .gift-solution-slider/.introduce-team-slider: 1 voucher/view mobile, 3
+  // voucher/view PC (≥1024px, cùng breakpoint Desktop đã dùng cho News Detail).
+  new Swiper(".voucher-slider", {
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 16,
+    navigation: {
+      nextEl: ".voucher-next",
+      prevEl: ".voucher-prev",
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+    },
+  });
   // List News — ".list-news-tabs" KHÔNG phải tab component (không có
   // switching/active state/content ẩn-hiện) — chỉ là 1 slider danh sách
   // link điều hướng (mỗi slide chứa 1 thẻ <a>). slidesPerView:"auto" ở
@@ -329,19 +367,35 @@ $(function () {
       $(this).closest(".list-item-bo").find("span").removeClass('active');
       $(this).addClass('active');
     });
-    // "Kích thước chữ" (Product Detail, .detail-product-description-main) —
-    // đổi biến CSS --dp-font-scale để scale font-size của content đọc
-    // (h3/h4/p/feature-list) theo hệ số var(--dp-font-scale) đã khai báo
-    // trong _detail-product.scss, không đụng tới style của chính nút bấm.
+    // "Kích thước chữ" — đổi biến CSS --dp-font-scale để scale font-size của
+    // content đọc (h3/h4/p/feature-list) theo hệ số var(--dp-font-scale) đã
+    // khai báo trong _detail-product.scss (Product Detail,
+    // .detail-product-description-main) và _detail-news.scss (News Detail,
+    // .content.post-detail) — dùng chung 1 handler cho cả 2 trang, không
+    // đụng tới style của chính nút bấm.
     $(".detail-product-fontsize-options button").on("click", function () {
       const $btn = $(this);
       $btn.siblings().removeClass("active");
       $btn.addClass("active");
       const scale = $btn.data("fontsize-scale") || 1;
-      const mainEl = $btn.closest(".detail-product-description-main").get(0);
+      const mainEl = $btn.closest(".detail-product-description-main, .content.post-detail").get(0);
       if (mainEl) {
         mainEl.style.setProperty("--dp-font-scale", scale);
       }
+    });
+    // Voucher slider (News Detail) — click ảnh voucher để copy mã giảm giá
+    // (data-code) vào clipboard, hiện tạm ".copied-label" (CSS overlay) 1.5s
+    // rồi tự ẩn, không cần thư viện toast/notification riêng.
+    $(".voucher-code").on("click", function () {
+      const $btn = $(this);
+      const code = $btn.data("code");
+      if (navigator.clipboard && code) {
+        navigator.clipboard.writeText(code);
+      }
+      $btn.addClass("copied");
+      setTimeout(function () {
+        $btn.removeClass("copied");
+      }, 1500);
     });
     $('.qty-count').on('click', function () {
       const input = $(this).siblings('.product-qty') // lấy input cùng nhóm

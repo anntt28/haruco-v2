@@ -95,3 +95,998 @@
     }
   }
 }
+
+// ============================================================
+// Cập nhật layout News Detail (news-detail.html) — nội dung + sidebar,
+// "Sản phẩm liên quan" và "Bài viết liên quan" tái dùng nguyên component
+// từ List News/Product Detail/Introduce. Mọi selector bọc trong
+// .news-detail-page (class của <main>) để không ảnh hưởng các trang khác
+// dùng chung index.css — khác với các rule cũ phía trên (không scope,
+// legacy), rule mới thêm sau đây theo đúng convention page-scope hiện tại
+// của project (Product Detail/List News/Introduce).
+// ============================================================
+.news-detail-page {
+  // .content.post-detail + .side-bar-child-page: Mobile/tablet xếp dọc mặc
+  // định (block, không cần CSS riêng) — PC (≥1024px, cùng breakpoint
+  // "Desktop" đã dùng cho Product Detail/.list-vertical-item-news-detail
+  // trong file này) chuyển hàng ngang.
+  .template-blog-new {
+    @include minWidth(1024px) {
+      display: flex;
+      align-items: flex-start;
+      gap: 33px;
+    }
+  }
+  .post-detail-col {
+    min-width: 0;
+    @include minWidth(1024px) {
+      flex: 1;
+    }
+  }
+
+  // ============================================================
+  // "Kích thước chữ" — control UI copy y nguyên .detail-product-fontsize-toggle
+  // từ Product Detail (_detail-product.scss, nested trong
+  // .detail-product-description-main nên không tự áp dụng ở đây, phải khai
+  // báo lại theo đúng convention page-scope hiện tại — giống
+  // product-slider-card-wrap). Bỏ phần position:absolute/margin-bottom
+  // riêng cho .detail-product-title-row (không có ở đây) — thay bằng flex
+  // row + space-between cho .meta-author-wrapper, đơn giản và ổn định hơn
+  // cho 1 dòng byline ngắn.
+  // ============================================================
+  .meta-author-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 17px;
+    .meta-author {
+      margin-bottom: 0;
+    }
+  }
+  .detail-product-fontsize-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    .label {
+      color: $color-323232;
+      font-size: 14px;
+      white-space: nowrap;
+      @include minWidth(1024px) {
+        font-size: 15px;
+      }
+    }
+    .detail-product-fontsize-options {
+      display: flex;
+      align-items: center;
+      background: $light;
+      border: 1px solid $color-DBDBDB;
+      border-radius: 50px;
+      padding: 3px;
+      button {
+        border: none;
+        background: transparent;
+        border-radius: 50px;
+        padding: 6px 14px;
+        font-size: 13px;
+        color: $color-5E5E5E;
+        cursor: pointer;
+        white-space: nowrap;
+        @include trans;
+        &.active {
+          background: $color-F8633A;
+          color: $light;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // ============================================================
+  // "Kích thước chữ" — tái dùng NGUYÊN handler JS của Product Detail
+  // (.detail-product-fontsize-options button click, assets/js/index.js),
+  // chỉ mở rộng target .closest() sang thêm ".content.post-detail" thay vì
+  // viết handler riêng (xem comment trong index.js). --dp-font-scale set
+  // trên ".content.post-detail" (bọc ngoài cùng entry-title +
+  // meta-author-wrapper + .post-detail nội dung) để "toàn bộ text" trong
+  // bài viết cùng scale, không chỉ riêng .meta-author. Restate font-size
+  // từng loại text bằng calc(base * var(--dp-font-scale)) đúng base hiện
+  // có (rem cho .entry-title vì gốc dùng rem theo root font-size responsive
+  // — xem _common.scss html{font-size}/h1 — px cho các phần còn lại) đúng
+  // kỹ thuật _detail-product.scss (.detail-product-description-main) đã
+  // dùng, không có wildcard/blanket selector.
+  // ============================================================
+  .content.post-detail {
+    --dp-font-scale: 1;
+    .entry-title {
+      font-size: calc(2.286rem * var(--dp-font-scale, 1));
+      @include minWidth(768px) {
+        font-size: calc(28px * var(--dp-font-scale, 1));
+      }
+    }
+    .meta-author {
+      font-size: calc(15px * var(--dp-font-scale, 1));
+    }
+    p {
+      font-size: calc(14px * var(--dp-font-scale, 1));
+      @include minWidth(1200px) {
+        font-size: calc(16px * var(--dp-font-scale, 1));
+      }
+    }
+    h4 {
+      font-size: calc(1.5rem * var(--dp-font-scale, 1));
+    }
+    .table-of-content a {
+      font-size: calc(17px * var(--dp-font-scale, 1));
+      @include minWidth(768px) {
+        font-size: calc(20px * var(--dp-font-scale, 1));
+      }
+    }
+    // Slider "Tham khảo thêm..." (product-card, copy từ Homepage) không
+    // nằm trong phạm vi scale — giữ đúng size gốc, giống Combo/Sản phẩm
+    // liên quan ở Product Detail luôn nằm ngoài .detail-product-description-main.
+    .product-card-body h4 {
+      font-size: 14px;
+      @include minWidth(768px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  // ============================================================
+  // "Tham khảo thêm các dòng sản phẩm khác" — heading (note + link) + copy
+  // y nguyên .product-slider-card-wrap từ Homepage "Đai hỗ trợ" (_home.scss),
+  // đặt trong .post-detail thay cho .list-product-page-child.grid-view cũ
+  // (class đó không có CSS nào trong project — grid tĩnh 4 item-best-seller
+  // chưa từng được style). Suffix Swiper "post" (assets/js/index.js) vì
+  // "expert" đã dùng cho "Sản phẩm liên quan" trên cùng trang này.
+  // ============================================================
+  .post-detail-more-products {
+    margin: 24px 0;
+    .post-detail-more-products-note {
+      a {
+        color: $color-F8633A;
+        font-weight: 500;
+        text-decoration: underline;
+      }
+    }
+    .product-slider-card-wrap {
+      background: $light;
+      border-radius: 10px;
+      box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+      padding: 16px 10px;
+      position: relative;
+      @include minWidth(768px) {
+        padding: 30px;
+      }
+      .swiper-button-prev,
+      .swiper-button-next {
+        background-color: $light;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+        background-image: url("../images/arrow-circle-grey_ic.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 30px 30px;
+        &::after {
+          content: none;
+        }
+        &.swiper-button-disabled {
+          opacity: 0.35;
+          cursor: auto;
+          pointer-events: none;
+        }
+      }
+      .swiper-button-prev {
+        left: -14px;
+        @include minWidth(768px) {
+          left: -15px;
+        }
+      }
+      .swiper-button-next {
+        right: -14px;
+        transform: scaleX(-1);
+        @include minWidth(768px) {
+          right: -15px;
+        }
+      }
+    }
+  }
+
+  // ============================================================
+  // Sidebar — 3 box, xếp dọc, cách đều nhau. Width cố định 334px ở PC theo
+  // đúng tỷ lệ cột aside đã dùng ở Product Detail
+  // (.detail-product-description-aside, _detail-product.scss).
+  // ============================================================
+  .side-bar-child-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 24px;
+    @include minWidth(1024px) {
+      flex: 0 0 334px;
+      margin-top: 0;
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Box 1 — copy ".list-news-featured-inner" (List News, "Tiêu điểm").
+  // Đây là 1 box hẹp trong sidebar, không đủ chỗ cho layout ngang của bản
+  // Desktop gốc (_news.scss: .list-news-featured-inner chuyển flex-row từ
+  // @include minWidth(768px)) nên CHỈ lấy đúng phần giá trị áp dụng ở
+  // Mobile của List News (ảnh trên/panel dưới, line-clamp 4 dòng cho h3/6
+  // dòng cho .des theo đúng @include maxWidth(1023px) gốc) — không viết
+  // media query nào ở đây để box luôn giữ layout đó bất kể màn hình.
+  // ------------------------------------------------------------
+  .list-news-featured-inner {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .list-news-featured-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 699 / 464;
+    object-fit: cover;
+  }
+  .list-news-featured-body {
+    background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+    color: $light;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .badge-featured {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-image: url("../images/bg-tieu-diem.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      padding: 4px 14px;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .post-meta {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 4;
+      min-height: 5.6em;
+    }
+    .des {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      opacity: 0.95;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 6;
+    }
+    .link-view-detail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: $light;
+      text-decoration: underline;
+      font-size: 15px;
+      .btn-view-detail {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: $light;
+        position: relative;
+        flex-shrink: 0;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 55%;
+          transform: translate(-50%, -50%);
+          width: 18px;
+          height: 12px;
+          background-image: url("../images/icon/ic_arrow-right-orange.svg");
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+        }
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Box 2 — copy "Giải pháp quà tặng" (.detail-product-aside-gift) từ
+  // Product Detail (_detail-product.scss), giữ nguyên style gốc.
+  // ------------------------------------------------------------
+  .detail-product-aside-widget {
+    background: $light;
+    border: 1px solid $color-EBEBEB;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+  }
+  .detail-product-upsell-heading {
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 14px;
+    text-transform: capitalize;
+    @include minWidth(1024px) {
+      margin-bottom: 21px;
+    }
+    span {
+      color: $light;
+      font-weight: 500;
+      font-size: 16px;
+      @include minWidth(1024px) {
+        font-size: 20px;
+      }
+    }
+  }
+  .detail-product-gift-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    li {
+      padding: 0 21px;
+    }
+    .image {
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 334 / 200;
+        object-fit: cover;
+      }
+    }
+    h5 {
+      margin: 0;
+      color: $color-1E335C;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: center;
+      min-height: calc(17px * 1.4 * 2);
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .detail-product-aside-widget > .detail-product-gift-list {
+    padding: 0 16px 21px;
+  }
+
+  // ------------------------------------------------------------
+  // Box 3 — "Bác sĩ cố vấn": bọc 1 doctor-card từ Introduce
+  // (.introduce-team .doctor-card, giữ nguyên style gốc, không sửa) trong
+  // wrap layout giống hệt Box 2 "Giải pháp quà tặng"
+  // (.detail-product-aside-widget + .detail-product-upsell-heading, xem
+  // Box 2 phía trên) — modifier class riêng .detail-product-aside-doctor
+  // theo đúng convention .detail-product-aside-gift. Không cần slider/swiper
+  // vì sidebar chỉ hiển thị đúng 1 card tĩnh.
+  // ------------------------------------------------------------
+  .detail-product-aside-widget > .doctor-card {
+    margin: 0 16px 21px;
+  }
+  .doctor-card {
+    background: $light;
+    border-radius: 12px;
+    overflow: hidden;
+    .photo img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .box-text {
+      padding: 13px 16px 24px;
+    }
+    .degree {
+      margin: 0;
+      font-size: 16px;
+      color: $color-1E335C;
+    }
+    h4 {
+      margin: 4px 0 0;
+      color: $color-E83729;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    .details {
+      margin-top: 12px;
+      p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
+        color: $color-1E335C;
+        @include minWidth(768px) {
+          font-size: 15px;
+        }
+      }
+    }
+    .link-detail {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid $color-F8633A;
+      border-radius: 10px;
+      height: 30px;
+      padding: 0 16px;
+      color: $color-F8633A;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+  }
+
+  // ============================================================
+  // Box "Thông tin công ty" / "Biên tập bởi" / "Tư vấn nhanh" — 3 box mới,
+  // cùng cấp với ".content.post-detail" bên trong ".post-detail-col" (không
+  // nằm trong .side-bar-child-page), theo đúng width/spacing lấy từ Figma
+  // (node 1:1755, 1:1747 "Group 67", 1:1656 "Form tư vấn nhanh") — cả 3 box
+  // đều bị giới hạn theo width của cột nội dung (không kéo dài hết
+  // container-fluid), nên dùng max-width cố định theo px gốc ở Desktop
+  // thay vì 100%. Icon xuất từ Figma (assets/images/icon/ic_globe.svg,
+  // ic_facebook-circle.svg, ic_phone-call.svg, ic_envelope-navy.svg,
+  // ic_map-pin.svg, ic_person-circle-orange.svg, ic_chevron-down-grey.svg)
+  // dùng qua thẻ <img>, đúng pattern đã có sẵn ở contact.html/product-detail.html.
+  // ============================================================
+  .company-info-box {
+    background: #fff6f0;
+    border: 1px solid #ffc093;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    @include minWidth(1024px) {
+      max-width: 742px;
+      padding: 21px 28px;
+    }
+    h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: $color-1E335C;
+      @include minWidth(768px) {
+        font-size: 20px;
+      }
+      .brand {
+        color: $color-E83729;
+      }
+    }
+    .company-info-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14px;
+        line-height: 1.9;
+        @include minWidth(768px) {
+          font-size: 18px;
+        }
+        &:not(:last-child) {
+          margin-bottom: 2px;
+        }
+      }
+      img {
+        flex-shrink: 0;
+        width: 13px;
+        height: 13px;
+        object-fit: contain;
+        margin-top: 0.5em;
+      }
+      .label {
+        flex-shrink: 0;
+        min-width: 76px;
+        color: $color-1E335C;
+        font-weight: 500;
+        @include minWidth(768px) {
+          min-width: 93px;
+        }
+      }
+      .value {
+        flex: 1;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        color: $color-E83729;
+      }
+    }
+  }
+  .editor-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    background: $light;
+    border: 1px solid #ffc093;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    @include minWidth(1024px) {
+      max-width: 391px;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      padding: 10px 20px 10px 23px;
+    }
+    .label {
+      font-size: 15px;
+      color: $color-1E335C;
+      flex-shrink: 0;
+    }
+    .icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .name {
+      font-size: 15px;
+      color: $color-E83729;
+      flex-shrink: 0;
+    }
+  }
+  .quick-consult-box {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+    @include minWidth(1024px) {
+      flex-direction: row;
+      max-width: 967px;
+    }
+    .quick-consult-form-wrap {
+      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      padding: 28px 24px;
+      @include minWidth(1024px) {
+        flex: 0 0 558px;
+        min-width: 0;
+        padding: 34px 33px;
+      }
+      h3 {
+        color: $light;
+        text-transform: uppercase;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin: 0 0 20px;
+        @include minWidth(1024px) {
+          font-size: 32px;
+        }
+      }
+    }
+    .quick-consult-photo {
+      display: none;
+      @include minWidth(1024px) {
+        display: block;
+        flex: 0 0 409px;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    .quick-consult-form {
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 10px;
+        @include minWidth(768px) {
+          flex-direction: row;
+        }
+        &.form-row-full {
+          flex-direction: column;
+        }
+        > * {
+          @include minWidth(768px) {
+            flex: 1;
+            min-width: 0;
+          }
+        }
+      }
+      input,
+      select {
+        height: 40px;
+        line-height: 38px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        padding: 0 17px;
+        font-size: 15px;
+        font-weight: 300;
+        color: #121f38;
+        &::placeholder {
+          color: #121f38;
+          font-weight: 300;
+        }
+      }
+      select {
+        appearance: none;
+        background-image: url("../images/icon/ic_chevron-down-grey.svg");
+        background-repeat: no-repeat;
+        background-position: right 17px center;
+        background-size: 10px 7px;
+      }
+      textarea {
+        height: 96px;
+        padding-top: 10px;
+        resize: none;
+        font-family: inherit;
+      }
+      button {
+        display: block;
+        margin: 20px auto 0;
+        min-width: 158px;
+        height: 40px;
+        border-radius: 10px;
+        border: 2px solid $light;
+        background: transparent;
+        color: $light;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        padding: 0 24px;
+        @include minWidth(1024px) {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  // ============================================================
+  // "Sản phẩm liên quan" — copy nguyên section ".list-news-expert" ("Chuyên
+  // gia khuyên dùng", _news.scss) sang News Detail, chỉ đổi heading. Không
+  // sửa/xoá bản gốc ở _news.scss — copy lại 1 bản scope riêng theo đúng
+  // convention hiện tại (mỗi trang tự scope 1 bản). Slider dùng đúng class
+  // "product-slider-expert" nên tự động init qua vòng lặp Swiper dùng
+  // chung trong index.js, không cần sửa JS.
+  // ============================================================
+  .list-news-expert {
+    background: $color-F9F9F9;
+    padding: 32px 0;
+    @include minWidth(768px) {
+      padding: 48px 0;
+    }
+    .product-slider-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      @include minWidth(768px) {
+        margin-bottom: 24px;
+      }
+      h2 {
+        margin: 0;
+        color: $color-1E335C;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        font-size: 22px;
+        @include minWidth(768px) {
+          font-size: 35px;
+        }
+      }
+      .link-view-all {
+        white-space: nowrap;
+      }
+    }
+    .product-slider-card-wrap {
+      background: $light;
+      border-radius: 10px;
+      box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+      padding: 16px 10px;
+      position: relative;
+      @include minWidth(768px) {
+        padding: 30px;
+      }
+      .swiper-button-prev,
+      .swiper-button-next {
+        background-color: $light;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+        background-image: url("../images/arrow-circle-grey_ic.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 30px 30px;
+        &::after {
+          content: none;
+        }
+        &.swiper-button-disabled {
+          opacity: 0.35;
+          cursor: auto;
+          pointer-events: none;
+        }
+      }
+      .swiper-button-prev {
+        left: -14px;
+        @include minWidth(768px) {
+          left: -15px;
+        }
+      }
+      .swiper-button-next {
+        right: -14px;
+        transform: scaleX(-1);
+        @include minWidth(768px) {
+          right: -15px;
+        }
+      }
+    }
+    .product-card .product-card-body .product-card-actions {
+      @include maxWidth(767px) {
+        flex-direction: column;
+        button {
+          width: 100%;
+          flex: 0 0 auto;
+        }
+      }
+    }
+    .list-news-view-all-mobile {
+      justify-content: center;
+      margin-top: 16px;
+    }
+  }
+
+  // ============================================================
+  // "Mã giảm giá" — slider voucher mới, đặt ngay dưới .list-news-expert.
+  // Layout/nav-arrow tái dùng đúng pattern .gift-solution-slider (_home.scss)
+  // — nền trắng tròn, đổ bóng nhẹ, icon arrow-circle-grey_ic.svg, không
+  // pagination — theo đúng convention slider-1-hàng-nút hiện có của project
+  // (introduce-team-slider/gift-solution-slider), khác product-slider-card-wrap
+  // (không cần khung card bọc ngoài vì voucher tự có ảnh làm nền).
+  // ============================================================
+  .voucher-section {
+    padding: 32px 0;
+    @include minWidth(768px) {
+      padding: 48px 0;
+    }
+    .product-slider-heading {
+      margin-bottom: 16px;
+      @include minWidth(768px) {
+        margin-bottom: 24px;
+      }
+      h2 {
+        margin: 0;
+        color: $color-1E335C;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        font-size: 22px;
+        @include minWidth(768px) {
+          font-size: 35px;
+        }
+      }
+    }
+    .voucher-slider-wrap {
+      position: relative;
+      .voucher-slider {
+        @include maxWidth(767px) {
+          margin-right: -16px;
+        }
+      }
+      .swiper-button-prev,
+      .swiper-button-next {
+        background-color: $light;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+        background-image: url("../images/arrow-circle-grey_ic.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 30px 30px;
+        &::after {
+          content: none;
+        }
+        &.swiper-button-disabled {
+          opacity: 0.35;
+          cursor: auto;
+          pointer-events: none;
+        }
+      }
+      .swiper-button-prev {
+        left: -14px;
+        @include minWidth(768px) {
+          left: -15px;
+        }
+      }
+      .swiper-button-next {
+        right: -14px;
+        transform: scaleX(-1);
+        @include minWidth(768px) {
+          right: -15px;
+        }
+      }
+    }
+    // .voucher-code là <button> (không phải <a>/<div>) để bind action copy
+    // mã (assets/js/index.js) — reset toàn bộ style mặc định của button,
+    // ảnh giữ nguyên tỷ lệ gốc (width:100% + height:auto, không object-fit)
+    // để không bị méo/crop.
+    .voucher-code {
+      display: block;
+      position: relative;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .copied-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(30, 51, 92, 0.85);
+        color: $light;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0;
+        pointer-events: none;
+        @include trans;
+      }
+      &.copied .copied-label {
+        opacity: 1;
+      }
+    }
+  }
+
+  // ============================================================
+  // "Bài viết liên quan" — copy nguyên section ".list-news-list" (grid
+  // "List tin" dạng list + pagination, _news.scss) sang News Detail, thêm
+  // heading (chưa có heading riêng ở bản gốc vì List News đặt <h2> ở 1
+  // section riêng .list-news-heading phía trên). Dùng lại đúng
+  // ".heading-haruco-new" — class heading dùng chung, mỗi trang tự định
+  // nghĩa font-size riêng (xem Product Detail/Product Category), cùng text
+  // "Bài viết liên quan" đã dùng cho .blog-list-3col ở Product Detail.
+  // ============================================================
+  .heading-haruco-new {
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: $color-1E335C;
+    line-height: 1.4;
+    font-size: 28px;
+    @include minWidth(1024px) {
+      font-size: 35px;
+    }
+  }
+  .list-news-list {
+    padding: 32px 0;
+    @include minWidth(768px) {
+      padding: 48px 0;
+    }
+    h2.heading-haruco-new {
+      margin: 0 0 16px;
+      @include minWidth(1024px) {
+        margin-bottom: 24px;
+      }
+    }
+    .pagination-list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 32px 0 0;
+      padding: 0;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        background: $light;
+        border: 1px solid $color-E6E6E6;
+        color: $color-707070;
+        font-size: 15px;
+        letter-spacing: -0.05em;
+        @include trans;
+      }
+      li.active a {
+        background: $color-FF6D3E;
+        border-color: $color-E6E6E6;
+        color: $light;
+      }
+      li.pagination-next a {
+        color: $color-888888;
+      }
+    }
+  }
+  // Biến thể "dạng list" cho Mobile (giống hệt ".blog-list-3col.list" ở
+  // List News, _news.scss) — item đầu giữ layout ảnh trên/chữ dưới, các
+  // item còn lại dùng layout ngang (ảnh trái/chữ phải, ẩn .des).
+  .blog-list-3col.list {
+    @include maxWidth(767px) {
+      .item-blog-new-simple:first-child {
+        display: block;
+        border-color: $color-EBEBEB;
+        .image-cover-h {
+          padding-top: 55%;
+          height: auto;
+        }
+        .box-text {
+          padding: 24px 30px 30px;
+        }
+        .des {
+          display: -webkit-box;
+        }
+        h3 a {
+          font-size: 18px;
+          line-height: 30px;
+          -webkit-line-clamp: 2;
+        }
+      }
+      .item-blog-new-simple:not(:first-child) {
+        display: grid;
+        grid-template-columns: 156px 1fr;
+        border-color: #dbdbdb;
+        .image-cover-h {
+          padding-top: 0;
+          height: 100%;
+        }
+        .box-text {
+          padding: 8px 4px 8px 12px;
+        }
+        .des {
+          display: none;
+        }
+        h3 a {
+          font-size: 16px;
+          line-height: 1.4;
+          -webkit-line-clamp: 3;
+        }
+      }
+    }
+  }
+}
