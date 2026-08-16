@@ -146,6 +146,26 @@
     }
   }
 
+  // Wrapper ngay dưới breadcrumb (bọc .container-fluid > .template-blog-new)
+  // — trước đây dùng class Bootstrap utility "mt-5", đổi thành class riêng
+  // của component để không phụ thuộc utility class cho spacing chính của
+  // trang.
+  .post-detail-wrapper {
+    margin-top: 30px;
+    @include maxWidth(1023px) {
+      margin-top: 19px;
+    }
+  }
+
+  // Kéo entry-title lên khớp lại spacing mới của .post-detail-wrapper —
+  // chỉ áp dụng PC, Mobile giữ nguyên margin-top hiện tại (không set gì
+  // thêm ở đây).
+  .entry-title {
+    @include minWidth(1024px) {
+      margin-top: -7px;
+    }
+  }
+
   // .content.post-detail + .side-bar-child-page: Mobile/tablet xếp dọc mặc
   // định (block, không cần CSS riêng) — PC (≥1024px, cùng breakpoint
   // "Desktop" đã dùng cho Product Detail/.list-vertical-item-news-detail

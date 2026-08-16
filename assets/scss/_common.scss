@@ -691,3 +691,32 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+// Breadcrumb — mỗi trang tự scope 1 bản ".breadcrumbs" riêng (không có bản
+// dùng chung trong project), nhưng riêng phần chống tràn chữ trên Mobile
+// (rút gọn "..." khi label dài) áp dụng chung cho mọi trang, không cần
+// lặp lại ở từng file page-scoped. "li" bọc toàn bộ breadcrumb trail
+// (Trang chủ / Tin tức / Tiêu đề...) trong 1 thẻ <li> duy nhất — cần
+// display:flex ở đây thì "min-width:0" trên span mới có tác dụng co lại
+// (mặc định flex-item không co dưới kích thước nội dung), nếu không
+// overflow/text-overflow/white-space trên span (display:inline mặc định)
+// sẽ không có hiệu lực gì. Chỉ span CUỐI (tiêu đề trang hiện tại) mới cần
+// co/rút gọn — link "Trang chủ"/"Tin tức" và dấu "/" ngăn cách giữ nguyên
+// flex-shrink:0 để không bị bóp méo theo, chỉ span cuối thật sự dùng đến
+// ellipsis.
+.breadcrumbs li {
+  display: flex;
+  align-items: center;
+}
+.breadcrumbs a {
+  flex-shrink: 0;
+}
+.breadcrumbs span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.breadcrumbs span:not(:last-child) {
+  flex-shrink: 0;
+}

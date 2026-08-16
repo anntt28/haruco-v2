@@ -712,6 +712,26 @@ input[type=number], .modal textarea[type=number], .modal .select2-container--def
   -moz-appearance: textfield;
 }
 
+.breadcrumbs li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs a {
+  flex-shrink: 0;
+}
+
+.breadcrumbs span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breadcrumbs span:not(:last-child) {
+  flex-shrink: 0;
+}
+
 .w--0 {
   width: 0px;
 }
@@ -16394,6 +16414,19 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .news-detail-page .breadcrumbs span {
   color: #6B6B6B;
   margin: 0 4px;
+}
+.news-detail-page .post-detail-wrapper {
+  margin-top: 30px;
+}
+@media (max-width: 1023px) {
+  .news-detail-page .post-detail-wrapper {
+    margin-top: 19px;
+  }
+}
+@media (min-width: 1024px) {
+  .news-detail-page .entry-title {
+    margin-top: -7px;
+  }
 }
 @media (min-width: 1024px) {
   .news-detail-page .template-blog-new {
