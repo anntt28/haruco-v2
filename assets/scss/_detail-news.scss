@@ -355,6 +355,18 @@
           right: -15px;
         }
       }
+      // Mobile: mỗi button 1 hàng riêng, giống hệt .product-card-actions
+      // của section "Sản phẩm liên quan" (.list-news-expert, phía dưới
+      // trong file này).
+      .product-card .product-card-body .product-card-actions {
+        @include maxWidth(767px) {
+          flex-direction: column;
+          button {
+            width: 100%;
+            flex: 0 0 auto;
+          }
+        }
+      }
     }
   }
 
@@ -371,6 +383,9 @@
     @include minWidth(1024px) {
       flex: 0 0 334px;
       margin-top: 0;
+    }
+    @include maxWidth(1023px) {
+      margin-bottom: 30px;
     }
   }
 
@@ -740,6 +755,24 @@
       flex-shrink: 0;
     }
   }
+  // .quick-consult-box xuất hiện ở 2 vị trí trong HTML — bản gốc dưới
+  // .editor-box (trong .content.post-detail) chỉ hiện PC, bản copy mới
+  // trong .side-bar-child-page (ngay dưới "Bác sĩ cố vấn") chỉ hiện Mobile
+  // — tránh hiện trùng cả 2 cùng lúc. Reuse nguyên class ".quick-consult-box"
+  // (không thêm modifier class), phân biệt bằng ancestor selector theo vị
+  // trí thực tế trong DOM.
+  .post-detail-col > .quick-consult-box {
+    @include maxWidth(1023px) {
+      display: none;
+    }
+  }
+  .side-bar-child-page .quick-consult-box {
+    display: none;
+    margin-top: 0;
+    @include maxWidth(1023px) {
+      display: flex;
+    }
+  }
   .quick-consult-box {
     display: flex;
     flex-direction: column;
@@ -934,8 +967,15 @@
           font-size: 35px;
         }
       }
+      // Ẩn "Xem tất cả" trong heading trên Mobile — đã có bản riêng cho
+      // Mobile ngay dưới slider (.list-news-view-all-mobile.d-xl-none, hiện
+      // <1200px), nên bản trong heading chỉ cần hiện từ 1200px trở lên
+      // (khớp đúng breakpoint xl của d-xl-none) để tránh hiện trùng 2 link.
       .link-view-all {
         white-space: nowrap;
+        @include maxWidth(1199px) {
+          display: none;
+        }
       }
     }
     .product-slider-card-wrap {
@@ -1154,9 +1194,14 @@
         height: 100%;
       }
       .box-text {
-        padding: 8px 4px 8px 12px;
+        padding: 14px 8px 3px 10px;
         @include minWidth(1024px) {
-          padding: 23px 4px 23px 23px;
+          padding: 23px 26px 23px 23px;
+        }
+      }
+      .post-meta {
+        @include maxWidth(1023px) {
+          line-height: 1.2;
         }
       }
       .des {
@@ -1169,6 +1214,9 @@
         font-size: 16px;
         line-height: 1.4;
         -webkit-line-clamp: 3;
+        @include minWidth(1024px) {
+          font-size: 18px;
+        }
       }
     }
   }
