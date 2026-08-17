@@ -19325,3 +19325,553 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   width: 45px;
   height: 45px;
 }
+
+.ld-discount-page .ld-discount-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ld-discount-page .breadcrumbs {
+  padding: 12px 0;
+  border-bottom: 1px solid #E6E6E6;
+}
+.ld-discount-page .breadcrumbs ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ld-discount-page .breadcrumbs li {
+  color: #6B6B6B;
+  font-size: 14px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .breadcrumbs li {
+    font-size: 15px;
+  }
+}
+.ld-discount-page .breadcrumbs a {
+  color: #6B6B6B;
+}
+.ld-discount-page .breadcrumbs span {
+  color: #6B6B6B;
+  margin: 0 4px;
+}
+.ld-discount-page .ld-discount-voucher {
+  padding: 32px 0;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher {
+    padding: 48px 0;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-tabs {
+  border-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (min-width: 768px) {
+  .ld-discount-page .ld-discount-voucher .voucher-tabs {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-tabs .nav-item {
+  flex: 1;
+  min-width: 0;
+}
+.ld-discount-page .ld-discount-voucher .voucher-tabs .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 60px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffcb77 0%, #fe8f65 100%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-align: center;
+  box-shadow: 0px 4px 10px 0px rgba(248, 99, 58, 0.25);
+  transition: all 0.3s ease;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-tabs .nav-link {
+    height: 83px;
+    font-size: 24px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-tabs .nav-link i {
+  font-size: 0.85em;
+}
+.ld-discount-page .ld-discount-voucher .voucher-tabs .nav-link.active {
+  background: #FFB031;
+  border-color: #fff;
+}
+.ld-discount-page .ld-discount-voucher .tab-content {
+  margin-top: 24px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .tab-content {
+    margin-top: 32px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (min-width: 768px) {
+  .ld-discount-page .ld-discount-voucher .voucher-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .ld-discount-page .ld-discount-voucher .voucher-list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #F8633A;
+  background: #E83729;
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-head {
+  background: #ee570d;
+  border-bottom: 1px dashed #FFB031;
+  padding: 10px;
+  text-align: center;
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-head img {
+  height: 20px;
+  width: auto;
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
+  padding: 16px 12px 20px;
+  text-align: center;
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .percent {
+  color: #E83729;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 4px;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .percent {
+    font-size: 40px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .desc {
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .desc {
+    font-size: 15px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .expiry {
+  color: #fff;
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 14px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .expiry {
+    font-size: 14px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .voucher-condition {
+  display: block;
+  color: #ffcb77;
+  font-size: 12px;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .voucher-condition {
+    font-size: 14px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .voucher-condition:hover {
+  color: #ffcb77;
+}
+.ld-discount-page .ld-discount-voucher .btn-save-voucher {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #E83729;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .btn-save-voucher {
+    font-size: 16px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .btn-save-voucher .copied-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 51, 92, 0.9);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.ld-discount-page .ld-discount-voucher .btn-save-voucher.copied .copied-label {
+  opacity: 1;
+}
+.ld-discount-page .ld-discount-voucher .ld-discount-promo-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+@media (min-width: 768px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-promo-row {
+    flex-direction: row;
+  }
+}
+.ld-discount-page .ld-discount-voucher .ld-discount-promo-row img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 0;
+}
+.ld-discount-page .ld-discount-voucher .ld-discount-steps {
+  position: relative;
+  background: #FFF4ED;
+  border: 1px solid #FFC093;
+  border-radius: 10px;
+  padding: 20px 16px;
+  margin-top: 24px;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps {
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    text-align: left;
+  }
+}
+.ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-icon {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #F8633A;
+    color: #fff;
+    font-size: 20px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .ld-discount-steps h3 {
+  color: #1E335C;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  font-size: 18px;
+  margin: 0 0 16px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps h3 {
+    font-size: 24px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+}
+.ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
+    flex-direction: row;
+    flex: 1;
+    gap: 0;
+  }
+}
+.ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step {
+  background: linear-gradient(90deg, #E83729 0%, #F8633A 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.03em;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step {
+    font-size: 17px;
+    flex: 1;
+    padding: 14px 24px 14px 34px;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
+    margin-left: -20px;
+  }
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step:first-child {
+    margin-left: 0;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
+  }
+}
+.ld-discount-page .ld-discount-suggested {
+  padding: 32px 0;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-suggested {
+    padding: 48px 0;
+  }
+}
+.ld-discount-page .ld-discount-suggested .ld-discount-suggested-inner {
+  background: linear-gradient(180deg, #FFF4ED 0%, #fff 100%);
+  border-radius: 10px;
+  padding: 20px 16px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-suggested .ld-discount-suggested-inner {
+    padding: 32px;
+  }
+}
+.ld-discount-page .ld-discount-suggested .product-slider-heading {
+  margin-bottom: 16px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-suggested .product-slider-heading {
+    margin-bottom: 24px;
+  }
+}
+.ld-discount-page .ld-discount-suggested .product-slider-heading h2 {
+  margin: 0;
+  color: #1E335C;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  font-size: 22px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-suggested .product-slider-heading h2 {
+    font-size: 35px;
+  }
+}
+.ld-discount-page .ld-discount-suggested .ld-discount-suggested-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (min-width: 768px) {
+  .ld-discount-page .ld-discount-suggested .ld-discount-suggested-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .ld-discount-page .ld-discount-suggested .ld-discount-suggested-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1023px) {
+  .ld-discount-page .ld-discount-suggested .ld-discount-suggested-grid .product-card .product-card-body .product-card-actions {
+    flex-direction: column;
+  }
+  .ld-discount-page .ld-discount-suggested .ld-discount-suggested-grid .product-card .product-card-body .product-card-actions button {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+}
+.ld-discount-page .ld-discount-faq {
+  padding: 32px 0;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-faq {
+    padding: 48px 0;
+  }
+}
+.ld-discount-page .ld-discount-faq-heading {
+  text-align: center;
+  color: #1E335C;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-faq-heading {
+    font-size: 35px;
+    margin-bottom: 32px;
+  }
+}
+.ld-discount-page .ld-discount-faq-accordion {
+  max-width: 1036px;
+  margin: 0 auto;
+}
+.ld-discount-page .ld-discount-faq-item {
+  margin-bottom: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ld-discount-page .ld-discount-faq-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  background: #FFF4ED;
+  border: 1px solid #FFC093;
+  transition: all 0.3s ease;
+}
+.ld-discount-page .ld-discount-faq-header.collapsed {
+  border-radius: 10px;
+}
+.ld-discount-page .ld-discount-faq-header .title {
+  color: #1E335C;
+  font-size: 15px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-faq-header .title {
+    font-size: 18px;
+  }
+}
+.ld-discount-page .ld-discount-faq-header .chevron {
+  flex-shrink: 0;
+  color: #1E335C;
+}
+.ld-discount-page .ld-discount-faq-header .chevron i {
+  transition: all 0.3s ease;
+}
+.ld-discount-page .ld-discount-faq-header:not(.collapsed) {
+  background: #F8633A;
+  border-color: #DEDEDE;
+}
+.ld-discount-page .ld-discount-faq-header:not(.collapsed) .title {
+  color: #fff;
+  font-weight: 600;
+}
+.ld-discount-page .ld-discount-faq-header:not(.collapsed) .chevron {
+  color: #fff;
+}
+.ld-discount-page .ld-discount-faq-header:not(.collapsed) .chevron i {
+  transform: rotate(180deg);
+}
+.ld-discount-page .ld-discount-faq-body {
+  padding: 16px 20px;
+  background: #F8633A;
+  border: 1px solid #DEDEDE;
+  border-top: none;
+}
+.ld-discount-page .ld-discount-faq-body p {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.7;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-faq-body p {
+    font-size: 16px;
+  }
+}
+.ld-discount-page .ld-discount-faq-body p:not(:last-child) {
+  margin-bottom: 12px;
+}
+.ld-discount-page .cta-float-popup {
+  width: calc(100vw - 32px);
+  max-width: 380px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(90deg, #E83729 0%, #FF6D3E 100%);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+@media (min-width: 768px) {
+  .ld-discount-page .cta-float-popup {
+    max-width: 420px;
+  }
+}
+.ld-discount-page .cta-float-popup .cta-float-popup-image {
+  flex: 0 0 76px;
+  background: #fff;
+  border: 1px solid #EBEBEB;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ld-discount-page .cta-float-popup .cta-float-popup-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  padding: 8px;
+}
+.ld-discount-page .cta-float-popup .cta-float-popup-body {
+  flex: 1;
+  min-width: 0;
+}
+.ld-discount-page .cta-float-popup .cta-float-popup-body h4 {
+  margin: 0 0 4px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.ld-discount-page .cta-float-popup .cta-float-popup-body .cta-float-popup-note {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+}
+.ld-discount-page .ld-discount-cta-popup .cta-float-popup-image {
+  flex: 0 0 60px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F8633A 0%, #E83729 100%);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ld-discount-page .ld-discount-cta-popup .cta-float-popup-image .percent {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.ld-discount-page .ld-discount-cta-popup .cta-float-popup-image .label {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+}
