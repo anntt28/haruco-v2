@@ -81,7 +81,7 @@
         height: 60px;
         border: 2px solid $light;
         border-radius: 10px;
-        background: linear-gradient(180deg, #ffcb77 0%, #fe8f65 100%);
+        background: url("../images/bg-tab-discount.png") no-repeat center / 100% 100%;
         color: $light;
         font-size: 18px;
         font-weight: 500;
@@ -91,7 +91,7 @@
         @include trans;
         @include minWidth(1024px) {
           height: 83px;
-          font-size: 24px;
+          font-size: 32px;
         }
         i {
           font-size: 0.85em;
@@ -120,37 +120,70 @@
         grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
+    // Shape dựng từ asset thật theo Figma node 136:2008 (không dùng
+    // clip-path/mask để giả lập nữa — 3 mảnh ảnh ghép lại theo đúng chiều
+    // dọc, mỗi ảnh tự co giãn theo width thực tế của .voucher-card):
+    // - .percent-wrap .content: nền bg-percent-wrap.png (thẻ kem lượn sóng),
+    //   chứa logo + số phần trăm, khoá aspect-ratio đúng theo ảnh gốc
+    //   (230×303) để không bị méo khi card đổi width theo breakpoint.
+    // - .percent-wrap .img: ảnh bg-triangle-after.png (mái nhọn nối giữa
+    //   phần kem và phần thân đỏ) — ảnh <img> thật, tự giữ tỷ lệ qua
+    //   width:100%. margin-bottom âm (tính theo % — margin dọc luôn resolve
+    //   theo width của containing block) để phần đáy hình ngũ giác của
+    //   triangle chui vừa khít vào phần khuyết chữ V phía trên
+    //   .voucher-card-body, không để hở nền phía sau.
+    // - .voucher-card-body: nền bg-vouncher-card-body.png (thân đỏ, đã có
+    //   sẵn phần khuyết chữ V ở mép trên khớp với triangle) — không khoá
+    //   aspect-ratio vì chiều cao phụ thuộc nội dung text bên trong.
     .voucher-card {
       border-radius: 10px;
-      overflow: hidden;
       border: 1px solid $color-F8633A;
-      background: $color-E83729;
-      .voucher-card-head {
-        background: #ee570d;
-        border-bottom: 1px dashed $color-FFB031;
-        padding: 10px;
-        text-align: center;
-        img {
-          height: 20px;
-          width: auto;
+      background: linear-gradient(180deg, $color-F8633A 0%, $color-E83729 100%);
+      .percent-wrap {
+        position: relative;
+        .content {
+          position: relative;
+          aspect-ratio: 230 / 303;
+          background: url("../images/bg-percent-wrap.png") center top / 100% 100% no-repeat;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 20px 16px;
+          img {
+            display: block;
+            height: 18px;
+            width: auto;
+            @include minWidth(1024px) {
+              height: 22px;
+            }
+          }
+          span:last-child {
+            color: $color-E83729;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            @include minWidth(1024px) {
+              font-size: 40px;
+            }
+          }
+        }
+        .img {
+          position: relative;
+          margin-bottom: -17%;
+          img {
+            display: block;
+            width: 100%;
+          }
         }
       }
       .voucher-card-body {
-        padding: 16px 12px 20px;
+        position: relative;
+        background: url("../images/introduce/bg-vouncher-card-body.png") center top / 100% 100% no-repeat;
+        padding: 44px 12px 20px;
         text-align: center;
-        .percent {
-          color: $color-E83729;
-          background: $light;
-          border-radius: 10px;
-          padding: 10px 4px;
-          font-size: 32px;
-          font-weight: 600;
-          letter-spacing: -0.03em;
-          margin-bottom: 10px;
-          @include minWidth(1024px) {
-            font-size: 40px;
-          }
-        }
         .desc {
           color: $light;
           font-size: 13px;
@@ -272,16 +305,8 @@
       .ld-discount-steps-icon {
         display: none;
         @include minWidth(1024px) {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: block;
           flex-shrink: 0;
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: $color-F8633A;
-          color: $light;
-          font-size: 20px;
         }
       }
       h3 {
@@ -303,7 +328,7 @@
         @include minWidth(1024px) {
           flex-direction: row;
           flex: 1;
-          gap: 0;
+          gap: 8px;
         }
       }
       .ld-discount-step {
@@ -315,14 +340,11 @@
         padding: 12px 16px;
         border-radius: 10px;
         @include minWidth(1024px) {
-          font-size: 17px;
-          flex: 1;
+          font-size: 32px;
           padding: 14px 24px 14px 34px;
           clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
-          margin-left: -20px;
           &:first-child {
-            margin-left: 0;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
           }
         }
       }
@@ -337,11 +359,13 @@
   // ============================================================
   .ld-discount-suggested {
     padding: 32px 0;
+    background: url("../images/bg-danh-rieng-cho-ban-orange.png") no-repeat center / cover;
     @include minWidth(1024px) {
       padding: 48px 0;
     }
     .ld-discount-suggested-inner {
-      background: linear-gradient(180deg, $color-FFF4ED 0%, $light 100%);
+      background: $light;
+      box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
       border-radius: 10px;
       padding: 20px 16px;
       @include minWidth(1024px) {
@@ -414,6 +438,9 @@
   .ld-discount-faq-accordion {
     max-width: 1036px;
     margin: 0 auto;
+    @include minWidth(1024px) {
+      max-width: 1400px;
+    }
   }
   .ld-discount-faq-item {
     margin-bottom: 12px;
@@ -500,7 +527,6 @@
     gap: 12px;
     background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
     border-radius: 10px;
-    padding: 16px;
     box-shadow: 0 4px 20px rgba($dark, 0.15);
     @include minWidth(768px) {
       max-width: 420px;
@@ -522,6 +548,11 @@
     .cta-float-popup-body {
       flex: 1;
       min-width: 0;
+      .cta-float-popup-body-inner {
+        display: flex;
+        align-items: center;
+        background: url("../images/bg-saved-code.png") no-repeat center / cover;
+      }
       h4 {
         margin: 0 0 4px;
         color: $light;
@@ -544,7 +575,7 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, $color-F8633A 0%, $color-E83729 100%);
+      background: url("../images/bg-vouncher-orange.png") no-repeat center / cover;
       border: none;
       display: flex;
       flex-direction: column;
