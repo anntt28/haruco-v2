@@ -745,4 +745,15 @@ $(function () {
     const percent = Math.round((fgWidth / barWidth) * 100);
     $wrap.find(".percent").text(percent + "%");
   });
+
+  $(".cart-page .cart-list-header .cart-checkbox input[type='checkbox']").on("change", function () {
+    const checked = $(this).prop("checked");
+    $(".cart-page .cart-item .cart-checkbox input[type='checkbox']").prop("checked", checked);
+  });
+
+  $(".cart-page .cart-item .cart-checkbox input[type='checkbox']").on("change", function () {
+    const $itemCheckboxes = $(".cart-page .cart-item .cart-checkbox input[type='checkbox']");
+    const allChecked = $itemCheckboxes.length === $itemCheckboxes.filter(":checked").length;
+    $(".cart-page .cart-list-header .cart-checkbox input[type='checkbox']").prop("checked", allChecked);
+  });
 });

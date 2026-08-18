@@ -7,6 +7,7 @@
 // mobile-first + mixin của project.
 // ============================================================
 .cart-page {
+  background-color: $color-F9F9F9;
   // ------------------------------------------------------------
   // Breadcrumb — copy đúng pattern .breadcrumbs của LD Giảm giá/Product
   // Category, chỉ đổi nội dung. Phần chống tràn chữ Mobile (ellipsis) đã
@@ -88,9 +89,14 @@
             padding-left: 0;
           }
         }
-        i {
-          font-size: 20px;
+        .badge-icon {
+          display: flex;
+          align-items: center;
           flex-shrink: 0;
+          svg {
+            height: 20px;
+            width: auto;
+          }
         }
       }
       .badge-genuine {
@@ -114,9 +120,12 @@
   }
 
   // ------------------------------------------------------------
-  // Checkbox chọn sản phẩm — project chưa có component checkbox dùng
-  // chung nào khác, style tối giản bằng accent-color (đủ đúng màu Figma
-  // #f8633a khi checked, không cần dựng lại bằng pseudo-element).
+  // Checkbox chọn sản phẩm — custom appearance (bỏ style native browser),
+  // vẽ trạng thái checked bằng pseudo-element ::after (dấu tick trắng trên
+  // nền cam $color-F8633A) vì Figma không có sẵn state checked riêng cho
+  // 2 checkbox này, chỉ có state unchecked (viền #dbdbdb cho "Tất cả",
+  // viền #8597ba cho từng .cart-item) — dùng màu accent chung của trang
+  // cho state checked để đồng bộ với các thành phần khác.
   // ------------------------------------------------------------
   .cart-checkbox {
     display: flex;
@@ -125,11 +134,32 @@
     cursor: pointer;
     margin: 0;
     input[type="checkbox"] {
+      position: relative;
       width: 20px;
       height: 20px;
-      accent-color: $color-F8633A;
-      cursor: pointer;
       flex-shrink: 0;
+      margin: 0;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      background: $light;
+      border: 1px solid $color-DBDBDB;
+      border-radius: 4px;
+      &:checked {
+        background: $color-F8633A;
+        border-color: $color-F8633A;
+        &::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 45%;
+          width: 5px;
+          height: 9px;
+          border: solid $light;
+          border-width: 0 2px 2px 0;
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+      }
     }
   }
 
@@ -227,9 +257,20 @@
     }
   }
   .cart-item {
-    border-bottom: 1px solid $color-F5F5F5;
+    margin: 12px 16px;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    &:first-child {
+      margin-top: 16px;
+    }
     &:last-child {
-      border-bottom: none;
+      margin-bottom: 16px;
+    }
+    .cart-checkbox input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 4px;
+      border: 1px solid $color-8597BA;
     }
   }
   .cart-item-row {
@@ -404,6 +445,7 @@
     .link-change {
       color: $color-F8633A;
       font-size: 14px;
+      text-decoration: underline;
       @include minWidth(768px) {
         font-size: 15px;
       }
@@ -465,6 +507,9 @@
       &:hover {
         color: $color-007CCC;
       }
+      svg {
+        flex-shrink: 0;
+      }
     }
   }
   .cart-summary-breakdown {
@@ -475,15 +520,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin: 0;
       color: $color-1E335C;
       font-size: 14px;
       @include minWidth(768px) {
         font-size: 15px;
       }
-      &:last-child {
-        margin-bottom: 0;
-      }
+    }
+    .discount-amount {
+      color: $color-F8633A;
     }
   }
   .cart-summary-total {
@@ -494,7 +539,7 @@
       justify-content: space-between;
       color: $color-1E335C;
       font-size: 15px;
-      margin-bottom: 8px;
+      margin: 0;
       @include minWidth(768px) {
         font-size: 16px;
       }
@@ -508,10 +553,14 @@
       }
     }
     .note {
-      margin: 0;
       color: $color-6B6B6B;
       font-size: 12px;
       line-height: 1.6;
+      text-align: right;
+      width: 66%;
+      margin-left: auto;
+      margin-right: 0;
+      font-weight: 300;
       @include minWidth(768px) {
         font-size: 13px;
       }
@@ -520,7 +569,7 @@
   .btn-checkout {
     display: block;
     width: 100%;
-    height: 44px;
+    height: 40px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
@@ -530,7 +579,6 @@
     cursor: pointer;
     @include trans;
     @include minWidth(768px) {
-      height: 50px;
       font-size: 19px;
     }
     &:hover {
