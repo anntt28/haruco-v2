@@ -88,6 +88,7 @@
         letter-spacing: -0.03em;
         text-align: center;
         box-shadow: 0px 4px 10px 0px rgba(248, 99, 58, 0.25);
+        opacity: 0.5;
         @include trans;
         @include minWidth(1024px) {
           height: 83px;
@@ -97,8 +98,7 @@
           font-size: 0.85em;
         }
         &.active {
-          background: $color-FFB031;
-          border-color: $light;
+          opacity: 1;
         }
       }
     }
@@ -159,6 +159,9 @@
           align-items: center;
           gap: 10px;
           padding: 27px 16px;
+          @include minWidth(1024px) {
+            padding: 35px 16px;
+          }
           order: 1;
           margin: 0 7px;
           img {
@@ -198,6 +201,9 @@
         width: 100%;
         background: url("../images/introduce/bg-vouncher-card-body.png") center top / 100% 100% no-repeat;
         padding: 44px 12px 20px;
+        @include minWidth(1024px) {
+          padding: 61px 12px 20px;
+        }
         text-align: center;
         .desc {
           color: $light;
@@ -355,10 +361,25 @@
         gap: 10px;
         @include minWidth(1024px) {
           flex-direction: row;
+          // .ld-discount-step giờ width theo content (không còn flex:1 chia
+          // đều) nên tổng 3 bước có thể vượt quá chiều rộng còn lại ở màn
+          // hẹp (~1024-1380px) — cho phép wrap xuống dòng thay vì tràn/che
+          // khuất bước cuối.
+          flex-wrap: wrap;
           flex: 1;
           gap: 8px;
         }
       }
+      // Desktop dùng CSS border-image 3-slice (border-image-slice ... fill)
+      // thay cho clip-path — source là bg-ld-discount-step-ribbon.svg (297×70,
+      // gộp phẳng đúng 3 path/gradient gốc: LEFT 0-29 notch cố định, CENTER
+      // 29-268 rect stretch, RIGHT 268-297 mũi tên cố định). border-width
+      // 0 29px tách đúng 2 dải 29px trái/phải làm slice cố định (không co
+      // giãn theo box, không méo notch/mũi tên); phần content/padding ở giữa
+      // tự thấy CENTER slice làm nền nhờ từ khoá "fill" — không cần bọc thêm
+      // span/pseudo-element nào, HTML giữ nguyên. Width không hard-code — box
+      // tự co theo text (padding + border 29px×2), border-image chỉ stretch
+      // đúng phần CENTER khi box rộng ra.
       .ld-discount-step {
         background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
         color: $light;
@@ -368,12 +389,24 @@
         padding: 12px 16px;
         border-radius: 10px;
         @include minWidth(1024px) {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          width: max-content;
+          height: 70px;
+          box-sizing: border-box;
+          text-align: center;
           font-size: 28px;
-          padding: 14px 24px 14px 34px;
-          clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
-          &:first-child {
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
-          }
+          padding: 0 16px;
+          background: none;
+          border-radius: 0;
+          border-style: solid;
+          border-width: 0 29px;
+          border-image-source: url("../images/bg-ld-discount-step-ribbon.svg");
+          border-image-slice: 0 29 fill;
+          border-image-width: 0 29px;
+          border-image-repeat: stretch;
         }
       }
     }
@@ -450,25 +483,21 @@
     @include minWidth(1024px) {
       padding: 48px 0;
     }
-  }
-  .ld-discount-faq-heading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: $color-1E335C;
-    font-weight: 500;
-    letter-spacing: -0.03em;
-    font-size: 24px;
-    margin: 0 0 20px;
-    @include minWidth(1024px) {
-      font-size: 35px;
-      margin-bottom: 32px;
-    }
-    .icon {
-      display: inline-flex;
-      align-items: center;
-      flex-shrink: 0;
+    // Heading dùng chung .heading-haruco-new (đúng convention page-scope
+    // hiện tại — mỗi trang tự khai báo 1 bản riêng, xem Product
+    // Category/Introduce) — icon trước đây nằm cạnh heading nay chuyển vào
+    // từng .ld-discount-faq-header bên dưới.
+    .heading-haruco-new {
+      text-align: center;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      margin: 0 0 20px;
+      @include minWidth(1024px) {
+        font-size: 35px;
+        margin-bottom: 32px;
+      }
     }
   }
   .ld-discount-faq-accordion {
@@ -486,7 +515,6 @@
   .ld-discount-faq-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 12px;
     padding: 16px 20px;
     cursor: pointer;
@@ -496,7 +524,19 @@
     &.collapsed {
       border-radius: 10px;
     }
+    // Icon chuyển từ .ld-discount-faq-heading (heading section) vào đây —
+    // dùng currentColor trên path SVG nên đổi màu theo trạng thái
+    // đóng/mở giống .title/.chevron, không cần override riêng.
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      color: $color-1E335C;
+      @include trans;
+    }
     .title {
+      flex: 1;
+      min-width: 0;
       color: $color-1E335C;
       font-size: 15px;
       @include minWidth(1024px) {
@@ -515,6 +555,9 @@
     &:not(.collapsed) {
       background: $color-F8633A;
       border-color: $color-DEDEDE;
+      .icon {
+        color: $light;
+      }
       .title {
         color: $light;
         font-weight: 600;
@@ -559,7 +602,6 @@
     width: calc(100vw - 32px);
     max-width: 380px;
     display: flex;
-    align-items: center;
     gap: 0;
     @include minWidth(768px) {
       max-width: 420px;
@@ -629,6 +671,34 @@
         color: $light;
         font-size: 10px;
         font-weight: 500;
+      }
+    }
+    @include minWidth(1024px) {
+      .cta-float-popup-image {
+        flex: 0 0 101px;
+        width: 101px;
+        height: 71px;
+        background-image: url("../images/bg-vouncher-orange.png");
+        background-color: $light;
+        background-repeat: no-repeat;
+        .label {
+          font-size: 16px;
+        }
+        .percent {
+          font-size: 32px;
+        }
+      }
+      .cta-float-popup-body {
+        position: relative;
+        left: -5px;
+        z-index: -1;
+        padding-left: 15px;
+        .cta-float-popup-body-inner {
+          align-items: normal;
+          padding-left: 5px;
+          font-size: 15px;
+          letter-spacing: -0.03rem;
+        }
       }
     }
   }

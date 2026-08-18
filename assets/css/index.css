@@ -19395,6 +19395,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   letter-spacing: -0.03em;
   text-align: center;
   box-shadow: 0px 4px 10px 0px rgba(248, 99, 58, 0.25);
+  opacity: 0.5;
   transition: all 0.3s ease;
 }
 @media (min-width: 1024px) {
@@ -19407,8 +19408,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   font-size: 0.85em;
 }
 .ld-discount-page .ld-discount-voucher .voucher-tabs .nav-link.active {
-  background: #FFB031;
-  border-color: #fff;
+  opacity: 1;
 }
 .ld-discount-page .ld-discount-voucher .tab-content {
   margin-top: 24px;
@@ -19458,6 +19458,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   align-items: center;
   gap: 10px;
   padding: 27px 16px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
+    padding: 35px 16px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
   order: 1;
   margin: 0 7px;
 }
@@ -19500,6 +19507,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   width: 100%;
   background: url("../images/introduce/bg-vouncher-card-body.png") center top/100% 100% no-repeat;
   padding: 44px 12px 20px;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
+    padding: 61px 12px 20px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
   text-align: center;
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body .desc {
@@ -19658,6 +19672,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
     flex-direction: row;
+    flex-wrap: wrap;
     flex: 1;
     gap: 8px;
   }
@@ -19673,12 +19688,24 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: max-content;
+    height: 70px;
+    box-sizing: border-box;
+    text-align: center;
     font-size: 28px;
-    padding: 14px 24px 14px 34px;
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
-  }
-  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step:first-child {
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
+    padding: 0 16px;
+    background: none;
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0 29px;
+    border-image-source: url("../images/bg-ld-discount-step-ribbon.svg");
+    border-image-slice: 0 29 fill;
+    border-image-width: 0 29px;
+    border-image-repeat: stretch;
   }
 }
 .ld-discount-page .ld-discount-suggested {
@@ -19754,11 +19781,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding: 48px 0;
   }
 }
-.ld-discount-page .ld-discount-faq-heading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+.ld-discount-page .ld-discount-faq .heading-haruco-new {
+  text-align: center;
   color: #1E335C;
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -19766,15 +19790,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   margin: 0 0 20px;
 }
 @media (min-width: 1024px) {
-  .ld-discount-page .ld-discount-faq-heading {
+  .ld-discount-page .ld-discount-faq .heading-haruco-new {
     font-size: 35px;
     margin-bottom: 32px;
   }
-}
-.ld-discount-page .ld-discount-faq-heading .icon {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
 }
 .ld-discount-page .ld-discount-faq-accordion {
   max-width: 1036px;
@@ -19793,7 +19812,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-discount-page .ld-discount-faq-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   padding: 16px 20px;
   cursor: pointer;
@@ -19804,7 +19822,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-discount-page .ld-discount-faq-header.collapsed {
   border-radius: 10px;
 }
+.ld-discount-page .ld-discount-faq-header .icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #1E335C;
+  transition: all 0.3s ease;
+}
 .ld-discount-page .ld-discount-faq-header .title {
+  flex: 1;
+  min-width: 0;
   color: #1E335C;
   font-size: 15px;
 }
@@ -19823,6 +19850,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-discount-page .ld-discount-faq-header:not(.collapsed) {
   background: #F8633A;
   border-color: #DEDEDE;
+}
+.ld-discount-page .ld-discount-faq-header:not(.collapsed) .icon {
+  color: #fff;
 }
 .ld-discount-page .ld-discount-faq-header:not(.collapsed) .title {
   color: #fff;
@@ -19858,7 +19888,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   width: calc(100vw - 32px);
   max-width: 380px;
   display: flex;
-  align-items: center;
   gap: 0;
 }
 @media (min-width: 768px) {
@@ -19930,6 +19959,34 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #fff;
   font-size: 10px;
   font-weight: 500;
+}
+@media (min-width: 1024px) {
+  .ld-discount-page .ld-discount-cta-popup .cta-float-popup-image {
+    flex: 0 0 101px;
+    width: 101px;
+    height: 71px;
+    background-image: url("../images/bg-vouncher-orange.png");
+    background-color: #fff;
+    background-repeat: no-repeat;
+  }
+  .ld-discount-page .ld-discount-cta-popup .cta-float-popup-image .label {
+    font-size: 16px;
+  }
+  .ld-discount-page .ld-discount-cta-popup .cta-float-popup-image .percent {
+    font-size: 32px;
+  }
+  .ld-discount-page .ld-discount-cta-popup .cta-float-popup-body {
+    position: relative;
+    left: -5px;
+    z-index: -1;
+    padding-left: 15px;
+  }
+  .ld-discount-page .ld-discount-cta-popup .cta-float-popup-body .cta-float-popup-body-inner {
+    align-items: normal;
+    padding-left: 5px;
+    font-size: 15px;
+    letter-spacing: -0.03rem;
+  }
 }
 
 .cart-page .breadcrumbs {
@@ -20598,3 +20655,5 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     flex: 0 0 auto;
   }
 }
+
+/*# sourceMappingURL=index.css.map */
