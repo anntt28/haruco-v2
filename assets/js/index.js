@@ -104,7 +104,8 @@ $(function () {
   // Document mục 3, không viết config Swiper riêng. "expert" — "Chuyên
   // gia khuyên dùng" ở List News, cùng lý do (tái dùng nguyên slider
   // Sản phẩm liên quan, chỉ đổi tên suffix để không trùng "related").
-  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related", "expert"].forEach(function (i) {
+  // "cart" — "Có thể bạn cũng thích" ở trang Giỏ hàng, cùng lý do.
+  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related", "expert", "cart"].forEach(function (i) {
     new Swiper(
       ".product-slider-" + i,
       $.extend({}, productSliderOptions, {
