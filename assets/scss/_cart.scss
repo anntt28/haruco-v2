@@ -13,6 +13,9 @@
   // Category, chỉ đổi nội dung. Phần chống tràn chữ Mobile (ellipsis) đã
   // có sẵn dùng chung ở _common.scss, không cần lặp lại.
   // ------------------------------------------------------------
+  .breadcrumb-page {
+    background: $light;
+  }
   .breadcrumbs {
     padding: 12px 0;
     border-bottom: 1px solid $color-E6E6E6;
@@ -121,11 +124,10 @@
 
   // ------------------------------------------------------------
   // Checkbox chọn sản phẩm — custom appearance (bỏ style native browser),
-  // vẽ trạng thái checked bằng pseudo-element ::after (dấu tick trắng trên
-  // nền cam $color-F8633A) vì Figma không có sẵn state checked riêng cho
-  // 2 checkbox này, chỉ có state unchecked (viền #dbdbdb cho "Tất cả",
-  // viền #8597ba cho từng .cart-item) — dùng màu accent chung của trang
-  // cho state checked để đồng bộ với các thành phần khác.
+  // vẽ trạng thái checked bằng pseudo-element ::after (dấu tick cam
+  // $color-F8633A trên nền trắng) vì Figma không có sẵn state checked
+  // riêng cho 2 checkbox này, chỉ có state unchecked (viền #dbdbdb cho
+  // "Tất cả", viền #8597ba cho từng .cart-item).
   // ------------------------------------------------------------
   .cart-checkbox {
     display: flex;
@@ -146,7 +148,7 @@
       border: 1px solid $color-DBDBDB;
       border-radius: 4px;
       &:checked {
-        background: $color-F8633A;
+        background: $light;
         border-color: $color-F8633A;
         &::after {
           content: "";
@@ -155,7 +157,7 @@
           top: 45%;
           width: 5px;
           height: 9px;
-          border: solid $light;
+          border: solid $color-F8633A;
           border-width: 0 2px 2px 0;
           transform: translate(-50%, -50%) rotate(45deg);
         }
@@ -206,6 +208,7 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+    padding: 30px;
   }
   .cart-list-header {
     display: flex;
@@ -213,6 +216,7 @@
     gap: 12px;
     padding: 12px 16px;
     background: $color-F8633A;
+    border-radius: 10px;
     .cart-checkbox {
       color: $light;
       font-size: 14px;
@@ -256,16 +260,15 @@
       }
     }
   }
+  .card-list-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 25px;
+  }
   .cart-item {
-    margin: 12px 16px;
-    border: 1px solid $color-FFC093;
-    border-radius: 10px;
-    &:first-child {
-      margin-top: 16px;
-    }
-    &:last-child {
-      margin-bottom: 16px;
-    }
+    margin: 0;
+    border: 0;
     .cart-checkbox input[type="checkbox"] {
       -webkit-appearance: none;
       appearance: none;
@@ -279,6 +282,8 @@
     gap: 12px;
     padding: 16px;
     flex-wrap: wrap;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
     @include minWidth(768px) {
       flex-wrap: nowrap;
       padding: 20px 16px;
@@ -366,14 +371,14 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
-    margin: 0 16px 16px;
+    margin: 0;
+    margin-top: 5px;
     padding: 10px 16px;
     background: $color-FFF4ED;
     border: 1px solid $color-FFC093;
     border-radius: 10px;
     @include minWidth(768px) {
       flex-wrap: nowrap;
-      margin: 0 16px 20px;
     }
     &-badge {
       flex-shrink: 0;
