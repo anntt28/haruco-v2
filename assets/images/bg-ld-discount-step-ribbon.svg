@@ -1,56 +1,64 @@
-<svg width="297" height="70" viewBox="0 0 297 70" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="ribbonGradient" x1="0" y1="35" x2="407" y2="35" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E83729"/>
-      <stop offset="1" stop-color="#F8633A"/>
-    </linearGradient>
-    <clipPath id="ribbonLeftClip">
-      <rect x="0" y="0" width="29" height="70"/>
-    </clipPath>
-    <clipPath id="ribbonRightClip">
-      <rect x="0" y="0" width="29" height="70"/>
-    </clipPath>
-  </defs>
+<svg
+    width="297"
+    height="70"
+    viewBox="0 0 297 70"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <!-- Global gradient dùng chung cho LEFT + CENTER + RIGHT -->
+        <linearGradient
+            id="ribbonGradient"
+            x1="0"
+            y1="35"
+            x2="407"
+            y2="35"
+            gradientUnits="userSpaceOnUse"
+        >
+            <stop offset="0" stop-color="#E83729"/>
+            <stop offset="1" stop-color="#F8633A"/>
+        </linearGradient>
+    </defs>
 
-  <!-- LEFT: fixed 29px -->
-  <g clip-path="url(#ribbonLeftClip)">
+    <!-- LEFT: fixed 29px -->
     <path
-      d="
-        M2.82993 3.30158
-        C1.71791 2.00423 2.63973 0 4.34844 0
-        H29
-        V70
-        H4.34845
-        C2.63974 70 1.71792 67.9958 2.82993 66.6984
-        L27.2109 38.254
-        C28.8159 36.3815 28.8158 33.6185 27.2109 31.746
-        L2.82993 3.30158
-        Z
-      "
-      fill="url(#ribbonGradient)"
-    />
-  </g>
-
-  <!-- CENTER: stretchable (border-image middle slice) -->
-  <rect x="29" y="0" width="239" height="70" fill="url(#ribbonGradient)"/>
-
-  <!-- RIGHT: fixed ribbon tail, translated to global x=268 -->
-  <g transform="translate(268 0)">
-    <g clip-path="url(#ribbonRightClip)">
-      <path
         d="
-          M0 0
-          H0.7
-          C2.16 0 3.547 0.637814 4.497 1.74604
-          L30.211 31.746
-          C31.816 33.6185 31.816 36.3815 30.211 38.254
-          L4.497 68.254
-          C3.547 69.3622 2.16 70 0.7 70
-          H0
-          Z
+            M2.82993 3.30158
+            C1.71791 2.00423 2.63973 0 4.34844 0
+            H29
+            V70
+            H4.34845
+            C2.63974 70 1.71792 67.9958 2.82993 66.6984
+            L27.2109 38.254
+            C28.8159 36.3815 28.8158 33.6185 27.2109 31.746
+            L2.82993 3.30158
+            Z
         "
         fill="url(#ribbonGradient)"
-      />
-    </g>
-  </g>
+    />
+
+    <!-- CENTER: stretchable -->
+    <rect
+        x="29"
+        y="0"
+        width="239"
+        height="70"
+        fill="url(#ribbonGradient)"
+    />
+
+    <!-- RIGHT: fixed ribbon tail -->
+    <path
+        d="
+            M268 0
+            H268.497
+            C269.547 0.637814 270.547 0.637814 271.497 1.74604
+            L295.211 31.746
+            C296.816 33.6185 296.816 36.3815 295.211 38.254
+            L271.497 68.254
+            C270.547 69.3622 269.16 70 267.7 70
+            H268
+            Z
+        "
+        fill="url(#ribbonGradient)"
+    />
 </svg>

@@ -148,9 +148,10 @@
           // body (padding/button cỡ mobile không co theo width nhỏ như ảnh
           // nền), nếu dùng chung tỷ lệ 230/358 của desktop thì body sẽ che
           // mất logo/số phần trăm ở màn hẹp — xem báo cáo cuối để biết chi
-          // tiết đo đạc.
-          aspect-ratio: 230 / 460;
-          @include minWidth(1024px) {
+          // tiết đo đạc. Breakpoint 1199px (không phải 1024px như phần còn
+          // lại của trang) để khớp đúng yêu cầu riêng cho aspect-ratio này.
+          aspect-ratio: 230 / 364;
+          @include minWidth(1199px) {
             aspect-ratio: 230 / 358;
           }
           background: url("../images/bg-percent-wrap.png") center top / 100% 100% no-repeat;
@@ -325,10 +326,10 @@
       margin-top: 24px;
       text-align: center;
       @include minWidth(1024px) {
-        padding: 24px 40px;
+        padding: 24px 0 24px 40px;
         display: flex;
         align-items: center;
-        gap: 32px;
+        gap: 10px;
         text-align: left;
       }
       h3 {
@@ -358,16 +359,19 @@
       .ld-discount-steps-list {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 0;
         @include minWidth(1024px) {
           flex-direction: row;
-          // .ld-discount-step giờ width theo content (không còn flex:1 chia
-          // đều) nên tổng 3 bước có thể vượt quá chiều rộng còn lại ở màn
-          // hẹp (~1024-1380px) — cho phép wrap xuống dòng thay vì tràn/che
-          // khuất bước cuối.
-          flex-wrap: wrap;
           flex: 1;
-          gap: 8px;
+        }
+        // .ld-discount-step chỉ đổi sang font-size 28px (rộng hơn hẳn) từ
+        // 1199px, nên tổng 3 bước chỉ thật sự có nguy cơ vượt quá chiều
+        // rộng còn lại (~1199-1380px) từ mốc này — cho phép wrap xuống dòng
+        // thay vì tràn/che khuất bước cuối. Dưới 1199px (font 14px) nội
+        // dung đã đủ hẹp để luôn vừa 1 hàng, không cần wrap (wrap ở range
+        // đó từng khiến step 3 — có left:-37px — đè lên icon/heading).
+        @include minWidth(1199px) {
+          flex-wrap: wrap;
         }
       }
       // Desktop dùng CSS border-image 3-slice (border-image-slice ... fill)
@@ -385,7 +389,6 @@
         color: $light;
         font-weight: 600;
         font-size: 14px;
-        letter-spacing: -0.03em;
         padding: 12px 16px;
         border-radius: 10px;
         @include minWidth(1024px) {
@@ -397,7 +400,6 @@
           height: 70px;
           box-sizing: border-box;
           text-align: center;
-          font-size: 28px;
           padding: 0 16px;
           background: none;
           border-radius: 0;
@@ -407,6 +409,20 @@
           border-image-slice: 0 29 fill;
           border-image-width: 0 29px;
           border-image-repeat: stretch;
+          &:nth-child(2) {
+            position: relative;
+            left: -18px;
+          }
+          &:nth-child(3) {
+            position: relative;
+            left: -37px;
+          }
+        }
+        // Font-size 28px chỉ áp dụng từ 1199px — ở khoảng desktop hẹp
+        // 1024-1198px giữ font-size mặc định (14px) để tránh tràn/che
+        // khuất bước cuối (xem comment overflow ở .ld-discount-steps-list).
+        @include minWidth(1199px) {
+          font-size: 28px;
         }
       }
     }
