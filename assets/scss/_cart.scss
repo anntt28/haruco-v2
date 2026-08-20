@@ -177,6 +177,18 @@
       padding: 32px 0 48px;
     }
   }
+  // h2 "Giỏ hàng" nằm cùng cấp với .cart-content (con trực tiếp của
+  // .container-fluid trong .cart-main) — giữ nguyên style cũ, chỉ đổi
+  // selector cho khớp vị trí DOM mới.
+  .cart-main > .container-fluid > h2 {
+    color: $color-1E335C;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    @include minWidth(1024px) {
+      font-size: 24px;
+    }
+  }
   .cart-content {
     display: flex;
     flex-direction: column;
@@ -193,22 +205,16 @@
     @include minWidth(1200px) {
       flex: 1 1 auto;
     }
-    > h2 {
-      color: $color-1E335C;
-      font-size: 20px;
-      font-weight: 500;
-      margin-bottom: 16px;
-      @include minWidth(1024px) {
-        font-size: 24px;
-      }
-    }
   }
   .cart-list-inner {
     background: $light;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
-    padding: 30px;
+    padding: 30px 20px;
+    @include minWidth(768px) {
+      padding: 30px;
+    }
   }
   .cart-list-header {
     display: flex;
@@ -237,6 +243,11 @@
       font-weight: 500;
       @include minWidth(768px) {
         display: flex;
+      }
+      .col-price {
+        flex: 1;
+        text-align: right;
+        margin-right: 27px;
       }
       .col-qty {
         margin-left: auto;
@@ -673,5 +684,11 @@
         }
       }
     }
+  }
+
+  // .cta-float mặc định z-index:1000 (xem _home.scss) — riêng trang Cart
+  // cần nổi trên cùng nên tăng lên 10000.
+  .cta-float {
+    z-index: 10000;
   }
 }
