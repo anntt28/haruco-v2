@@ -65,7 +65,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      @include minWidth(768px) {
+      @include minWidth(1199px) {
         flex-direction: row;
         gap: 20px;
       }
@@ -105,19 +105,34 @@
     .tab-content {
       margin-top: 24px;
       @include minWidth(1024px) {
-        margin-top: 32px;
+        margin-top: 50px;
+      }
+      @include maxWidth(1024px) {
+        margin-top: 40px;
       }
     }
     .voucher-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      column-gap: 20px;
+      row-gap: 42px;
       @include minWidth(768px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 20px;
+        column-gap: 20px;
+        row-gap: 64px;
+      }
+      // Riêng khoảng 768-1024px: row-gap hẹp lại còn 55px theo yêu cầu (vẫn
+      // > 54px tràn của .voucher-card-body nên không bị đè hàng).
+      @include minmaxWidth(768px, 1024px) {
+        row-gap: 55px;
       }
       @include minWidth(1200px) {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+        column-gap: 40px;
+        row-gap: 104px;
+      }
+      @include maxWidth(1024px) {
+        bottom: 0;
       }
     }
     // Shape dựng từ asset thật theo Figma node 136:2008 (không dùng
@@ -142,19 +157,11 @@
         display: flex;
         flex-direction: column;
         .content {
-          position: relative;
-          // Mobile: ratio riêng cao hơn desktop — .voucher-card-body absolute
-          // bottom:0 chồng lên .content theo chiều cao thực tế của nội dung
-          // body (padding/button cỡ mobile không co theo width nhỏ như ảnh
-          // nền), nếu dùng chung tỷ lệ 230/358 của desktop thì body sẽ che
-          // mất logo/số phần trăm ở màn hẹp — xem báo cáo cuối để biết chi
-          // tiết đo đạc. Breakpoint 1199px (không phải 1024px như phần còn
-          // lại của trang) để khớp đúng yêu cầu riêng cho aspect-ratio này.
-          aspect-ratio: 230 / 364;
-          @include minWidth(1199px) {
-            aspect-ratio: 230 / 358;
-          }
-          background: url("../images/bg-percent-wrap.png") center top / 100% 100% no-repeat;
+          position: absolute;
+          width: 100%;
+          top: 0;
+          margin: 0;
+          z-index: 3;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -164,7 +171,6 @@
             padding: 35px 16px;
           }
           order: 1;
-          margin: 0 7px;
           img {
             display: block;
             height: 18px;
@@ -182,6 +188,30 @@
             @include minWidth(1024px) {
               font-size: 70px;
             }
+            @include minmaxWidth(768px, 1024px) {
+              font-size: 70px;
+            }
+          }
+        }
+        // .img-1 thay cho background trực tiếp trên .content trước đây —
+        // giờ là flex-child DUY NHẤT còn trong flow của .percent-wrap (vì
+        // .content đã chuyển sang position:absolute ở trên) nên chiều cao
+        // percent-wrap = chiều cao tự nhiên của ảnh img-1 (width:100%,
+        // height auto theo tỉ lệ gốc bg-percent-wrap.png) ở ≥1024px. Ở
+        // 767px trở xuống và khoảng 768-1024px, height được khoá cứng theo
+        // spec (295px / 383px) thay vì auto-theo-ratio.
+        .img-1 {
+          z-index: 2;
+          @include maxWidth(767px) {
+            height: 295px;
+          }
+          @include minmaxWidth(768px, 1024px) {
+            height: 383px;
+          }
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
           }
         }
         .img {
@@ -190,6 +220,7 @@
           top: -10px;
           width: 100%;
           order: -1;
+          z-index: -1;
           img {
             display: block;
             width: 100%;
@@ -198,12 +229,17 @@
       }
       .voucher-card-body {
         position: absolute;
-        bottom: 0;
+        bottom: -54px;
+        z-index: 9;
         width: 100%;
         background: url("../images/introduce/bg-vouncher-card-body.png") center top / 100% 100% no-repeat;
         padding: 44px 12px 20px;
+        @include maxWidth(1024px) {
+          bottom: 0;
+        }
         @include minWidth(1024px) {
           padding: 61px 12px 20px;
+          margin-top: 90px;
         }
         text-align: center;
         .desc {
@@ -300,6 +336,7 @@
       margin-top: 24px;
       @include minWidth(768px) {
         flex-direction: row;
+        margin-top: 100px;
       }
       img {
         display: block;
@@ -341,6 +378,10 @@
         letter-spacing: -0.03em;
         font-size: 18px;
         margin: 0 0 16px;
+        @include maxWidth(992px) {
+          text-align: center;
+          justify-content: center;
+        }
         @include minWidth(1024px) {
           font-size: 24px;
           margin: 0;
@@ -360,6 +401,9 @@
         display: flex;
         flex-direction: column;
         gap: 0;
+        @include maxWidth(992px) {
+          gap: 10px;
+        }
         @include minWidth(1024px) {
           flex-direction: row;
           flex: 1;
@@ -418,10 +462,10 @@
             left: -37px;
           }
         }
-        // Font-size 28px chỉ áp dụng từ 1199px — ở khoảng desktop hẹp
-        // 1024-1198px giữ font-size mặc định (14px) để tránh tràn/che
+        // Font-size 28px chỉ áp dụng từ 1400px — ở khoảng desktop hẹp/vừa
+        // 1024-1399px giữ font-size mặc định (14px) để tránh tràn/che
         // khuất bước cuối (xem comment overflow ở .ld-discount-steps-list).
-        @include minWidth(1199px) {
+        @include minWidth(1400px) {
           font-size: 28px;
         }
       }
@@ -670,8 +714,10 @@
       flex: 0 0 60px;
       width: 60px;
       height: 60px;
-      background: url("../images/bg-vouncher-orange.png") no-repeat center;
-      background-size: 100% 100%;
+      border-radius: 0;
+      background-image: url("../images/bg-vouncher-orange.png");
+      background-color: $light;
+      background-repeat: no-repeat;
       border: none;
       display: flex;
       flex-direction: column;

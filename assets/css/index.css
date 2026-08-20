@@ -19370,7 +19370,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-direction: column;
   gap: 12px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1199px) {
   .ld-discount-page .ld-discount-voucher .voucher-tabs {
     flex-direction: row;
     gap: 20px;
@@ -19415,23 +19415,42 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .tab-content {
-    margin-top: 32px;
+    margin-top: 50px;
+  }
+}
+@media (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .tab-content {
+    margin-top: 40px;
   }
 }
 .ld-discount-page .ld-discount-voucher .voucher-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  column-gap: 20px;
+  row-gap: 42px;
 }
 @media (min-width: 768px) {
   .ld-discount-page .ld-discount-voucher .voucher-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+    column-gap: 20px;
+    row-gap: 64px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-list {
+    row-gap: 55px;
   }
 }
 @media (min-width: 1200px) {
   .ld-discount-page .ld-discount-voucher .voucher-list {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 40px;
+    row-gap: 104px;
+  }
+}
+@media (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-list {
+    bottom: 0;
   }
 }
 .ld-discount-page .ld-discount-voucher .voucher-card {
@@ -19443,16 +19462,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-direction: column;
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
-  position: relative;
-  aspect-ratio: 230/364;
-}
-@media (min-width: 1199px) {
-  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
-    aspect-ratio: 230/358;
-  }
-}
-.ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
-  background: url("../images/bg-percent-wrap.png") center top/100% 100% no-repeat;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19466,7 +19480,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
   order: 1;
-  margin: 0 7px;
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content img {
   display: block;
@@ -19490,12 +19503,36 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     font-size: 70px;
   }
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content span:last-child {
+    font-size: 70px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 {
+  z-index: 2;
+}
+@media (max-width: 767px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 {
+    height: 295px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 {
+    height: 383px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img {
   position: absolute;
   margin-bottom: -17%;
   top: -10px;
   width: 100%;
   order: -1;
+  z-index: -1;
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img img {
   display: block;
@@ -19503,14 +19540,21 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
   position: absolute;
-  bottom: 0;
+  bottom: -54px;
+  z-index: 9;
   width: 100%;
   background: url("../images/introduce/bg-vouncher-card-body.png") center top/100% 100% no-repeat;
   padding: 44px 12px 20px;
 }
+@media (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
+    bottom: 0;
+  }
+}
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
     padding: 61px 12px 20px;
+    margin-top: 90px;
   }
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
@@ -19610,6 +19654,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 768px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-promo-row {
     flex-direction: row;
+    margin-top: 100px;
   }
 }
 .ld-discount-page .ld-discount-voucher .ld-discount-promo-row img {
@@ -19648,6 +19693,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   font-size: 18px;
   margin: 0 0 16px;
 }
+@media (max-width: 992px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps h3 {
+    text-align: center;
+    justify-content: center;
+  }
+}
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps h3 {
     font-size: 24px;
@@ -19668,6 +19719,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+@media (max-width: 992px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
+    gap: 10px;
+  }
 }
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
@@ -19717,7 +19773,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     left: -37px;
   }
 }
-@media (min-width: 1199px) {
+@media (min-width: 1400px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step {
     font-size: 28px;
   }
@@ -19955,8 +20011,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex: 0 0 60px;
   width: 60px;
   height: 60px;
-  background: url("../images/bg-vouncher-orange.png") no-repeat center;
-  background-size: 100% 100%;
+  border-radius: 0;
+  background-image: url("../images/bg-vouncher-orange.png");
+  background-color: #fff;
+  background-repeat: no-repeat;
   border: none;
   display: flex;
   flex-direction: column;
