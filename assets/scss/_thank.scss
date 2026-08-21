@@ -130,8 +130,9 @@
     text-align: center;
     padding: 40px 20px 32px;
     border-radius: 10px;
+    overflow: hidden;
     background-image: url("../images/bg-cam-on-ban-da-dat-hang.png");
-    background-size: cover;
+    background-size: 102% 107%;
     background-position: center;
     background-repeat: no-repeat;
     @include minWidth(768px) {
@@ -392,6 +393,13 @@
     @include minWidth(768px) {
       padding: 30px;
     }
+    // Padding lệch trái (không padding-right) chỉ áp dụng cùng breakpoint
+    // ribbon 992px — trước đó padding này nằm ở .thank-journey-steps, dời
+    // sang đây để .thank-journey-steps không còn tự thêm khoảng cách,
+    // tránh cộng dồn padding hai lớp làm lệch vị trí ribbon.
+    @include minWidth(992px) {
+      padding: 30px 0 30px 30px;
+    }
     > h3 {
       margin: 0 0 16px;
       color: $color-1E335C;
@@ -415,6 +423,8 @@
     gap: 12px;
     @include minWidth(992px) {
       flex-direction: row;
+      gap: 0;
+      padding: 0;
     }
   }
   .thank-journey-step {
@@ -432,8 +442,11 @@
     // cố định là notch/mũi tên, phần giữa "fill" tự làm nền theo nội dung).
     // Áp dụng cùng breakpoint 992px với .thank-journey-steps chuyển thành
     // hàng ngang, thay cho background gradient + border-radius bo tròn.
+    // Không dùng flex:1 (width co giãn theo nội dung như .ld-discount-step)
+    // — step 2/3 dịch trái đè lên mũi tên của step trước để nối liền ribbon,
+    // thứ tự DOM tự nhiên đã đủ để step sau vẽ đè lên step trước, không
+    // cần z-index riêng.
     @include minWidth(992px) {
-      flex: 1;
       font-size: 18px;
       background: none;
       border-radius: 0;
@@ -443,6 +456,14 @@
       border-image-slice: 0 29 fill;
       border-image-width: 0 29px;
       border-image-repeat: stretch;
+      &:nth-child(2) {
+        position: relative;
+        left: -21px;
+      }
+      &:nth-child(3) {
+        position: relative;
+        left: -42px;
+      }
     }
     .icon {
       display: flex;
@@ -583,6 +604,7 @@
     margin-top: 16px;
     padding-top: 16px;
     @include minWidth(768px) {
+      margin-top: 5px;
       max-width: 342px;
       margin-left: auto;
       margin-right: 0;
@@ -666,16 +688,16 @@
     }
   }
   .voucher-card-title {
-    color: $light;
-    font-style: italic;
-    font-weight: 600;
-    font-size: 14px;
+    display: block;
+    height: 16px;
+    width: auto;
     @include minWidth(768px) {
-      font-size: 20px;
+      height: 24px;
     }
   }
   .voucher-card-amount {
     color: $light;
+    font-family: "SVN-Harabaras", sans-serif;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1;
@@ -691,21 +713,26 @@
     color: $light;
     font-size: 10px;
     line-height: 1.4;
-    @include minWidth(768px) {
-      font-size: 13px;
-    }
   }
+  // Border ngoài solid + 1 div bọc trong border dashed (2 lớp viền thật,
+  // không dùng pseudo-element) — padding của .voucher-card-stub chính là
+  // khoảng cách giữa 2 lớp viền này.
   .voucher-card-stub {
     flex: 0 0 28%;
     min-width: 88px;
+    padding: 4px;
+    background: $color-FFF0E1;
+    border: 1px solid $color-FFC093;
+  }
+  .voucher-card-stub-inner {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
     padding: 8px;
-    background: $color-FFF0E1;
-    border: 1px dashed $color-FFC093;
+    border: 1px dashed $color-F8633A;
   }
   .voucher-card-logo {
     display: block;

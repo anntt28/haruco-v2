@@ -52,7 +52,7 @@
   .payment-main {
     padding: 24px 0 32px;
     @include minWidth(1024px) {
-      padding: 32px 0 48px;
+      padding: 6px 0 48px;
     }
   }
   .payment-content {
@@ -125,25 +125,28 @@
     @include minWidth(768px) {
       padding: 30px;
     }
-  }
-  .form-row {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 16px;
-    @include minWidth(768px) {
-      flex-direction: row;
-    }
-    > * {
+    // Đổi tên từ .form-row (class dùng chung, không được override riêng
+    // cho page nào) sang .form-row-group scope trong .payment-form-body,
+    // giữ nguyên toàn bộ style/breakpoint cũ.
+    .form-row-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
       @include minWidth(768px) {
-        flex: 1;
-        min-width: 0;
-      }
-    }
-    &.form-row-3 {
-      margin-bottom: 0;
-      @include minWidth(992px) {
         flex-direction: row;
+      }
+      > * {
+        @include minWidth(768px) {
+          flex: 1;
+          min-width: 0;
+        }
+      }
+      &.form-row-3 {
+        margin-bottom: 0;
+        @include minWidth(992px) {
+          flex-direction: row;
+        }
       }
     }
   }

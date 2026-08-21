@@ -36,6 +36,10 @@ html {
   font-family: "SVN-Peristiwa";
   src: url("../fonts/SVN-Peristiwa.otf");
 }
+@font-face {
+  font-family: "SVN-Harabaras";
+  src: url("../fonts/SVN-Harabaras.ttf");
+}
 body {
   font-family: "Lexend", sans-serif;
   color: #4E514F;
@@ -20226,7 +20230,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .cart-page .cart-main {
-    padding: 32px 0 48px;
+    padding: 6px 0 48px;
   }
 }
 .cart-page .cart-main > .container-fluid > h2 {
@@ -20840,7 +20844,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .payment-page .payment-main {
-    padding: 32px 0 48px;
+    padding: 6px 0 48px;
   }
 }
 .payment-page .payment-content {
@@ -20924,28 +20928,28 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding: 30px;
   }
 }
-.payment-page .form-row {
+.payment-page .payment-form-body .form-row-group {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-bottom: 16px;
 }
 @media (min-width: 768px) {
-  .payment-page .form-row {
+  .payment-page .payment-form-body .form-row-group {
     flex-direction: row;
   }
 }
 @media (min-width: 768px) {
-  .payment-page .form-row > * {
+  .payment-page .payment-form-body .form-row-group > * {
     flex: 1;
     min-width: 0;
   }
 }
-.payment-page .form-row.form-row-3 {
+.payment-page .payment-form-body .form-row-group.form-row-3 {
   margin-bottom: 0;
 }
 @media (min-width: 992px) {
-  .payment-page .form-row.form-row-3 {
+  .payment-page .payment-form-body .form-row-group.form-row-3 {
     flex-direction: row;
   }
 }
@@ -21314,8 +21318,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   text-align: center;
   padding: 40px 20px 32px;
   border-radius: 10px;
+  overflow: hidden;
   background-image: url("../images/bg-cam-on-ban-da-dat-hang.png");
-  background-size: cover;
+  background-size: 102% 107%;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -21593,6 +21598,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding: 30px;
   }
 }
+@media (min-width: 992px) {
+  .thank-page .thank-journey-inner {
+    padding: 30px 0 30px 30px;
+  }
+}
 .thank-page .thank-journey-inner > h3 {
   margin: 0 0 16px;
   color: #1E335C;
@@ -21618,6 +21628,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 992px) {
   .thank-page .thank-journey-steps {
     flex-direction: row;
+    gap: 0;
+    padding: 0;
   }
 }
 .thank-page .thank-journey-step {
@@ -21633,7 +21645,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 992px) {
   .thank-page .thank-journey-step {
-    flex: 1;
     font-size: 18px;
     background: none;
     border-radius: 0;
@@ -21643,6 +21654,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     border-image-slice: 0 29 fill;
     border-image-width: 0 29px;
     border-image-repeat: stretch;
+  }
+  .thank-page .thank-journey-step:nth-child(2) {
+    position: relative;
+    left: -21px;
+  }
+  .thank-page .thank-journey-step:nth-child(3) {
+    position: relative;
+    left: -42px;
   }
 }
 .thank-page .thank-journey-step .icon {
@@ -21802,6 +21821,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 768px) {
   .thank-page .thank-order-breakdown {
+    margin-top: 5px;
     max-width: 342px;
     margin-left: auto;
     margin-right: 0;
@@ -21886,18 +21906,18 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .thank-page .voucher-card-title {
-  color: #fff;
-  font-style: italic;
-  font-weight: 600;
-  font-size: 14px;
+  display: block;
+  height: 16px;
+  width: auto;
 }
 @media (min-width: 768px) {
   .thank-page .voucher-card-title {
-    font-size: 20px;
+    height: 24px;
   }
 }
 .thank-page .voucher-card-amount {
   color: #fff;
+  font-family: "SVN-Harabaras", sans-serif;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -21918,22 +21938,22 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   font-size: 10px;
   line-height: 1.4;
 }
-@media (min-width: 768px) {
-  .thank-page .voucher-card-condition {
-    font-size: 13px;
-  }
-}
 .thank-page .voucher-card-stub {
   flex: 0 0 28%;
   min-width: 88px;
+  padding: 4px;
+  background: #FFF0E1;
+  border: 1px solid #FFC093;
+}
+.thank-page .voucher-card-stub-inner {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 8px;
-  background: #FFF0E1;
-  border: 1px dashed #FFC093;
+  border: 1px dashed #F8633A;
 }
 .thank-page .voucher-card-logo {
   display: block;
