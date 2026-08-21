@@ -5,38 +5,8 @@
 // ============================================================
 .thank-page {
   background-color: $color-F9F9F9;
-  // ------------------------------------------------------------
-  // Breadcrumb + Thanh cam kết dịch vụ — reuse đúng markup/nội dung của
-  // Cart (breadcrumb chỉ đổi text, product-category-badges-list giữ
-  // nguyên). CSS gốc bị bọc trong .cart-page nên copy lại 1 bản scope
-  // dưới .thank-page (KHÔNG đổi _cart.scss), đúng cách Payment đã làm.
-  // ------------------------------------------------------------
-  .breadcrumb-page {
-    background: $light;
-  }
-  .breadcrumbs {
-    padding: 12px 0;
-    border-bottom: 1px solid $color-E6E6E6;
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    li {
-      color: $color-6B6B6B;
-      font-size: 14px;
-      @include minWidth(1024px) {
-        font-size: 15px;
-      }
-    }
-    a {
-      color: $color-6B6B6B;
-    }
-    span {
-      color: $color-6B6B6B;
-      margin: 0 4px;
-    }
-  }
+  // Breadcrumb — dùng component common ".breadcrumb-page"/".breadcrumbs"
+  // ở _common.scss, không override riêng gì cho Thank.
   .product-category-badges {
     padding: 16px 0;
     @include minWidth(1024px) {
@@ -57,6 +27,17 @@
         align-items: center;
         justify-content: space-between;
         padding: 16px 24px;
+      }
+      // gap 992px+ tách riêng theo 2 khoảng (giống hệt bản component common
+      // ở _common.scss) — PHẢI khai báo lại giá trị ở đây (không chỉ dựa
+      // vào common) vì selector 3 lớp ".thank-page .product-category-badges
+      // .product-category-badges-list" có specificity cao hơn bản common 2
+      // lớp, nên "gap:14px" mặc định (mobile) của chính page này sẽ luôn
+      // thắng nếu không override lại cùng cấp specificity cho từng khoảng.
+      @include minmaxWidth(992px, 1199px) {
+        gap: 25px;
+      }
+      @include minWidth(1200px) {
         gap: 0;
       }
       li {
@@ -322,7 +303,6 @@
   // (phải), value gắn data-field để sau này bind dữ liệu order/customer.
   // ============================================================
   .thank-address-inner {
-    max-width: 933px;
     background: $light;
     border-radius: 10px;
     box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
@@ -672,6 +652,11 @@
     height: 128px;
     border-radius: 10px;
     overflow: hidden;
+    @include maxWidth(767px) {
+      position: relative;
+      left: 50%;
+      transform: translateX(-47%);
+    }
   }
   .voucher-card-ticket {
     flex: 1 1 72%;
@@ -696,7 +681,8 @@
   }
   .voucher-card-amount {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     color: $light;
     font-family: "SVN-Harabaras", sans-serif;
     font-weight: 700;
@@ -709,6 +695,20 @@
     @include minWidth(768px) {
       font-size: 64px;
       margin-top: -6px;
+    }
+    @include maxWidth(767px) {
+      font-size: 40px;
+      margin-bottom: 5px;
+    }
+    // Text amount bọc trong span riêng (giới hạn width, không phải chính
+    // .voucher-card-amount) để số tiền dài (vd "-1.000.000đ") không kéo
+    // giãn quá container ticket — span co lại theo nội dung nhưng không
+    // vượt max-width:160px, luôn căn giữa dù ngắn/dài.
+    span {
+      display: block;
+      width: 100%;
+      max-width: 160px;
+      text-align: center;
     }
     // Tia sáng "coin burst" 2 bên số tiền — money-bottom.png (đồng xu ở
     // trái, tia hướng phải) đặt bên trái, money-top.png (đồng xu ở phải,
@@ -731,12 +731,14 @@
         height: 23px;
       }
       @include minWidth(768px) {
-        width: 69px;
-        height: 46px;
+        width: 59px;
+        height: 40px;
       }
     }
     &::before {
-      left: 0;
+      top: 89%;
+      bottom: 0;
+      left: 12px;
       transform: translate(-100%, -50%);
       background-image: url("../images/money-bottom.png");
     }
@@ -747,6 +749,8 @@
       @include minWidth(768px) {
         width: 56px;
         height: 37px;
+        right: 10px;
+        top: 20%;
       }
     }
   }
@@ -754,6 +758,9 @@
     color: $light;
     font-size: 10px;
     line-height: 2.5;
+    @include maxWidth(767px) {
+      line-height: 1.5;
+    }
   }
   // Border ngoài solid + 1 div bọc trong border dashed (2 lớp viền thật,
   // không dùng pseudo-element) — padding của .voucher-card-stub chính là
@@ -856,6 +863,10 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px 30px;
+    }
+    @include maxWidth(767px) {
+      text-align: center;
+      align-items: center;
     }
   }
   .thank-community-text {

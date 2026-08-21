@@ -35,27 +35,12 @@
     padding: 3px;
   }
 
-  .breadcrumbs {
-    padding: 12px 0;
-    border-bottom: 1px solid $color-E6E6E6;
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    li {
-      color: $color-6B6B6B;
-      font-size: 14px;
-      @include minWidth(768px) {
-        font-size: 15px;
-      }
-    }
-    a {
-      color: $color-6B6B6B;
-    }
-    span {
-      color: $color-6B6B6B;
-      margin: 0 4px;
+  // Breadcrumb — dùng component common ".breadcrumb-page"/".breadcrumbs"
+  // ở _common.scss (base đổi font-size ở 1024px). Product Category vốn
+  // đổi sớm hơn ở 768px, override riêng breakpoint đó tại đây.
+  .breadcrumbs li {
+    @include minWidth(768px) {
+      font-size: 15px;
     }
   }
 
@@ -128,6 +113,18 @@
         align-items: center;
         justify-content: space-between;
         padding: 16px 24px;
+      }
+      // gap 992px+ tách riêng theo 2 khoảng (giống hệt bản component common
+      // ở _common.scss) — PHẢI khai báo lại giá trị ở đây (không chỉ dựa
+      // vào common) vì selector 3 lớp ".product-category-page
+      // .product-category-badges .product-category-badges-list" có
+      // specificity cao hơn bản common 2 lớp, nên "gap:14px" mặc định
+      // (mobile) của chính page này sẽ luôn thắng nếu không override lại
+      // cùng cấp specificity cho từng khoảng.
+      @include minmaxWidth(992px, 1199px) {
+        gap: 25px;
+      }
+      @include minWidth(1200px) {
         gap: 0;
       }
       li {

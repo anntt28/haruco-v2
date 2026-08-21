@@ -38,9 +38,17 @@
     }
   }
 }
+// Biến thể cho hero ảnh nền (.form-contact-top) — không dùng
+// .breadcrumb-page/border-bottom của bản component chung (_common.scss),
+// nên reset lại 2 thuộc tính đó để giữ đúng UI hiện tại (không có viền,
+// font-size mặc định theo Bootstrap reboot, không đổi theo breakpoint).
 .breadcrumbs-white {
   padding-top: 10px;
   padding-bottom: 10px;
+  border-bottom: none;
+  li {
+    font-size: 16px;
+  }
   a {
     color: $light;
   }

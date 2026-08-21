@@ -115,36 +115,8 @@
 // của project (Product Detail/List News/Introduce).
 // ============================================================
 .news-detail-page {
-  // ============================================================
-  // Breadcrumb — tái dùng đúng pattern .breadcrumbs đã có ở
-  // .product-detail-page/.product-category-page/.list-news-page
-  // (_detail-product.scss/_product-category.scss/_news.scss). Không có bản
-  // dùng chung (unscoped) trong project nên copy lại 1 bản scope riêng cho
-  // .news-detail-page, đúng convention hiện tại (mỗi page tự scope 1 bản).
-  // ============================================================
-  .breadcrumbs {
-    padding: 12px 0;
-    border-bottom: 1px solid $color-E6E6E6;
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    li {
-      color: $color-6B6B6B;
-      font-size: 14px;
-      @include minWidth(1024px) {
-        font-size: 15px;
-      }
-    }
-    a {
-      color: $color-6B6B6B;
-    }
-    span {
-      color: $color-6B6B6B;
-      margin: 0 4px;
-    }
-  }
+  // Breadcrumb — dùng component common ".breadcrumb-page"/".breadcrumbs"
+  // ở _common.scss, không override riêng gì cho News Detail.
 
   // Wrapper ngay dưới breadcrumb (bọc .container-fluid > .template-blog-new)
   // — trước đây dùng class Bootstrap utility "mt-5", đổi thành class riêng

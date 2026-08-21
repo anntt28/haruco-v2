@@ -696,33 +696,76 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-// Breadcrumb — mỗi trang tự scope 1 bản ".breadcrumbs" riêng (không có bản
-// dùng chung trong project), nhưng riêng phần chống tràn chữ trên Mobile
-// (rút gọn "..." khi label dài) áp dụng chung cho mọi trang, không cần
-// lặp lại ở từng file page-scoped. "li" bọc toàn bộ breadcrumb trail
-// (Trang chủ / Tin tức / Tiêu đề...) trong 1 thẻ <li> duy nhất — cần
-// display:flex ở đây thì "min-width:0" trên span mới có tác dụng co lại
-// (mặc định flex-item không co dưới kích thước nội dung), nếu không
-// overflow/text-overflow/white-space trên span (display:inline mặc định)
-// sẽ không có hiệu lực gì. Chỉ span CUỐI (tiêu đề trang hiện tại) mới cần
-// co/rút gọn — link "Trang chủ"/"Tin tức" và dấu "/" ngăn cách giữ nguyên
-// flex-shrink:0 để không bị bóp méo theo, chỉ span cuối thật sự dùng đến
-// ellipsis.
-.breadcrumbs li {
-  display: flex;
-  align-items: center;
+// Breadcrumb — component common, dùng chung cho MỌI page có breadcrumb
+// (Cart, Payment, Thank, LD Giảm giá, Product Category, List News, News
+// Detail, Product Detail...). Trước đây mỗi page tự scope 1 bản giống
+// nhau 100% (chỉ khác nội dung <li>), đã rút lên đây — page mới cần
+// breadcrumb chỉ cần copy đúng markup mẫu dưới đây, không cần viết thêm
+// CSS riêng. "li" bọc toàn bộ breadcrumb trail (Trang chủ / Tin tức /
+// Tiêu đề...) trong 1 thẻ <li> duy nhất — cần display:flex ở đây thì
+// "min-width:0" trên span mới có tác dụng co lại (mặc định flex-item
+// không co dưới kích thước nội dung), nếu không overflow/text-overflow/
+// white-space trên span (display:inline mặc định) sẽ không có hiệu lực
+// gì. Chỉ span CUỐI (tiêu đề trang hiện tại) mới cần co/rút gọn — link
+// "Trang chủ"/"Tin tức" và dấu "/" ngăn cách giữ nguyên flex-shrink:0 để
+// không bị bóp méo theo, chỉ span cuối thật sự dùng đến ellipsis.
+//
+// Markup mẫu (copy nguyên khối này cho page mới, chỉ đổi nội dung <li>):
+//   <section class="breadcrumb-page">
+//     <div class="container-fluid">
+//       <div class="breadcrumbs">
+//         <ul>
+//           <li>
+//             <a href="./index.html">Trang chủ</a>
+//             <span>/</span>
+//             <span>Tên trang hiện tại</span>
+//           </li>
+//         </ul>
+//       </div>
+//     </div>
+//   </section>
+//
+// Riêng breakpoint 15px của "li" là 1024px (đa số page). Product Category
+// và List News dùng 768px (đã có từ trước) — override riêng theo breakpoint
+// đó nằm trong _product-category.scss/_news.scss, không lặp lại toàn bộ
+// block ở đây. Contact dùng biến thể ".breadcrumbs-white" (nền hero ảnh,
+// không có .breadcrumb-page/border-bottom) — override riêng trong
+// _contact.scss.
+.breadcrumb-page {
+  background: $light;
 }
-.breadcrumbs a {
-  flex-shrink: 0;
-}
-.breadcrumbs span {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.breadcrumbs span:not(:last-child) {
-  flex-shrink: 0;
+.breadcrumbs {
+  padding: 12px 0;
+  border-bottom: 1px solid $color-E6E6E6;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    color: $color-6B6B6B;
+    font-size: 14px;
+    @include minWidth(1024px) {
+      font-size: 15px;
+    }
+  }
+  a {
+    flex-shrink: 0;
+    color: $color-6B6B6B;
+  }
+  span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $color-6B6B6B;
+    margin: 0 4px;
+    &:not(:last-child) {
+      flex-shrink: 0;
+    }
+  }
 }
 
 // Thanh cam kết dịch vụ (Đổi trả/Chính hãng/Ship/Kiểm tra hàng/Bảo hành) —
@@ -753,6 +796,14 @@ input[type="number"] {
       justify-content: space-between;
       padding: 16px 24px;
       gap: 0;
+    }
+    // Vùng hẹp 992-1199px (giữa breakpoint đổi hàng ngang 992px và Bootstrap
+    // xl 1200px): row layout nhưng badge text dài dễ tràn/chật, cho phép
+    // wrap xuống dòng với gap rộng hơn thay vì ép 1 hàng chật cứng. Chỉ áp
+    // dụng đúng khoảng này, từ 1200px trở lên giữ nguyên hàng ngang không wrap.
+    @include minmaxWidth(992px, 1199px) {
+      flex-wrap: wrap;
+      gap: 25px;
     }
     li {
       display: flex;
