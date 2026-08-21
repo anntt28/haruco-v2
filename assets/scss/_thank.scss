@@ -174,15 +174,152 @@
   }
 
   // ============================================================
-  // "Địa chỉ giao hàng" — mỗi dòng gồm icon + label (trái) và value
-  // (phải), value gắn data-field để sau này bind dữ liệu order/customer.
+  // Hàng "Thông tin đơn hàng được gửi đến" — bọc 4 block (Địa chỉ giao
+  // hàng/Hành trình đơn hàng/Chi tiết đơn hàng/Quà tri ân) vào 1 wrapper
+  // cùng hàng với card "Gửi zalo", theo đúng layout .payment-content/
+  // .payment-summary của Payment page (breakpoint 1200px, cột phải rộng
+  // cố định). Mobile: xếp chồng dọc theo thứ tự DOM.
   // ============================================================
-  .thank-address {
+  .thank-order-info {
     padding: 0 0 32px;
     @include minWidth(1024px) {
       padding: 0 0 48px;
     }
   }
+  .thank-order-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    @include minWidth(1200px) {
+      flex-direction: row;
+      gap: 24px;
+    }
+  }
+  .thank-order-info-list {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include minWidth(1200px) {
+      flex: 1 1 auto;
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Thông tin đơn hàng được gửi đến" — Figma node 136:374 ("Gửi zalo").
+  // ------------------------------------------------------------
+  .thank-order-notice {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: $color-FFF6F0;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    padding: 20px;
+    @include minWidth(768px) {
+      padding: 24px;
+    }
+    @include minWidth(1200px) {
+      flex: 0 0 447px;
+    }
+    > h3 {
+      margin: 0 0 12px;
+      color: $color-1E335C;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.5;
+      @include minWidth(768px) {
+        font-size: 20px;
+      }
+      .highlight {
+        color: $color-F8633A;
+      }
+    }
+    > p {
+      margin: 0 0 20px;
+      color: $color-1E335C;
+      font-size: 14px;
+      line-height: 1.6;
+      @include minWidth(768px) {
+        font-size: 15px;
+      }
+    }
+    .btn-checkout {
+      margin-top: 20px;
+    }
+  }
+  .thank-order-notice-icon {
+    display: flex;
+    margin-bottom: 16px;
+    svg {
+      width: 76px;
+      height: 76px;
+      @include minWidth(768px) {
+        width: 92px;
+        height: 92px;
+      }
+    }
+  }
+  .thank-order-notice-contact {
+    width: 100%;
+    background: $light;
+    border: 1px dashed $color-FFC093;
+    border-radius: 10px;
+    padding: 12px 32px 19px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-align: left;
+      color: $color-1E335C;
+      font-size: 15px;
+      font-weight: 500;
+      @include minWidth(768px) {
+        font-size: 17px;
+      }
+    }
+    .icon {
+      flex-shrink: 0;
+      display: flex;
+    }
+    .value {
+      color: $color-F8633A;
+    }
+  }
+  .btn-checkout {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+    color: $light;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    @include trans;
+    @include minWidth(768px) {
+      font-size: 20px;
+    }
+    &:hover {
+      color: $light;
+      opacity: 0.9;
+    }
+  }
+
+  // ============================================================
+  // "Địa chỉ giao hàng" — mỗi dòng gồm icon + label (trái) và value
+  // (phải), value gắn data-field để sau này bind dữ liệu order/customer.
+  // ============================================================
   .thank-address-inner {
     max-width: 933px;
     background: $light;
@@ -247,12 +384,6 @@
   // "Hành trình đơn hàng" — 3 bước Xác nhận/Đóng gói/Giao hàng, mỗi bước
   // là 1 pill nền gradient cam giống .product-category-badges-list.
   // ============================================================
-  .thank-journey {
-    padding: 0 0 32px;
-    @include minWidth(1024px) {
-      padding: 0 0 48px;
-    }
-  }
   .thank-journey-inner {
     background: $light;
     border: 1px solid $color-FFC093;
@@ -269,6 +400,12 @@
       text-align: center;
       @include minWidth(768px) {
         font-size: 20px;
+      }
+      // Heading căn trái ở Desktop, giữ nguyên center ở Mobile như hiện tại.
+      &.thank-order-tracking-heading {
+        @include minWidth(768px) {
+          text-align: left;
+        }
       }
     }
   }
@@ -290,9 +427,22 @@
     color: $light;
     font-size: 16px;
     font-weight: 500;
+    // Ribbon border-image giống .ld-discount-step (_ld-discount.scss) — cùng
+    // source bg-ld-discount-step-ribbon.svg (3-slice: 2 dải 29px trái/phải
+    // cố định là notch/mũi tên, phần giữa "fill" tự làm nền theo nội dung).
+    // Áp dụng cùng breakpoint 992px với .thank-journey-steps chuyển thành
+    // hàng ngang, thay cho background gradient + border-radius bo tròn.
     @include minWidth(992px) {
       flex: 1;
       font-size: 18px;
+      background: none;
+      border-radius: 0;
+      border-style: solid;
+      border-width: 0 29px;
+      border-image-source: url("../images/bg-ld-discount-step-ribbon.svg");
+      border-image-slice: 0 29 fill;
+      border-image-width: 0 29px;
+      border-image-repeat: stretch;
     }
     .icon {
       display: flex;
@@ -319,12 +469,6 @@
   // "Chi tiết đơn hàng" — bảng sản phẩm (reuse pattern .cart-item-row)
   // + tổng hợp phí vận chuyển bên dưới.
   // ============================================================
-  .thank-order-detail {
-    padding: 0 0 32px;
-    @include minWidth(1024px) {
-      padding: 0 0 48px;
-    }
-  }
   .thank-order-detail-inner {
     background: $light;
     border-radius: 10px;
@@ -438,7 +582,11 @@
   .thank-order-breakdown {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid $color-E6E6E6;
+    @include minWidth(768px) {
+      max-width: 342px;
+      margin-left: auto;
+      margin-right: 0;
+    }
     .row {
       display: flex;
       align-items: center;
@@ -452,31 +600,26 @@
       }
     }
     .free {
-      color: $color-F8633A;
+      color: $color-007CCC;
       font-weight: 500;
     }
   }
 
   // ============================================================
-  // "Quà tri ân" — reuse nguyên component .voucher-card/.voucher-list/
-  // .btn-save-voucher của trang LD Giảm giá (assets/scss/_ld-discount.scss),
-  // copy lại 1 bản scope dưới .thank-page (KHÔNG đổi _ld-discount.scss),
-  // đúng cách Cart/Payment đã làm với breadcrumb/badges. JS toggle
-  // ".copied" cho .btn-save-voucher đã có sẵn dùng chung ở assets/js/index.js.
+  // "Quà tri ân" — voucher card dạng vé (ticket) theo Figma node 136:588.
+  // Phần nền cam sóng (mép răng cưa) dùng ảnh thật export từ Figma
+  // (bg-voucher-ticket-thank.png), không giả lập bằng clip-path/mask,
+  // đúng convention "asset thật" đã dùng cho voucher-card ở LD Giảm giá.
+  // Giữ nguyên data/logic hiện tại (mã voucher, nút Lưu mã + JS toggle
+  // ".copied" dùng chung ở assets/js/index.js), chỉ đổi layout hiển thị.
   // ============================================================
-  .thank-voucher {
-    padding: 0 0 32px;
-    @include minWidth(1024px) {
-      padding: 0 0 48px;
-    }
-  }
   .thank-voucher-inner {
     background: $light;
     border-radius: 10px;
     box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
-    padding: 20px 20px 74px;
+    padding: 20px;
     @include minWidth(768px) {
-      padding: 30px 30px 84px;
+      padding: 30px;
     }
     > h3 {
       margin: 0 0 16px;
@@ -491,154 +634,106 @@
   .voucher-list {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    column-gap: 20px;
-    row-gap: 64px;
-    @include minWidth(576px) {
+    gap: 16px;
+    @include minWidth(768px) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    @include minWidth(992px) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
   .voucher-card {
-    position: relative;
-    .percent-wrap {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      .content {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        margin: 0;
-        z-index: 3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 27px 16px;
-        @include minWidth(1024px) {
-          padding: 35px 16px;
-        }
-        order: 1;
-        img {
-          display: block;
-          height: 18px;
-          width: auto;
-          @include minWidth(1024px) {
-            height: 22px;
-          }
-        }
-        span:last-child {
-          color: $color-E83729;
-          font-weight: 600;
-          letter-spacing: -0.03em;
-          line-height: 1;
-          font-size: 32px;
-          @include minWidth(1024px) {
-            font-size: 60px;
-          }
-        }
-      }
-      .img-1 {
-        z-index: 2;
-        @include maxWidth(767px) {
-          height: 295px;
-        }
-        @include minmaxWidth(768px, 1024px) {
-          height: 383px;
-        }
-        img {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .img {
-        position: absolute;
-        margin-bottom: -17%;
-        top: -10px;
-        width: 100%;
-        order: -1;
-        z-index: -1;
-        img {
-          display: block;
-          width: 100%;
-        }
-      }
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    aspect-ratio: 416 / 128;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .voucher-card-ticket {
+    flex: 1 1 72%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 16px;
+    text-align: center;
+    background-image: url("../images/bg-voucher-ticket-thank.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    @include minWidth(768px) {
+      gap: 6px;
+      padding: 12px 24px;
     }
-    .voucher-card-body {
-      position: absolute;
-      bottom: -54px;
-      z-index: 9;
-      width: 100%;
-      background: url("../images/introduce/bg-vouncher-card-body.png") center top / 100% 100% no-repeat;
-      padding: 44px 12px 20px;
-      @include maxWidth(1024px) {
-        bottom: 0;
-      }
-      @include minWidth(1024px) {
-        padding: 61px 12px 20px;
-        margin-top: 90px;
-      }
-      text-align: center;
-      .desc {
-        color: $light;
-        font-size: 13px;
-        line-height: 1.5;
-        margin-bottom: 8px;
-        @include minWidth(1024px) {
-          font-size: 20px;
-        }
-        div:first-child {
-          font-weight: 600;
-        }
-        div:last-child {
-          font-weight: 400;
-        }
-      }
-      .expiry {
-        color: $light;
-        font-size: 12px;
-        opacity: 0.9;
-        margin-bottom: 14px;
-        @include minWidth(1024px) {
-          font-size: 16px;
-        }
-      }
-      .voucher-condition {
-        display: block;
-        color: #ffcb77;
-        font-size: 12px;
-        text-decoration: underline;
-        margin-top: 10px;
-        @include minWidth(1024px) {
-          font-size: 16px;
-        }
-        &:hover {
-          color: #ffcb77;
-        }
-      }
+  }
+  .voucher-card-title {
+    color: $light;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 14px;
+    @include minWidth(768px) {
+      font-size: 20px;
+    }
+  }
+  .voucher-card-amount {
+    color: $light;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-size: 24px;
+    @include minWidth(576px) {
+      font-size: 32px;
+    }
+    @include minWidth(768px) {
+      font-size: 44px;
+    }
+  }
+  .voucher-card-condition {
+    color: $light;
+    font-size: 10px;
+    line-height: 1.4;
+    @include minWidth(768px) {
+      font-size: 13px;
+    }
+  }
+  .voucher-card-stub {
+    flex: 0 0 28%;
+    min-width: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    background: $color-FFF0E1;
+    border: 1px dashed $color-FFC093;
+  }
+  .voucher-card-logo {
+    display: block;
+    height: 14px;
+    width: auto;
+    @include minWidth(768px) {
+      height: 20px;
     }
   }
   .btn-save-voucher {
     display: block;
     width: 100%;
-    max-width: 178px;
-    height: 40px;
-    margin: 0 auto;
+    max-width: 100px;
+    height: 26px;
     border: none;
     border-radius: 10px;
-    background: radial-gradient(50% 151.25% at 50% 50%, #fae8c2 0%, #fdbe5d 100%);
-    color: $color-E83729;
-    font-size: 14px;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+    color: $light;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    @include minWidth(1024px) {
-      font-size: 20px;
+    @include minWidth(768px) {
+      max-width: 120px;
+      height: 34px;
+      font-size: 14px;
     }
     .copied-label {
       position: absolute;
@@ -651,11 +746,14 @@
       justify-content: center;
       background: rgba(30, 51, 92, 0.9);
       color: $light;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 500;
       opacity: 0;
       pointer-events: none;
       @include trans;
+      @include minWidth(768px) {
+        font-size: 12px;
+      }
     }
     &.copied .copied-label {
       opacity: 1;
@@ -664,14 +762,11 @@
 
   // ============================================================
   // "Tham gia cộng đồng" — reuse đúng 3 icon mạng xã hội (Google/Facebook/
-  // Youtube) đã có sẵn ở Footer.
+  // Youtube) đã có sẵn ở Footer. Đã move vào trong .thank-order-info-list
+  // (item cuối, cùng hàng với Địa chỉ/Hành trình/Chi tiết/Quà tri ân) nên
+  // không còn section/container-fluid riêng — spacing giữa các item lấy từ
+  // gap của .thank-order-info-list, không cần padding riêng ở đây nữa.
   // ============================================================
-  .thank-community {
-    padding: 0 0 32px;
-    @include minWidth(1024px) {
-      padding: 0 0 48px;
-    }
-  }
   .thank-community-inner {
     display: flex;
     flex-direction: column;
