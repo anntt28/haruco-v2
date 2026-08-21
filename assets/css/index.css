@@ -21645,6 +21645,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 992px) {
   .thank-page .thank-journey-step {
+    padding: 12px 25px;
     font-size: 18px;
     background: none;
     border-radius: 0;
@@ -21683,6 +21684,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 768px) {
   .thank-page .thank-journey-note {
     font-size: 15px;
+  }
+}
+@media (min-width: 1024px) {
+  .thank-page .thank-journey-note {
+    text-align: left;
   }
 }
 .thank-page .thank-order-detail-inner {
@@ -21881,7 +21887,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: flex;
   align-items: stretch;
   width: 100%;
-  aspect-ratio: 416/128;
+  height: 128px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -21892,34 +21898,27 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 8px 16px;
+  gap: 0;
+  padding: 16px 12px 12px;
   text-align: center;
+  z-index: 2;
   background-image: url("../images/bg-voucher-ticket-thank.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-@media (min-width: 768px) {
-  .thank-page .voucher-card-ticket {
-    gap: 6px;
-    padding: 12px 24px;
-  }
-}
 .thank-page .voucher-card-title {
   display: block;
-  height: 16px;
+  height: 34px;
   width: auto;
-}
-@media (min-width: 768px) {
-  .thank-page .voucher-card-title {
-    height: 24px;
-  }
+  object-fit: contain;
 }
 .thank-page .voucher-card-amount {
+  position: relative;
+  display: inline-block;
   color: #fff;
   font-family: "SVN-Harabaras", sans-serif;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.08em;
   line-height: 1;
   font-size: 24px;
 }
@@ -21930,20 +21929,63 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 768px) {
   .thank-page .voucher-card-amount {
-    font-size: 44px;
+    font-size: 64px;
+    margin-top: -6px;
+  }
+}
+.thank-page .voucher-card-amount::before, .thank-page .voucher-card-amount::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  width: 26px;
+  height: 17px;
+}
+@media (min-width: 576px) {
+  .thank-page .voucher-card-amount::before, .thank-page .voucher-card-amount::after {
+    width: 35px;
+    height: 23px;
+  }
+}
+@media (min-width: 768px) {
+  .thank-page .voucher-card-amount::before, .thank-page .voucher-card-amount::after {
+    width: 69px;
+    height: 46px;
+  }
+}
+.thank-page .voucher-card-amount::before {
+  left: 0;
+  transform: translate(-100%, -50%);
+  background-image: url("../images/money-bottom.png");
+}
+.thank-page .voucher-card-amount::after {
+  right: 0;
+  transform: translate(100%, -50%);
+  background-image: url("../images/money-top.png");
+}
+@media (min-width: 768px) {
+  .thank-page .voucher-card-amount::after {
+    width: 56px;
+    height: 37px;
   }
 }
 .thank-page .voucher-card-condition {
   color: #fff;
   font-size: 10px;
-  line-height: 1.4;
+  line-height: 2.5;
 }
 .thank-page .voucher-card-stub {
-  flex: 0 0 28%;
-  min-width: 88px;
+  flex: 0 0 30%;
+  min-width: 90px;
   padding: 4px;
   background: #FFF0E1;
   border: 1px solid #FFC093;
+  border-radius: 10px;
+  position: relative;
+  right: 14px;
+  z-index: 1;
 }
 .thank-page .voucher-card-stub-inner {
   height: 100%;
@@ -21952,8 +21994,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px;
+  padding: 8px 8px 8px 20px;
   border: 1px dashed #F8633A;
+  border-radius: 10px;
 }
 .thank-page .voucher-card-logo {
   display: block;

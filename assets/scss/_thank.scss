@@ -447,6 +447,7 @@
     // thứ tự DOM tự nhiên đã đủ để step sau vẽ đè lên step trước, không
     // cần z-index riêng.
     @include minWidth(992px) {
+      padding: 12px 25px;
       font-size: 18px;
       background: none;
       border-radius: 0;
@@ -483,6 +484,9 @@
     text-align: center;
     @include minWidth(768px) {
       font-size: 15px;
+    }
+    @include minWidth(1024px) {
+      text-align: left;
     }
   }
 
@@ -665,7 +669,7 @@
     display: flex;
     align-items: stretch;
     width: 100%;
-    aspect-ratio: 416 / 128;
+    height: 128px;
     border-radius: 10px;
     overflow: hidden;
   }
@@ -676,53 +680,96 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
-    padding: 8px 16px;
+    gap: 0;
+    padding: 16px 12px 12px;
     text-align: center;
+    z-index: 2;
     background-image: url("../images/bg-voucher-ticket-thank.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    @include minWidth(768px) {
-      gap: 6px;
-      padding: 12px 24px;
-    }
   }
   .voucher-card-title {
     display: block;
-    height: 16px;
+    height: 34px;
     width: auto;
-    @include minWidth(768px) {
-      height: 24px;
-    }
+    object-fit: contain;
   }
   .voucher-card-amount {
+    position: relative;
+    display: inline-block;
     color: $light;
     font-family: "SVN-Harabaras", sans-serif;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: 0.08em;
     line-height: 1;
     font-size: 24px;
     @include minWidth(576px) {
       font-size: 32px;
     }
     @include minWidth(768px) {
-      font-size: 44px;
+      font-size: 64px;
+      margin-top: -6px;
+    }
+    // Tia sáng "coin burst" 2 bên số tiền — money-bottom.png (đồng xu ở
+    // trái, tia hướng phải) đặt bên trái, money-top.png (đồng xu ở phải,
+    // tia hướng trái) đặt bên phải, đối xứng nhau. Không tìm thấy node
+    // Figma khớp chính xác 2 asset này trong frame voucher-card đã dùng
+    // trước đó (136:588) nên vị trí/kích thước dưới đây là ước lượng theo
+    // tỉ lệ ảnh gốc, có thể cần chỉnh lại nếu lệch so với thiết kế thật.
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      pointer-events: none;
+      width: 26px;
+      height: 17px;
+      @include minWidth(576px) {
+        width: 35px;
+        height: 23px;
+      }
+      @include minWidth(768px) {
+        width: 69px;
+        height: 46px;
+      }
+    }
+    &::before {
+      left: 0;
+      transform: translate(-100%, -50%);
+      background-image: url("../images/money-bottom.png");
+    }
+    &::after {
+      right: 0;
+      transform: translate(100%, -50%);
+      background-image: url("../images/money-top.png");
+      @include minWidth(768px) {
+        width: 56px;
+        height: 37px;
+      }
     }
   }
   .voucher-card-condition {
     color: $light;
     font-size: 10px;
-    line-height: 1.4;
+    line-height: 2.5;
   }
   // Border ngoài solid + 1 div bọc trong border dashed (2 lớp viền thật,
   // không dùng pseudo-element) — padding của .voucher-card-stub chính là
-  // khoảng cách giữa 2 lớp viền này.
+  // khoảng cách giữa 2 lớp viền này. right:-14px kéo stub lệch trái, đè
+  // lên mép ticket (z-index:1, thấp hơn ticket z-index:2) để 2 lớp viền
+  // nối liền không có khe hở.
   .voucher-card-stub {
-    flex: 0 0 28%;
-    min-width: 88px;
+    flex: 0 0 30%;
+    min-width: 90px;
     padding: 4px;
     background: $color-FFF0E1;
     border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    position: relative;
+    right: 14px;
+    z-index: 1;
   }
   .voucher-card-stub-inner {
     height: 100%;
@@ -731,8 +778,9 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px;
+    padding: 8px 8px 8px 20px;
     border: 1px dashed $color-F8633A;
+    border-radius: 10px;
   }
   .voucher-card-logo {
     display: block;
