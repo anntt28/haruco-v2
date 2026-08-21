@@ -40,87 +40,9 @@
     }
   }
 
-  // ------------------------------------------------------------
-  // Thanh cam kết dịch vụ — tái dùng đúng class .product-category-badges /
-  // .product-category-badges-list (Product Category page). CSS gốc của 2
-  // class này bị bọc trong .product-category-page nên phải copy lại 1 bản
-  // scope dưới .cart-page (KHÔNG đổi file _product-category.scss) để cùng
-  // class/markup thực sự hiển thị đúng.
-  // ------------------------------------------------------------
-  .product-category-badges {
-    padding: 16px 0;
-    @include minWidth(1024px) {
-      padding: 32px 0;
-    }
-    .product-category-badges-list {
-      list-style: none;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
-      border: 1px solid $color-FF6D3E;
-      border-radius: 10px;
-      @include minWidth(992px) {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 24px;
-        gap: 0;
-      }
-      li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: $light;
-        font-size: 15px;
-        font-weight: 500;
-        @include minWidth(992px) {
-          font-size: 18px;
-          padding: 0 20px;
-          border-right: 1px solid $color-FFC093;
-          white-space: nowrap;
-        }
-        &:last-child {
-          @include minWidth(992px) {
-            border-right: none;
-          }
-        }
-        &:first-child {
-          @include minWidth(992px) {
-            padding-left: 0;
-          }
-        }
-        .badge-icon {
-          display: flex;
-          align-items: center;
-          flex-shrink: 0;
-          svg {
-            height: 20px;
-            width: auto;
-          }
-        }
-      }
-      .badge-genuine {
-        @include maxWidth(991px) {
-          display: none;
-        }
-      }
-      .badge-return {
-        order: 2;
-        @include minWidth(992px) {
-          order: 0;
-        }
-      }
-      .badge-ship {
-        order: 1;
-        @include minWidth(992px) {
-          order: 0;
-        }
-      }
-    }
-  }
+  // Thanh cam kết dịch vụ (.product-category-badges) — dùng chung với
+  // Payment, đã rút lên component common ở _common.scss (không scope theo
+  // page). Không còn override riêng nào cho Cart.
 
   // ------------------------------------------------------------
   // Checkbox chọn sản phẩm — custom appearance (bỏ style native browser),
@@ -432,7 +354,7 @@
   .cart-summary {
     width: 100%;
     @include minWidth(1200px) {
-      flex: 0 0 400px;
+      flex: 0 0 447px;
     }
   }
   .cart-summary-inner {

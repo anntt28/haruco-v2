@@ -720,3 +720,92 @@ input[type="number"] {
 .breadcrumbs span:not(:last-child) {
   flex-shrink: 0;
 }
+
+// Thanh cam kết dịch vụ (Đổi trả/Chính hãng/Ship/Kiểm tra hàng/Bảo hành) —
+// Cart và Payment dùng chung 100% UI/style nên rút lên đây làm component
+// common, không scope theo page nữa. Trang nào cần khác biệt so với bản
+// chung này thì chỉ thêm phần khác biệt trong file SCSS riêng của trang đó
+// (ví dụ ".cart-page .product-category-badges { ... }"), không copy lại
+// toàn bộ block. Product Category/Thank vẫn giữ bản scope riêng của họ
+// (icon font-based khác với Cart/Payment, ngoài phạm vi refactor này).
+.product-category-badges {
+  padding: 16px 0;
+  @include minWidth(1024px) {
+    padding: 32px 0;
+  }
+  .product-category-badges-list {
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
+    border: 1px solid $color-FF6D3E;
+    border-radius: 10px;
+    @include minWidth(992px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      gap: 0;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: $light;
+      font-size: 15px;
+      font-weight: 500;
+      @include minWidth(992px) {
+        padding: 0 20px;
+        border-right: 1px solid $color-FFC093;
+        white-space: nowrap;
+      }
+      // Font-size badge tách riêng theo 2 khoảng: 992-1199px và ≥1200px
+      // (khác breakpoint layout row ở trên, chỉ áp dụng cho font-size).
+      @include minmaxWidth(992px, 1199px) {
+        font-size: 16px;
+      }
+      @include minWidth(1200px) {
+        font-size: 18px;
+      }
+      &:last-child {
+        @include minWidth(992px) {
+          border-right: none;
+        }
+      }
+      &:first-child {
+        @include minWidth(992px) {
+          padding-left: 0;
+        }
+      }
+      .badge-icon {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        svg {
+          height: 20px;
+          width: auto;
+        }
+      }
+    }
+    .badge-genuine {
+      @include maxWidth(991px) {
+        display: none;
+      }
+    }
+    .badge-return {
+      order: 2;
+      @include minWidth(992px) {
+        order: 0;
+      }
+    }
+    .badge-ship {
+      order: 1;
+      @include minWidth(992px) {
+        order: 0;
+      }
+    }
+  }
+}
