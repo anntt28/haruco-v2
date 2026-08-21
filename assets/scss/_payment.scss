@@ -8,12 +8,12 @@
 .payment-page {
   background-color: $color-F9F9F9;
   // ------------------------------------------------------------
-  // Breadcrumb + Thanh cam kết dịch vụ — reuse đúng markup/nội dung của
-  // Cart (breadcrumb chỉ đổi text, product-category-badges-list giữ
-  // nguyên). CSS gốc của .breadcrumbs/.product-category-badges-list bị
-  // bọc trong .cart-page/.product-category-page nên copy lại 1 bản scope
-  // dưới .payment-page (KHÔNG đổi _cart.scss/_product-category.scss) để
-  // cùng class/markup thực sự hiển thị đúng — đúng cách Cart đã làm.
+  // Breadcrumb — reuse đúng markup/nội dung của Cart (chỉ đổi text). CSS
+  // gốc của .breadcrumbs bị bọc trong .cart-page nên copy lại 1 bản scope
+  // dưới .payment-page (KHÔNG đổi _cart.scss) để cùng class/markup thực sự
+  // hiển thị đúng — đúng cách Cart đã làm.
+  // Thanh cam kết dịch vụ (.product-category-badges) dùng chung với Cart,
+  // đã rút lên component common ở _common.scss (không scope theo page).
   // ------------------------------------------------------------
   .breadcrumb-page {
     background: $light;
@@ -39,80 +39,6 @@
     span {
       color: $color-6B6B6B;
       margin: 0 4px;
-    }
-  }
-  .product-category-badges {
-    padding: 16px 0;
-    @include minWidth(1024px) {
-      padding: 32px 0;
-    }
-    .product-category-badges-list {
-      list-style: none;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
-      border: 1px solid $color-FF6D3E;
-      border-radius: 10px;
-      @include minWidth(992px) {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 24px;
-        gap: 0;
-      }
-      li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: $light;
-        font-size: 15px;
-        font-weight: 500;
-        @include minWidth(992px) {
-          font-size: 18px;
-          padding: 0 20px;
-          border-right: 1px solid $color-FFC093;
-          white-space: nowrap;
-        }
-        &:last-child {
-          @include minWidth(992px) {
-            border-right: none;
-          }
-        }
-        &:first-child {
-          @include minWidth(992px) {
-            padding-left: 0;
-          }
-        }
-        .badge-icon {
-          display: flex;
-          align-items: center;
-          flex-shrink: 0;
-          svg {
-            height: 20px;
-            width: auto;
-          }
-        }
-      }
-      .badge-genuine {
-        @include maxWidth(991px) {
-          display: none;
-        }
-      }
-      .badge-return {
-        order: 2;
-        @include minWidth(992px) {
-          order: 0;
-        }
-      }
-      .badge-ship {
-        order: 1;
-        @include minWidth(992px) {
-          order: 0;
-        }
-      }
     }
   }
 
@@ -143,21 +69,21 @@
   // ------------------------------------------------------------
   // Cột trái — Form thông tin bắt buộc
   // ------------------------------------------------------------
+  .payment-main > .container-fluid > h2 {
+    color: $color-1E335C;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    @include minWidth(1024px) {
+      font-size: 24px;
+    }
+  }
   .payment-form {
     width: 100%;
     min-width: 0;
     @include minWidth(1200px) {
       flex: 1 1 auto;
-    }
-    > h2 {
-      color: $color-1E335C;
-      font-size: 20px;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-      @include minWidth(1024px) {
-        font-size: 24px;
-      }
     }
   }
   .payment-form-inner {
@@ -170,6 +96,11 @@
   .payment-form-banner {
     padding: 16px 20px;
     background: $color-F8633A;
+    @include minWidth(768px) {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
     h3 {
       margin: 0;
       color: $light;
@@ -185,6 +116,7 @@
       font-size: 14px;
       @include minWidth(768px) {
         font-size: 16px;
+        margin: 0;
       }
     }
   }
@@ -289,7 +221,7 @@
     flex-direction: column;
     gap: 20px;
     @include minWidth(1200px) {
-      flex: 0 0 400px;
+      flex: 0 0 447px;
     }
   }
   .payment-summary-inner {
@@ -369,12 +301,14 @@
       }
     }
     .note {
-      margin: 8px 0 0;
       color: $color-6B6B6B;
       font-size: 12px;
       line-height: 1.6;
-      font-weight: 300;
       text-align: right;
+      width: 66%;
+      margin-left: auto;
+      margin-right: 0;
+      font-weight: 300;
       @include minWidth(768px) {
         font-size: 13px;
       }
@@ -412,8 +346,12 @@
       font-size: 26px;
       font-weight: 500;
       letter-spacing: 0.06em;
+      line-height: 1;
       @include minWidth(768px) {
         font-size: 32px;
+      }
+      @include minWidth(1199px) {
+        font-size: 40px;
       }
       &:hover {
         color: $light;
