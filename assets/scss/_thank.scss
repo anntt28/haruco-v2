@@ -1,0 +1,733 @@
+// ============================================================
+// Trang "Cảm ơn" (thank.html) — Figma node 136:293. Mọi selector bọc
+// trong .thank-page (class của <main>) để không ảnh hưởng các trang
+// khác dùng chung index.css, đúng convention hiện tại của project.
+// ============================================================
+.thank-page {
+  background-color: $color-F9F9F9;
+  // ------------------------------------------------------------
+  // Breadcrumb + Thanh cam kết dịch vụ — reuse đúng markup/nội dung của
+  // Cart (breadcrumb chỉ đổi text, product-category-badges-list giữ
+  // nguyên). CSS gốc bị bọc trong .cart-page nên copy lại 1 bản scope
+  // dưới .thank-page (KHÔNG đổi _cart.scss), đúng cách Payment đã làm.
+  // ------------------------------------------------------------
+  .breadcrumb-page {
+    background: $light;
+  }
+  .breadcrumbs {
+    padding: 12px 0;
+    border-bottom: 1px solid $color-E6E6E6;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      color: $color-6B6B6B;
+      font-size: 14px;
+      @include minWidth(1024px) {
+        font-size: 15px;
+      }
+    }
+    a {
+      color: $color-6B6B6B;
+    }
+    span {
+      color: $color-6B6B6B;
+      margin: 0 4px;
+    }
+  }
+  .product-category-badges {
+    padding: 16px 0;
+    @include minWidth(1024px) {
+      padding: 32px 0;
+    }
+    .product-category-badges-list {
+      list-style: none;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: linear-gradient(90deg, $color-E83729 0%, $color-FF6D3E 100%);
+      border: 1px solid $color-FF6D3E;
+      border-radius: 10px;
+      @include minWidth(992px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        gap: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: $light;
+        font-size: 15px;
+        font-weight: 500;
+        @include minWidth(992px) {
+          font-size: 18px;
+          padding: 0 20px;
+          border-right: 1px solid $color-FFC093;
+          white-space: nowrap;
+        }
+        &:last-child {
+          @include minWidth(992px) {
+            border-right: none;
+          }
+        }
+        &:first-child {
+          @include minWidth(992px) {
+            padding-left: 0;
+          }
+        }
+        .badge-icon {
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+          svg {
+            height: 20px;
+            width: auto;
+          }
+        }
+      }
+      .badge-genuine {
+        @include maxWidth(991px) {
+          display: none;
+        }
+      }
+      .badge-return {
+        order: 2;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+      .badge-ship {
+        order: 1;
+        @include minWidth(992px) {
+          order: 0;
+        }
+      }
+    }
+  }
+
+  // ============================================================
+  // "Cảm ơn bạn đã đặt hàng" — hero banner dùng background image
+  // bg-cam-on-ban-da-dat-hang, icon check + heading + text căn giữa.
+  // ============================================================
+  .thank-hero {
+    padding: 24px 0;
+    @include minWidth(1024px) {
+      padding: 32px 0;
+    }
+  }
+  .thank-hero-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px 32px;
+    border-radius: 10px;
+    background-image: url("../images/bg-cam-on-ban-da-dat-hang.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include minWidth(768px) {
+      padding: 56px 40px 44px;
+    }
+  }
+  .thank-hero-icon {
+    display: flex;
+    margin-bottom: 16px;
+    svg {
+      width: 84px;
+      height: 84px;
+      @include minWidth(768px) {
+        width: 110px;
+        height: 110px;
+      }
+    }
+  }
+  .thank-hero-inner {
+    h2 {
+      margin: 0 0 8px;
+      color: $light;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      @include minWidth(768px) {
+        font-size: 32px;
+      }
+    }
+    p {
+      margin: 0;
+      max-width: 540px;
+      color: $light;
+      font-size: 14px;
+      line-height: 1.6;
+      @include minWidth(768px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  // ============================================================
+  // "Địa chỉ giao hàng" — mỗi dòng gồm icon + label (trái) và value
+  // (phải), value gắn data-field để sau này bind dữ liệu order/customer.
+  // ============================================================
+  .thank-address {
+    padding: 0 0 32px;
+    @include minWidth(1024px) {
+      padding: 0 0 48px;
+    }
+  }
+  .thank-address-inner {
+    max-width: 933px;
+    background: $light;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+    padding: 20px;
+    @include minWidth(768px) {
+      padding: 30px;
+    }
+    > h3 {
+      margin: 0 0 16px;
+      color: $color-1E335C;
+      font-size: 18px;
+      font-weight: 500;
+      @include minWidth(768px) {
+        font-size: 20px;
+      }
+    }
+  }
+  .thank-address-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 0;
+    border-top: 1px solid $color-DBDBDB;
+    @include minWidth(768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+  }
+  .thank-address-row-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    color: $color-1E335C;
+    font-size: 15px;
+    @include minWidth(768px) {
+      font-size: 16px;
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+  }
+  .thank-address-row-value {
+    min-width: 0;
+    color: $color-1E335C;
+    font-size: 15px;
+    font-weight: 500;
+    @include minWidth(768px) {
+      font-size: 16px;
+      text-align: right;
+    }
+  }
+
+  // ============================================================
+  // "Hành trình đơn hàng" — 3 bước Xác nhận/Đóng gói/Giao hàng, mỗi bước
+  // là 1 pill nền gradient cam giống .product-category-badges-list.
+  // ============================================================
+  .thank-journey {
+    padding: 0 0 32px;
+    @include minWidth(1024px) {
+      padding: 0 0 48px;
+    }
+  }
+  .thank-journey-inner {
+    background: $light;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    padding: 20px;
+    @include minWidth(768px) {
+      padding: 30px;
+    }
+    > h3 {
+      margin: 0 0 16px;
+      color: $color-1E335C;
+      font-size: 18px;
+      font-weight: 500;
+      text-align: center;
+      @include minWidth(768px) {
+        font-size: 20px;
+      }
+    }
+  }
+  .thank-journey-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    @include minWidth(992px) {
+      flex-direction: row;
+    }
+  }
+  .thank-journey-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+    border-radius: 50px;
+    color: $light;
+    font-size: 16px;
+    font-weight: 500;
+    @include minWidth(992px) {
+      flex: 1;
+      font-size: 18px;
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      svg {
+        height: 24px;
+        width: auto;
+      }
+    }
+  }
+  .thank-journey-note {
+    margin: 16px 0 0;
+    color: $color-1E335C;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+    @include minWidth(768px) {
+      font-size: 15px;
+    }
+  }
+
+  // ============================================================
+  // "Chi tiết đơn hàng" — bảng sản phẩm (reuse pattern .cart-item-row)
+  // + tổng hợp phí vận chuyển bên dưới.
+  // ============================================================
+  .thank-order-detail {
+    padding: 0 0 32px;
+    @include minWidth(1024px) {
+      padding: 0 0 48px;
+    }
+  }
+  .thank-order-detail-inner {
+    background: $light;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+    padding: 20px;
+    @include minWidth(768px) {
+      padding: 30px;
+    }
+    > h3 {
+      margin: 0 0 16px;
+      color: $color-1E335C;
+      font-size: 18px;
+      font-weight: 500;
+      @include minWidth(768px) {
+        font-size: 20px;
+      }
+    }
+  }
+  .thank-order-table-header {
+    display: none;
+    align-items: center;
+    padding: 12px 16px;
+    background: $color-F8633A;
+    border-radius: 10px;
+    color: $light;
+    font-size: 16px;
+    font-weight: 500;
+    @include minWidth(768px) {
+      display: flex;
+    }
+    span:first-child {
+      flex: 1;
+    }
+    span:not(:first-child) {
+      width: 110px;
+      text-align: center;
+    }
+  }
+  .thank-order-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+    margin-top: 16px;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    @include minWidth(768px) {
+      flex-wrap: nowrap;
+      padding: 20px 16px;
+    }
+  }
+  .thank-order-item-product {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 100%;
+    min-width: 0;
+    @include minWidth(768px) {
+      flex: 1 1 auto;
+    }
+    .thank-order-item-image {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      border: 1px solid $color-EBEBEB;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 8px;
+      @include minWidth(768px) {
+        width: 90px;
+        height: 90px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    h4 {
+      margin: 0;
+      color: $color-1E335C;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.5;
+      @include minWidth(768px) {
+        font-size: 16px;
+      }
+    }
+  }
+  .thank-order-item-price,
+  .thank-order-item-qty,
+  .thank-order-item-total {
+    flex: 0 0 auto;
+    color: $color-1E335C;
+    font-size: 15px;
+    @include minWidth(768px) {
+      width: 110px;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+  .thank-order-item-total {
+    color: $color-E83729;
+    font-weight: 500;
+    margin-left: auto;
+    @include minWidth(768px) {
+      margin-left: 0;
+    }
+  }
+  .thank-order-breakdown {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid $color-E6E6E6;
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0;
+      padding: 6px 0;
+      color: $color-1E335C;
+      font-size: 14px;
+      @include minWidth(768px) {
+        font-size: 15px;
+      }
+    }
+    .free {
+      color: $color-F8633A;
+      font-weight: 500;
+    }
+  }
+
+  // ============================================================
+  // "Quà tri ân" — reuse nguyên component .voucher-card/.voucher-list/
+  // .btn-save-voucher của trang LD Giảm giá (assets/scss/_ld-discount.scss),
+  // copy lại 1 bản scope dưới .thank-page (KHÔNG đổi _ld-discount.scss),
+  // đúng cách Cart/Payment đã làm với breadcrumb/badges. JS toggle
+  // ".copied" cho .btn-save-voucher đã có sẵn dùng chung ở assets/js/index.js.
+  // ============================================================
+  .thank-voucher {
+    padding: 0 0 32px;
+    @include minWidth(1024px) {
+      padding: 0 0 48px;
+    }
+  }
+  .thank-voucher-inner {
+    background: $light;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+    padding: 20px 20px 74px;
+    @include minWidth(768px) {
+      padding: 30px 30px 84px;
+    }
+    > h3 {
+      margin: 0 0 16px;
+      color: $color-1E335C;
+      font-size: 18px;
+      font-weight: 500;
+      @include minWidth(768px) {
+        font-size: 20px;
+      }
+    }
+  }
+  .voucher-list {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 64px;
+    @include minWidth(576px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @include minWidth(992px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .voucher-card {
+    position: relative;
+    .percent-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      .content {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        margin: 0;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 27px 16px;
+        @include minWidth(1024px) {
+          padding: 35px 16px;
+        }
+        order: 1;
+        img {
+          display: block;
+          height: 18px;
+          width: auto;
+          @include minWidth(1024px) {
+            height: 22px;
+          }
+        }
+        span:last-child {
+          color: $color-E83729;
+          font-weight: 600;
+          letter-spacing: -0.03em;
+          line-height: 1;
+          font-size: 32px;
+          @include minWidth(1024px) {
+            font-size: 60px;
+          }
+        }
+      }
+      .img-1 {
+        z-index: 2;
+        @include maxWidth(767px) {
+          height: 295px;
+        }
+        @include minmaxWidth(768px, 1024px) {
+          height: 383px;
+        }
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .img {
+        position: absolute;
+        margin-bottom: -17%;
+        top: -10px;
+        width: 100%;
+        order: -1;
+        z-index: -1;
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+    .voucher-card-body {
+      position: absolute;
+      bottom: -54px;
+      z-index: 9;
+      width: 100%;
+      background: url("../images/introduce/bg-vouncher-card-body.png") center top / 100% 100% no-repeat;
+      padding: 44px 12px 20px;
+      @include maxWidth(1024px) {
+        bottom: 0;
+      }
+      @include minWidth(1024px) {
+        padding: 61px 12px 20px;
+        margin-top: 90px;
+      }
+      text-align: center;
+      .desc {
+        color: $light;
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 8px;
+        @include minWidth(1024px) {
+          font-size: 20px;
+        }
+        div:first-child {
+          font-weight: 600;
+        }
+        div:last-child {
+          font-weight: 400;
+        }
+      }
+      .expiry {
+        color: $light;
+        font-size: 12px;
+        opacity: 0.9;
+        margin-bottom: 14px;
+        @include minWidth(1024px) {
+          font-size: 16px;
+        }
+      }
+      .voucher-condition {
+        display: block;
+        color: #ffcb77;
+        font-size: 12px;
+        text-decoration: underline;
+        margin-top: 10px;
+        @include minWidth(1024px) {
+          font-size: 16px;
+        }
+        &:hover {
+          color: #ffcb77;
+        }
+      }
+    }
+  }
+  .btn-save-voucher {
+    display: block;
+    width: 100%;
+    max-width: 178px;
+    height: 40px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 10px;
+    background: radial-gradient(50% 151.25% at 50% 50%, #fae8c2 0%, #fdbe5d 100%);
+    color: $color-E83729;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    @include minWidth(1024px) {
+      font-size: 20px;
+    }
+    .copied-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 51, 92, 0.9);
+      color: $light;
+      font-size: 12px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      @include trans;
+    }
+    &.copied .copied-label {
+      opacity: 1;
+    }
+  }
+
+  // ============================================================
+  // "Tham gia cộng đồng" — reuse đúng 3 icon mạng xã hội (Google/Facebook/
+  // Youtube) đã có sẵn ở Footer.
+  // ============================================================
+  .thank-community {
+    padding: 0 0 32px;
+    @include minWidth(1024px) {
+      padding: 0 0 48px;
+    }
+  }
+  .thank-community-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    background: $light;
+    border: 1px solid $color-FFC093;
+    border-radius: 10px;
+    padding: 20px;
+    @include minWidth(768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 30px;
+    }
+  }
+  .thank-community-text {
+    h3 {
+      margin: 0 0 6px;
+      color: $color-1E335C;
+      font-size: 18px;
+      font-weight: 500;
+      @include minWidth(768px) {
+        font-size: 20px;
+      }
+    }
+    p {
+      margin: 0;
+      color: $color-F8633A;
+      font-size: 14px;
+      @include minWidth(768px) {
+        font-size: 16px;
+      }
+    }
+  }
+  .thank-community-social {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    a {
+      display: block;
+    }
+    .icon svg {
+      display: block;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  // .cta-float mặc định z-index:1000 (xem _home.scss) — riêng trang
+  // Cảm ơn cũng cần nổi trên cùng, giống cách Cart/Checkout đã tăng lên 10000.
+  .cta-float {
+    z-index: 10000;
+  }
+}

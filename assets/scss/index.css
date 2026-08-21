@@ -19521,7 +19521,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-direction: column;
   gap: 12px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1199px) {
   .ld-discount-page .ld-discount-voucher .voucher-tabs {
     flex-direction: row;
     gap: 20px;
@@ -19546,6 +19546,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   letter-spacing: -0.03em;
   text-align: center;
   box-shadow: 0px 4px 10px 0px rgba(248, 99, 58, 0.25);
+  opacity: 0.5;
   transition: all 0.3s ease;
 }
 @media (min-width: 1024px) {
@@ -19558,30 +19559,52 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   font-size: 0.85em;
 }
 .ld-discount-page .ld-discount-voucher .voucher-tabs .nav-link.active {
-  opacity: 0.5;
+  opacity: 1;
 }
 .ld-discount-page .ld-discount-voucher .tab-content {
   margin-top: 24px;
 }
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .tab-content {
-    margin-top: 32px;
+    margin-top: 50px;
+  }
+}
+@media (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .tab-content {
+    margin-top: 40px;
   }
 }
 .ld-discount-page .ld-discount-voucher .voucher-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 42px;
 }
 @media (min-width: 768px) {
   .ld-discount-page .ld-discount-voucher .voucher-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+    -moz-column-gap: 20px;
+         column-gap: 20px;
+    row-gap: 64px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-list {
+    row-gap: 55px;
   }
 }
 @media (min-width: 1200px) {
   .ld-discount-page .ld-discount-voucher .voucher-list {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    -moz-column-gap: 40px;
+         column-gap: 40px;
+    row-gap: 104px;
+  }
+}
+@media (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-list {
+    bottom: 0;
   }
 }
 .ld-discount-page .ld-discount-voucher .voucher-card {
@@ -19593,16 +19616,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-direction: column;
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
-  position: relative;
-  aspect-ratio: 230/460;
-}
-@media (min-width: 1024px) {
-  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
-    aspect-ratio: 230/358;
-  }
-}
-.ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
-  background: url("../images/bg-percent-wrap.png") center top/100% 100% no-repeat;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19616,7 +19634,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content {
   order: 1;
-  margin: 0 7px;
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content img {
   display: block;
@@ -19640,12 +19657,36 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     font-size: 70px;
   }
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .content span:last-child {
+    font-size: 70px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 {
+  z-index: 2;
+}
+@media (max-width: 767px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 {
+    height: 295px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 {
+    height: 383px;
+  }
+}
+.ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img-1 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img {
   position: absolute;
   margin-bottom: -17%;
   top: -10px;
   width: 100%;
   order: -1;
+  z-index: -1;
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .percent-wrap .img img {
   display: block;
@@ -19653,14 +19694,21 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
   position: absolute;
-  bottom: 0;
+  bottom: -54px;
+  z-index: 9;
   width: 100%;
   background: url("../images/introduce/bg-vouncher-card-body.png") center top/100% 100% no-repeat;
   padding: 44px 12px 20px;
 }
+@media (max-width: 1024px) {
+  .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
+    bottom: 0;
+  }
+}
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
     padding: 61px 12px 20px;
+    margin-top: 90px;
   }
 }
 .ld-discount-page .ld-discount-voucher .voucher-card .voucher-card-body {
@@ -19760,6 +19808,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 768px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-promo-row {
     flex-direction: row;
+    margin-top: 100px;
   }
 }
 .ld-discount-page .ld-discount-voucher .ld-discount-promo-row img {
@@ -19781,10 +19830,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps {
-    padding: 24px 40px;
+    padding: 24px 0 24px 40px;
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 10px;
     text-align: left;
   }
 }
@@ -19797,6 +19846,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   letter-spacing: -0.03em;
   font-size: 18px;
   margin: 0 0 16px;
+}
+@media (max-width: 992px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps h3 {
+    text-align: center;
+    justify-content: center;
+  }
 }
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps h3 {
@@ -19817,14 +19872,22 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
+}
+@media (max-width: 992px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
+    gap: 10px;
+  }
 }
 @media (min-width: 1024px) {
   .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
     flex-direction: row;
-    flex-wrap: wrap;
     flex: 1;
-    gap: 8px;
+  }
+}
+@media (min-width: 1199px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-steps-list {
+    flex-wrap: wrap;
   }
 }
 .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step {
@@ -19832,7 +19895,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #fff;
   font-weight: 600;
   font-size: 14px;
-  letter-spacing: -0.03em;
   padding: 12px 16px;
   border-radius: 10px;
 }
@@ -19847,7 +19909,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     height: 70px;
     box-sizing: border-box;
     text-align: center;
-    font-size: 28px;
     padding: 0 16px;
     background: none;
     border-radius: 0;
@@ -19857,6 +19918,19 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     border-image-slice: 0 29 fill;
     border-image-width: 0 29px;
     border-image-repeat: stretch;
+  }
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step:nth-child(2) {
+    position: relative;
+    left: -18px;
+  }
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step:nth-child(3) {
+    position: relative;
+    left: -37px;
+  }
+}
+@media (min-width: 1400px) {
+  .ld-discount-page .ld-discount-voucher .ld-discount-steps .ld-discount-step {
+    font-size: 28px;
   }
 }
 .ld-discount-page .ld-discount-suggested {
@@ -20093,8 +20167,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex: 0 0 60px;
   width: 60px;
   height: 60px;
-  background: url("../images/bg-vouncher-orange.png") no-repeat center;
-  background-size: 100% 100%;
+  border-radius: 0;
+  background-image: url("../images/bg-vouncher-orange.png");
+  background-color: #fff;
+  background-repeat: no-repeat;
   border: none;
   display: flex;
   flex-direction: column;
@@ -20141,6 +20217,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 
+.cart-page {
+  background-color: #F9F9F9;
+}
+.cart-page .breadcrumb-page {
+  background: #fff;
+}
 .cart-page .breadcrumbs {
   padding: 12px 0;
   border-bottom: 1px solid #E6E6E6;
@@ -20220,9 +20302,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding-left: 0;
   }
 }
-.cart-page .product-category-badges .product-category-badges-list li i {
-  font-size: 20px;
+.cart-page .product-category-badges .product-category-badges-list li .badge-icon {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+}
+.cart-page .product-category-badges .product-category-badges-list li .badge-icon svg {
+  height: 20px;
+  width: auto;
 }
 @media (max-width: 991px) {
   .cart-page .product-category-badges .product-category-badges-list .badge-genuine {
@@ -20253,11 +20340,33 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   margin: 0;
 }
 .cart-page .cart-checkbox input[type=checkbox], .cart-page .cart-checkbox .modal textarea[type=checkbox], .modal .cart-page .cart-checkbox textarea[type=checkbox], .cart-page .cart-checkbox .modal .select2-container--default [type=checkbox].select2-selection--single, .modal .select2-container--default .cart-page .cart-checkbox [type=checkbox].select2-selection--single {
+  position: relative;
   width: 20px;
   height: 20px;
-  accent-color: #F8633A;
-  cursor: pointer;
   flex-shrink: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background: #fff;
+  border: 1px solid #DBDBDB;
+  border-radius: 4px;
+}
+.cart-page .cart-checkbox input[type=checkbox]:checked, .cart-page .cart-checkbox .modal textarea[type=checkbox]:checked, .modal .cart-page .cart-checkbox textarea[type=checkbox]:checked, .cart-page .cart-checkbox .modal .select2-container--default [type=checkbox].select2-selection--single:checked, .modal .select2-container--default .cart-page .cart-checkbox [type=checkbox].select2-selection--single:checked {
+  background: #fff;
+  border-color: #F8633A;
+}
+.cart-page .cart-checkbox input[type=checkbox]:checked::after, .cart-page .cart-checkbox .modal textarea[type=checkbox]:checked::after, .modal .cart-page .cart-checkbox textarea[type=checkbox]:checked::after, .cart-page .cart-checkbox .modal .select2-container--default [type=checkbox].select2-selection--single:checked::after, .modal .select2-container--default .cart-page .cart-checkbox [type=checkbox].select2-selection--single:checked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 5px;
+  height: 9px;
+  border: solid #F8633A;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 .cart-page .cart-main {
   padding: 24px 0 32px;
@@ -20265,6 +20374,17 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 1024px) {
   .cart-page .cart-main {
     padding: 32px 0 48px;
+  }
+}
+.cart-page .cart-main > .container-fluid > h2 {
+  color: #1E335C;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+@media (min-width: 1024px) {
+  .cart-page .cart-main > .container-fluid > h2 {
+    font-size: 24px;
   }
 }
 .cart-page .cart-content {
@@ -20288,22 +20408,17 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     flex: 1 1 auto;
   }
 }
-.cart-page .cart-list > h2 {
-  color: #1E335C;
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
-@media (min-width: 1024px) {
-  .cart-page .cart-list > h2 {
-    font-size: 24px;
-  }
-}
 .cart-page .cart-list-inner {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+  padding: 30px 20px;
+}
+@media (min-width: 768px) {
+  .cart-page .cart-list-inner {
+    padding: 30px;
+  }
 }
 .cart-page .cart-list-header {
   display: flex;
@@ -20311,6 +20426,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   gap: 12px;
   padding: 12px 16px;
   background: #F8633A;
+  border-radius: 10px;
 }
 .cart-page .cart-list-header .cart-checkbox {
   color: #fff;
@@ -20338,6 +20454,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     display: flex;
   }
 }
+.cart-page .cart-list-header .cart-list-header-cols .col-price {
+  flex: 1;
+  text-align: right;
+  margin-right: 27px;
+}
 .cart-page .cart-list-header .cart-list-header-cols .col-qty {
   margin-left: auto;
   margin-right: 40px;
@@ -20362,11 +20483,22 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .cart-page .cart-list-header .cart-list-header-delete:hover {
   opacity: 0.8;
 }
-.cart-page .cart-item {
-  border-bottom: 1px solid #F5F5F5;
+.cart-page .card-list-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 25px;
 }
-.cart-page .cart-item:last-child {
-  border-bottom: none;
+.cart-page .cart-item {
+  margin: 0;
+  border: 0;
+}
+.cart-page .cart-item .cart-checkbox input[type=checkbox], .cart-page .cart-item .cart-checkbox .modal textarea[type=checkbox], .modal .cart-page .cart-item .cart-checkbox textarea[type=checkbox], .cart-page .cart-item .cart-checkbox .modal .select2-container--default [type=checkbox].select2-selection--single, .modal .select2-container--default .cart-page .cart-item .cart-checkbox [type=checkbox].select2-selection--single {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  border-radius: 4px;
+  border: 1px solid #8597BA;
 }
 .cart-page .cart-item-row {
   display: flex;
@@ -20374,6 +20506,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   gap: 12px;
   padding: 16px;
   flex-wrap: wrap;
+  border: 1px solid #FFC093;
+  border-radius: 10px;
 }
 @media (min-width: 768px) {
   .cart-page .cart-item-row {
@@ -20477,7 +20611,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  margin: 0 16px 16px;
+  margin: 0;
+  margin-top: 5px;
   padding: 10px 16px;
   background: #FFF4ED;
   border: 1px solid #FFC093;
@@ -20486,7 +20621,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 768px) {
   .cart-page .cart-item-upsell {
     flex-wrap: nowrap;
-    margin: 0 16px 20px;
   }
 }
 .cart-page .cart-item-upsell-badge {
@@ -20565,6 +20699,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .cart-page .cart-summary-row-heading .link-change {
   color: #F8633A;
   font-size: 14px;
+  text-decoration: underline;
 }
 @media (min-width: 768px) {
   .cart-page .cart-summary-row-heading .link-change {
@@ -20637,6 +20772,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .cart-page .cart-summary-voucher-link:hover {
   color: #007CCC;
 }
+.cart-page .cart-summary-voucher-link svg {
+  flex-shrink: 0;
+}
 .cart-page .cart-summary-breakdown {
   padding-bottom: 16px;
   margin-bottom: 16px;
@@ -20646,7 +20784,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin: 0;
   color: #1E335C;
   font-size: 14px;
 }
@@ -20655,8 +20793,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     font-size: 15px;
   }
 }
-.cart-page .cart-summary-breakdown .row:last-child {
-  margin-bottom: 0;
+.cart-page .cart-summary-breakdown .discount-amount {
+  color: #F8633A;
 }
 .cart-page .cart-summary-total {
   margin-bottom: 20px;
@@ -20667,7 +20805,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   justify-content: space-between;
   color: #1E335C;
   font-size: 15px;
-  margin-bottom: 8px;
+  margin: 0;
 }
 @media (min-width: 768px) {
   .cart-page .cart-summary-total .row {
@@ -20685,10 +20823,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .cart-page .cart-summary-total .note {
-  margin: 0;
   color: #6B6B6B;
   font-size: 12px;
   line-height: 1.6;
+  text-align: right;
+  width: 66%;
+  margin-left: auto;
+  margin-right: 0;
+  font-weight: 300;
 }
 @media (min-width: 768px) {
   .cart-page .cart-summary-total .note {
@@ -20698,7 +20840,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .cart-page .btn-checkout {
   display: block;
   width: 100%;
-  height: 44px;
+  height: 40px;
   border: none;
   border-radius: 10px;
   background: linear-gradient(90deg, #E83729 0%, #F8633A 100%);
@@ -20710,7 +20852,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 768px) {
   .cart-page .btn-checkout {
-    height: 50px;
     font-size: 19px;
   }
 }
@@ -20807,4 +20948,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     width: 100%;
     flex: 0 0 auto;
   }
+}
+.cart-page .cta-float {
+  z-index: 10000;
 }/*# sourceMappingURL=index.css.map */
