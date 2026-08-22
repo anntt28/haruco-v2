@@ -1,0 +1,539 @@
+// ============================================================
+// Trang "Hồ sơ bác sĩ" (doctor-profile.html) — Figma node 136:2. Mọi
+// selector bọc trong .doctor-profile-page (class của <main>) để không
+// ảnh hưởng các trang khác dùng chung index.css, đúng convention hiện
+// tại của project.
+//
+// Reuse: breadcrumb dùng đúng component common (_common.scss, không
+// override riêng ở đây, đúng pattern Payment/Cart/Thank). "Bsy khác"
+// dùng nguyên .doctor-card (_introduce.scss). "Bài viết cố vấn của
+// chuyên gia" dùng nguyên .item-blog-new-simple/.blog-list-3col
+// (_home.scss, không sửa/không tạo item mới). Anchor nav tab dùng lại
+// đúng class ".detail-product-anchor" (_detail-product.scss) để tái
+// dùng handler click smooth-scroll có sẵn trong assets/js/index.js
+// ($(".detail-product-anchor a").on("click",...)) — không viết JS mới —
+// nhưng CSS bên dưới ghi đè hoàn toàn theo đúng thiết kế Figma của
+// trang này (nền gradient, không icon, có gạch chân active), khác hẳn
+// bản gốc Product Detail (không đụng tới _detail-product.scss).
+// ============================================================
+.doctor-profile-page {
+  background-color: $color-F9F9F9;
+
+  // ------------------------------------------------------------
+  // Banner ảnh — không có component sẵn khớp cấu trúc (heading + 2 ảnh
+  // trang trí + 3 khối tính năng dạng hàng ngang), nên tạo mới, tái dùng
+  // icon check tròn cam giống hệt .list-check của Introduce
+  // (_introduce.scss) cho từng khối.
+  // ------------------------------------------------------------
+  .doctor-profile-banner {
+    padding: 24px 0;
+    @include minWidth(768px) {
+      padding: 40px 0;
+    }
+    .doctor-profile-banner-inner {
+      position: relative;
+      background: $light;
+      border-radius: 10px;
+      padding: 24px 20px;
+      @include minWidth(1024px) {
+        padding: 40px 386px 40px 40px;
+      }
+    }
+    .doctor-profile-banner-photos {
+      display: none;
+      @include minWidth(1024px) {
+        display: block;
+        position: absolute;
+        left: 40px;
+        top: 24px;
+        width: 320px;
+        height: 275px;
+        img {
+          position: absolute;
+          border-radius: 10px;
+          object-fit: cover;
+          box-shadow: 0 10px 30px rgba(30, 51, 92, 0.15);
+        }
+        .photo-1 {
+          left: 0;
+          top: 24px;
+          width: 235px;
+          height: 275px;
+          z-index: 1;
+        }
+        .photo-2 {
+          right: 0;
+          top: 0;
+          width: 212px;
+          height: 252px;
+          z-index: 2;
+        }
+      }
+    }
+    .doctor-profile-banner-heading {
+      margin: 0 0 20px;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      line-height: 1.4;
+      @include minWidth(1024px) {
+        font-size: 34px;
+        margin-left: 340px;
+      }
+    }
+    .doctor-profile-banner-features {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      @include minWidth(1024px) {
+        flex-direction: row;
+        margin-left: 340px;
+        gap: 24px;
+      }
+      li {
+        flex: 1;
+        min-width: 0;
+      }
+      .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: $light;
+        box-shadow: 0 0 0 1px $color-FFC093;
+        margin-bottom: 8px;
+      }
+      h3 {
+        margin: 0 0 8px;
+        color: $color-1E335C;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      p {
+        margin: 0;
+        color: $color-1E335C;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Layout chính: cột nội dung (thông tin bs + thông tin chi tiết +
+  // hình ảnh) + cột aside (Form tư vấn + Bsy khác) — 2 cột chỉ áp dụng
+  // từ 1200px (Bsy khác/Form của Figma ngắn hơn nội dung chính nên
+  // không dùng align-items:stretch, chỉ đặt cạnh nhau, không cần bằng
+  // chiều cao).
+  // ------------------------------------------------------------
+  .doctor-profile-row {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include minWidth(1200px) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 30px;
+    }
+  }
+  .doctor-profile-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include minWidth(1200px) {
+      flex: 1 1 auto;
+      gap: 30px;
+    }
+  }
+  .doctor-profile-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include minWidth(1200px) {
+      flex: 0 0 327px;
+      min-width: 0;
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Thông tin bs" — ảnh vuông + tên/rating/share/bảng thông tin.
+  // ".stars" tái dùng nguyên icon ic_star-rating.svg đã dùng ở
+  // Product Detail (_detail-product.scss .detail-product-rating-row),
+  // không tạo icon sao mới.
+  // ------------------------------------------------------------
+  .doctor-profile-info {
+    background: $light;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include minWidth(768px) {
+      flex-direction: row;
+      padding: 30px;
+    }
+    &-photo {
+      flex-shrink: 0;
+      img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 10px;
+        @include minWidth(768px) {
+          width: 280px;
+        }
+        @include minWidth(1024px) {
+          width: 340px;
+        }
+      }
+    }
+    &-body {
+      min-width: 0;
+    }
+  }
+  .doctor-profile-name {
+    margin: 0 0 8px;
+    color: $color-F8633A;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-size: 22px;
+    @include minWidth(768px) {
+      font-size: 28px;
+    }
+  }
+  .stars {
+    display: inline-flex;
+    gap: 2px;
+    margin-bottom: 16px;
+    i {
+      width: 14px;
+      height: 14px;
+      background-image: url("../images/icon/ic_star-rating.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  .doctor-profile-share {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      color: $light;
+      font-size: 13px;
+      background: $color-1E335C;
+    }
+    li:nth-child(1) a { background: #3b60e3; }
+    li:nth-child(2) a { background: #05abed; }
+    li:nth-child(3) a { background: #e24642; }
+    li:nth-child(4) a { background: #e24642; }
+    li:nth-child(5) a { background: #05abed; }
+  }
+  .doctor-profile-meta {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .row-item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    dt {
+      margin: 0;
+      flex-shrink: 0;
+      color: $color-1E335C;
+      font-weight: 600;
+    }
+    dd {
+      margin: 0;
+      min-width: 0;
+      color: $color-1E335C;
+      font-weight: 400;
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Thông tin chi tiết" — card trắng bọc anchor nav + 5 section nội
+  // dung. Anchor nav dùng lại class .detail-product-anchor (xem comment
+  // đầu file) nhưng ghi đè toàn bộ visual theo đúng Figma trang này
+  // (nền gradient thương hiệu, chữ trắng, gạch chân active), không
+  // dùng bản icon+label bo viền của Product Detail.
+  // ------------------------------------------------------------
+  .doctor-profile-detail {
+    background: $light;
+    border-radius: 10px;
+    padding: 20px;
+    @include minWidth(768px) {
+      padding: 30px;
+    }
+  }
+  .detail-product-anchor.doctor-profile-anchor {
+    margin: -20px -20px 24px;
+    background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+    border: none;
+    border-radius: 10px 10px 0 0;
+    padding: 0;
+    overflow-x: auto;
+    @include minWidth(768px) {
+      margin: -30px -30px 30px;
+      overflow-x: visible;
+    }
+    ul {
+      display: flex;
+      flex-wrap: nowrap;
+      @include minWidth(768px) {
+        flex-wrap: wrap;
+      }
+    }
+    li {
+      flex: 0 0 auto;
+      border-right: 1px solid rgba(255, 255, 255, 0.35);
+      @include minWidth(768px) {
+        flex: 1;
+      }
+      &:last-child {
+        border-right: none;
+      }
+    }
+    a {
+      display: block;
+      padding: 14px 16px;
+      color: $light;
+      font-size: 15px;
+      font-weight: 400;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      @include minWidth(768px) {
+        text-align: center;
+        white-space: normal;
+        font-size: 18px;
+      }
+      &.active,
+      &:hover {
+        font-weight: 500;
+        border-bottom-color: $color-FFB031;
+      }
+    }
+  }
+  .doctor-profile-section {
+    &:not(:last-child) {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid $color-E6E6E6;
+    }
+    h2 {
+      margin: 0 0 16px;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 20px;
+      @include minWidth(768px) {
+        font-size: 24px;
+      }
+    }
+    p {
+      margin: 0 0 12px;
+      color: $color-323232;
+      font-size: 15px;
+      line-height: 1.7;
+      @include minWidth(768px) {
+        font-size: 16px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: $color-323232;
+      font-size: 15px;
+      line-height: 1.7;
+      @include minWidth(768px) {
+        font-size: 16px;
+      }
+      li:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Hình ảnh chuyên gia" — 1 ảnh lớn + 3 ảnh nhỏ xếp cột bên phải,
+  // dùng lại .image-cover-h (_common.scss) cho toàn bộ khung ảnh.
+  // ------------------------------------------------------------
+  .doctor-profile-images {
+    background: $light;
+    border-radius: 10px;
+    padding: 20px;
+    @include minWidth(768px) {
+      padding: 30px;
+    }
+    > h2 {
+      margin: 0 0 20px;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+      @include minWidth(768px) {
+        font-size: 28px;
+      }
+    }
+    .doctor-profile-images-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      @include minWidth(768px) {
+        flex-direction: row;
+        gap: 20px;
+      }
+      .image-cover-h {
+        border-radius: 10px;
+        padding-top: 65%;
+      }
+      .main-photo {
+        @include minWidth(768px) {
+          flex: 1 1 68%;
+          padding-top: 0;
+          height: auto;
+        }
+      }
+    }
+    .doctor-profile-images-side {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      @include minWidth(768px) {
+        flex: 1 1 32%;
+        min-width: 0;
+      }
+      .image-cover-h {
+        flex: 1;
+        padding-top: 0;
+        height: 100%;
+        min-height: 100px;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Form "Chuyên gia tư vấn" — card hẹp dạng cột đơn (khác
+  // .quick-consult-box của News Detail vốn là layout ngang ảnh+form ở
+  // desktop), nên tạo mới nhưng tái dùng convention input/button/
+  // gradient thương hiệu đã dùng xuyên suốt project.
+  // ------------------------------------------------------------
+  .doctor-profile-consult {
+    background: linear-gradient(135deg, $color-E83729 0%, $color-F8633A 100%);
+    border-radius: 10px;
+    padding: 24px;
+    h3 {
+      margin: 0 0 16px;
+      color: $light;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    input,
+    textarea {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      color: $color-1E335C;
+      &::placeholder {
+        color: $color-9D9D9D;
+      }
+    }
+    textarea {
+      height: 80px;
+      resize: none;
+    }
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 40px;
+      margin-top: 4px;
+      background: transparent;
+      border: 1px solid $light;
+      border-radius: 10px;
+      color: $light;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      cursor: pointer;
+      @include trans;
+      &:hover {
+        background: $light;
+        color: $color-F8633A;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Bsy khác" — dùng nguyên .doctor-card (_introduce.scss), chỉ chỉnh
+  // khoảng cách giữa 2 card trong sidebar, không sửa gì bên trong
+  // component.
+  // ------------------------------------------------------------
+  .doctor-profile-other-doctors {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include minWidth(768px) {
+      flex-direction: row;
+    }
+    @include minWidth(1200px) {
+      flex-direction: column;
+    }
+    .doctor-card {
+      flex: 1;
+      min-width: 0;
+      box-shadow: 0 0 12px 0 rgba(174, 174, 174, 0.14);
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Bài viết cố vấn của chuyên gia" — dùng nguyên .item-blog-new-simple
+  // + .blog-list-3col (_home.scss), không tạo blog item riêng, không
+  // sửa style gốc của 2 class này.
+  // ------------------------------------------------------------
+  .doctor-profile-articles {
+    padding: 24px 0 48px;
+    @include minWidth(768px) {
+      padding: 40px 0 60px;
+    }
+    > .container-fluid > h2 {
+      margin: 0 0 20px;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      @include minWidth(768px) {
+        font-size: 35px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

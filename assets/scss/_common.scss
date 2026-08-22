@@ -864,3 +864,140 @@ input[type="number"] {
     }
   }
 }
+
+// FAQ accordion — component common, dùng chung cho MỌI page có FAQ (LD
+// Giảm giá, LD Quà tặng SK...). Rút lên đây từ bản page-scope cũ của LD
+// Giảm giá (trước đó chỉ .ld-discount-page mới có style) để trang khác
+// reuse được nguyên vẹn markup/style, không phải copy lại. Copy đúng
+// pattern .detail-product-faq-* (Product Detail, _detail-product.scss)
+// — cùng màu closed (#FFF4ED/#FFC093)/open (#F8633A/#DEDEDE). Dùng
+// Bootstrap Collapse (data-toggle="collapse"), không viết JS riêng.
+//
+// Markup mẫu (copy nguyên khối này cho page mới, chỉ đổi nội dung câu
+// hỏi/trả lời và id):
+//   <section class="ld-discount-faq">
+//     <div class="container-fluid">
+//       <h2 class="heading-haruco-new">FAQ – Câu hỏi thường gặp</h2>
+//       <div class="ld-discount-faq-accordion" id="...">
+//         <div class="ld-discount-faq-item">
+//           <div class="ld-discount-faq-header [collapsed]" data-toggle="collapse" data-target="#..." aria-expanded="...">
+//             <span class="icon">...</span>
+//             <span class="title">Câu hỏi</span>
+//             <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+//           </div>
+//           <div class="collapse [show]" id="..." data-parent="#...">
+//             <div class="ld-discount-faq-body"><p>Trả lời</p></div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </section>
+.ld-discount-faq {
+  padding: 32px 0;
+  @include minWidth(1024px) {
+    padding: 48px 0;
+  }
+  // Heading dùng chung .heading-haruco-new (đúng convention page-scope
+  // hiện tại — mỗi trang tự khai báo 1 bản riêng, xem Product
+  // Category/Introduce) — icon trước đây nằm cạnh heading nay chuyển vào
+  // từng .ld-discount-faq-header bên dưới.
+  .heading-haruco-new {
+    text-align: center;
+    color: $color-1E335C;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    font-size: 24px;
+    margin: 0 0 20px;
+    @include minWidth(1024px) {
+      font-size: 35px;
+      margin-bottom: 32px;
+    }
+  }
+}
+.ld-discount-faq-accordion {
+  max-width: 1036px;
+  margin: 0 auto;
+  @include minWidth(1024px) {
+    max-width: 1400px;
+  }
+}
+.ld-discount-faq-item {
+  margin-bottom: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ld-discount-faq-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  background: $color-FFF4ED;
+  border: 1px solid $color-FFC093;
+  @include trans;
+  &.collapsed {
+    border-radius: 10px;
+  }
+  // Icon dùng currentColor trên path SVG nên đổi màu theo trạng thái
+  // đóng/mở giống .title/.chevron, không cần override riêng.
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: $color-1E335C;
+    @include trans;
+  }
+  .title {
+    flex: 1;
+    min-width: 0;
+    color: $color-1E335C;
+    font-size: 15px;
+    @include minWidth(1024px) {
+      font-size: 18px;
+    }
+  }
+  .chevron {
+    flex-shrink: 0;
+    color: $color-1E335C;
+    i {
+      @include trans;
+    }
+  }
+  // Bootstrap gắn .collapsed khi target đang ĐÓNG — mặc định (không
+  // .collapsed) = đang mở.
+  &:not(.collapsed) {
+    background: $color-F8633A;
+    border-color: $color-DEDEDE;
+    .icon {
+      color: $light;
+    }
+    .title {
+      color: $light;
+      font-weight: 600;
+    }
+    .chevron {
+      color: $light;
+      i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+.ld-discount-faq-body {
+  padding: 16px 20px;
+  background: $color-F8633A;
+  border: 1px solid $color-DEDEDE;
+  border-top: none;
+  p {
+    margin: 0;
+    color: $light;
+    font-size: 14px;
+    line-height: 1.7;
+    @include minWidth(1024px) {
+      font-size: 16px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+}

@@ -1,0 +1,637 @@
+// ============================================================
+// Trang "LD Quà tặng SK" (ld-gift-sk.html) — Figma node 1:7. Mọi
+// selector bọc trong .ld-gift-sk-page (class của <main>) để không ảnh
+// hưởng các trang khác dùng chung index.css, đúng convention hiện tại
+// của project.
+//
+// Reuse: breadcrumb dùng đúng component common (_common.scss). Tab
+// dùng nguyên Bootstrap Tabs (nav-tabs/tab-content/tab-pane, không viết
+// JS riêng). "Sản phẩm nổi bật" tái dùng nguyên section Combo Sản Phẩm
+// của Homepage (.product-slider-wrapper-combo/.product-slider-section,
+// _home.scss — không sửa gì trong đó). Product card ở "Combo quà tặng"
+// và các khu vực sản phẩm khác đều dùng nguyên .product-card
+// (_home.scss). FAQ tái dùng component common ".ld-discount-faq..."
+// (đã rút từ _ld-discount.scss lên _common.scss trong task này để LD
+// Giảm giá và LD Quà tặng SK cùng dùng chung, không duplicate).
+// ============================================================
+.ld-gift-sk-page {
+  background-color: $light;
+
+  // ------------------------------------------------------------
+  // Banner ảnh — heading script font "Carattere" (Google Font, thêm mới
+  // vào index.scss) theo đúng Figma, không có component sẵn khớp cấu
+  // trúc banner cover full-width + chữ script nên tạo mới.
+  // ------------------------------------------------------------
+  .ld-gift-hero {
+    padding: 32px 0;
+    background: linear-gradient(180deg, $color-FFF4ED 0%, $light 100%);
+    @include minWidth(1024px) {
+      padding: 60px 0;
+    }
+    .ld-gift-hero-inner {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .ld-gift-hero-script {
+      margin: 0;
+      color: $color-1E335C;
+      font-family: "Carattere", cursive;
+      font-size: 28px;
+      @include minWidth(1024px) {
+        font-size: 40px;
+      }
+    }
+    .ld-gift-hero-title {
+      margin: 0;
+      color: $color-1E335C;
+      font-family: "Carattere", cursive;
+      font-size: 48px;
+      line-height: 1.2;
+      @include minWidth(1024px) {
+        font-size: 72px;
+      }
+    }
+    .ld-gift-hero-sub {
+      margin: 0 0 24px;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.5;
+      @include minWidth(1024px) {
+        font-size: 28px;
+      }
+    }
+    .ld-gift-hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      @include minWidth(576px) {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    .ld-gift-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      padding: 0 24px;
+      font-size: 16px;
+      font-weight: 600;
+      @include minWidth(1024px) {
+        font-size: 20px;
+        padding: 0 30px;
+      }
+      &.btn-linear-rounded {
+        color: $light;
+      }
+      // .btn-border-rounded tự có nền trắng (kỹ thuật double-background
+      // padding-box/border-box) nên chữ phải dùng màu tối, không thể
+      // dùng chung màu trắng với .btn-linear-rounded.
+      &.btn-border-rounded {
+        color: $color-E83729;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Tab category (dùng chung cho "Lựa chọn quà tặng" và "Combo quà
+  // tặng") — Bootstrap Tabs (nav nav-tabs + tab-content/tab-pane) theo
+  // đúng yêu cầu, chỉ ghi đè visual (pill tròn) theo Figma, không viết
+  // JS xử lý chuyển tab (Bootstrap JS bundle đã load qua CDN tự xử lý).
+  // ------------------------------------------------------------
+  .ld-gift-choose,
+  .ld-gift-combo {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+    > .container-fluid > h2 {
+      margin: 0 0 20px;
+      text-align: center;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      @include minWidth(1024px) {
+        font-size: 35px;
+        margin-bottom: 32px;
+      }
+    }
+  }
+  .ld-gift-tabs {
+    border-bottom: none;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 4px;
+    @include minWidth(1024px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow-x: visible;
+    }
+    .nav-item {
+      flex-shrink: 0;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 45px;
+      padding: 0 20px;
+      white-space: nowrap;
+      border: 1px solid $color-E0E0E0;
+      border-radius: 10px;
+      color: $color-1E335C;
+      font-size: 16px;
+      font-weight: 400;
+      @include minWidth(1024px) {
+        font-size: 20px;
+      }
+      &.active {
+        border-color: $color-D0D0D0;
+        background: $color-1E335C;
+        color: $light;
+        font-weight: 600;
+      }
+    }
+  }
+  .ld-gift-tab-content {
+    background: $light;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+    padding: 16px 10px;
+    @include minWidth(1024px) {
+      padding: 30px;
+    }
+  }
+  .ld-gift-product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    @include minWidth(576px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    @include minWidth(1200px) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+  // "Combo quà tặng" chỉ có ảnh + tên + "Xem chi tiết" (không giá/rating)
+  // — vẫn dùng nguyên .product-card, chỉ thêm 1 biến thể link thay cho
+  // 2 nút mua hàng.
+  .btn-view-detail {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 34px;
+    border: 1px solid $color-E83729;
+    border-radius: 10px;
+    color: $color-E83729;
+    font-size: 14px;
+  }
+
+  // ------------------------------------------------------------
+  // "Quà theo ngân sách" — 4 khối xếp chồng theo mốc giá, mỗi khối tái
+  // dùng nguyên .product-slider-card-wrap/.product-card/Swiper giống
+  // hệt pattern Combo Sản Phẩm ở Homepage (không phải tab nên hiển thị
+  // full ngay từ đầu — Swiper khởi tạo bình thường không bị vấn đề
+  // "ẩn trong tab-pane" như 2 khu vực Tab ở trên).
+  // ------------------------------------------------------------
+  .ld-gift-budget {
+    padding: 32px 0;
+    background: $color-F9F9F9;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+    > .container-fluid > h2 {
+      margin: 0 0 20px;
+      text-align: center;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      @include minWidth(1024px) {
+        font-size: 35px;
+        margin-bottom: 32px;
+      }
+    }
+  }
+  .ld-gift-budget-tier {
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+    > h3 {
+      margin: 0 0 12px;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 18px;
+      @include minWidth(1024px) {
+        font-size: 22px;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Banner CTA ngang — nền gradient thương hiệu, nút vàng.
+  // ------------------------------------------------------------
+  .ld-gift-cta-banner {
+    padding: 24px 0;
+    @include minWidth(1024px) {
+      padding: 0;
+    }
+    .ld-gift-cta-banner-inner {
+      text-align: center;
+      background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
+      border-radius: 10px;
+      padding: 24px 20px;
+      @include minWidth(1024px) {
+        padding: 40px;
+      }
+    }
+    .eyebrow {
+      margin: 0;
+      color: $light;
+      font-weight: 500;
+      font-size: 18px;
+      @include minWidth(1024px) {
+        font-size: 32px;
+      }
+    }
+    .headline {
+      margin: 0 0 20px;
+      color: $light;
+      font-weight: 300;
+      font-size: 15px;
+      @include minWidth(1024px) {
+        font-size: 24px;
+      }
+    }
+    .btn-cta-yellow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 20px;
+      background: $color-FFB031;
+      border: 1px solid $light;
+      border-radius: 10px;
+      color: $light;
+      font-weight: 600;
+      font-size: 15px;
+      @include minWidth(1024px) {
+        height: 50px;
+        padding: 0 30px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Vì sao chọn" — hàng icon tròn cam + tiêu đề, không có description
+  // theo đúng Figma (khác .core-value-item của Introduce vốn có mô tả).
+  // ------------------------------------------------------------
+  .ld-gift-why {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+    > .container-fluid > h2 {
+      margin: 0 0 24px;
+      text-align: center;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      @include minWidth(1024px) {
+        font-size: 35px;
+      }
+    }
+  }
+  .ld-gift-why-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    text-align: center;
+    @include minWidth(768px) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: $color-F8633A;
+      color: $light;
+      font-size: 26px;
+    }
+    h3 {
+      margin: 0;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 15px;
+      @include minWidth(1024px) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Quy trình đặt quà" — Figma chỉ có ảnh cắt từ design, theo yêu cầu
+  // chỉ implement section + heading, không tự dựng lại nội dung.
+  // ------------------------------------------------------------
+  .ld-gift-process {
+    padding: 32px 0;
+    background: linear-gradient(90deg, $color-FF6D3E 0%, $color-E83729 100%);
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+    > .container-fluid > h2 {
+      margin: 0;
+      text-align: center;
+      color: $light;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      font-size: 22px;
+      @include minWidth(1024px) {
+        font-size: 35px;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Cam kết & Quy cách quà tặng" — icon tròn cam + tiêu đề + mô tả.
+  // ------------------------------------------------------------
+  .ld-gift-commit {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+    > .container-fluid > h2 {
+      margin: 0 0 24px;
+      text-align: center;
+      color: $color-1E335C;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: 24px;
+      @include minWidth(1024px) {
+        font-size: 35px;
+      }
+    }
+  }
+  .ld-gift-commit-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 20px;
+    @include minWidth(768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 40px;
+    }
+    @include minWidth(1200px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: $color-F8633A;
+      color: $light;
+      font-size: 20px;
+    }
+    h4 {
+      margin: 0;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 16px;
+      @include minWidth(1024px) {
+        font-size: 18px;
+      }
+    }
+    p {
+      margin: 4px 0 0;
+      color: $color-323232;
+      font-weight: 300;
+      font-size: 14px;
+      @include minWidth(1024px) {
+        font-size: 15px;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // "Đối tác doanh nghiệp" — 2 cột: thống kê (ảnh nền tối) + lưới logo
+  // (nền cam nhạt), không có component sẵn khớp cấu trúc nên tạo mới.
+  // ------------------------------------------------------------
+  .ld-gift-partners {
+    padding: 32px 0;
+    @include minWidth(1024px) {
+      padding: 48px 0;
+    }
+  }
+  .ld-gift-partners-inner {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    @include minWidth(1024px) {
+      flex-direction: row;
+    }
+  }
+  .ld-gift-partners-stat {
+    text-align: center;
+    padding: 32px 20px;
+    background: $color-1E335C;
+    color: $light;
+    @include minWidth(1024px) {
+      flex: 0 0 45%;
+      padding: 50px 40px;
+    }
+    .number {
+      color: $color-FFB031;
+      font-weight: 600;
+      font-size: 48px;
+      line-height: 1.1;
+      @include minWidth(1024px) {
+        font-size: 72px;
+      }
+    }
+    h3 {
+      margin: 0 0 16px;
+      color: $light;
+      font-weight: 500;
+      font-size: 22px;
+      @include minWidth(1024px) {
+        font-size: 32px;
+      }
+    }
+    p {
+      margin: 0 0 8px;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14px;
+      line-height: 1.7;
+      @include minWidth(1024px) {
+        font-size: 16px;
+      }
+    }
+  }
+  .ld-gift-partners-logos {
+    padding: 32px 20px;
+    background: $color-FFF4ED;
+    @include minWidth(1024px) {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 50px 40px;
+    }
+    > h3 {
+      margin: 0 0 20px;
+      text-align: center;
+      color: $color-1E335C;
+      font-weight: 500;
+      font-size: 20px;
+      @include minWidth(1024px) {
+        font-size: 28px;
+      }
+    }
+  }
+  .ld-gift-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    .logo-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      background: $light;
+      border-radius: 10px;
+      padding: 12px;
+      @include minWidth(1024px) {
+        height: 100px;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Form tư vấn nhanh — tái dùng convention form-row/input/select/
+  // textarea giống Payment/News Detail (.quick-consult-form), thu gọn
+  // thành 1 card nền gradient theo đúng Figma.
+  // ------------------------------------------------------------
+  .ld-gift-consult {
+    padding: 32px 0 48px;
+    @include minWidth(1024px) {
+      padding: 48px 0 60px;
+    }
+  }
+  .ld-gift-consult-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    background: linear-gradient(135deg, $color-E83729 0%, $color-F8633A 100%);
+    border-radius: 10px;
+    padding: 24px 20px;
+    @include minWidth(1024px) {
+      padding: 40px;
+    }
+    h3 {
+      margin: 0 0 24px;
+      color: $light;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.5;
+      @include minWidth(1024px) {
+        font-size: 24px;
+      }
+    }
+  }
+  .ld-gift-consult-form {
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 12px;
+      @include minWidth(768px) {
+        flex-direction: row;
+      }
+      > * {
+        @include minWidth(768px) {
+          flex: 1;
+          min-width: 0;
+        }
+      }
+    }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      color: $color-1E335C;
+      background: $light;
+      text-align: left;
+      &::placeholder {
+        color: $color-9D9D9D;
+      }
+    }
+    textarea {
+      height: 96px;
+      resize: none;
+    }
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 40px;
+      margin-top: 8px;
+      background: transparent;
+      border: 1px solid $light;
+      border-radius: 10px;
+      color: $light;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      cursor: pointer;
+      @include trans;
+      &:hover {
+        background: $light;
+        color: $color-F8633A;
+      }
+      @include minWidth(768px) {
+        width: auto;
+        padding: 0 40px;
+      }
+    }
+  }
+}

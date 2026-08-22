@@ -105,7 +105,11 @@ $(function () {
   // gia khuyên dùng" ở List News, cùng lý do (tái dùng nguyên slider
   // Sản phẩm liên quan, chỉ đổi tên suffix để không trùng "related").
   // "cart" — "Có thể bạn cũng thích" ở trang Giỏ hàng, cùng lý do.
-  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related", "expert", "cart"].forEach(function (i) {
+  // "gift-featured"/"gift-budget-N" — LD Quà tặng SK ("Sản phẩm nổi bật"
+  // tái dùng nguyên section Combo Sản Phẩm của Homepage, "Quà theo ngân
+  // sách" là 4 slider theo từng mốc giá), cùng lý do tái dùng
+  // productSliderOptions, không viết config Swiper riêng.
+  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related", "expert", "cart", "gift-featured", "gift-budget-1", "gift-budget-2", "gift-budget-3", "gift-budget-4"].forEach(function (i) {
     new Swiper(
       ".product-slider-" + i,
       $.extend({}, productSliderOptions, {
