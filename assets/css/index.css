@@ -22013,7 +22013,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #1E335C;
   font-weight: 500;
   letter-spacing: -0.03em;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.4;
 }
 @media (min-width: 1024px) {
@@ -22107,6 +22107,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .doctor-profile-page .doctor-profile-info {
   background: #fff;
   border-radius: 10px;
+  box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.1411764706);
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -22211,6 +22212,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .doctor-profile-page .doctor-profile-detail {
   background: #fff;
   border-radius: 10px;
+  box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.1411764706);
   padding: 20px;
 }
 @media (min-width: 768px) {
@@ -22504,7 +22506,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-hero {
   padding: 32px 0;
-  background: linear-gradient(180deg, #FFF4ED 0%, #fff 100%);
+  background: url("../images/banner-trao-suc-khoe.jpg") center/cover no-repeat;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-hero {
@@ -22610,6 +22612,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     margin-bottom: 32px;
   }
 }
+.ld-gift-sk-page .ld-gift-combo {
+  background: url("../images/bg-combo-qua-tang.png") center/cover no-repeat;
+}
 .ld-gift-sk-page .ld-gift-tabs {
   border-bottom: none;
   flex-wrap: nowrap;
@@ -22648,7 +22653,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-tabs .nav-link.active {
   border-color: #D0D0D0;
-  background: #1E335C;
+  background: linear-gradient(90deg, #E83729 0%, #F8633A 100%);
   color: #fff;
   font-weight: 600;
 }
@@ -22717,16 +22722,48 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-budget-tier:not(:last-child) {
   margin-bottom: 24px;
 }
-.ld-gift-sk-page .ld-gift-budget-tier > h3 {
+.ld-gift-sk-page .ld-gift-budget-tier h3 {
   margin: 0 0 12px;
   color: #1E335C;
   font-weight: 500;
   font-size: 18px;
 }
 @media (min-width: 1024px) {
-  .ld-gift-sk-page .ld-gift-budget-tier > h3 {
+  .ld-gift-sk-page .ld-gift-budget-tier h3 {
     font-size: 22px;
   }
+}
+.ld-gift-sk-page .ld-gift-budget-tier-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-budget-tier-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+}
+.ld-gift-sk-page .ld-gift-budget-tier-image {
+  flex-shrink: 0;
+}
+.ld-gift-sk-page .ld-gift-budget-tier-image img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-budget-tier-image {
+    width: 280px;
+  }
+}
+.ld-gift-sk-page .ld-gift-budget-tier-content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.ld-gift-sk-page .product-slider-wrapper-combo .product-slider-section {
+  background: url("../images/bg-san-pham-noi-bat-ld.jpg") center/cover no-repeat;
 }
 .ld-gift-sk-page .ld-gift-cta-banner {
   padding: 24px 0;
@@ -22862,12 +22899,34 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #fff;
   font-weight: 500;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
   font-size: 22px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-process > .container-fluid > h2 {
     font-size: 35px;
+  }
+}
+.ld-gift-sk-page .ld-gift-process-image {
+  margin-top: 24px;
+}
+.ld-gift-sk-page .ld-gift-process-image img {
+  display: block;
+  width: 100%;
+}
+.ld-gift-sk-page .ld-gift-process-image-pc {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-process-image-pc {
+    display: block;
+  }
+}
+.ld-gift-sk-page .ld-gift-process-image-mb {
+  display: block;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-process-image-mb {
+    display: none;
   }
 }
 .ld-gift-sk-page .ld-gift-commit {
@@ -22971,7 +23030,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-partners-stat {
   text-align: center;
   padding: 32px 20px;
-  background: #1E335C;
+  background: #1E335C url("../images/bg-5000-don-qua-suc-khoe.png") center/cover no-repeat;
   color: #fff;
 }
 @media (min-width: 1024px) {
@@ -23069,19 +23128,33 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .ld-gift-consult-inner {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
   background: linear-gradient(135deg, #E83729 0%, #F8633A 100%);
   border-radius: 10px;
   padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult-inner {
+    flex-direction: row;
+    align-items: center;
     padding: 40px;
+    gap: 40px;
   }
 }
-.ld-gift-sk-page .ld-gift-consult-inner h3 {
+.ld-gift-sk-page .ld-gift-consult-content {
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-consult-content {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+.ld-gift-sk-page .ld-gift-consult-content h3 {
   margin: 0 0 24px;
   color: #fff;
   font-weight: 500;
@@ -23089,8 +23162,21 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   line-height: 1.5;
 }
 @media (min-width: 1024px) {
-  .ld-gift-sk-page .ld-gift-consult-inner h3 {
+  .ld-gift-sk-page .ld-gift-consult-content h3 {
     font-size: 24px;
+  }
+}
+.ld-gift-sk-page .ld-gift-consult-image {
+  flex-shrink: 0;
+}
+.ld-gift-sk-page .ld-gift-consult-image img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-consult-image {
+    width: 320px;
   }
 }
 .ld-gift-sk-page .ld-gift-consult-form .form-row {

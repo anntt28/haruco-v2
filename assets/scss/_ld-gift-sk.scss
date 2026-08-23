@@ -24,7 +24,7 @@
   // ------------------------------------------------------------
   .ld-gift-hero {
     padding: 32px 0;
-    background: linear-gradient(180deg, $color-FFF4ED 0%, $light 100%);
+    background: url("../images/banner-trao-suc-khoe.jpg") center / cover no-repeat;
     @include minWidth(1024px) {
       padding: 60px 0;
     }
@@ -121,6 +121,9 @@
       }
     }
   }
+  .ld-gift-combo {
+    background: url("../images/bg-combo-qua-tang.png") center / cover no-repeat;
+  }
   .ld-gift-tabs {
     border-bottom: none;
     flex-wrap: nowrap;
@@ -153,7 +156,7 @@
       }
       &.active {
         border-color: $color-D0D0D0;
-        background: $color-1E335C;
+        background: linear-gradient(90deg, $color-E83729 0%, $color-F8633A 100%);
         color: $light;
         font-weight: 600;
       }
@@ -226,7 +229,7 @@
     &:not(:last-child) {
       margin-bottom: 24px;
     }
-    > h3 {
+    h3 {
       margin: 0 0 12px;
       color: $color-1E335C;
       font-weight: 500;
@@ -235,6 +238,39 @@
         font-size: 22px;
       }
     }
+  }
+  .ld-gift-budget-tier-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include minWidth(1024px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+    }
+  }
+  .ld-gift-budget-tier-image {
+    flex-shrink: 0;
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 10px;
+    }
+    @include minWidth(1024px) {
+      width: 280px;
+    }
+  }
+  .ld-gift-budget-tier-content {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  // ------------------------------------------------------------
+  // "Sản phẩm nổi bật" — tái dùng nguyên section Combo Sản Phẩm của
+  // Homepage, chỉ override background theo Figma riêng của trang này.
+  // ------------------------------------------------------------
+  .product-slider-wrapper-combo .product-slider-section {
+    background: url("../images/bg-san-pham-noi-bat-ld.jpg") center / cover no-repeat;
   }
 
   // ------------------------------------------------------------
@@ -363,11 +399,29 @@
       color: $light;
       font-weight: 500;
       letter-spacing: -0.03em;
-      text-transform: uppercase;
       font-size: 22px;
       @include minWidth(1024px) {
         font-size: 35px;
       }
+    }
+  }
+  .ld-gift-process-image {
+    margin-top: 24px;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+  .ld-gift-process-image-pc {
+    display: none;
+    @include minWidth(1024px) {
+      display: block;
+    }
+  }
+  .ld-gift-process-image-mb {
+    display: block;
+    @include minWidth(1024px) {
+      display: none;
     }
   }
 
@@ -464,7 +518,7 @@
   .ld-gift-partners-stat {
     text-align: center;
     padding: 32px 20px;
-    background: $color-1E335C;
+    background: $color-1E335C url("../images/bg-5000-don-qua-suc-khoe.png") center / cover no-repeat;
     color: $light;
     @include minWidth(1024px) {
       flex: 0 0 45%;
@@ -552,14 +606,26 @@
     }
   }
   .ld-gift-consult-inner {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
-    text-align: center;
     background: linear-gradient(135deg, $color-E83729 0%, $color-F8633A 100%);
     border-radius: 10px;
     padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     @include minWidth(1024px) {
+      flex-direction: row;
+      align-items: center;
       padding: 40px;
+      gap: 40px;
+    }
+  }
+  .ld-gift-consult-content {
+    text-align: center;
+    @include minWidth(1024px) {
+      flex: 1 1 auto;
+      min-width: 0;
     }
     h3 {
       margin: 0 0 24px;
@@ -570,6 +636,17 @@
       @include minWidth(1024px) {
         font-size: 24px;
       }
+    }
+  }
+  .ld-gift-consult-image {
+    flex-shrink: 0;
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 10px;
+    }
+    @include minWidth(1024px) {
+      width: 320px;
     }
   }
   .ld-gift-consult-form {
