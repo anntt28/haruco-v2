@@ -6,7 +6,11 @@
 //
 // Reuse: breadcrumb dùng đúng component common (_common.scss, không
 // override riêng ở đây, đúng pattern Payment/Cart/Thank). "Bsy khác"
-// dùng nguyên .doctor-card (_introduce.scss). "Bài viết cố vấn của
+// dùng nguyên .doctor-card (component common ở _common.scss, đã rút
+// lên từ bản page-scope trùng nhau của Introduce/News Detail), chỉ
+// thêm khung viền/nền riêng theo đúng cách News Detail đang bọc
+// (.detail-product-aside-widget > .doctor-card, _detail-news.scss).
+// "Bài viết cố vấn của
 // chuyên gia" dùng nguyên .item-blog-new-simple/.blog-list-3col
 // (_home.scss, không sửa/không tạo item mới). Anchor nav tab dùng lại
 // đúng class ".detail-product-anchor" (_detail-product.scss) để tái
@@ -18,110 +22,106 @@
 // ============================================================
 .doctor-profile-page {
   background-color: $color-F9F9F9;
+  margin-bottom: -60px;
+  padding-bottom: 17px;
 
   // ------------------------------------------------------------
-  // Banner ảnh — không có component sẵn khớp cấu trúc (heading + 2 ảnh
-  // trang trí + 3 khối tính năng dạng hàng ngang), nên tạo mới, tái dùng
-  // icon check tròn cam giống hệt .list-check của Introduce
-  // (_introduce.scss) cho từng khối.
+  // Banner ảnh — nằm trong .breadcrumb-page (component common,
+  // _common.scss), cùng cấp với .breadcrumbs, không phải section riêng
+  // nữa. Không có component sẵn khớp cấu trúc (ảnh 2 bác sĩ + heading +
+  // 3 khối tính năng dạng hàng ngang), nên tạo mới, tái dùng icon check
+  // tròn cam giống hệt .list-check của Introduce (_introduce.scss) cho
+  // từng khối.
   // ------------------------------------------------------------
-  .doctor-profile-banner {
-    padding: 24px 0;
-    @include minWidth(768px) {
-      padding: 40px 0;
+  .doctor-profile-banner-inner {
+    display: flex;
+    gap: 12px;
+    background-image: url("../images/bg-doi-ngu-chuyen-gia-co-van-y-khoa.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    padding: 40px 40px 0 40px;
+    margin-top: 24px;
+    @include minWidth(1024px) {
+      margin-top: 40px;
     }
-    .doctor-profile-banner-inner {
-      position: relative;
-      background: $light;
-      border-radius: 10px;
-      padding: 24px 20px;
-      @include minWidth(1024px) {
-        padding: 40px 386px 40px 40px;
-      }
-    }
-    .doctor-profile-banner-photos {
-      display: none;
-      @include minWidth(1024px) {
+  }
+  .doctor-profile-banner-photos {
+    display: none;
+    @include minWidth(1024px) {
+      display: block;
+      flex: 0 0 320px;
+      img {
         display: block;
-        position: absolute;
-        left: 40px;
-        top: 24px;
-        width: 320px;
-        height: 275px;
-        img {
-          position: absolute;
-          border-radius: 10px;
-          object-fit: cover;
-          box-shadow: 0 10px 30px rgba(30, 51, 92, 0.15);
-        }
-        .photo-1 {
-          left: 0;
-          top: 24px;
-          width: 235px;
-          height: 275px;
-          z-index: 1;
-        }
-        .photo-2 {
-          right: 0;
-          top: 0;
-          width: 212px;
-          height: 252px;
-          z-index: 2;
-        }
+        width: 100%;
+        height: auto;
       }
     }
-    .doctor-profile-banner-heading {
-      margin: 0 0 20px;
-      color: $color-1E335C;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      font-size: 24px;
-      line-height: 1.4;
-      @include minWidth(1024px) {
-        font-size: 34px;
-        margin-left: 340px;
-      }
+  }
+  .doctor-profile-banner-content {
+    min-width: 0;
+    @include minWidth(1024px) {
+      flex: 1;
     }
-    .doctor-profile-banner-features {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+  }
+  .doctor-profile-banner-heading {
+    margin: 0 0 20px;
+    color: $color-1E335C;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    font-size: 24px;
+    line-height: 1.4;
+    @include minWidth(1024px) {
+      font-size: 34px;
+    }
+  }
+  .doctor-profile-banner-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include minWidth(1024px) {
+      flex-direction: row;
+      gap: 24px;
+    }
+    li {
+      flex: 1;
+      min-width: 0;
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      @include minWidth(1024px) {
-        flex-direction: row;
-        margin-left: 340px;
-        gap: 24px;
-      }
-      li {
-        flex: 1;
-        min-width: 0;
-      }
-      .icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background: $light;
-        box-shadow: 0 0 0 1px $color-FFC093;
-        margin-bottom: 8px;
-      }
-      h3 {
-        margin: 0 0 8px;
-        color: $color-1E335C;
-        font-size: 18px;
-        font-weight: 500;
-      }
-      p {
-        margin: 0;
-        color: $color-1E335C;
-        font-size: 14px;
-        line-height: 1.6;
-      }
+      flex-wrap: wrap;
+      align-items: center;
+      column-gap: 8px;
     }
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    h3 {
+      margin: 0;
+      color: $color-1E335C;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    p {
+      flex-basis: 100%;
+      margin: 8px 0 0;
+      color: $color-1E335C;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+
+  .doctor-profile-main {
+    margin-bottom: 57px;
   }
 
   // ------------------------------------------------------------
@@ -220,6 +220,9 @@
       background-size: contain;
     }
   }
+  // Icon mạng XH export nguyên từ Figma (node 136:195) dạng SVG code
+  // inline, mỗi icon đã có sẵn circle nền màu riêng bên trong path nên
+  // không cần background/border-radius CSS như bản FontAwesome cũ.
   .doctor-profile-share {
     list-style: none;
     margin: 0 0 20px;
@@ -228,20 +231,10 @@
     gap: 8px;
     a {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      color: $light;
-      font-size: 13px;
-      background: $color-1E335C;
+      svg {
+        display: block;
+      }
     }
-    li:nth-child(1) a { background: #3b60e3; }
-    li:nth-child(2) a { background: #05abed; }
-    li:nth-child(3) a { background: #e24642; }
-    li:nth-child(4) a { background: #e24642; }
-    li:nth-child(5) a { background: #05abed; }
   }
   .doctor-profile-meta {
     margin: 0;
@@ -303,18 +296,15 @@
       }
     }
     li {
-      flex: 0 0 auto;
-      border-right: 1px solid rgba(255, 255, 255, 0.35);
-      @include minWidth(768px) {
-        flex: 1;
-      }
-      &:last-child {
-        border-right: none;
+      flex: unset;
+      padding: 14px 34px;
+      &:not(:last-child) {
+        border-right: 1px solid $color-FF6D3E;
       }
     }
     a {
       display: block;
-      padding: 14px 16px;
+      padding: 0;
       color: $light;
       font-size: 15px;
       font-weight: 400;
@@ -335,8 +325,8 @@
   .doctor-profile-section {
     &:not(:last-child) {
       margin-bottom: 32px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid $color-E6E6E6;
+      padding-bottom: 0;
+      border: none;
     }
     h2 {
       margin: 0 0 16px;
@@ -345,6 +335,16 @@
       font-size: 20px;
       @include minWidth(768px) {
         font-size: 24px;
+      }
+    }
+    // Các <p> được gom vào .description (chỉ bọc p, không bọc <ul> theo
+    // sau). p:last-child luôn hết margin để .description tự thân không
+    // dư khoảng trắng; margin-bottom thật sự trước <ul> (nếu có) chuyển
+    // sang đặt trên .description khi nó KHÔNG phải con cuối cùng của
+    // section, giữ đúng khoảng cách trực quan như trước khi bọc.
+    .description {
+      &:not(:last-child) {
+        margin-bottom: 12px;
       }
     }
     p {
@@ -361,7 +361,7 @@
     }
     ul {
       margin: 0;
-      padding-left: 20px;
+      padding-left: 0;
       color: $color-323232;
       font-size: 15px;
       line-height: 1.7;
@@ -379,12 +379,7 @@
   // dùng lại .image-cover-h (_common.scss) cho toàn bộ khung ảnh.
   // ------------------------------------------------------------
   .doctor-profile-images {
-    background: $light;
     border-radius: 10px;
-    padding: 20px;
-    @include minWidth(768px) {
-      padding: 30px;
-    }
     > h2 {
       margin: 0 0 20px;
       color: $color-1E335C;
@@ -412,6 +407,17 @@
           flex: 1 1 68%;
           padding-top: 0;
           height: auto;
+        }
+        // Khớp đúng kích thước PC theo Figma (801x503) — chỉ áp dụng từ
+        // 1400px, đúng lúc .container-fluid chạm max-width 1400px nên độ
+        // rộng cột nội dung ổn định ở mức đủ chỗ (~1043px, xem
+        // .doctor-profile-content/.doctor-profile-aside phía trên); dưới
+        // mốc này giữ nguyên flex:1 1 68% linh hoạt để không tràn/bóp méo
+        // .doctor-profile-images-side khi cột nội dung còn hẹp.
+        @include minWidth(1400px) {
+          flex: 0 0 801px;
+          width: 801px;
+          aspect-ratio: 801 / 503;
         }
       }
     }
@@ -476,7 +482,7 @@
       width: 100%;
       height: 40px;
       margin-top: 4px;
-      background: transparent;
+      background: linear-gradient(90deg, $color-FF6D3E 0%, $color-FFB031 100%);
       border: 1px solid $light;
       border-radius: 10px;
       color: $light;
@@ -494,8 +500,11 @@
 
   // ------------------------------------------------------------
   // "Bsy khác" — dùng nguyên .doctor-card (_introduce.scss), chỉ chỉnh
-  // khoảng cách giữa 2 card trong sidebar, không sửa gì bên trong
-  // component.
+  // khoảng cách giữa 2 card trong sidebar. Style khung viền cam nhạt
+  // (background-color/padding/box-text border) copy đúng theo cách
+  // News Detail đang style .doctor-card ở sidebar
+  // (.detail-product-aside-widget > .doctor-card, _detail-news.scss),
+  // không tạo style khung mới.
   // ------------------------------------------------------------
   .doctor-profile-other-doctors {
     display: flex;
@@ -510,21 +519,28 @@
     .doctor-card {
       flex: 1;
       min-width: 0;
-      box-shadow: 0 0 12px 0 rgba(174, 174, 174, 0.14);
+      background-color: $color-FFF4ED;
+      border-radius: 10px;
+      padding: 1px;
+      .box-text {
+        border: 1px solid $color-FFC093;
+        border-top: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
     }
   }
 
   // ------------------------------------------------------------
-  // "Bài viết cố vấn của chuyên gia" — dùng nguyên .item-blog-new-simple
-  // + .blog-list-3col (_home.scss), không tạo blog item riêng, không
-  // sửa style gốc của 2 class này.
+  // "Bài viết cố vấn của chuyên gia" — nằm trong .doctor-profile-content
+  // (cùng cấp với .doctor-profile-info/-detail/-images), không còn là
+  // section riêng nên không cần padding trên/dưới của section nữa —
+  // khoảng cách với phần tử trước lấy từ gap của .doctor-profile-content.
+  // Dùng nguyên .item-blog-new-simple + .blog-list-3col (_home.scss),
+  // không tạo blog item riêng, không sửa style gốc của 2 class này.
   // ------------------------------------------------------------
   .doctor-profile-articles {
-    padding: 24px 0 48px;
-    @include minWidth(768px) {
-      padding: 40px 0 60px;
-    }
-    > .container-fluid > h2 {
+    > h2 {
       margin: 0 0 20px;
       color: $color-1E335C;
       font-weight: 500;

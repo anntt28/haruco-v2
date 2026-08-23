@@ -443,55 +443,8 @@
         margin-right: -16px;
       }
     }
-    .doctor-card {
-      background: $light;
-      border-radius: 12px;
-      overflow: hidden;
-      .photo img {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        display: block;
-      }
-      .box-text {
-        padding: 13px 16px 24px;
-      }
-      .degree {
-        margin: 0;
-        font-size: 16px;
-        color: $color-1E335C;
-      }
-      h4 {
-        margin: 4px 0 0;
-        color: $color-E83729;
-        font-size: 20px;
-        font-weight: 500;
-      }
-      .details {
-        margin-top: 12px;
-        p {
-          margin: 0;
-          font-size: 14px;
-          line-height: 1.5;
-          color: $color-1E335C;
-          @include minWidth(768px) {
-            font-size: 15px;
-          }
-        }
-      }
-      .link-detail {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid $color-F8633A;
-        border-radius: 10px;
-        height: 30px;
-        padding: 0 16px;
-        color: $color-F8633A;
-        font-size: 14px;
-        margin-top: 16px;
-      }
-    }
+    // Doctor Card — dùng component common ".doctor-card" ở _common.scss,
+    // không override riêng gì cho Introduce.
     // Hình ảnh (nền trắng, icon, đổ bóng) dùng chung từ style Swiper common
     // (.swiper-button-prev/.swiper-button-next trong _slick.scss) — ở đây
     // chỉ override kích thước, vị trí và hiển thị responsive riêng cho
