@@ -21970,24 +21970,40 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   padding: 40px 40px 0 15px;
   margin-top: 15px;
 }
-.doctor-profile-page .doctor-profile-banner-photos {
-  display: none;
+@media (max-width: 1199px) {
+  .doctor-profile-page .doctor-profile-banner-inner {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 15px 15px 0 15px;
+  }
 }
-@media (min-width: 1024px) {
+.doctor-profile-page .doctor-profile-banner-photos {
+  display: block;
+}
+.doctor-profile-page .doctor-profile-banner-photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1199px) {
   .doctor-profile-page .doctor-profile-banner-photos {
-    display: block;
-    flex: 0 0 320px;
+    order: 2;
   }
   .doctor-profile-page .doctor-profile-banner-photos img {
-    display: block;
-    width: 100%;
-    height: auto;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1200px) {
+  .doctor-profile-page .doctor-profile-banner-photos {
+    flex: 0 0 320px;
   }
 }
 .doctor-profile-page .doctor-profile-banner-content {
   min-width: 0;
 }
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .doctor-profile-page .doctor-profile-banner-content {
     flex: 1;
   }
@@ -22091,7 +22107,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .doctor-profile-page .doctor-profile-info {
   background: #fff;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -22130,7 +22146,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #F8633A;
   font-weight: 600;
   letter-spacing: -0.03em;
-  font-size: 22px;
+  font-size: 20px;
 }
 @media (min-width: 768px) {
   .doctor-profile-page .doctor-profile-name {
@@ -22174,6 +22190,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   gap: 4px;
   font-size: 16px;
   line-height: 1.8;
+}
+@media (max-width: 767px) {
+  .doctor-profile-page .doctor-profile-meta .row-item {
+    font-size: 14px;
+  }
 }
 .doctor-profile-page .doctor-profile-meta dt {
   margin: 0;
@@ -22284,7 +22305,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .doctor-profile-page .doctor-profile-section p {
   margin: 0 0 12px;
   color: #323232;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.7;
 }
 @media (min-width: 768px) {
@@ -22335,6 +22356,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   border-radius: 10px;
   padding-top: 65%;
 }
+@media (max-width: 767px) {
+  .doctor-profile-page .doctor-profile-images .doctor-profile-images-grid .image-cover-h {
+    height: 222px;
+    padding-top: 0;
+  }
+}
 @media (min-width: 768px) {
   .doctor-profile-page .doctor-profile-images .doctor-profile-images-grid .main-photo {
     flex: 1 1 68%;
@@ -22365,6 +22392,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   padding-top: 0;
   height: 100%;
   min-height: 100px;
+}
+@media (max-width: 767px) {
+  .doctor-profile-page .doctor-profile-images .doctor-profile-images-side .image-cover-h {
+    flex: none;
+    height: 222px;
+    min-height: 0;
+  }
 }
 .doctor-profile-page .doctor-profile-consult {
   background: linear-gradient(135deg, #E83729 0%, #F8633A 100%);

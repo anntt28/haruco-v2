@@ -43,22 +43,34 @@
     border-radius: 10px;
     padding: 40px 40px 0 15px;
     margin-top: 15px;
+    @include maxWidth(1199px) {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      padding: 15px 15px 0 15px;
+    }
   }
   .doctor-profile-banner-photos {
-    display: none;
-    @include minWidth(1024px) {
+    display: block;
+    img {
       display: block;
-      flex: 0 0 320px;
+      width: 100%;
+      height: auto;
+    }
+    @include maxWidth(1199px) {
+      order: 2;
       img {
-        display: block;
-        width: 100%;
-        height: auto;
+        max-width: 350px;
+        margin: 0 auto;
       }
+    }
+    @include minWidth(1200px) {
+      flex: 0 0 320px;
     }
   }
   .doctor-profile-banner-content {
     min-width: 0;
-    @include minWidth(1024px) {
+    @include minWidth(1200px) {
       flex: 1;
     }
   }
@@ -167,7 +179,7 @@
   .doctor-profile-info {
     background: $light;
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -200,7 +212,7 @@
     color: $color-F8633A;
     font-weight: 600;
     letter-spacing: -0.03em;
-    font-size: 22px;
+    font-size: 20px;
     @include minWidth(768px) {
       font-size: 28px;
     }
@@ -244,6 +256,9 @@
       gap: 4px;
       font-size: 16px;
       line-height: 1.8;
+      @include maxWidth(767px) {
+        font-size: 14px;
+      }
     }
     dt {
       margin: 0;
@@ -364,7 +379,7 @@
     p {
       margin: 0 0 12px;
       color: $color-323232;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.7;
       @include minWidth(768px) {
         font-size: 16px;
@@ -412,6 +427,14 @@
       .image-cover-h {
         border-radius: 10px;
         padding-top: 65%;
+        // Mobile: mọi ảnh trong lưới (main + phụ) cùng 1 chiều cao cố
+        // định thay vì tỉ lệ theo width, để đồng đều theo đúng Figma —
+        // .image-cover-h (_common.scss) đã absolute-position <img> bên
+        // trong nên chỉ cần đổi chiều cao container, ảnh tự object-fit.
+        @include maxWidth(767px) {
+          height: 222px;
+          padding-top: 0;
+        }
       }
       .main-photo {
         @include minWidth(768px) {
@@ -445,6 +468,11 @@
         padding-top: 0;
         height: 100%;
         min-height: 100px;
+        @include maxWidth(767px) {
+          flex: none;
+          height: 222px;
+          min-height: 0;
+        }
       }
     }
   }
