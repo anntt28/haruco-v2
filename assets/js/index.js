@@ -185,8 +185,14 @@ $(function () {
   // Anchor Navigation (Group 633028, Product Detail) — cuộn mượt tới
   // section tương ứng. Item "Check hành chính hãng" cố tình không dùng
   // thẻ <a> (xem product-detail.html) nên không bị handler này bắt phải.
+  // Toggle .active theo item vừa click (chỉ 1 item active tại 1 thời
+  // điểm) — Product Detail hiện không có CSS nào đọc .active nên phần
+  // này không đổi hành vi/giao diện của Product Detail, chỉ có hiệu lực
+  // ở Doctor Profile (.doctor-profile-anchor).
   $(".detail-product-anchor a").on("click", function (e) {
     e.preventDefault();
+    $(this).closest("ul").find("a").removeClass("active");
+    $(this).addClass("active");
     var target = $($(this).attr("href"));
     if (target.length) {
       $("html, body").animate(

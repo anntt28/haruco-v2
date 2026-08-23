@@ -21967,13 +21967,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
-  padding: 40px 40px 0 40px;
-  margin-top: 24px;
-}
-@media (min-width: 1024px) {
-  .doctor-profile-page .doctor-profile-banner-inner {
-    margin-top: 40px;
-  }
+  padding: 40px 40px 0 15px;
+  margin-top: 15px;
 }
 .doctor-profile-page .doctor-profile-banner-photos {
   display: none;
@@ -22016,12 +22011,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 43px;
 }
 @media (min-width: 1024px) {
   .doctor-profile-page .doctor-profile-banner-features {
     flex-direction: row;
-    gap: 24px;
   }
 }
 .doctor-profile-page .doctor-profile-banner-features li {
@@ -22056,6 +22050,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   line-height: 1.6;
 }
 .doctor-profile-page .doctor-profile-main {
+  margin-top: 40px;
   margin-bottom: 57px;
 }
 .doctor-profile-page .doctor-profile-row {
@@ -22124,7 +22119,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .doctor-profile-page .doctor-profile-info-photo img {
-    width: 340px;
+    width: 420px;
   }
 }
 .doctor-profile-page .doctor-profile-info-body {
@@ -22145,7 +22140,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .doctor-profile-page .stars {
   display: inline-flex;
   gap: 2px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .doctor-profile-page .stars i {
   width: 14px;
@@ -22168,7 +22163,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: block;
 }
 .doctor-profile-page .doctor-profile-meta {
-  margin: 0;
+  margin: 0 0 18px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -22177,8 +22172,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.8;
 }
 .doctor-profile-page .doctor-profile-meta dt {
   margin: 0;
@@ -22227,14 +22222,25 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .doctor-profile-page .detail-product-anchor.doctor-profile-anchor li {
   flex: unset;
-  padding: 14px 34px;
+  padding: 12px 34px 0 34px;
 }
-.doctor-profile-page .detail-product-anchor.doctor-profile-anchor li:not(:last-child) {
-  border-right: 1px solid #FF6D3E;
+.doctor-profile-page .detail-product-anchor.doctor-profile-anchor li:not(:last-child) a {
+  position: relative;
+}
+.doctor-profile-page .detail-product-anchor.doctor-profile-anchor li:not(:last-child) a::after {
+  content: "";
+  display: block;
+  background-color: #FF6D3E;
+  height: 40%;
+  width: 1px;
+  position: absolute;
+  right: 0;
+  top: 52%;
+  transform: translateY(-50%);
 }
 .doctor-profile-page .detail-product-anchor.doctor-profile-anchor a {
   display: block;
-  padding: 0;
+  padding: 0 0 8px;
   color: #fff;
   font-size: 15px;
   font-weight: 400;
@@ -22248,8 +22254,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     font-size: 18px;
   }
 }
-.doctor-profile-page .detail-product-anchor.doctor-profile-anchor a.active, .doctor-profile-page .detail-product-anchor.doctor-profile-anchor a:hover {
+.doctor-profile-page .detail-product-anchor.doctor-profile-anchor a.active {
   font-weight: 500;
+  border-bottom-color: #FFB031;
+}
+.doctor-profile-page .detail-product-anchor.doctor-profile-anchor a:hover {
+  font-weight: inherit;
   border-bottom-color: #FFB031;
 }
 .doctor-profile-page .doctor-profile-section:not(:last-child) {
@@ -22308,12 +22318,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #1E335C;
   font-weight: 500;
   letter-spacing: -0.03em;
-  font-size: 22px;
-}
-@media (min-width: 768px) {
-  .doctor-profile-page .doctor-profile-images > h2 {
-    font-size: 28px;
-  }
+  font-size: 25px;
 }
 .doctor-profile-page .doctor-profile-images .doctor-profile-images-grid {
   display: flex;
@@ -22369,9 +22374,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .doctor-profile-page .doctor-profile-consult h3 {
   margin: 0 0 16px;
   color: #fff;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.03em;
+  text-align: center;
 }
 .doctor-profile-page .doctor-profile-consult .form-group {
   margin-bottom: 12px;
@@ -22389,6 +22395,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .doctor-profile-page .doctor-profile-consult input::placeholder, .doctor-profile-page .doctor-profile-consult .modal .select2-container--default .select2-selection--single::placeholder, .modal .select2-container--default .doctor-profile-page .doctor-profile-consult .select2-selection--single::placeholder,
 .doctor-profile-page .doctor-profile-consult textarea::placeholder {
   color: #9D9D9D;
+}
+.doctor-profile-page .doctor-profile-consult input::placeholder, .doctor-profile-page .doctor-profile-consult .modal .select2-container--default .select2-selection--single::placeholder, .modal .select2-container--default .doctor-profile-page .doctor-profile-consult .select2-selection--single::placeholder,
+.doctor-profile-page .doctor-profile-consult textarea::placeholder {
+  color: #121F38;
+  font-weight: 300;
 }
 .doctor-profile-page .doctor-profile-consult textarea {
   height: 80px;
@@ -22448,13 +22459,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #1E335C;
   font-weight: 500;
   letter-spacing: -0.03em;
-  font-size: 24px;
+  font-size: 25px;
 }
-@media (min-width: 768px) {
-  .doctor-profile-page .doctor-profile-articles > h2 {
-    font-size: 35px;
-    margin-bottom: 30px;
-  }
+.doctor-profile-page .doctor-profile-articles .item-blog-new-simple .image-cover-h {
+  padding-top: 66%;
 }
 
 .ld-gift-sk-page {
