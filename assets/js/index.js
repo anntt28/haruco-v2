@@ -105,11 +105,10 @@ $(function () {
   // gia khuyên dùng" ở List News, cùng lý do (tái dùng nguyên slider
   // Sản phẩm liên quan, chỉ đổi tên suffix để không trùng "related").
   // "cart" — "Có thể bạn cũng thích" ở trang Giỏ hàng, cùng lý do.
-  // "gift-featured"/"gift-budget-N" — LD Quà tặng SK ("Sản phẩm nổi bật"
-  // tái dùng nguyên section Combo Sản Phẩm của Homepage, "Quà theo ngân
-  // sách" là 4 slider theo từng mốc giá), cùng lý do tái dùng
+  // "gift-featured" — LD Quà tặng SK ("Sản phẩm nổi bật" tái dùng nguyên
+  // section Combo Sản Phẩm của Homepage), cùng lý do tái dùng
   // productSliderOptions, không viết config Swiper riêng.
-  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related", "expert", "cart", "gift-featured", "gift-budget-1", "gift-budget-2", "gift-budget-3", "gift-budget-4"].forEach(function (i) {
+  [1, 2, 3, 4, 5, "sale", "bestseller", "combo", "related", "expert", "cart", "gift-featured"].forEach(function (i) {
     new Swiper(
       ".product-slider-" + i,
       $.extend({}, productSliderOptions, {
@@ -119,6 +118,88 @@ $(function () {
         },
       })
     );
+  });
+  // "gift-budget-N" — LD Quà tặng SK ("Quà theo ngân sách", 4 slider theo
+  // từng mốc giá): 2 item/hàng mobile, 3 item/hàng PC theo yêu cầu design,
+  // khác productSliderOptions (2/3/5) nên viết config riêng, cùng cách làm
+  // với ".product-slider-post" ở trên.
+  var giftBudgetSliderOptions = {
+    loop: false,
+    slidesPerView: 2,
+    spaceBetween: 14,
+    breakpoints: {
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+    },
+  };
+  ["gift-budget-1", "gift-budget-2", "gift-budget-3", "gift-budget-4"].forEach(function (i) {
+    new Swiper(
+      ".product-slider-" + i,
+      $.extend({}, giftBudgetSliderOptions, {
+        navigation: {
+          nextEl: ".product-slider-next-" + i,
+          prevEl: ".product-slider-prev-" + i,
+        },
+      })
+    );
+  });
+  // ".ld-gift-product-grid" — LD Quà tặng SK ("Lựa chọn quà tặng" và "Combo
+  // quà tặng"): mỗi tab-pane giờ là 1 slider riêng (2 item/hàng mobile, 5
+  // item/hàng PC). Khác các slider khác ở trên, các slider này nằm trong
+  // Bootstrap tab-pane đang ẩn (display:none) lúc trang tải — Swiper tính
+  // chiều rộng slide bằng 0 nếu khởi tạo khi container đang ẩn. Lưu lại
+  // instance qua data("swiper") của jQuery rồi gọi .update() ở handler
+  // "shown.bs.tab" bên dưới khi tab-pane chứa nó thực sự hiển thị (thử
+  // observer/observeParents của Swiper trước nhưng bị treo trang do vòng
+  // lặp MutationObserver, nên chuyển sang cách này).
+  var giftProductGridSliderOptions = {
+    loop: false,
+    slidesPerView: 2,
+    spaceBetween: 14,
+    breakpoints: {
+      1024: {
+        slidesPerView: 5,
+        spaceBetween: 24,
+      },
+    },
+  };
+  ["gift-choose-doanh-nghiep", "gift-choose-bo-me", "gift-choose-nguoi-lon-tuoi", "gift-choose-phuc-hoi", "gift-combo-nhan-vien", "gift-combo-bo-me", "gift-combo-xuong-khop", "gift-combo-premium"].forEach(function (i) {
+    new Swiper(
+      ".product-slider-" + i,
+      $.extend({}, giftProductGridSliderOptions, {
+        navigation: {
+          nextEl: ".product-slider-next-" + i,
+          prevEl: ".product-slider-prev-" + i,
+        },
+      })
+    );
+  });
+  $('[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+    var target = $($(e.target).attr("href"));
+    target.find(".swiper-container").each(function () {
+      if (this.swiper) {
+        this.swiper.update();
+      }
+    });
+  });
+  // "Đối tác doanh nghiệp" (LD Quà tặng SK) — logo đối tác hiển thị 3
+  // hàng/trang, dùng module Grid của Swiper (fill:"row" để lấp theo hàng
+  // trước, đúng thứ tự logo trong HTML) kèm dots pagination khi có nhiều
+  // hơn 1 trang.
+  new Swiper(".ld-gift-partners-grid", {
+    loop: false,
+    slidesPerView: 3,
+    spaceBetween: 12,
+    grid: {
+      rows: 3,
+      fill: "row",
+    },
+    pagination: {
+      el: ".swiper-pagination-gift-partners",
+      clickable: true,
+    },
   });
   // "post" — "Tham khảo thêm các dòng sản phẩm khác" trong post-detail (News
   // Detail): số item/hàng riêng (2 mobile / 4 PC) theo yêu cầu design, khác

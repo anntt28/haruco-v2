@@ -22502,7 +22502,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 
 .ld-gift-sk-page {
-  background-color: #fff;
+  background-color: #F9F9F9;
+  margin-bottom: -60px;
+  padding-bottom: 17px;
 }
 .ld-gift-sk-page .ld-gift-hero {
   padding: 32px 0;
@@ -22516,7 +22518,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-inner {
   text-align: center;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0;
 }
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-script {
   margin: 0;
@@ -22531,7 +22533,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-title {
   margin: 0;
-  color: #1E335C;
+  background: linear-gradient(90deg, #E83729 0%, #F8633A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-family: "Carattere", cursive;
   font-size: 48px;
   line-height: 1.2;
@@ -22559,19 +22564,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   gap: 12px;
   align-items: center;
 }
-@media (min-width: 576px) {
-  .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-actions {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 50px;
   padding: 0 24px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 24px;
   font-weight: 600;
 }
 @media (min-width: 1024px) {
@@ -22581,10 +22581,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-btn.btn-linear-rounded {
+  background: linear-gradient(270deg, #FF6D3E 0%, #FFB031 100%);
   color: #fff;
 }
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-btn.btn-border-rounded {
-  color: #E83729;
+  background: linear-gradient(90deg, #F13B3B 0%, #FF6D3E 100%);
+  border: none;
+  color: #fff;
 }
 .ld-gift-sk-page .ld-gift-choose,
 .ld-gift-sk-page .ld-gift-combo {
@@ -22615,6 +22618,9 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-combo {
   background: url("../images/bg-combo-qua-tang.png") center/cover no-repeat;
 }
+.ld-gift-sk-page .ld-gift-combo .banner-ngang {
+  margin-top: 30px;
+}
 .ld-gift-sk-page .ld-gift-tabs {
   border-bottom: none;
   flex-wrap: nowrap;
@@ -22642,6 +22648,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   white-space: nowrap;
   border: 1px solid #E0E0E0;
   border-radius: 10px;
+  background-color: #fff;
   color: #1E335C;
   font-size: 16px;
   font-weight: 400;
@@ -22655,7 +22662,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   border-color: #D0D0D0;
   background: linear-gradient(90deg, #E83729 0%, #F8633A 100%);
   color: #fff;
-  font-weight: 600;
+  font-weight: inherit;
 }
 .ld-gift-sk-page .ld-gift-tab-content {
   background: #fff;
@@ -22666,23 +22673,6 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-tab-content {
     padding: 30px;
-  }
-}
-.ld-gift-sk-page .ld-gift-product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-@media (min-width: 576px) {
-  .ld-gift-sk-page .ld-gift-product-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-  }
-}
-@media (min-width: 1200px) {
-  .ld-gift-sk-page .ld-gift-product-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 24px;
   }
 }
 .ld-gift-sk-page .btn-view-detail {
@@ -22723,8 +22713,17 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   margin-bottom: 24px;
 }
 .ld-gift-sk-page .ld-gift-budget-tier h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin: 0 0 12px;
-  color: #1E335C;
+  padding: 6px 16px 6px 11px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 5px;
+  background: linear-gradient(90deg, #E83729 0%, #F8633A 100%);
+  color: #fff;
   font-weight: 500;
   font-size: 18px;
 }
@@ -22733,16 +22732,30 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     font-size: 22px;
   }
 }
+.ld-gift-sk-page .ld-gift-budget-tier h3 img {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+}
 .ld-gift-sk-page .ld-gift-budget-tier-row {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
+  padding: 30px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-budget-tier-row {
     flex-direction: row;
     align-items: center;
     gap: 24px;
+  }
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-budget-tier:nth-child(odd) .ld-gift-budget-tier-row {
+    flex-direction: row-reverse;
   }
 }
 .ld-gift-sk-page .ld-gift-budget-tier-image {
@@ -22755,7 +22768,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-budget-tier-image {
-    width: 280px;
+    width: 519px;
   }
 }
 .ld-gift-sk-page .ld-gift-budget-tier-content {
@@ -22765,7 +22778,26 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .product-slider-wrapper-combo .product-slider-section {
   background: url("../images/bg-san-pham-noi-bat-ld.jpg") center/cover no-repeat;
 }
+.ld-gift-sk-page .product-slider-wrapper-combo .product-slider-heading .link-view-all,
+.ld-gift-sk-page .product-slider-wrapper-combo .link-view-all.link-view-all-dark {
+  color: #fff;
+}
+.ld-gift-sk-page .product-slider-wrapper-combo .product-slider-heading .link-view-all .btn-view-all,
+.ld-gift-sk-page .product-slider-wrapper-combo .link-view-all.link-view-all-dark .btn-view-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.ld-gift-sk-page .product-slider-wrapper-combo .product-slider-heading .link-view-all .btn-view-all::after,
+.ld-gift-sk-page .product-slider-wrapper-combo .link-view-all.link-view-all-dark .btn-view-all::after {
+  display: none;
+}
+.ld-gift-sk-page .product-slider-wrapper-combo .product-slider-heading h2 {
+  color: #fff;
+}
 .ld-gift-sk-page .ld-gift-cta-banner {
+  margin-top: 49px;
   padding: 24px 0;
 }
 @media (min-width: 1024px) {
@@ -22773,15 +22805,42 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding: 0;
   }
 }
+.ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-row {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 24px;
+  }
+}
 .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-inner {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   text-align: center;
-  background: linear-gradient(90deg, #E83729 0%, #F8633A 100%);
+  background: url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop.png") center/cover no-repeat;
   border-radius: 10px;
   padding: 24px 20px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-inner {
     padding: 40px;
+  }
+}
+.ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-man {
+  flex-shrink: 0;
+  display: block;
+  width: 140px;
+  height: auto;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-man {
+    width: 240px;
   }
 }
 .ld-gift-sk-page .ld-gift-cta-banner .eyebrow {
@@ -22869,7 +22928,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   height: 70px;
   margin: 0 auto 12px;
   border-radius: 50%;
-  background: #F8633A;
+  border: 1px solid transparent;
+  background: linear-gradient(#F8633A, #F8633A) padding-box, linear-gradient(360deg, #FFC093 0%, #FFECDF 100%) border-box;
   color: #fff;
   font-size: 26px;
 }
@@ -22982,7 +23042,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #F8633A;
+  background: linear-gradient(180deg, #F8633A 0%, #E83729 100%);
   color: #fff;
   font-size: 20px;
 }
@@ -23039,38 +23099,40 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding: 50px 40px;
   }
 }
-.ld-gift-sk-page .ld-gift-partners-stat .number {
-  color: #FFB031;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 1.1;
-}
-@media (min-width: 1024px) {
-  .ld-gift-sk-page .ld-gift-partners-stat .number {
-    font-size: 72px;
-  }
+.ld-gift-sk-page .ld-gift-partners-stat .number img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
 }
 .ld-gift-sk-page .ld-gift-partners-stat h3 {
   margin: 0 0 16px;
   color: #fff;
   font-weight: 500;
   font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: -0.05rem;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-partners-stat h3 {
-    font-size: 32px;
+    font-size: 48px;
   }
 }
-.ld-gift-sk-page .ld-gift-partners-stat p {
+.ld-gift-sk-page .ld-gift-partners-stat .divider {
+  width: 116px;
+  height: 2px;
+  margin: 43px auto 30px;
+  background: #fff;
+}
+.ld-gift-sk-page .ld-gift-partners-stat .text-wrap p {
   margin: 0 0 8px;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 14px;
+  color: #fff;
   line-height: 1.7;
 }
-@media (min-width: 1024px) {
-  .ld-gift-sk-page .ld-gift-partners-stat p {
-    font-size: 16px;
-  }
+.ld-gift-sk-page .ld-gift-partners-stat .text-wrap p:first-child {
+  font-size: 16px;
+}
+.ld-gift-sk-page .ld-gift-partners-stat .text-wrap p:last-child {
+  font-size: 20px;
 }
 .ld-gift-sk-page .ld-gift-partners-logos {
   padding: 32px 20px;
@@ -23096,9 +23158,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .ld-gift-partners-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  padding-bottom: 32px;
 }
 .ld-gift-sk-page .ld-gift-partners-grid .logo-card {
   display: flex;
@@ -23119,6 +23179,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   max-height: 100%;
   object-fit: contain;
 }
+.ld-gift-sk-page .ld-gift-partners-grid .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #D9D9D9;
+  opacity: 1;
+}
+.ld-gift-sk-page .ld-gift-partners-grid .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #F8633A;
+}
 .ld-gift-sk-page .ld-gift-consult {
   padding: 32px 0 48px;
 }
@@ -23128,25 +23198,23 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .ld-gift-consult-inner {
-  max-width: 1100px;
   margin: 0 auto;
   background: linear-gradient(135deg, #E83729 0%, #F8633A 100%);
   border-radius: 10px;
-  padding: 24px 20px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult-inner {
     flex-direction: row;
     align-items: center;
-    padding: 40px;
-    gap: 40px;
   }
 }
 .ld-gift-sk-page .ld-gift-consult-content {
   text-align: center;
+  padding: 41px 55px;
+  background: url("../images/bg-5000-doanh-nghiep.png") center/cover no-repeat;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult-content {
@@ -23160,6 +23228,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   font-weight: 500;
   font-size: 18px;
   line-height: 1.5;
+  text-transform: capitalize;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult-content h3 {
@@ -23168,16 +23237,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-consult-image {
   flex-shrink: 0;
+  max-width: 665px;
 }
 .ld-gift-sk-page .ld-gift-consult-image img {
   display: block;
   width: 100%;
   border-radius: 10px;
-}
-@media (min-width: 1024px) {
-  .ld-gift-sk-page .ld-gift-consult-image {
-    width: 320px;
-  }
 }
 .ld-gift-sk-page .ld-gift-consult-form .form-row {
   display: flex;
@@ -23212,7 +23277,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-consult-form input::placeholder, .ld-gift-sk-page .ld-gift-consult-form .modal .select2-container--default .select2-selection--single::placeholder, .modal .select2-container--default .ld-gift-sk-page .ld-gift-consult-form .select2-selection--single::placeholder,
 .ld-gift-sk-page .ld-gift-consult-form select::placeholder,
 .ld-gift-sk-page .ld-gift-consult-form textarea::placeholder {
-  color: #9D9D9D;
+  color: #121F38;
+  font-weight: 300;
 }
 .ld-gift-sk-page .ld-gift-consult-form textarea {
   height: 96px;
@@ -23224,8 +23290,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   justify-content: center;
   width: 100%;
   height: 40px;
-  margin-top: 8px;
-  background: transparent;
+  margin: 8px auto 0;
+  background: linear-gradient(90deg, #FF6D3E 0%, #FFB031 100%);
   border: 1px solid #fff;
   border-radius: 10px;
   color: #fff;
