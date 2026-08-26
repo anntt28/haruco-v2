@@ -895,7 +895,7 @@ input[type="number"] {
 .ld-discount-faq {
   padding: 32px 0;
   @include minWidth(1024px) {
-    padding: 48px 0;
+    padding: 24px 0 30px;
   }
   // Heading dùng chung .heading-haruco-new (đúng convention page-scope
   // hiện tại — mỗi trang tự khai báo 1 bản riêng, xem Product

@@ -450,8 +450,13 @@
         min-height: 48px;
       }
       // Bọc tên sản phẩm trong <a> để trỏ tới Product Detail — giữ nguyên
-      // màu/typography hiện có, chỉ thêm khả năng click.
+      // màu/typography hiện có, chỉ thêm khả năng click. Giới hạn tối đa
+      // 2 dòng (khớp min-height 2 dòng ở trên), cắt bằng "..." nếu dài hơn.
       a {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
         color: inherit;
       }
     }

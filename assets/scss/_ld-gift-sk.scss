@@ -19,6 +19,10 @@
   margin-bottom: -60px;
   padding-bottom: 17px;
 
+  h2 {
+    text-transform: capitalize;
+  }
+
   // ------------------------------------------------------------
   // Banner ảnh — heading script font "Carattere" (Google Font, thêm mới
   // vào index.scss) theo đúng Figma, không có component sẵn khớp cấu
@@ -28,12 +32,18 @@
     padding: 32px 0;
     background: url("../images/banner-trao-suc-khoe.jpg") center / cover no-repeat;
     @include minWidth(1024px) {
-      padding: 60px 0;
+      padding: 90px 0 60px;
+      aspect-ratio: 1921 / 750;
     }
     .ld-gift-hero-inner {
       text-align: center;
       max-width: 700px;
       margin: 0;
+      @include minWidth(1024px) {
+        max-width: 653px;
+        position: relative;
+        left: -130px;
+      }
     }
     .ld-gift-hero-script {
       margin: 0;
@@ -65,6 +75,7 @@
       line-height: 1.5;
       @include minWidth(1024px) {
         font-size: 28px;
+        text-transform: capitalize;
       }
     }
     .ld-gift-hero-actions {
@@ -302,6 +313,10 @@
     .product-slider-heading .link-view-all,
     .link-view-all.link-view-all-dark {
       color: $light;
+      @include minWidth(1024px) {
+        position: relative;
+        bottom: -17px;
+      }
       .btn-view-all {
         display: flex;
         align-items: center;
@@ -309,6 +324,11 @@
         background: $light;
         &::after {
           display: none;
+        }
+        svg {
+          position: relative;
+          top: 1px;
+          left: 1px;
         }
       }
     }
@@ -335,31 +355,35 @@
       flex-direction: column;
       align-items: center;
       gap: 16px;
+      border-radius: 10px;
+      padding: 24px 20px;
+      background: url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop.png") center / cover no-repeat;
       @include minWidth(1024px) {
         flex-direction: row;
-        align-items: flex-end;
-        gap: 24px;
+        align-items: center;
+        gap: 12px;
+        padding: 0;
       }
     }
     .ld-gift-cta-banner-inner {
       flex: 1 1 auto;
       min-width: 0;
       width: 100%;
-      text-align: center;
-      background: url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop.png") center / cover no-repeat;
+      text-align: right;
       border-radius: 10px;
-      padding: 24px 20px;
-      @include minWidth(1024px) {
-        padding: 40px;
-      }
+    }
+    .ld-gift-cta-banner-man,
+    .eyebrow,
+    .headline {
+      text-transform: capitalize;
     }
     .ld-gift-cta-banner-man {
       flex-shrink: 0;
       display: block;
-      width: 140px;
+      width: 232px;
       height: auto;
       @include minWidth(1024px) {
-        width: 240px;
+        margin-top: -15px;
       }
     }
     .eyebrow {
@@ -440,7 +464,7 @@
       height: 70px;
       margin: 0 auto 12px;
       border-radius: 50%;
-      border: 1px solid transparent;
+      border: 5px solid transparent;
       background: linear-gradient($color-F8633A, $color-F8633A) padding-box,
         linear-gradient(360deg, $color-FFC093 0%, $color-FFECDF 100%) border-box;
       color: $light;
@@ -516,6 +540,7 @@
       font-size: 24px;
       @include minWidth(1024px) {
         font-size: 35px;
+        margin-bottom: 37px;
       }
     }
   }
@@ -590,23 +615,28 @@
     }
   }
   .ld-gift-partners-stat {
+    display: flex;
+    align-items: center;
     text-align: center;
     padding: 32px 20px;
     background: $color-1E335C url("../images/bg-5000-don-qua-suc-khoe.png") center / cover no-repeat;
     color: $light;
     @include minWidth(1024px) {
-      flex: 0 0 45%;
-      padding: 50px 40px;
+      flex: 0 0 50%;
+      padding: 50px 30px;
+    }
+    .ld-gift-partners-stat-content {
+      width: 100%;
     }
     .number {
       img {
         display: block;
         max-width: 100%;
-        margin: 0 auto;
+        margin: 0 auto 32px;
       }
     }
     h3 {
-      margin: 0 0 16px;
+      margin: 0;
       color: $light;
       font-weight: 500;
       font-size: 22px;
@@ -621,6 +651,9 @@
       height: 2px;
       margin: 43px auto 30px;
       background: $light;
+      @include minWidth(1024px) {
+        margin: 40px auto 30px;
+      }
     }
     .text-wrap {
       p {
@@ -637,6 +670,7 @@
     }
   }
   .ld-gift-partners-logos {
+    position: relative;
     padding: 32px 20px;
     background: $color-FFF4ED;
     @include minWidth(1024px) {
@@ -650,6 +684,7 @@
       color: $color-1E335C;
       font-weight: 500;
       font-size: 20px;
+      text-transform: capitalize;
       @include minWidth(1024px) {
         font-size: 28px;
       }
@@ -659,25 +694,54 @@
   // trong bản swiper-bundle) để hiển thị 3 hàng/trang kèm dots pagination
   // khi số logo vượt quá 1 trang, xem giftPartnersSliderOptions trong
   // index.js.
+  // Wrapper riêng (không dùng .product-slider-card-wrap có sẵn vì class đó
+  // có kèm background/shadow/padding — sẽ làm đổi layout hiện tại của
+  // Partners Grid). Chỉ cần position:relative để 2 nút Next/Prev
+  // (.swiper-button-prev/-next, class chung toàn site ở _slick.scss)
+  // canh giữa đúng theo chiều cao riêng của grid, không phải theo cả
+  // .ld-gift-partners-logos (có cả h3 + pagination).
+  .ld-gift-partners-grid-wrap {
+    position: relative;
+  }
+  // .ld-gift-partners-inner (cha xa hơn) có overflow:hidden — offset âm
+  // mặc định của .swiper-button-prev/-next (dùng cho các slider khác nằm
+  // trong card trắng rộng rãi) sẽ bị cắt mất ở đây, nên đặt lại vị trí
+  // vào bên trong theo đúng padding hiện có, không đẩy ra ngoài.
+  .product-slider-prev-gift-partners,
+  .product-slider-next-gift-partners {
+    top: 50%;
+  }
+  .product-slider-prev-gift-partners {
+    left: 8px;
+  }
+  .product-slider-next-gift-partners {
+    right: 8px;
+  }
   .ld-gift-partners-grid {
-    padding-bottom: 32px;
+    padding-bottom: 20px;
     .logo-card {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 80px;
+      height: 115px;
       background: $light;
       border-radius: 10px;
       padding: 12px;
-      @include minWidth(1024px) {
-        height: 100px;
-      }
+      box-shadow: 0px 2px 9px 0px rgba(212, 176, 153, 0.24);
       img {
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
       }
     }
+  }
+  // Pagination đặt làm sibling của .ld-gift-partners-grid (thay vì nằm
+  // trong .swiper-container như mặc định) vì .swiper-container có
+  // overflow:hidden — đẩy bottom xuống âm sẽ bị cắt mất nếu còn nằm
+  // trong đó. .ld-gift-partners-logos (cha chung, đã có position:relative
+  // ở trên) không có overflow:hidden nên dots hiển thị đầy đủ.
+  .swiper-pagination-gift-partners {
+    bottom: 0;
     .swiper-pagination-bullet {
       width: 10px;
       height: 10px;
@@ -752,6 +816,7 @@
         flex-direction: row;
       }
       > * {
+        font-weight: 300;
         @include minWidth(768px) {
           flex: 1;
           min-width: 0;
@@ -775,6 +840,15 @@
         font-weight: 300;
       }
     }
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-right: 36px;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.51823 6.58398L8.93263 1.65562C9.28868 1.25812 9.26685 0.650281 8.88322 0.279339C8.48691 -0.103853 7.85432 -0.0908491 7.47409 0.308305L4.51823 3.41132L1.81482 0.355024C1.43727 -0.071815 0.78616 -0.114353 0.35628 0.259735C-0.0772896 0.637035 -0.121623 1.29487 0.257402 1.72693L4.51823 6.58398Z' fill='%23888888'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
     textarea {
       height: 96px;
       resize: none;
@@ -793,6 +867,7 @@
       font-size: 20px;
       font-weight: 500;
       letter-spacing: -0.03em;
+      text-transform: uppercase;
       cursor: pointer;
       @include trans;
       &:hover {

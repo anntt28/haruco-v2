@@ -191,7 +191,8 @@ $(function () {
   new Swiper(".ld-gift-partners-grid", {
     loop: false,
     slidesPerView: 3,
-    spaceBetween: 12,
+    slidesPerGroup: 3,
+    spaceBetween: 20,
     grid: {
       rows: 3,
       fill: "row",
@@ -199,6 +200,10 @@ $(function () {
     pagination: {
       el: ".swiper-pagination-gift-partners",
       clickable: true,
+    },
+    navigation: {
+      nextEl: ".product-slider-next-gift-partners",
+      prevEl: ".product-slider-prev-gift-partners",
     },
   });
   // "post" — "Tham khảo thêm các dòng sản phẩm khác" trong post-detail (News
