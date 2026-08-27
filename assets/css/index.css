@@ -22515,12 +22515,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-hero {
   padding: 32px 0;
-  background: url("../images/banner-trao-suc-khoe.jpg") center/cover no-repeat;
+  aspect-ratio: 442/581;
+  background: url("../images/banner-trao-suc-khoe_sp.jpg") center/cover no-repeat;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-hero {
     padding: 90px 0 60px;
     aspect-ratio: 1921/750;
+    background-image: url("../images/banner-trao-suc-khoe.jpg");
   }
 }
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-inner {
@@ -22565,13 +22567,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   margin: 0 0 24px;
   color: #1E335C;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 19px;
+  text-transform: capitalize;
   line-height: 1.5;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-sub {
     font-size: 28px;
-    text-transform: capitalize;
   }
 }
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-actions {
@@ -22584,14 +22586,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 27px;
   padding: 0 24px;
-  border-radius: 10px;
-  font-size: 24px;
+  border-radius: 7px;
+  font-size: 16px;
   font-weight: 600;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-btn {
+    height: 50px;
+    border-radius: 10px;
     font-size: 20px;
     padding: 0 30px;
   }
@@ -22637,19 +22641,21 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-combo .banner-ngang {
   margin-top: 30px;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-choose .ld-gift-tabs {
+    justify-content: center;
+  }
+}
 .ld-gift-sk-page .ld-gift-tabs {
   border-bottom: none;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 24px;
   padding-bottom: 4px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-tabs {
-    flex-wrap: wrap;
     justify-content: center;
-    overflow-x: visible;
   }
 }
 .ld-gift-sk-page .ld-gift-tabs .nav-item {
@@ -22659,8 +22665,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45px;
-  padding: 0 20px;
+  height: 40px;
+  padding: 0 15px;
   white-space: nowrap;
   border: 1px solid #E0E0E0;
   border-radius: 10px;
@@ -22671,6 +22677,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-tabs .nav-link {
+    height: 45px;
+    padding: 0 20px;
     font-size: 20px;
   }
 }
@@ -22689,6 +22697,26 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-tab-content {
     padding: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .ld-gift-sk-page .product-card .product-card-body .product-card-actions {
+    flex-direction: column;
+  }
+  .ld-gift-sk-page .product-card .product-card-body .product-card-actions button {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+}
+.ld-gift-sk-page .product-slider-card-wrap {
+  position: relative;
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .product-slider-card-wrap .swiper-button-prev {
+    left: 0;
+  }
+  .ld-gift-sk-page .product-slider-card-wrap .swiper-button-next {
+    right: 0;
   }
 }
 .ld-gift-sk-page .btn-view-detail {
@@ -22728,11 +22756,22 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-budget-tier:not(:last-child) {
   margin-bottom: 24px;
 }
+.ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-tier-heading {
+  margin-bottom: 12px;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-tier-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+}
 .ld-gift-sk-page .ld-gift-budget-tier h3 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 12px;
+  margin: 0;
   padding: 6px 16px 6px 11px;
   border-top-left-radius: 20px;
   border-top-right-radius: 5px;
@@ -22753,6 +22792,24 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   width: 25px;
   height: 25px;
 }
+.ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-view-all-pc {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-view-all-pc {
+    display: flex;
+  }
+}
+.ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-view-all-mobile {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-view-all-mobile {
+    display: none;
+  }
+}
 .ld-gift-sk-page .ld-gift-budget-tier-row {
   display: flex;
   flex-direction: column;
@@ -22760,13 +22817,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background: #fff;
   border-radius: 10px;
   box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
-  padding: 30px;
+  padding: 15px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-budget-tier-row {
     flex-direction: row;
     align-items: center;
     gap: 24px;
+    padding: 30px;
   }
 }
 @media (min-width: 1024px) {
@@ -22782,9 +22840,21 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   width: 100%;
   border-radius: 10px;
 }
+.ld-gift-sk-page .ld-gift-budget-tier-image .ld-gift-budget-tier-image-pc {
+  display: none;
+}
+.ld-gift-sk-page .ld-gift-budget-tier-image .ld-gift-budget-tier-image-mb {
+  display: block;
+}
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-budget-tier-image {
     width: 519px;
+  }
+  .ld-gift-sk-page .ld-gift-budget-tier-image .ld-gift-budget-tier-image-pc {
+    display: block;
+  }
+  .ld-gift-sk-page .ld-gift-budget-tier-image .ld-gift-budget-tier-image-mb {
+    display: none;
   }
 }
 .ld-gift-sk-page .ld-gift-budget-tier-content {
@@ -22941,14 +23011,22 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
   text-align: center;
 }
+.ld-gift-sk-page .ld-gift-why-list > li {
+  flex: 0 0 calc(50% - 12px);
+}
 @media (min-width: 768px) {
   .ld-gift-sk-page .ld-gift-why-list {
+    display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .ld-gift-sk-page .ld-gift-why-list > li {
+    flex: initial;
   }
 }
 .ld-gift-sk-page .ld-gift-why-list .icon {
@@ -23108,6 +23186,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding: 48px 0;
   }
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-partners > .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 .ld-gift-sk-page .ld-gift-partners-inner {
   display: flex;
   flex-direction: column;
@@ -23207,12 +23291,24 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .product-slider-prev-gift-partners,
 .ld-gift-sk-page .product-slider-next-gift-partners {
   top: 50%;
+  width: 30px;
+  height: 30px;
 }
 .ld-gift-sk-page .product-slider-prev-gift-partners {
   left: 8px;
 }
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .product-slider-prev-gift-partners {
+    left: -34px;
+  }
+}
 .ld-gift-sk-page .product-slider-next-gift-partners {
   right: 8px;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .product-slider-next-gift-partners {
+    right: -34px;
+  }
 }
 .ld-gift-sk-page .ld-gift-partners-grid {
   padding-bottom: 20px;
@@ -23221,11 +23317,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 115px;
+  height: 78px;
   background: #fff;
   border-radius: 10px;
   padding: 12px;
   box-shadow: 0px 2px 9px 0px rgba(212, 176, 153, 0.24);
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-partners-grid .logo-card {
+    height: 115px;
+  }
 }
 .ld-gift-sk-page .ld-gift-partners-grid .logo-card img {
   max-width: 100%;
@@ -23253,13 +23354,19 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     padding: 48px 0 60px;
   }
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-consult > .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 .ld-gift-sk-page .ld-gift-consult-inner {
   margin: 0 auto;
   background: linear-gradient(135deg, #E83729 0%, #F8633A 100%);
   border-radius: 10px;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult-inner {
@@ -23269,13 +23376,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-consult-content {
   text-align: center;
-  padding: 41px 55px;
+  padding: 40px 15px;
   background: url("../images/bg-5000-doanh-nghiep.png") center/cover no-repeat;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult-content {
     flex: 1 1 auto;
     min-width: 0;
+    padding: 41px 55px;
   }
 }
 .ld-gift-sk-page .ld-gift-consult-content h3 {
@@ -23302,23 +23410,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-consult-form .form-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
   margin-bottom: 12px;
 }
-@media (min-width: 768px) {
-  .ld-gift-sk-page .ld-gift-consult-form .form-row {
-    flex-direction: row;
-  }
-}
 .ld-gift-sk-page .ld-gift-consult-form .form-row > * {
   font-weight: 300;
-}
-@media (min-width: 768px) {
-  .ld-gift-sk-page .ld-gift-consult-form .form-row > * {
-    flex: 1;
-    min-width: 0;
-  }
+  flex: 1;
+  min-width: 0;
 }
 .ld-gift-sk-page .ld-gift-consult-form input, .ld-gift-sk-page .ld-gift-consult-form .modal .select2-container--default .select2-selection--single, .modal .select2-container--default .ld-gift-sk-page .ld-gift-consult-form .select2-selection--single,
 .ld-gift-sk-page .ld-gift-consult-form select,

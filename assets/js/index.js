@@ -192,7 +192,7 @@ $(function () {
     loop: false,
     slidesPerView: 3,
     slidesPerGroup: 3,
-    spaceBetween: 20,
+    spaceBetween: 13,
     grid: {
       rows: 3,
       fill: "row",
@@ -204,6 +204,11 @@ $(function () {
     navigation: {
       nextEl: ".product-slider-next-gift-partners",
       prevEl: ".product-slider-prev-gift-partners",
+    },
+    breakpoints: {
+      1024: {
+        spaceBetween: 20,
+      },
     },
   });
   // "post" — "Tham khảo thêm các dòng sản phẩm khác" trong post-detail (News

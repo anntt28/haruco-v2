@@ -30,10 +30,12 @@
   // ------------------------------------------------------------
   .ld-gift-hero {
     padding: 32px 0;
-    background: url("../images/banner-trao-suc-khoe.jpg") center / cover no-repeat;
+    aspect-ratio: 442 / 581;
+    background: url("../images/banner-trao-suc-khoe_sp.jpg") center / cover no-repeat;
     @include minWidth(1024px) {
       padding: 90px 0 60px;
       aspect-ratio: 1921 / 750;
+      background-image: url("../images/banner-trao-suc-khoe.jpg");
     }
     .ld-gift-hero-inner {
       text-align: center;
@@ -71,11 +73,11 @@
       margin: 0 0 24px;
       color: $color-1E335C;
       font-weight: 500;
-      font-size: 20px;
+      font-size: 19px;
+      text-transform: capitalize;
       line-height: 1.5;
       @include minWidth(1024px) {
         font-size: 28px;
-        text-transform: capitalize;
       }
     }
     .ld-gift-hero-actions {
@@ -88,12 +90,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 50px;
+      height: 27px;
       padding: 0 24px;
-      border-radius: 10px;
-      font-size: 24px;
+      border-radius: 7px;
+      font-size: 16px;
       font-weight: 600;
       @include minWidth(1024px) {
+        height: 50px;
+        border-radius: 10px;
         font-size: 20px;
         padding: 0 30px;
       }
@@ -140,17 +144,23 @@
       margin-top: 30px;
     }
   }
+  // Riêng .ld-gift-tabs trong "Lựa chọn quà tặng" canh giữa trên mobile —
+  // .ld-gift-combo (Combo quà tặng) dùng chung class .ld-gift-tabs nhưng
+  // giữ nguyên trái (không center) nên phải scope riêng, không sửa rule
+  // .ld-gift-tabs chung bên dưới.
+  .ld-gift-choose .ld-gift-tabs {
+    @include maxWidth(1023px) {
+      justify-content: center;
+    }
+  }
   .ld-gift-tabs {
     border-bottom: none;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 24px;
     padding-bottom: 4px;
     @include minWidth(1024px) {
-      flex-wrap: wrap;
       justify-content: center;
-      overflow-x: visible;
     }
     .nav-item {
       flex-shrink: 0;
@@ -159,8 +169,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 45px;
-      padding: 0 20px;
+      height: 40px;
+      padding: 0 15px;
       white-space: nowrap;
       border: 1px solid $color-E0E0E0;
       border-radius: 10px;
@@ -169,6 +179,8 @@
       font-size: 16px;
       font-weight: 400;
       @include minWidth(1024px) {
+        height: 45px;
+        padding: 0 20px;
         font-size: 20px;
       }
       &.active {
@@ -194,6 +206,38 @@
   // "Combo quà tặng" chỉ có ảnh + tên + "Xem chi tiết" (không giá/rating)
   // — vẫn dùng nguyên .product-card, chỉ thêm 1 biến thể link thay cho
   // 2 nút mua hàng.
+  // 2 nút hành động full-width xếp chồng trên mobile — reuse đúng pattern
+  // đã dùng cho "Sản phẩm nổi bật" (.product-slider-wrapper-combo, maxWidth
+  // 767px, _home.scss) áp dụng chung cho mọi .product-card trong trang này.
+  @include maxWidth(767px) {
+    .product-card .product-card-body .product-card-actions {
+      flex-direction: column;
+      button {
+        width: 100%;
+        flex: 0 0 auto;
+      }
+    }
+  }
+  // .product-slider-card-wrap trong trang này không kế thừa style từ
+  // _home.scss (rule ở đó bọc trong .homepage, không áp dụng cho
+  // .ld-gift-sk-page) — cần position:relative riêng để làm containing
+  // block cho nav prev/next bên trong. Nav offset âm mặc định
+  // (.swiper-button-prev/-next, class chung toàn site, left/right:-7px ở
+  // mobile) khiến nút tràn ra ngoài viewport ở mobile cho mọi slider dùng
+  // wrapper này (Lựa chọn quà tặng, Quà theo ngân sách, Combo quà tặng),
+  // đặt lại về 0 (nằm trong padding 10px sẵn có) chỉ cho mobile, giữ
+  // nguyên offset lớn hơn ở desktop.
+  .product-slider-card-wrap {
+    position: relative;
+    @include maxWidth(1023px) {
+      .swiper-button-prev {
+        left: 0;
+      }
+      .swiper-button-next {
+        right: 0;
+      }
+    }
+  }
   .btn-view-detail {
     display: inline-flex;
     align-items: center;
@@ -236,11 +280,23 @@
     &:not(:last-child) {
       margin-bottom: 24px;
     }
+    // Wrapper heading — bọc h3 + nút "Xem tất cả" (chỉ hiện desktop, xem
+    // .ld-gift-budget-view-all bên dưới), reuse đúng pattern
+    // .facilities-heading (Introduce, flex hàng ngang + space-between).
+    .ld-gift-budget-tier-heading {
+      margin-bottom: 12px;
+      @include minWidth(1024px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+    }
     h3 {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin: 0 0 12px;
+      margin: 0;
       padding: 6px 16px 6px 11px;
       border-top-left-radius: 20px;
       border-top-right-radius: 5px;
@@ -259,6 +315,23 @@
         height: 25px;
       }
     }
+    // "Xem tất cả" desktop — cùng hàng với h3, reuse .link-view-all-dark.
+    .ld-gift-budget-view-all-pc {
+      display: none;
+      @include minWidth(1024px) {
+        display: flex;
+      }
+    }
+    // "Xem tất cả" mobile — đặt dưới .ld-gift-budget-tier-content, reuse
+    // đúng pattern .link-view-all-facilities-mobile (Introduce).
+    .ld-gift-budget-view-all-mobile {
+      display: flex;
+      justify-content: center;
+      margin-top: 26px;
+      @include minWidth(1024px) {
+        display: none;
+      }
+    }
   }
   .ld-gift-budget-tier-row {
     display: flex;
@@ -267,11 +340,12 @@
     background: $light;
     border-radius: 10px;
     box-shadow: 0px 0px 12px 0px rgba(174, 174, 174, 0.14);
-    padding: 30px;
+    padding: 15px;
     @include minWidth(1024px) {
       flex-direction: row;
       align-items: center;
       gap: 24px;
+      padding: 30px;
     }
   }
   .ld-gift-budget-tier:nth-child(odd) .ld-gift-budget-tier-row {
@@ -286,8 +360,22 @@
       width: 100%;
       border-radius: 10px;
     }
+    // Ảnh riêng mobile (hậu tố "_sp") / desktop — cùng kỹ thuật với
+    // .ld-gift-process-image-pc/-mb ở trên, không tạo pattern mới.
+    .ld-gift-budget-tier-image-pc {
+      display: none;
+    }
+    .ld-gift-budget-tier-image-mb {
+      display: block;
+    }
     @include minWidth(1024px) {
       width: 519px;
+      .ld-gift-budget-tier-image-pc {
+        display: block;
+      }
+      .ld-gift-budget-tier-image-mb {
+        display: none;
+      }
     }
   }
   .ld-gift-budget-tier-content {
@@ -449,12 +537,20 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
     text-align: center;
+    > li {
+      flex: 0 0 calc(50% - 12px);
+    }
     @include minWidth(768px) {
+      display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
+      > li {
+        flex: initial;
+      }
     }
     .icon {
       display: flex;
@@ -604,6 +700,14 @@
     @include minWidth(1024px) {
       padding: 48px 0;
     }
+    // Hai bên sát viewport trên mobile — .container-fluid mặc định (Bootstrap)
+    // có padding 15px trái/phải, bỏ riêng cho section này.
+    > .container-fluid {
+      @include maxWidth(1023px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
   .ld-gift-partners-inner {
     display: flex;
@@ -705,17 +809,27 @@
   }
   // .ld-gift-partners-inner (cha xa hơn) có overflow:hidden — offset âm
   // mặc định của .swiper-button-prev/-next (dùng cho các slider khác nằm
-  // trong card trắng rộng rãi) sẽ bị cắt mất ở đây, nên đặt lại vị trí
-  // vào bên trong theo đúng padding hiện có, không đẩy ra ngoài.
+  // trong card trắng rộng rãi) sẽ bị cắt mất ở đây. Mobile giữ inset 8px
+  // (an toàn, .ld-gift-partners-logos không đủ padding để chịu -34px ở
+  // mobile); desktop dùng -34px theo yêu cầu — vẫn nằm trong padding 40px
+  // desktop hiện có của .ld-gift-partners-logos nên không bị cắt.
   .product-slider-prev-gift-partners,
   .product-slider-next-gift-partners {
     top: 50%;
+    width: 30px;
+    height: 30px;
   }
   .product-slider-prev-gift-partners {
     left: 8px;
+    @include minWidth(1024px) {
+      left: -34px;
+    }
   }
   .product-slider-next-gift-partners {
     right: 8px;
+    @include minWidth(1024px) {
+      right: -34px;
+    }
   }
   .ld-gift-partners-grid {
     padding-bottom: 20px;
@@ -723,11 +837,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 115px;
+      height: 78px;
       background: $light;
       border-radius: 10px;
       padding: 12px;
       box-shadow: 0px 2px 9px 0px rgba(212, 176, 153, 0.24);
+      @include minWidth(1024px) {
+        height: 115px;
+      }
       img {
         max-width: 100%;
         max-height: 100%;
@@ -764,6 +881,13 @@
     @include minWidth(1024px) {
       padding: 48px 0 60px;
     }
+    // Hai bên sát viewport trên mobile — như .ld-gift-partners ở trên.
+    > .container-fluid {
+      @include maxWidth(1023px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
   .ld-gift-consult-inner {
     margin: 0 auto;
@@ -771,7 +895,7 @@
     border-radius: 10px;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     @include minWidth(1024px) {
       flex-direction: row;
       align-items: center;
@@ -779,11 +903,12 @@
   }
   .ld-gift-consult-content {
     text-align: center;
-    padding: 41px 55px;
+    padding: 40px 15px;
     background: url("../images/bg-5000-doanh-nghiep.png") center / cover no-repeat;
     @include minWidth(1024px) {
       flex: 1 1 auto;
       min-width: 0;
+      padding: 41px 55px;
     }
     h3 {
       margin: 0 0 24px;
@@ -809,18 +934,13 @@
   .ld-gift-consult-form {
     .form-row {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 12px;
       margin-bottom: 12px;
-      @include minWidth(768px) {
-        flex-direction: row;
-      }
       > * {
         font-weight: 300;
-        @include minWidth(768px) {
-          flex: 1;
-          min-width: 0;
-        }
+        flex: 1;
+        min-width: 0;
       }
     }
     input,
