@@ -440,25 +440,42 @@
     }
     .ld-gift-cta-banner-row {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 16px;
+      row-gap: 16px;
+      column-gap: 12px;
       border-radius: 10px;
       padding: 24px 20px;
-      background: url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop.png") center / cover no-repeat;
+      background: linear-gradient(291.45deg, $color-E83729 11.59%, $color-F8633A 90.73%),
+        url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop_sp.jpg") center / cover no-repeat;
+      background-blend-mode: multiply;
       @include minWidth(1024px) {
         flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
         gap: 12px;
         padding: 0;
+        background: url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop.png") center / cover no-repeat;
+        background-blend-mode: normal;
       }
     }
+    // .inner chỉ còn ý nghĩa layout ở desktop (khối text+button đứng cạnh
+    // .ld-gift-cta-banner-man). Ở mobile dùng display:contents để các con
+    // (eyebrow/headline/btn) trở thành flex item trực tiếp của .row, cho
+    // phép xen .ld-gift-cta-banner-man vào giữa eyebrow và headline bằng
+    // order — không cần đổi DOM/tạo markup trùng cho 2 breakpoint.
     .ld-gift-cta-banner-inner {
-      flex: 1 1 auto;
-      min-width: 0;
-      width: 100%;
-      text-align: right;
-      border-radius: 10px;
+      @include maxWidth(1023px) {
+        display: contents;
+      }
+      @include minWidth(1024px) {
+        flex: 1 1 auto;
+        min-width: 0;
+        width: 100%;
+        text-align: right;
+        border-radius: 10px;
+      }
     }
     .ld-gift-cta-banner-man,
     .eyebrow,
@@ -468,27 +485,52 @@
     .ld-gift-cta-banner-man {
       flex-shrink: 0;
       display: block;
-      width: 232px;
+      width: 176px;
       height: auto;
+      order: 2;
       @include minWidth(1024px) {
+        width: 232px;
+        order: initial;
         margin-top: -15px;
       }
     }
     .eyebrow {
+      order: 1;
+      width: 100%;
       margin: 0;
       color: $light;
       font-weight: 500;
       font-size: 18px;
+      @include maxWidth(1023px) {
+        font-size: 28px;
+        line-height: 1.4;
+        letter-spacing: -0.03rem;
+        text-align: left;
+      }
       @include minWidth(1024px) {
+        order: initial;
+        width: auto;
         font-size: 32px;
       }
     }
     .headline {
+      order: 3;
+      flex: 1 1 0;
+      min-width: 0;
       margin: 0 0 20px;
       color: $light;
       font-weight: 300;
       font-size: 15px;
+      @include maxWidth(1023px) {
+        margin-bottom: 0;
+        font-size: 24px;
+        line-height: 1.4;
+        letter-spacing: -0.03rem;
+        text-align: left;
+      }
       @include minWidth(1024px) {
+        order: initial;
+        flex: initial;
         font-size: 24px;
       }
     }
@@ -504,7 +546,12 @@
       color: $light;
       font-weight: 600;
       font-size: 15px;
+      order: 4;
+      @include maxWidth(1023px) {
+        flex: 0 0 100%;
+      }
       @include minWidth(1024px) {
+        order: initial;
         height: 50px;
         padding: 0 30px;
         font-size: 20px;

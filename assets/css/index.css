@@ -22906,27 +22906,40 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  row-gap: 16px;
+  column-gap: 12px;
   border-radius: 10px;
   padding: 24px 20px;
-  background: url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop.png") center/cover no-repeat;
+  background: linear-gradient(291.45deg, #E83729 11.59%, #F8633A 90.73%), url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop_sp.jpg") center/cover no-repeat;
+  background-blend-mode: multiply;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-row {
     flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 12px;
     padding: 0;
+    background: url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop.png") center/cover no-repeat;
+    background-blend-mode: normal;
   }
 }
-.ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-inner {
-  flex: 1 1 auto;
-  min-width: 0;
-  width: 100%;
-  text-align: right;
-  border-radius: 10px;
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-inner {
+    display: contents;
+  }
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-inner {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    text-align: right;
+    border-radius: 10px;
+  }
 }
 .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-man,
 .ld-gift-sk-page .ld-gift-cta-banner .eyebrow,
@@ -22936,33 +22949,62 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-man {
   flex-shrink: 0;
   display: block;
-  width: 232px;
+  width: 176px;
   height: auto;
+  order: 2;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-man {
+    width: 232px;
+    order: initial;
     margin-top: -15px;
   }
 }
 .ld-gift-sk-page .ld-gift-cta-banner .eyebrow {
+  order: 1;
+  width: 100%;
   margin: 0;
   color: #fff;
   font-weight: 500;
   font-size: 18px;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .eyebrow {
+    font-size: 28px;
+    line-height: 1.4;
+    letter-spacing: -0.03rem;
+    text-align: left;
+  }
+}
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .eyebrow {
+    order: initial;
+    width: auto;
     font-size: 32px;
   }
 }
 .ld-gift-sk-page .ld-gift-cta-banner .headline {
+  order: 3;
+  flex: 1 1 0;
+  min-width: 0;
   margin: 0 0 20px;
   color: #fff;
   font-weight: 300;
   font-size: 15px;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .headline {
+    margin-bottom: 0;
+    font-size: 24px;
+    line-height: 1.4;
+    letter-spacing: -0.03rem;
+    text-align: left;
+  }
+}
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .headline {
+    order: initial;
+    flex: initial;
     font-size: 24px;
   }
 }
@@ -22978,9 +23020,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #fff;
   font-weight: 600;
   font-size: 15px;
+  order: 4;
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .btn-cta-yellow {
+    flex: 0 0 100%;
+  }
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .btn-cta-yellow {
+    order: initial;
     height: 50px;
     padding: 0 30px;
     font-size: 20px;
