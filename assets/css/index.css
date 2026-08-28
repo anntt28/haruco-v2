@@ -23676,7 +23676,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 @media (max-width: 1023px) {
   .ld-gift-sk-page .ld-gift-consult-form button {
     width: 158px;
-    margin: 23px 0 0;
+    margin: 23px auto;
   }
 }
 @media (max-width: 1023px) {
