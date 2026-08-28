@@ -120,15 +120,15 @@ $(function () {
     );
   });
   // "gift-budget-N" — LD Quà tặng SK ("Quà theo ngân sách", 4 slider theo
-  // từng mốc giá): 2 item/hàng mobile, 3 item/hàng PC theo yêu cầu design,
-  // khác productSliderOptions (2/3/5) nên viết config riêng, cùng cách làm
-  // với ".product-slider-post" ở trên.
+  // từng mốc giá): 2 item/hàng từ 1199px trở xuống, 3 item/hàng từ 1200px
+  // theo yêu cầu design, khác productSliderOptions (2/3/5) nên viết config
+  // riêng, cùng cách làm với ".product-slider-post" ở trên.
   var giftBudgetSliderOptions = {
     loop: false,
     slidesPerView: 2,
     spaceBetween: 14,
     breakpoints: {
-      1024: {
+      1200: {
         slidesPerView: 3,
         spaceBetween: 24,
       },
@@ -146,15 +146,44 @@ $(function () {
     );
   });
   // ".ld-gift-product-grid" — LD Quà tặng SK ("Lựa chọn quà tặng" và "Combo
-  // quà tặng"): mỗi tab-pane giờ là 1 slider riêng (2 item/hàng mobile, 5
-  // item/hàng PC). Khác các slider khác ở trên, các slider này nằm trong
-  // Bootstrap tab-pane đang ẩn (display:none) lúc trang tải — Swiper tính
-  // chiều rộng slide bằng 0 nếu khởi tạo khi container đang ẩn. Lưu lại
-  // instance qua data("swiper") của jQuery rồi gọi .update() ở handler
-  // "shown.bs.tab" bên dưới khi tab-pane chứa nó thực sự hiển thị (thử
-  // observer/observeParents của Swiper trước nhưng bị treo trang do vòng
-  // lặp MutationObserver, nên chuyển sang cách này).
-  var giftProductGridSliderOptions = {
+  // quà tặng"): mỗi tab-pane giờ là 1 slider riêng. Khác các slider khác ở
+  // trên, các slider này nằm trong Bootstrap tab-pane đang ẩn (display:none)
+  // lúc trang tải — Swiper tính chiều rộng slide bằng 0 nếu khởi tạo khi
+  // container đang ẩn. Lưu lại instance qua data("swiper") của jQuery rồi
+  // gọi .update() ở handler "shown.bs.tab" bên dưới khi tab-pane chứa nó
+  // thực sự hiển thị (thử observer/observeParents của Swiper trước nhưng bị
+  // treo trang do vòng lặp MutationObserver, nên chuyển sang cách này).
+  // "Lựa chọn quà tặng Haruco" — 2 item/hàng mobile, 4 item/hàng từ
+  // 1024-1199px, 5 item/hàng từ 1200px trở lên theo yêu cầu design (khác
+  // "Combo quà tặng" bên dưới nên tách config riêng thay vì dùng chung).
+  var giftChooseSliderOptions = {
+    loop: false,
+    slidesPerView: 2,
+    spaceBetween: 14,
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 24,
+      },
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 24,
+      },
+    },
+  };
+  ["gift-choose-doanh-nghiep", "gift-choose-bo-me", "gift-choose-nguoi-lon-tuoi", "gift-choose-phuc-hoi"].forEach(function (i) {
+    new Swiper(
+      ".product-slider-" + i,
+      $.extend({}, giftChooseSliderOptions, {
+        navigation: {
+          nextEl: ".product-slider-next-" + i,
+          prevEl: ".product-slider-prev-" + i,
+        },
+      })
+    );
+  });
+  // "Combo quà tặng" — 2 item/hàng mobile, 5 item/hàng PC, giữ nguyên như cũ.
+  var giftComboSliderOptions = {
     loop: false,
     slidesPerView: 2,
     spaceBetween: 14,
@@ -165,10 +194,10 @@ $(function () {
       },
     },
   };
-  ["gift-choose-doanh-nghiep", "gift-choose-bo-me", "gift-choose-nguoi-lon-tuoi", "gift-choose-phuc-hoi", "gift-combo-nhan-vien", "gift-combo-bo-me", "gift-combo-xuong-khop", "gift-combo-premium"].forEach(function (i) {
+  ["gift-combo-nhan-vien", "gift-combo-bo-me", "gift-combo-xuong-khop", "gift-combo-premium"].forEach(function (i) {
     new Swiper(
       ".product-slider-" + i,
-      $.extend({}, giftProductGridSliderOptions, {
+      $.extend({}, giftComboSliderOptions, {
         navigation: {
           nextEl: ".product-slider-next-" + i,
           prevEl: ".product-slider-prev-" + i,

@@ -22518,6 +22518,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   aspect-ratio: 442/581;
   background: url("../images/banner-trao-suc-khoe_sp.jpg") center/cover no-repeat;
 }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-hero {
+    aspect-ratio: 442/420;
+    background-position: bottom;
+  }
+}
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-hero {
     padding: 90px 0 60px;
@@ -22530,6 +22536,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   max-width: 700px;
   margin: 0;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-inner {
+    margin: 0 auto;
+  }
+}
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-inner {
     max-width: 653px;
@@ -22537,11 +22548,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
     left: -130px;
   }
 }
+@media (min-width: 1024px) and (min-width: 1024px) and (max-width: 1400px) {
+  .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-inner {
+    left: -45px;
+  }
+}
 .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-script {
   margin: 0;
   color: #1E335C;
   font-family: "Carattere", cursive;
-  font-size: 28px;
+  font-size: 30px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-hero .ld-gift-hero-script {
@@ -22555,7 +22571,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-family: "Carattere", cursive;
-  font-size: 48px;
+  font-size: 46px;
   line-height: 1.2;
 }
 @media (min-width: 1024px) {
@@ -22586,10 +22602,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 27px;
+  height: 30px;
   padding: 0 24px;
   border-radius: 7px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 @media (min-width: 1024px) {
@@ -22713,10 +22729,18 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (max-width: 1023px) {
   .ld-gift-sk-page .product-slider-card-wrap .swiper-button-prev {
-    left: 0;
+    left: -28px;
   }
   .ld-gift-sk-page .product-slider-card-wrap .swiper-button-next {
-    right: 0;
+    right: -28px;
+  }
+}
+@media (max-width: 1023px) and (max-width: 439px) {
+  .ld-gift-sk-page .product-slider-card-wrap .swiper-button-prev {
+    left: -22px;
+  }
+  .ld-gift-sk-page .product-slider-card-wrap .swiper-button-next {
+    right: -22px;
   }
 }
 .ld-gift-sk-page .btn-view-detail {
@@ -22756,8 +22780,11 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-budget-tier:not(:last-child) {
   margin-bottom: 24px;
 }
-.ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-tier-heading {
-  margin-bottom: 12px;
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-tier-heading {
+    margin-top: 16px;
+    margin-bottom: 38px;
+  }
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-budget-tier .ld-gift-budget-tier-heading {
@@ -22782,9 +22809,21 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   font-weight: 500;
   font-size: 18px;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-budget-tier h3 {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-budget-tier h3 {
     font-size: 22px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1024px) and (max-width: 1400px) {
+  .ld-gift-sk-page .ld-gift-budget-tier h3 {
+    font-size: 18px;
   }
 }
 .ld-gift-sk-page .ld-gift-budget-tier h3 img {
@@ -22864,6 +22903,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .product-slider-wrapper-combo .product-slider-section {
   background: url("../images/bg-san-pham-noi-bat-ld.jpg") center/cover no-repeat;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .product-slider-wrapper-combo .product-slider-card-wrap .swiper-button-prev {
+    left: -11px;
+  }
+  .ld-gift-sk-page .product-slider-wrapper-combo .product-slider-card-wrap .swiper-button-next {
+    right: -11px;
+  }
+}
 .ld-gift-sk-page .product-slider-wrapper-combo .product-slider-heading .link-view-all,
 .ld-gift-sk-page .product-slider-wrapper-combo .link-view-all.link-view-all-dark {
   color: #fff;
@@ -22895,9 +22942,15 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .product-slider-wrapper-combo .product-slider-heading h2 {
   color: #fff;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .product-slider-wrapper-combo .product-slider-heading h2 {
+    width: 100%;
+    text-align: center;
+  }
+}
 .ld-gift-sk-page .ld-gift-cta-banner {
   margin-top: 49px;
-  padding: 24px 0;
+  padding: 1px 0 28px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner {
@@ -22905,16 +22958,24 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-row {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: 16px;
+  row-gap: 0;
   column-gap: 12px;
   border-radius: 10px;
-  padding: 24px 20px;
+  padding: 23px 13px;
   background: linear-gradient(291.45deg, #E83729 11.59%, #F8633A 90.73%), url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop_sp.jpg") center/cover no-repeat;
   background-blend-mode: multiply;
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-row {
+    max-width: 409px;
+    min-height: 320px;
+    margin: 0 auto;
+  }
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-row {
@@ -22929,7 +22990,10 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (max-width: 1023px) {
   .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-inner {
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: stretch;
   }
 }
 @media (min-width: 1024px) {
@@ -22951,7 +23015,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: block;
   width: 176px;
   height: auto;
-  order: 2;
+  order: 3;
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-man {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-cta-banner .ld-gift-cta-banner-man {
@@ -22962,7 +23035,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-cta-banner .eyebrow {
   order: 1;
-  width: 100%;
+  width: auto;
   margin: 0;
   color: #fff;
   font-weight: 500;
@@ -22984,7 +23057,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .ld-gift-cta-banner .headline {
-  order: 3;
+  order: 2;
   flex: 1 1 0;
   min-width: 0;
   margin: 0 0 20px;
@@ -22994,11 +23067,22 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 @media (max-width: 1023px) {
   .ld-gift-sk-page .ld-gift-cta-banner .headline {
+    position: absolute;
+    left: 13px;
+    right: 160px;
+    top: 52%;
+    transform: translateY(-50%);
     margin-bottom: 0;
     font-size: 24px;
     line-height: 1.4;
     letter-spacing: -0.03rem;
     text-align: left;
+  }
+}
+@media (max-width: 1023px) and (max-width: 439px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .headline {
+    right: 110px;
+    font-size: 19px;
   }
 }
 @media (min-width: 1024px) {
@@ -23012,19 +23096,25 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
-  padding: 0 20px;
+  height: 50px;
+  padding: 0 15px;
   background: #FFB031;
   border: 1px solid #fff;
   border-radius: 10px;
   color: #fff;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 22px;
   order: 4;
 }
 @media (max-width: 1023px) {
   .ld-gift-sk-page .ld-gift-cta-banner .btn-cta-yellow {
-    flex: 0 0 100%;
+    flex: 0 0 auto;
+    z-index: 3;
+  }
+}
+@media (max-width: 439px) {
+  .ld-gift-sk-page .ld-gift-cta-banner .btn-cta-yellow {
+    font-size: 18px;
   }
 }
 @media (min-width: 1024px) {
@@ -23049,7 +23139,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #1E335C;
   font-weight: 500;
   letter-spacing: -0.03em;
-  font-size: 24px;
+  font-size: 28px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-why > .container-fluid > h2 {
@@ -23117,7 +23207,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #fff;
   font-weight: 500;
   letter-spacing: -0.03em;
-  font-size: 22px;
+  font-size: 28px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-process > .container-fluid > h2 {
@@ -23130,6 +23220,12 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-process-image img {
   display: block;
   width: 100%;
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-process-image img {
+    max-width: 407px;
+    margin: 0 auto;
+  }
 }
 .ld-gift-sk-page .ld-gift-process-image-pc {
   display: none;
@@ -23161,7 +23257,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   color: #1E335C;
   font-weight: 500;
   letter-spacing: -0.03em;
-  font-size: 24px;
+  font-size: 28px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-commit > .container-fluid > h2 {
@@ -23228,7 +23324,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .ld-gift-partners {
-  padding: 32px 0;
+  padding: 20px 0 0;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-partners {
@@ -23244,12 +23340,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 .ld-gift-sk-page .ld-gift-partners-inner {
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 0;
   overflow: hidden;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-partners-inner {
     flex-direction: row;
+    border-radius: 10px;
   }
 }
 .ld-gift-sk-page .ld-gift-partners-stat {
@@ -23278,9 +23375,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   margin: 0;
   color: #fff;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 38px;
   text-transform: uppercase;
   letter-spacing: -0.05rem;
+}
+@media (max-width: 439px) {
+  .ld-gift-sk-page .ld-gift-partners-stat h3 {
+    font-size: 30px;
+  }
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-partners-stat h3 {
@@ -23326,8 +23428,15 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   text-align: center;
   color: #1E335C;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 28px;
   text-transform: capitalize;
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-partners-logos > h3 {
+    max-width: 382px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-partners-logos > h3 {
@@ -23344,7 +23453,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   height: 30px;
 }
 .ld-gift-sk-page .product-slider-prev-gift-partners {
-  left: 8px;
+  left: -12px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .product-slider-prev-gift-partners {
@@ -23352,7 +23461,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   }
 }
 .ld-gift-sk-page .product-slider-next-gift-partners {
-  right: 8px;
+  right: -12px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .product-slider-next-gift-partners {
@@ -23396,7 +23505,7 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   background: #F8633A;
 }
 .ld-gift-sk-page .ld-gift-consult {
-  padding: 32px 0 48px;
+  padding: 32px 0 65px;
 }
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult {
@@ -23411,8 +23520,8 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
 }
 .ld-gift-sk-page .ld-gift-consult-inner {
   margin: 0 auto;
-  background: linear-gradient(135deg, #E83729 0%, #F8633A 100%);
-  border-radius: 10px;
+  background: transparent;
+  border-radius: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column-reverse;
@@ -23421,6 +23530,13 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   .ld-gift-sk-page .ld-gift-consult-inner {
     flex-direction: row;
     align-items: center;
+    background: linear-gradient(135deg, #E83729 0%, #F8633A 100%);
+    border-radius: 10px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1024px) and (max-width: 1400px) {
+  .ld-gift-sk-page .ld-gift-consult-inner {
+    align-items: normal;
   }
 }
 .ld-gift-sk-page .ld-gift-consult-content {
@@ -23443,6 +23559,14 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   line-height: 1.5;
   text-transform: capitalize;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-consult-content h3 {
+    font-size: 24px;
+    max-width: 382px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 @media (min-width: 1024px) {
   .ld-gift-sk-page .ld-gift-consult-content h3 {
     font-size: 24px;
@@ -23452,10 +23576,31 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   flex-shrink: 0;
   max-width: 665px;
 }
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-consult-image {
+    max-width: 100%;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1400px) {
+  .ld-gift-sk-page .ld-gift-consult-image {
+    max-width: 507px;
+  }
+}
 .ld-gift-sk-page .ld-gift-consult-image img {
   display: block;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 0;
+}
+@media (min-width: 1024px) {
+  .ld-gift-sk-page .ld-gift-consult-image img {
+    border-radius: 10px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1400px) {
+  .ld-gift-sk-page .ld-gift-consult-image img {
+    object-fit: cover;
+    height: 100%;
+  }
 }
 .ld-gift-sk-page .ld-gift-consult-form .form-row {
   display: flex;
@@ -23526,5 +23671,16 @@ input::placeholder, .modal textarea::placeholder, .modal .select2-container--def
   .ld-gift-sk-page .ld-gift-consult-form button {
     width: auto;
     padding: 0 40px;
+  }
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-gift-consult-form button {
+    width: 158px;
+    margin: 23px 0 0;
+  }
+}
+@media (max-width: 1023px) {
+  .ld-gift-sk-page .ld-discount-faq .heading-haruco-new {
+    font-size: 28px;
   }
 }

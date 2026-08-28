@@ -32,6 +32,10 @@
     padding: 32px 0;
     aspect-ratio: 442 / 581;
     background: url("../images/banner-trao-suc-khoe_sp.jpg") center / cover no-repeat;
+    @include minmaxWidth(768px, 1023px) {
+      aspect-ratio: 442 / 420;
+      background-position: bottom;
+    }
     @include minWidth(1024px) {
       padding: 90px 0 60px;
       aspect-ratio: 1921 / 750;
@@ -41,17 +45,23 @@
       text-align: center;
       max-width: 700px;
       margin: 0;
+      @include maxWidth(1023px) {
+        margin: 0 auto;
+      }
       @include minWidth(1024px) {
         max-width: 653px;
         position: relative;
         left: -130px;
+        @include minmaxWidth(1024px, 1400px) {
+          left: -45px;
+        }
       }
     }
     .ld-gift-hero-script {
       margin: 0;
       color: $color-1E335C;
       font-family: "Carattere", cursive;
-      font-size: 28px;
+      font-size: 30px;
       @include minWidth(1024px) {
         font-size: 40px;
       }
@@ -63,7 +73,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       font-family: "Carattere", cursive;
-      font-size: 48px;
+      font-size: 46px;
       line-height: 1.2;
       @include minWidth(1024px) {
         font-size: 72px;
@@ -90,10 +100,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 27px;
+      height: 30px;
       padding: 0 24px;
       border-radius: 7px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       @include minWidth(1024px) {
         height: 50px;
@@ -231,10 +241,18 @@
     position: relative;
     @include maxWidth(1023px) {
       .swiper-button-prev {
-        left: 0;
+        left: -28px;
       }
       .swiper-button-next {
-        right: 0;
+        right: -28px;
+      }
+      @include maxWidth(439px) {
+        .swiper-button-prev {
+          left: -22px;
+        }
+        .swiper-button-next {
+          right: -22px;
+        }
       }
     }
   }
@@ -284,7 +302,10 @@
     // .ld-gift-budget-view-all bên dưới), reuse đúng pattern
     // .facilities-heading (Introduce, flex hàng ngang + space-between).
     .ld-gift-budget-tier-heading {
-      margin-bottom: 12px;
+      @include maxWidth(1023px) {
+        margin-top: 16px;
+        margin-bottom: 38px;
+      }
       @include minWidth(1024px) {
         display: flex;
         align-items: center;
@@ -306,8 +327,16 @@
       color: $light;
       font-weight: 500;
       font-size: 18px;
+      @include maxWidth(1023px) {
+        display: flex;
+        width: fit-content;
+        margin: 0 auto;
+      }
       @include minWidth(1024px) {
         font-size: 22px;
+        @include minmaxWidth(1024px, 1400px) {
+          font-size: 18px;
+        }
       }
       img {
         flex-shrink: 0;
@@ -398,6 +427,19 @@
   // và .link-view-all.link-view-all-dark (đều 2-3 class) ở _home.scss,
   // không phụ thuộc thứ tự import.
   .product-slider-wrapper-combo {
+    // "Sản phẩm nổi bật" — nav offset riêng, hẹp hơn offset mặc định của
+    // .product-slider-card-wrap (dùng chung cho các slider khác trong
+    // trang), scope qua wrapper để không ảnh hưởng các slider đó.
+    .product-slider-card-wrap {
+      @include maxWidth(1023px) {
+        .swiper-button-prev {
+          left: -11px;
+        }
+        .swiper-button-next {
+          right: -11px;
+        }
+      }
+    }
     .product-slider-heading .link-view-all,
     .link-view-all.link-view-all-dark {
       color: $light;
@@ -426,6 +468,10 @@
     // tạo class ".ld-gift-featured-products" mới).
     .product-slider-heading h2 {
       color: $light;
+      @include maxWidth(1023px) {
+        width: 100%;
+        text-align: center;
+      }
     }
   }
 
@@ -434,22 +480,28 @@
   // ------------------------------------------------------------
   .ld-gift-cta-banner {
     margin-top: 49px;
-    padding: 24px 0;
+    padding: 1px 0 28px;
     @include minWidth(1024px) {
       padding: 0;
     }
     .ld-gift-cta-banner-row {
+      position: relative;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
-      row-gap: 16px;
+      row-gap: 0;
       column-gap: 12px;
       border-radius: 10px;
-      padding: 24px 20px;
+      padding: 23px 13px;
       background: linear-gradient(291.45deg, $color-E83729 11.59%, $color-F8633A 90.73%),
         url("../images/bg-ban-chua-biet-mon-qua-nao-phu-hop_sp.jpg") center / cover no-repeat;
       background-blend-mode: multiply;
+      @include maxWidth(1023px) {
+        max-width: 409px;
+        min-height: 320px;
+        margin: 0 auto;
+      }
       @include minWidth(1024px) {
         flex-direction: row;
         flex-wrap: nowrap;
@@ -460,14 +512,18 @@
         background-blend-mode: normal;
       }
     }
-    // .inner chỉ còn ý nghĩa layout ở desktop (khối text+button đứng cạnh
-    // .ld-gift-cta-banner-man). Ở mobile dùng display:contents để các con
-    // (eyebrow/headline/btn) trở thành flex item trực tiếp của .row, cho
-    // phép xen .ld-gift-cta-banner-man vào giữa eyebrow và headline bằng
-    // order — không cần đổi DOM/tạo markup trùng cho 2 breakpoint.
+    // .inner ở mobile giờ là flex column riêng (eyebrow ghim trên cùng,
+    // btn-cta-yellow ghim dưới cùng nhờ justify-content:space-between +
+    // align-self:stretch theo chiều cao .row); headline đã tách ra dùng
+    // position:absolute canh giữa theo chiều dọc của .row cùng
+    // .ld-gift-cta-banner-man — khác kỹ thuật display:contents dùng ở bản
+    // trước đó.
     .ld-gift-cta-banner-inner {
       @include maxWidth(1023px) {
-        display: contents;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: stretch;
       }
       @include minWidth(1024px) {
         flex: 1 1 auto;
@@ -487,7 +543,14 @@
       display: block;
       width: 176px;
       height: auto;
-      order: 2;
+      order: 3;
+      @include maxWidth(1023px) {
+        position: absolute;
+        top: 50%;
+        right: 13px;
+        transform: translateY(-50%);
+        z-index: 2;
+      }
       @include minWidth(1024px) {
         width: 232px;
         order: initial;
@@ -496,7 +559,7 @@
     }
     .eyebrow {
       order: 1;
-      width: 100%;
+      width: auto;
       margin: 0;
       color: $light;
       font-weight: 500;
@@ -514,7 +577,7 @@
       }
     }
     .headline {
-      order: 3;
+      order: 2;
       flex: 1 1 0;
       min-width: 0;
       margin: 0 0 20px;
@@ -522,11 +585,20 @@
       font-weight: 300;
       font-size: 15px;
       @include maxWidth(1023px) {
+        position: absolute;
+        left: 13px;
+        right: 160px;
+        top: 52%;
+        transform: translateY(-50%);
         margin-bottom: 0;
         font-size: 24px;
         line-height: 1.4;
         letter-spacing: -0.03rem;
         text-align: left;
+        @include maxWidth(439px) {
+          right: 110px;
+          font-size: 19px;
+        }
       }
       @include minWidth(1024px) {
         order: initial;
@@ -538,17 +610,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 44px;
-      padding: 0 20px;
+      height: 50px;
+      padding: 0 15px;
       background: $color-FFB031;
       border: 1px solid $light;
       border-radius: 10px;
       color: $light;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 22px;
       order: 4;
       @include maxWidth(1023px) {
-        flex: 0 0 100%;
+        flex: 0 0 auto;
+        z-index: 3;
+      }
+      @include maxWidth(439px) {
+        font-size: 18px;
       }
       @include minWidth(1024px) {
         order: initial;
@@ -574,7 +650,7 @@
       color: $color-1E335C;
       font-weight: 500;
       letter-spacing: -0.03em;
-      font-size: 24px;
+      font-size: 28px;
       @include minWidth(1024px) {
         font-size: 35px;
       }
@@ -640,7 +716,7 @@
       color: $light;
       font-weight: 500;
       letter-spacing: -0.03em;
-      font-size: 22px;
+      font-size: 28px;
       @include minWidth(1024px) {
         font-size: 35px;
       }
@@ -651,6 +727,10 @@
     img {
       display: block;
       width: 100%;
+      @include maxWidth(1023px) {
+        max-width: 407px;
+        margin: 0 auto;
+      }
     }
   }
   .ld-gift-process-image-pc {
@@ -680,7 +760,7 @@
       color: $color-1E335C;
       font-weight: 500;
       letter-spacing: -0.03em;
-      font-size: 24px;
+      font-size: 28px;
       @include minWidth(1024px) {
         font-size: 35px;
         margin-bottom: 37px;
@@ -743,7 +823,7 @@
   // (nền cam nhạt), không có component sẵn khớp cấu trúc nên tạo mới.
   // ------------------------------------------------------------
   .ld-gift-partners {
-    padding: 32px 0;
+    padding: 20px 0 0;
     @include minWidth(1024px) {
       padding: 48px 0;
     }
@@ -759,10 +839,11 @@
   .ld-gift-partners-inner {
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 0;
     overflow: hidden;
     @include minWidth(1024px) {
       flex-direction: row;
+      border-radius: 10px;
     }
   }
   .ld-gift-partners-stat {
@@ -790,9 +871,12 @@
       margin: 0;
       color: $light;
       font-weight: 500;
-      font-size: 22px;
+      font-size: 38px;
       text-transform: uppercase;
       letter-spacing: -0.05rem;
+      @include maxWidth(439px) {
+        font-size: 30px;
+      }
       @include minWidth(1024px) {
         font-size: 48px;
       }
@@ -834,8 +918,13 @@
       text-align: center;
       color: $color-1E335C;
       font-weight: 500;
-      font-size: 20px;
+      font-size: 28px;
       text-transform: capitalize;
+      @include maxWidth(1023px) {
+        max-width: 382px;
+        margin-left: auto;
+        margin-right: auto;
+      }
       @include minWidth(1024px) {
         font-size: 28px;
       }
@@ -856,10 +945,9 @@
   }
   // .ld-gift-partners-inner (cha xa hơn) có overflow:hidden — offset âm
   // mặc định của .swiper-button-prev/-next (dùng cho các slider khác nằm
-  // trong card trắng rộng rãi) sẽ bị cắt mất ở đây. Mobile giữ inset 8px
-  // (an toàn, .ld-gift-partners-logos không đủ padding để chịu -34px ở
-  // mobile); desktop dùng -34px theo yêu cầu — vẫn nằm trong padding 40px
-  // desktop hiện có của .ld-gift-partners-logos nên không bị cắt.
+  // trong card trắng rộng rãi) sẽ bị cắt mất ở đây. Mobile dùng -12px theo
+  // yêu cầu design; desktop dùng -34px — vẫn nằm trong padding 40px desktop
+  // hiện có của .ld-gift-partners-logos nên không bị cắt.
   .product-slider-prev-gift-partners,
   .product-slider-next-gift-partners {
     top: 50%;
@@ -867,13 +955,13 @@
     height: 30px;
   }
   .product-slider-prev-gift-partners {
-    left: 8px;
+    left: -12px;
     @include minWidth(1024px) {
       left: -34px;
     }
   }
   .product-slider-next-gift-partners {
-    right: 8px;
+    right: -12px;
     @include minWidth(1024px) {
       right: -34px;
     }
@@ -924,7 +1012,7 @@
   // thành 1 card nền gradient theo đúng Figma.
   // ------------------------------------------------------------
   .ld-gift-consult {
-    padding: 32px 0 48px;
+    padding: 32px 0 65px;
     @include minWidth(1024px) {
       padding: 48px 0 60px;
     }
@@ -938,14 +1026,19 @@
   }
   .ld-gift-consult-inner {
     margin: 0 auto;
-    background: linear-gradient(135deg, $color-E83729 0%, $color-F8633A 100%);
-    border-radius: 10px;
+    background: transparent;
+    border-radius: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column-reverse;
     @include minWidth(1024px) {
       flex-direction: row;
       align-items: center;
+      background: linear-gradient(135deg, $color-E83729 0%, $color-F8633A 100%);
+      border-radius: 10px;
+      @include minmaxWidth(1024px, 1400px) {
+        align-items: normal;
+      }
     }
   }
   .ld-gift-consult-content {
@@ -964,6 +1057,12 @@
       font-size: 18px;
       line-height: 1.5;
       text-transform: capitalize;
+      @include maxWidth(1023px) {
+        font-size: 24px;
+        max-width: 382px;
+        margin-left: auto;
+        margin-right: auto;
+      }
       @include minWidth(1024px) {
         font-size: 24px;
       }
@@ -972,10 +1071,23 @@
   .ld-gift-consult-image {
     flex-shrink: 0;
     max-width: 665px;
+    @include maxWidth(1023px) {
+      max-width: 100%;
+    }
+    @include minmaxWidth(1024px, 1400px) {
+      max-width: 507px;
+    }
     img {
       display: block;
       width: 100%;
-      border-radius: 10px;
+      border-radius: 0;
+      @include minWidth(1024px) {
+        border-radius: 10px;
+      }
+      @include minmaxWidth(1024px, 1400px) {
+        object-fit: cover;
+        height: 100%;
+      }
     }
   }
   .ld-gift-consult-form {
@@ -1045,6 +1157,20 @@
         width: auto;
         padding: 0 40px;
       }
+      @include maxWidth(1023px) {
+        width: 158px;
+        margin: 23px 0 0;
+      }
+    }
+  }
+
+  // "FAQ – Câu hỏi thường gặp" — .heading-haruco-new là class heading dùng
+  // chung cho MỌI page có FAQ (_common.scss), override riêng font-size
+  // mobile ở đây (scope qua .ld-gift-sk-page) để không ảnh hưởng các trang
+  // khác đang dùng chung component FAQ.
+  .ld-discount-faq .heading-haruco-new {
+    @include maxWidth(1023px) {
+      font-size: 28px;
     }
   }
 }
